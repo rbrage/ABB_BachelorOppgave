@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine on
+RewriteRule ^([\w_]*)?/?([\w_]*)?/?([\w-_]*)? index.php?controller=$1&action=$2&id=$3&%{QUERY_STRING} [NC,NE,L]
+RewriteRule ^(.*)? index.php?controller=Err&action=Err404 [NC]
