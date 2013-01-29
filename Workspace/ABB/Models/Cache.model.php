@@ -1,6 +1,6 @@
 <?php
 
-class Cashe {
+class Cache {
 	
 	
 }
