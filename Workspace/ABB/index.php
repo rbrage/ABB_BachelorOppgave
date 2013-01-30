@@ -9,7 +9,7 @@ require_once("mvcclasses/Debuger.php");
 
 //require_once("controllers/Home.php");
 
-//Debuger::$SendDebuginfoToBrowser = false;
+Debuger::$SendDebuginfoToBrowser = false;
 //Debuger::SetSendInfoToBrowser("MVC", true);
 
 $loader = new Loader($_GET);
