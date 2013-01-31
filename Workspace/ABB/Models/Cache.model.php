@@ -2,48 +2,49 @@
 
 class Cache {
 	
-	public $extensionInstalled;
+	public $apcInstalled;
+	public $wincacheInstalled;
 	private $lockname = "_lock";
 	
 	public function __construct(){
 		Debuger::SetSendInfoToBrowser("Cache", true);
 		if(function_exists("extension_loaded")){
-			Debuger::RegisterPoint("Checks if the extension is loaded.", "Cache");
-			$this->extensionInstalled = extension_loaded('wincahce');
-			Debuger::RegisterPoint("Is extension loaded? " . ($this->extensionInstalled ? "yes" : "no"), "Cache");
+			Debuger::RegisterPoint("Checks if the apc extension is loaded.", "Cache");
+			$this->apcInstalled = extension_loaded('apc');
+			Debuger::RegisterPoint("Apc extension is " . ($this->apcInstalled ? "not " : "") . "loaded.", "Cache");
 		}
 		else 
-			Debuger::RegisterPoint("Couldnt check if the extension is loaded.", "Cache");
+			Debuger::RegisterPoint("Couldnt check if any extension is loaded.", "Cache");
 	}
 	
-	public function apc_lock(){
+	public function lock(){
 		Debuger::RegisterPoint("Locking Apc cache.", "Cache");
-		if(!$this->extensionInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		while(!apc_add($this->lockname)){
-			usleep(1000);
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		while(!apc_add($this->lockname, true)){
+			usleep(500);
 		}
 	}
 	
-	public function apc_unlock(){
+	public function unlock(){
 		Debuger::RegisterPoint("Unlocking Apc cache.", "Cache");
-		if(!$this->extensionInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		apc_delete($this->lockname);
 	}
 	
 	public function getCacheData($key){
-		if(!$this->extensionInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		$sucess = false;
 		$data = apc_fetch($key, $sucess);
 		return ($sucess) ? ($data) : (null);
 	}
 	
 	public function setCacheData($key, $data){
-		if(!$this->extensionInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		return apc_store($key, $data);
 	}
 	
 	public function removeCacheData($key){
-		if(!$this->extensionInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		return apc_delete($key);
 	}
 	
