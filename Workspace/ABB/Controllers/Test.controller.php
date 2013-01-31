@@ -19,9 +19,9 @@ class Test extends Controller {
 	public function apc(){
 		include("Models/Cache.model.php");
 		$cache = new Cache();
-		$cache->apc_unlock();
-		$cache->apc_lock();
-		$cache->apc_unlock();
+		$cache->unlock();
+		$cache->lock();
+		$cache->unlock();
 	}
 
 	public function ext(){
@@ -38,13 +38,17 @@ class Test extends Controller {
 	public function unlock(){
 		include("Models/Cache.model.php");
 		$cache = new Cache();
-		$cache->apc_unlock();
+		$cache->unlock();
 	}
 
 	public function lock(){
 		include("Models/Cache.model.php");
 		$cache = new Cache();
-		$cache->apc_lock();
+		$cache->lock();
+	}
+	
+	public function exec(){
+		exec("start");
 	}
 }
 
