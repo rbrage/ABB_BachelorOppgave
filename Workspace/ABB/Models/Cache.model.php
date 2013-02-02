@@ -1,5 +1,7 @@
 <?php
 
+// ide: apc-arraylist.
+
 class Cache {
 	
 	public $apcInstalled;
@@ -11,7 +13,7 @@ class Cache {
 		if(function_exists("extension_loaded")){
 			Debuger::RegisterPoint("Checks if the apc extension is loaded.", "Cache");
 			$this->apcInstalled = extension_loaded('apc');
-			Debuger::RegisterPoint("Apc extension is " . ($this->apcInstalled ? "not " : "") . "loaded.", "Cache");
+			Debuger::RegisterPoint("Apc extension is " . ($this->apcInstalled ? "" : "not ") . "loaded.", "Cache");
 		}
 		else 
 			Debuger::RegisterPoint("Couldnt check if any extension is loaded.", "Cache");
@@ -32,6 +34,7 @@ class Cache {
 	}
 	
 	public function getCacheData($key){
+		Debuger::RegisterPoint("Gets data from Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		$sucess = false;
 		$data = apc_fetch($key, $sucess);
@@ -39,12 +42,15 @@ class Cache {
 	}
 	
 	public function setCacheData($key, $data){
+		Debuger::RegisterPoint("Sets data in Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		return apc_store($key, $data);
 	}
 	
 	public function removeCacheData($key){
+		Debuger::RegisterPoint("Removes data from Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		if(!apc_key_exists($key)) return true;
 		return apc_delete($key);
 	}
 	

@@ -46,9 +46,31 @@ class Test extends Controller {
 		$cache = new Cache();
 		$cache->lock();
 	}
-	
+
 	public function exec(){
 		exec("start");
+	}
+
+	public function addTP(){
+		include("Models/TriggerPointRegister.php");
+		$tpreg = new TriggerPointRegister();
+		$tp = new TriggerPoint();
+		$tpreg->addTriggerPointToRegister($tp);
+		echo sizeof($tpreg->getTriggerRegister());
+	}
+
+	public function fillTP(){
+		echo microtime() . "\n";
+		include("Models/TriggerPointRegister.php");
+		$tpreg = new TriggerPointRegister();
+		$tp = new TriggerPoint();
+		for($i = 0; $i < 1000; $i++)
+		$tpreg->addTriggerPointToRegister($tp);
+		echo microtime();
+	}
+	
+	public function memUse(){
+		print_r(apc_cache_info());
 	}
 }
 
