@@ -20,7 +20,7 @@ class Debuger {
 		}
 
 		if((self::$SendDebuginfoToBrowser && $id == NULL) || (self::$DebugIDinfo[$id][self::BrowserArrayNum]))
-			echo "Debugerpoint " . self::$counter . ", at " . microtime() . ": "  . $msg . "\n";
+			echo "Debugerpoint " . self::$counter . ", at " . microtime(true) . ": "  . $msg . "\n";
 
 		self::$counter++;
 	}
