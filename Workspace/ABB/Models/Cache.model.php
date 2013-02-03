@@ -1,7 +1,5 @@
 <?php
 
-// ide: apc-arraylist.
-
 class Cache {
 	
 	public $apcInstalled;
@@ -52,6 +50,28 @@ class Cache {
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		if(!apc_key_exists($key)) return true;
 		return apc_delete($key);
+	}
+	
+	public function hasKey($key){
+		Debuger::RegisterPoint("Checks if the key exists in the Apc cache.", "Cache");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		return apc_key_exists($key);
+	}
+	
+	public function increase($key, $step = 1){
+		Debuger::RegisterPoint("Increases a value in Apc cache.", "Cache");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		$success = false;
+		apc_inc($key, $step, $success);
+		return $success;
+	}
+	
+	public function decrease($key, $step = 1){
+		Debuger::RegisterPoint("Decreases a value in Apc cache.", "Cache");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		$success = false;
+		apc_dec($key, $step, $success);
+		return $success;
 	}
 	
 }
