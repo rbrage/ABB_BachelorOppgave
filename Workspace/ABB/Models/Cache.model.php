@@ -7,7 +7,7 @@ class Cache {
 	const LOCKSUFFIX = "_lock";
 	
 	public function __construct(){
-		Debuger::SetSendInfoToBrowser("Cache", true);
+		Debuger::SetSendInfoToBrowser("Cache", false);
 		if(function_exists("extension_loaded")){
 			Debuger::RegisterPoint("Checks if the apc extension is loaded.", "Cache");
 			$this->apcInstalled = extension_loaded('apc');
@@ -88,7 +88,7 @@ class Cache {
 	public function hasKey($key){
 		Debuger::RegisterPoint("Checks if the key exists in the Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		return apc_key_exists($key);
+		return apc_exists($key);
 	}
 	
 	/**
