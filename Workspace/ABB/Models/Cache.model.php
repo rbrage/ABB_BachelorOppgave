@@ -4,7 +4,7 @@ class Cache {
 	
 	public $apcInstalled;
 	public $wincacheInstalled;
-	private $lockname = "_lock";
+	const LOCKSUFFIX = "_lock";
 	
 	public function __construct(){
 		Debuger::SetSendInfoToBrowser("Cache", true);
@@ -17,18 +17,18 @@ class Cache {
 			Debuger::RegisterPoint("Couldnt check if any extension is loaded.", "Cache");
 	}
 	
-	public function lock(){
+	public function lock($key){
 		Debuger::RegisterPoint("Locking Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		while(!apc_add($this->lockname, true)){
+		while(!apc_add($key . self::LOCKSUFFIX, true)){
 			usleep(500);
 		}
 	}
 	
-	public function unlock(){
+	public function unlock($key){
 		Debuger::RegisterPoint("Unlocking Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		apc_delete($this->lockname);
+		apc_delete($key . self::LOCKSUFFIX);
 	}
 	
 	public function getCacheData($key){
