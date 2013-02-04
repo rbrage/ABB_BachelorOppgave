@@ -1,14 +1,17 @@
 <?php
 
+require_once("Models/Cache.model.php");
+
 class CachedArrayList {
 	
 	private $cache;
 	const ARRAYLISTLOADED = "CACHEDARRAYLISTLOADED";
 	const SIZEKEYWORD = "CACHEDARRAYLIST_SIZE";
+	const ARRAYLISTPREFIX = "";
 	
 	public function __construct(){
 		$this->cache = new Cache();
-		if(!$this->cache->hasKey(SELF::ARRAYLISTLOADED)){
+		if(!$this->cache->hasKey(self::ARRAYLISTLOADED)){
 			$this->cache->setCacheData(self::ARRAYLISTLOADED, true);
 			$this->clear();
 		}
@@ -21,14 +24,17 @@ class CachedArrayList {
 	 */
 	public function add($data, $lock = false){
 		$size = $this->size();
-		$this->lock($size);
+		$this->lock(self::ARRAYLISTPREFIX . $size);
 		
-		$this->cache->setCacheData($key, $data);
-		$this->cache->increase(self::SIZEKEYWORD);
+		$response = $this->cache->setCacheData(self::ARRAYLISTPREFIX . $size, $data);
+		if($response)
+			$this->cache->increase(self::SIZEKEYWORD);
 		
 		if(!$lock){
-			$this->unlock($size());
+			$this->unlock(self::ARRAYLISTPREFIX . $size);
 		}
+		
+		return $response;
 	}
 	
 	/**
@@ -37,12 +43,12 @@ class CachedArrayList {
 	 * @param boolean $lock
 	 */
 	public function get($index, $lock = false){
-		$this->lock($index);
+		$this->lock(self::ARRAYLISTPREFIX . $index);
 		
-		$data = $this->cache->getCacheData($index);
+		$data = $this->cache->getCacheData(self::ARRAYLISTPREFIX . $index);
 		
 		if(!$lock)
-			$this->unlock($index);
+			$this->unlock(self::ARRAYLISTPREFIX . $index);
 		
 		return $data;
 	}
@@ -54,12 +60,12 @@ class CachedArrayList {
 	 * @param boolean $lock
 	 */
 	public function set($index, $data, $lock = false){
-		$this->lock($index);
+		$this->lock(self::ARRAYLISTPREFIX . $index);
 		
-		$this->cache->setCacheData($index, $data);
+		$this->cache->setCacheData(self::ARRAYLISTPREFIX . $index, $data);
 		
 		if(!$lock)
-			$this->unlock($index);
+			$this->unlock(self::ARRAYLISTPREFIX . $index);
 	}
 	
 	/**
@@ -75,7 +81,7 @@ class CachedArrayList {
 	 * @param integer $index
 	 */
 	public function lock($index){
-		$this->cache->lock($index);
+		$this->cache->lock(self::ARRAYLISTPREFIX . $index);
 	}
 	
 	/**
@@ -83,7 +89,7 @@ class CachedArrayList {
 	 * @param integer $index
 	 */
 	public function unlock($index){
-		$this->cache->unlock($index);
+		$this->cache->unlock(self::ARRAYLISTPREFIX . $index);
 	}
 	
 	/**
@@ -138,6 +144,14 @@ class CachedArrayList {
 	 */
 	public function unloadList(){
 		$this->cache->removeCacheData(self::ARRAYLISTLOADED);
+	}
+	
+	/**
+	 * Removes all data in the cache.
+	 * Not yet implemented.
+	 */
+	public function removeAllDataInCache(){
+		
 	}
 }
 
