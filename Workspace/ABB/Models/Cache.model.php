@@ -17,6 +17,11 @@ class Cache {
 			Debuger::RegisterPoint("Couldnt check if any extension is loaded.", "Cache");
 	}
 	
+	/**
+	 * Puts a lock on spesific key
+	 * @param unknown_type $key
+	 * @throws Exception
+	 */
 	public function lock($key){
 		Debuger::RegisterPoint("Locking Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
@@ -25,12 +30,23 @@ class Cache {
 		}
 	}
 	
+	/**
+	 * Removes a lock on a spesific key.
+	 * @param unknown_type $key
+	 * @throws Exception
+	 */
 	public function unlock($key){
 		Debuger::RegisterPoint("Unlocking Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		apc_delete($key . self::LOCKSUFFIX);
 	}
 	
+	/**
+	 * Gets data from the shared cache.
+	 * @param unknown_type $key
+	 * @throws Exception
+	 * @return Ambigous <NULL, unknown>
+	 */
 	public function getCacheData($key){
 		Debuger::RegisterPoint("Gets data from Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
@@ -39,12 +55,24 @@ class Cache {
 		return ($sucess) ? ($data) : (null);
 	}
 	
+	/**
+	 * Sets new data on the spesific key.
+	 * @param unknown_type $key
+	 * @param unknown_type $data
+	 * @throws Exception
+	 */
 	public function setCacheData($key, $data){
 		Debuger::RegisterPoint("Sets data in Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		return apc_store($key, $data);
 	}
 	
+	/**
+	 * Removes data from the shared cache with the spesific key.
+	 * @param unknown_type $key
+	 * @throws Exception
+	 * @return boolean
+	 */
 	public function removeCacheData($key){
 		Debuger::RegisterPoint("Removes data from Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
@@ -52,12 +80,24 @@ class Cache {
 		return apc_delete($key);
 	}
 	
+	/**
+	 * Checks if there is data with the spesific key on the shared cache.
+	 * @param unknown_type $key
+	 * @throws Exception
+	 */
 	public function hasKey($key){
 		Debuger::RegisterPoint("Checks if the key exists in the Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
 		return apc_key_exists($key);
 	}
 	
+	/**
+	 * Increases a numeric value in the shared cache.
+	 * @param unknown_type $key
+	 * @param unknown_type $step
+	 * @throws Exception
+	 * @return boolean
+	 */
 	public function increase($key, $step = 1){
 		Debuger::RegisterPoint("Increases a value in Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
@@ -66,6 +106,13 @@ class Cache {
 		return $success;
 	}
 	
+	/**
+	 * Decreases a numeric value in the shared cache
+	 * @param unknown_type $key
+	 * @param unknown_type $step
+	 * @throws Exception
+	 * @return boolean
+	 */
 	public function decrease($key, $step = 1){
 		Debuger::RegisterPoint("Decreases a value in Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
