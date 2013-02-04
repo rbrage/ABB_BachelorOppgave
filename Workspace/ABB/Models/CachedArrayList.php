@@ -62,6 +62,10 @@ class CachedArrayList {
 			$this->unlock($index);
 	}
 	
+	/**
+	 * Not yet implemented
+	 * @param unknown_type $index
+	 */
 	public function hasLock($index){
 		
 	}
