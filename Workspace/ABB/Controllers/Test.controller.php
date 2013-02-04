@@ -72,6 +72,12 @@ class Test extends Controller {
 	public function memUse(){
 		print_r(apc_cache_info());
 	}
+	
+	public function listsize(){
+		require_once("Models/CachedArrayList.php");
+		$list = new CachedArrayList();
+		echo $list->size();
+	}
 }
 
 ?>
