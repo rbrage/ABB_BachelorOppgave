@@ -5,7 +5,6 @@ class CachedArrayList {
 	private $cache;
 	const ARRAYLISTLOADED = "CACHEDARRAYLISTLOADED";
 	const SIZEKEYWORD = "CACHEDARRAYLIST_SIZE";
-	const LOCKSUFFIX = "_lock";
 	
 	public function __construct(){
 		$this->cache = new Cache();
@@ -49,7 +48,7 @@ class CachedArrayList {
 	}
 	
 	/**
-	 * Sets a element in the list. Its posible to lock the data so it dont get temperd with while your script is running.
+	 * Sets an element in the list. Its posible to lock the data so it dont get temperd with while your script is running.
 	 * @param integer $index
 	 * @param mixed $data
 	 * @param boolean $lock
@@ -66,13 +65,21 @@ class CachedArrayList {
 	public function hasLock($index){
 		
 	}
-	
+
+	/**
+	 * Locks an element in the list.
+	 * @param integer $index
+	 */
 	public function lock($index){
-		
+		$this->cache->lock($index);
 	}
 	
+	/**
+	 * Unlocks an element in the list. 
+	 * @param integer $index
+	 */
 	public function unlock($index){
-		
+		$this->cache->unlock($index);
 	}
 	
 	/**
