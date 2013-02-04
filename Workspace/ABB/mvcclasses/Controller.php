@@ -17,8 +17,9 @@ abstract class Controller {
 
 	public function ExecuteAction(){
 		Debuger::RegisterPoint("Executing " . $this->action . " method.", "MVC");
+		$id = $this->urlvalues["id"];
 		$this->viewmodel = new ViewModel();
-		return $this->{$this->action}();
+		return $this->{$this->action}($id);
 	}
 
 	private $templateAlreadyRun = false;
@@ -42,7 +43,7 @@ abstract class Controller {
 	protected function View(){
 		Debuger::RegisterPoint("Moving over to the View section.", "MVC");
 		$this->viewloc = "views/" . get_class($this) . "/" . $this->action . ".php";
-		$viewmodel = $this->viewmodel;
+		$viewmodel = &$this->viewmodel;
 		require_once($this->viewloc);
 	}
 
