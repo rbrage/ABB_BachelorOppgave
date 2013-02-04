@@ -7,7 +7,7 @@ class CachedArrayList {
 	private $cache;
 	const ARRAYLISTLOADED = "CACHEDARRAYLISTLOADED";
 	const SIZEKEYWORD = "CACHEDARRAYLIST_SIZE";
-	const ARRAYLISTPREFIX = "";
+	const ARRAYLISTPREFIX = "CACHEDARRAYLIST_";
 	
 	public function __construct(){
 		$this->cache = new Cache();
@@ -136,7 +136,7 @@ class CachedArrayList {
 	 * Not yet implemented.
 	 */
 	public function iterator(){
-		
+		return new APCIterator('user', '/^' . self::ARRAYLISTPREFIX . '[\d]*$/', APC_ITER_ALL, $this->size());
 	}
 	
 	/**
