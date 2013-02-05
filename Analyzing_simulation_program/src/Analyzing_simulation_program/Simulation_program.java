@@ -11,14 +11,14 @@ import java.util.Random;
 public class Simulation_program {
 
 	private final static int numberOfTrigerpoints = 10;
-	private static TriggerPoint triggerpoint = new TriggerPoint();
 	static int x;
 	static int y; 
 	static int z;
 	static long timestamp;
-	
-	
+
+
 	public static void main(String[] args) throws Exception {
+		
 		try{
 			String path = "http://127.0.0.1:8888/register/trigger/xml?";
 			URL url;
@@ -38,7 +38,9 @@ public class Simulation_program {
 
 				String buffer;
 				while((buffer = inStream.readLine()) != null) {
-					System.out.println(buffer);
+					if(buffer.contains("false")){
+						System.out.println(buffer);
+					}
 				}
 				inStream.close();
 				i++;
