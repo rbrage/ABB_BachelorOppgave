@@ -16,16 +16,14 @@ class Home extends Controller {
 			$arr[] = $data["value"];
 		}
 // 			$obj = $data["value"];
-			//echo "x: " .$obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
+// 			echo "x: " .$obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
 				
-			//Prøver å få til å sortere etter tiden
-			
 			print_r($arr);
 			usort($arr, array($this,"cmp"));
 			echo "Sorted: \n<br \> x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
 // 		}
 	}
-	//Prøver å få til å sortere etter tiden
+	//Sort function
 	function cmp(&$a, &$b)
 	{
 		return strcmp($a->timestamp, $b->timestamp);
