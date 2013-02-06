@@ -15,15 +15,18 @@ class Home extends Controller {
 		foreach ($this->list->iterator() as $data){
 			$arr[] = $data["value"];
 		}
-// 			$obj = $data["value"];
-// 			echo "x: " .$obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
-				
-			print_r($arr);
-			usort($arr, array($this,"cmp"));
-			echo "Sorted: \n<br \> x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
-// 		}
+
+		usort($arr, array("Home", "cmp"));
+		$this->viewmodel->arr = $arr;
+
+		return $this->View();
+		
+		// 			echo "Sorted: \n<br \> x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
 	}
-	//Sort function
+
+	/**
+	 *  Sort function
+	 */
 	function cmp(&$a, &$b)
 	{
 		return strcmp($a->timestamp, $b->timestamp);

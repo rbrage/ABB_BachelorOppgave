@@ -28,10 +28,34 @@
 		</div>
 	</div>
 	<div class="container">
-	<div class="row"></div>
-		<h1>This is a test!!</h1>
-</div>
+		<div class="row">
+			<h1>This is a test!!</h1>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>X</th>
+						<th>Y</th>
+						<th>Z</th>
+						<th>Time</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($viewmodel->arr as &$item){
+						echo "<tr>
+		<td>".$item->x."</td>
+		<td>".$item->y."</td>
+		<td>".$item->z."</td>
+		<td>".$item->timestamp."</td>
+		</tr>";
+					}
+					?>
+				</tbody>
+			</table>
+
+		</div>
+
 	</div>
+
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
