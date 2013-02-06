@@ -44,6 +44,8 @@ abstract class Controller {
 		Debuger::RegisterPoint("Moving over to the View section.", "MVC");
 		$this->viewloc = "views/" . get_class($this) . "/" . $this->action . ".php";
 		$viewmodel = &$this->viewmodel;
+		$ViewModel = &$this->viewmodel;
+		$viewModel = &$this->viewmodel;
 		require_once($this->viewloc);
 	}
 
