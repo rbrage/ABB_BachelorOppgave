@@ -11,19 +11,22 @@ class Home extends Controller {
 	 */
 	public function Index(){
 		$this->list = new CachedArrayList();
+		$arr = array();
 		foreach ($this->list->iterator() as $data){
-			$obj = $data["value"];
-			echo "x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
-
-			
-		//Prøver å få til å sortere etter tiden
-			//print_r($data);
-			//usort($data, array($this,"cmp"));
-			//echo "Sorted: \n<br \> x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
+			$arr[] = $data["value"];
 		}
+// 			$obj = $data["value"];
+			//echo "x: " .$obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
+				
+			//Prøver å få til å sortere etter tiden
+			
+			print_r($arr);
+			usort($arr, array($this,"cmp"));
+			echo "Sorted: \n<br \> x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
+// 		}
 	}
 	//Prøver å få til å sortere etter tiden
-	function cmp($a, $b)
+	function cmp(&$a, &$b)
 	{
 		return strcmp($a->timestamp, $b->timestamp);
 	}

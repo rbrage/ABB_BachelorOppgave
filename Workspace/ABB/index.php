@@ -4,7 +4,7 @@
 		require_once("mvcclasses/Controller.php");
 		require_once("mvcclasses/ViewModel.php");
 		require_once("mvcclasses/Debuger.php");
-
+		
 		//require_once("models/Home.php");
 
 		//require_once("controllers/Home.php");
