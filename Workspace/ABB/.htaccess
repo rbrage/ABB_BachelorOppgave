@@ -1,6 +1,6 @@
 Options +FollowSymLinks
 RewriteEngine on
-RewriteRule ^/?scripts/([\w-_\.]*)\.(js|css)$ /scripts/$1.$2 [NC,NE,L]
-RewriteRule ^/?img/([\w-_\.]*)\.(jpg|png|jpeg|gif|tiff|bmp)$ /img/$1.$2 [NC,NE,L]
-RewriteRule ^([\w_]*)?/?([\w_]*)?/?([\w-_]*)? index.php?controller=$1&action=$2&id=$3&%{QUERY_STRING} [NC,NE,L]
-RewriteRule ^(.*)? index.php?controller=Err&action=Err404 [NC]
+RewriteRule ^/?scripts/([\w-_\.]*)\.(js|css)$ 					scripts/$1.$2 [NE,L]
+RewriteRule ^/?img/([\w-_\.]*)\.(jpg|png|jpeg|gif|tiff|bmp)$ 	img/$1.$2 [NE,L]
+RewriteRule ^([\w_]*)?/?([\w_]*)?/?([\w-_]*)? 					index.php?controller=$1&action=$2&id=$3&%{QUERY_STRING} [NC,NE,L]
+RewriteRule ^(.*)? 												index.php?controller=Err&action=Err404 [NC]
