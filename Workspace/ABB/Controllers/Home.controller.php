@@ -16,7 +16,7 @@ class Home extends Controller {
 			$arr[] = $data["value"];
 		}
 
-		usort($arr, array("Home", "cmp"));
+// 		usort($arr, array("Home", "cmp"));
 		$this->viewmodel->arr = $arr;
 
 		return $this->View();

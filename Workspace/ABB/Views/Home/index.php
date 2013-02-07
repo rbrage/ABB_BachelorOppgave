@@ -3,8 +3,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link href="scripts/bootstrap.min.css" rel="stylesheet" media="screen">
+<style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
 <link href="scripts/bootstrap.css" rel="stylesheet" media="screen">
+<link href="scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 
 <title>ABB Analyseprogram</title>
 </head>
@@ -41,6 +47,7 @@
 				</thead>
 				<tbody>
 					<?php foreach ($viewmodel->arr as &$item){
+						
 						echo "<tr>
 		<td>".$item->x."</td>
 		<td>".$item->y."</td>
