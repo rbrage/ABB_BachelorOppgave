@@ -4,8 +4,8 @@ class ViewModel {
 	
 	private $data = array();
 
-	public function Add($name, $value){
-		$this->$name = $value;
+	public function Add($name, &$value){
+		$this->$name = &$value;
 	}
 	
 	public function __get($name){
