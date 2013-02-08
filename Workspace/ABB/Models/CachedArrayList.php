@@ -1,8 +1,9 @@
 <?php
 
 require_once("Models/Cache.model.php");
+require_once("Models/CacheIterator.php");
 
-class CachedArrayList {
+class CachedArrayList implements arrayaccess {
 	
 	private $cache;
 	const ARRAYLISTLOADED = "CACHEDARRAYLISTLOADED";
@@ -124,18 +125,18 @@ class CachedArrayList {
 	}
 	
 	/**
-	 * Gets the cache as a array. This method is not costefficen. It's recemended to use the iterator instead.
-	 * Method not implemented yet.
-	 * @return multitype:
+	 * Returns a CacheIterator that can iterate over the list. This iterator gives the list in the correct order.
+	 * @return CacheIterator
 	 */
-	public function toArray(){
-		return array();
+	public function iterator(){
+		return new CacheIterator($this);
 	}
 	
 	/**
-	 * Not yet implemented.
+	 * Returns a APCIterator that can iterate over the list. This comes with apc info, and the list may not come in the correct order. The iterator gives what it fined first in memory.
+	 * @return APCIterator
 	 */
-	public function iterator(){
+	public function APCIterator(){
 		return new APCIterator('user', '/^' . self::ARRAYLISTPREFIX . '[\d]*$/', APC_ITER_ALL, $this->size());
 	}
 	
@@ -153,6 +154,45 @@ class CachedArrayList {
 	public function removeAllDataInCache(){
 		
 	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see ArrayAccess::offsetExists()
+	 */
+	public function offsetExists($offset){
+		return ($this->size() > $offset);
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see ArrayAccess::offsetGet()
+	 */
+	public function offsetGet($offset){
+		return ($this->size() > $offset) ? $this->get($offset) : null;
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see ArrayAccess::offsetSet()
+	 */
+	public function offsetSet($offset, $value){
+		if(is_null($offset)){
+			$this->add($value);
+		}
+		else{
+			$this->set($offset, $value);
+		}
+	}
+	
+	/**
+	 * Not yet implemented
+	 * (non-PHPdoc)
+	 * @see ArrayAccess::offsetUnset()
+	 */
+	public function offsetUnset($offset){
+		
+	}
+	
 }
 
 ?>
