@@ -2,25 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-    </style>
-<link href="scripts/bootstrap.css" rel="stylesheet" media="screen">
-<link href="scripts/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
 
 <title>ABB Analyseprogram</title>
 </head>
-<body>
+<body style="padding-top: 60px;">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">ABB Analyse Program</a>
+				</a> <a class="brand" style="padding-top: 5px; padding-bottom: 5px;"
+					href="#"><img src="/img/abbLogo.gif"> </a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
@@ -32,11 +27,31 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-<?php
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2">
+				<ul class="nav nav-list">
+					<li class="nav-header">Meny</li>
+					<li class="active"><a href="http://127.0.0.1:8888/home/Tabell.php">Tabell</a>
+					</li>
+					<li><a href="#">3D plot</a></li>
+				</ul>
 
-$this->ViewBody();
+			</div>
+							
 
-?>
+			<div class="span10">
+				<?php
+
+				$this->ViewBody();
+
+				?>
+			</div>
+		</div>
+	</div>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+
 </body>
 </html>
+

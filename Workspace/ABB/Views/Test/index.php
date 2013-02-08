@@ -28,10 +28,10 @@
 		</div>
 	</div>
 	<div class="container">
-	<div class="row"></div>
+		<div class="row"></div>
 		<h1>This is a test!!</h1>
-</div>
 	</div>
+	
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>

@@ -1,4 +1,6 @@
 <?php 
-$this->Template("test");
+$this->Template("sheard");
 ?>
-<p>Test number two worked fine</p>
+<div class="row">
+		<h1>This is a test!!</h1>
+</div>
