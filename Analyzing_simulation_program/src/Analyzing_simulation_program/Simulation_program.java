@@ -72,39 +72,7 @@ public class Simulation_program extends JFrame implements ActionListener
 
 	}
 
-	//	public void startConection(int numberOfTrigerpoints){
-	//		try{
-	//			String path = "http://127.0.0.1:8888/register/trigger/xml?";
-	//			URL url;
-	//			URLConnection urlConnection = null;
-	//			DataInputStream inStream;
-	//
-	//			bar.setMinimum(0);
-	//			bar.setMaximum(numberOfTrigerpoints);
-	//			int i=0;
-	//			while(i<numberOfTrigerpoints){
-	//				setNewTriggerpoint();
-	//				url = new URL(path+"x="+x+"&y="+y+"&z="+z+"&time="+timestamp);
-	//				urlConnection = url.openConnection();
-	//				((HttpURLConnection)urlConnection).setRequestMethod("POST");
-	//				urlConnection.setDoOutput(true);
-	//				System.out.println(url.getQuery());
-	//
-	//				inStream = new DataInputStream(urlConnection.getInputStream());
-	//
-	//				String buffer;
-	//				while((buffer = inStream.readLine()) != null) {
-	//					if(buffer.contains("false")){
-	//						System.out.println(buffer);
-	//					}
-	//				}
-	//				inStream.close();
-	//				bar.setValue(i);
-	//				i++;
-	//			}
-	//		}catch (Exception e) {}
-	//	}
-
+	
 	public static void setNewTriggerpoint(){
 		x = RandomNumber();
 		y = RandomNumber();
@@ -172,6 +140,7 @@ public class Simulation_program extends JFrame implements ActionListener
 	}
 
 }
+
 
 
 
