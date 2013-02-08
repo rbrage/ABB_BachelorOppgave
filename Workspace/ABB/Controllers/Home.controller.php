@@ -11,18 +11,12 @@ class Home extends Controller {
 	 */
 	public function Index(){
 		$this->list = new CachedArrayList();
-		$arr = array();
-		foreach ($this->list->APCIterator() as $data){
-			$arr[] = $data["value"];
-		}
-
-// 		usort($arr, array("Home", "cmp"));
-		$this->viewmodel->arr = $arr;
+	
+		$this->viewmodel->arr = &$this->list->iterator();
 
 		return $this->View();
 		
-		// 			echo "Sorted: \n<br \> x: " . $obj->x . "	 y: " . $obj->y . "	 z: " . $obj->z . "	 time: " . $obj->timestamp . "\n <br \>";
-	}
+		}
 
 	/**
 	 *  Sort function
