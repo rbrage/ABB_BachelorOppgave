@@ -32,7 +32,7 @@
 			<div class="span2">
 				<ul class="nav nav-list">
 					<li class="nav-header">Meny</li>
-					<li class="active"><a href="http://127.0.0.1:8888/home/Tabell.php">Tabell</a>
+					<li class="active"><a href="/test/testing.php">Tabell</a>
 					</li>
 					<li><a href="#">3D plot</a></li>
 				</ul>
