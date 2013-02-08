@@ -12,7 +12,7 @@ class Home extends Controller {
 	public function Index(){
 		$this->list = new CachedArrayList();
 		$arr = array();
-		foreach ($this->list->iterator() as $data){
+		foreach ($this->list->APCIterator() as $data){
 			$arr[] = $data["value"];
 		}
 
