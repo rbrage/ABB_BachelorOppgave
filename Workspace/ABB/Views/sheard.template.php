@@ -30,15 +30,15 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span2">
-				<ul class="nav nav-list">
-					<li class="nav-header">Meny</li>
-					<li class="active"><a href="/test/testing.php">Tabell</a>
-					</li>
-					<li><a href="#">3D plot</a></li>
-				</ul>
-
+				<div class="span2" data-spy="affix">
+					<ul class="nav nav-list">
+						<li class="nav-header">Meny</li>
+						<li class="active"><a href="/test/testing.php">Tabell</a></li>
+						<li><a href="#">3D plot</a>
+						</li>
+					</ul>
+				</div>
 			</div>
-							
 
 			<div class="span10">
 				<?php
