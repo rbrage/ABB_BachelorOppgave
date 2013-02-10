@@ -125,7 +125,7 @@ public class Simulation_program extends JFrame implements ActionListener
 				}
 			}catch (Exception e) {}
 			
-			OpenBrowser openBrowser = new OpenBrowser();
+//			OpenBrowser openBrowser = new OpenBrowser();
 			URI uri = null;
 			try {
 				uri = new URI("http://127.0.0.1:8888");
@@ -133,7 +133,7 @@ public class Simulation_program extends JFrame implements ActionListener
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			openBrowser.openWebpage(uri);
+//			openBrowser.openWebpage(uri);
 			running = false;
 		}
 
