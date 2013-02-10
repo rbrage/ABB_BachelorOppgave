@@ -9,6 +9,9 @@ class Test extends Controller {
 
 	public function Testing(){
 		Debuger::RegisterPoint("Test method in Test class called.");
+		require_once("Models/CachedArrayList.php");
+		$this->list = new CachedArrayList();
+		$this->viewmodel->arr = $this->list->iterator();
 		$this->View();
 	}
 
