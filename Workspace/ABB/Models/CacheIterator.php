@@ -30,4 +30,8 @@ class CacheIterator implements Iterator {
 		return ($this->cachedArrayList->size() > $this->position);
 	}
 	
+	public function getCachedArrayList(){
+		return $this->cachedArrayList;
+	}
+	
 }
