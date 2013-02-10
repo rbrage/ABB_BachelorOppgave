@@ -74,6 +74,31 @@ class Register extends Controller {
 		
 	}
 	
+	/**
+	 * Sends the size of the cachelist.
+	 * URL examples:
+	 * /register/size/json
+	 * /register/size/xml
+	 * @param String $id
+	 */
+	public function Size($id){
+		$this->viewmodel->error = false;
+		$this->viewmodel->noCoding = false;
+		
+		if($id != "json" && $id != "xml"){
+			$this->viewmodel->error = true;
+			$this->viewmodel->errmsg = "The coding you requested is not recognized.";
+			$this->viewmodel->noCoding = true;
+			return $this->View();
+		}
+		$this->viewmodel->returnCoding = $id;
+		
+		$this->list = new CachedArrayList();
+		
+		$this->viewmodel->listsize = $this->list->size();
+		
+	}
+	
 }
 
 ?>
