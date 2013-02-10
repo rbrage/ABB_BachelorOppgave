@@ -5,11 +5,12 @@ if($viewmodel->noCoding){
 }
 elseif($viewmodel->error){
 	if($viewmodel->returnCoding == "json"){
-		$response = array("Error" => array("Message" => $viewmodel->errmsg));
+		$response = array("Register" => array("Error" => true, "Message" => $viewmodel->errmsg));
 		echo json_encode($response);
 	}
 	elseif($viewmodel->returnCoding == "xml"){
 		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Error></Error>");
+		$msg = $xml->addChild("Error", true);
 		$msg = $xml->addChild("Message", $viewmodel->errmsg);
 		
 		echo $xml->asXML();
@@ -20,11 +21,11 @@ elseif($viewmodel->error){
 }
 elseif ($viewmodel->success){
 	if($viewmodel->returnCoding == "json"){
-		$response = array("Registered" => array("Success" => "true", "Message" => "Successfull upload of triggerpoint"));
+		$response = array("Register" => array("Success" => "true", "Message" => "Successfull upload of triggerpoint"));
 		echo json_encode($response);
 	}
 	elseif($viewmodel->returnCoding == "xml"){
-		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Registered></Registered>");
+		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Register></Register>");
 		$xml->addChild("Success", "true");
 		$xml->addChild("Message", "Successfull upload of triggerpoint");
 	
