@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
 
@@ -33,9 +39,11 @@
 				<div class="span2" data-spy="affix">
 					<ul class="nav nav-list">
 						<li class="nav-header">Meny</li>
-						<li class="active"><a href="/test/testing.php">Tabell</a></li>
-						<li><a href="#">3D plot</a>
-						</li>
+						<li class="active"><a href="#last">Last 10 points</a>
+						
+						<li><a href="#plot3d">3D plot</a>
+						
+						<li><a href="#point">Trigger points</a></li>
 					</ul>
 				</div>
 			</div>
@@ -51,7 +59,6 @@
 	</div>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script src="scripts/bootstrap.min.js"></script>
-
 </body>
 </html>
 
