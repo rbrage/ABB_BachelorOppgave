@@ -52,7 +52,7 @@ $this->Template("sheard");
 		<section id="plot3d">
 			<div class="page-header">
 				<h2>3D plot</h2>
-				<canvas width="600" height="600" id="myCanvas"></canvas>
+				<canvas width="950" height="650" id="myCanvas" style="border:1px solid #000000;"></canvas>
 			</div>
 		</section>
 
@@ -132,18 +132,13 @@ else
 
 <script>   
       var constants = {
-        canvasWidth: 1000, // In pixels.
-        canvasHeight: 600, // In pixels.
-        leftArrow: 37,
-        upArrow: 38,
-        rightArrow: 39,
-        downArrow: 40,
-        xMin: 0, // These four max/min values define a square on the xy-plane that the surface will be plotted over.
-        xMax: 100,
-        yMin: 0,
-        yMax: 100, 
-        xDelta: 0.2, // Make smaller for more surface points. 
-        yDelta: 0.2, // Make smaller for more surface points. 
+        canvasWidth: 1, // In pixels.
+        canvasHeight: 1, // In pixels.
+        leftArrow: 37,//in use for orbit
+        upArrow: 38,//in use for orbit
+        rightArrow: 39,//in use for orbit
+        downArrow: 40,//in use for orbit
+        
         colorMap: ["#060", "#090", "#0C0", "#0F0", "#9F0", "#9C0", "#990", "#960", "#930", "#900", "#C00"], // There are eleven possible "vertical" color values for the surface, based on the last row of http://www.cs.siena.edu/~lederman/truck/AdvanceDesignTrucks/html_color_chart.gif
         pointWidth: 2, // The size of a rendered surface point (i.e., rectangle width and height) in pixels.
         dTheta: 0.05, // The angle delta, in radians, by which to rotate the surface per key press.
@@ -266,7 +261,8 @@ else
         canvasElement.height = constants.canvasHeight;
         canvasElement.id = "myCanvas";
 
-        canvasElement.getContext('2d').translate(constants.canvasWidth/2, constants.canvasHeight/2); // Translate the surface's origin to the center of the canvas.
+        canvasElement.getContext('2d').translate(constants.canvasWidth, constants.canvasHeight); 
+        // Translate the surface's origin to the center of the canvas.
         
         document.body.appendChild(canvasElement); // Make the canvas element a child of the body element.
       }
@@ -287,9 +283,10 @@ else
 
         //this.points = surface.points.sort(surface.sortByZIndex); // Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
 
+			
         for (var i = 0; i < this.points.length; i++)
         {
-          //ctx.fillStyle = this.points[i].color; 
+          ctx.fillStyle = this.points[i].color; 
           ctx.fillRect(this.points[i][X] * constants.surfaceScale, this.points[i][Y] * constants.surfaceScale, constants.pointWidth, constants.pointWidth);  
         }    
       }
@@ -473,7 +470,7 @@ else
       // -----------------------------------------------------------------------------------------------------
       
       surface.generate(); // Creates the set of points reprsenting the surface. Must be called before color().
-     // surface.color(); // Based on the min and max z-coordinate values, chooses colors for each point based on the point's z-ccordinate value (i.e., height).
+      surface.color(); // Based on the min and max z-coordinate values, chooses colors for each point based on the point's z-ccordinate value (i.e., height).
       window.addEventListener('load', onloadInit, false); // Perform processing that must occur after the page has fully loaded.
     </script>
     
