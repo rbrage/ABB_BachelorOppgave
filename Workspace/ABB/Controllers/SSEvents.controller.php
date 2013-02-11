@@ -1,24 +1,21 @@
 <?php
 
 require_once("Models/CachedArrayList.php");
+require_once("Models/SSE.php");
 
-class SSE extends Controller {
+class SSEvents extends Controller {
+
+	private $list;
+	private $sse;
 	
-	public function __construct($action, $urlvalues){
-		parent::__construct($action, $urlvalues);
-		@set_time_limit(0);
-		
-		header('Content-Type: text/event-stream');
-		header('Cache-Control: no-cache');
-		ob_implicit_flush();
-		
-	}
-
 	public function BasicInfo(){
 		$this->list = new CachedArrayList();
+		$this->sse = new SSE();
 		
 		$info = apc_cache_info("user", true);
 		$this->viewmodel->listmemory = $info["mem_size"]/1000 . "k";
+		
+		$this->sse->start();
 		
 		$oldsize = -1;
 		$oldmemory = -1;
@@ -26,11 +23,7 @@ class SSE extends Controller {
 			$size = $this->list->size();
 			if($oldsize != $size){
 				$oldsize = $size;
-				echo "event: cachesize" . PHP_EOL;
-				echo "data: " . $size . PHP_EOL;
-				echo PHP_EOL;
-				ob_flush();
-				flush();
+				$this->sse->sendData("cachesize", $size);
 			}
 			
 			$info = apc_cache_info("user", true);
@@ -38,13 +31,10 @@ class SSE extends Controller {
 			
 			if($memory != $oldmemory){
 				$oldmemory = $memory;
-				echo "event: memorysize" . PHP_EOL;
-				echo "data: " . $memory . PHP_EOL;
-				echo PHP_EOL;
-				ob_flush();
-				flush();
+				$this->sse->sendData("memorysize", $memory);
 			}
 			
+			// sover i 1 sec
 			sleep(1);
 		}
 	}
