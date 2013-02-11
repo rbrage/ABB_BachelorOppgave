@@ -13,16 +13,16 @@ canvas {
 </style>
 <script>   
       var constants = {
-        canvasWidth: 600, // In pixels.
+        canvasWidth: 1000, // In pixels.
         canvasHeight: 600, // In pixels.
         leftArrow: 37,
         upArrow: 38,
         rightArrow: 39,
         downArrow: 40,
         xMin: 0, // These four max/min values define a square on the xy-plane that the surface will be plotted over.
-        xMax: 9,
+        xMax: 30,
         yMin: 0,
-        yMax: 9, 
+        yMax: 30, 
         xDelta: 0.2, // Make smaller for more surface points. 
         yDelta: 0.2, // Make smaller for more surface points. 
         colorMap: ["#060", "#090", "#0C0", "#0F0", "#9F0", "#9C0", "#990", "#960", "#930", "#900", "#C00"], // There are eleven possible "vertical" color values for the surface, based on the last row of http://www.cs.siena.edu/~lederman/truck/AdvanceDesignTrucks/html_color_chart.gif
@@ -80,6 +80,20 @@ canvas {
         Creates a list of (x, y, z) points (in 3 x 1 vector format) representing the surface.
       */
       {
+
+    	  <?php 
+      			$list = $this->viewmodel->arr->getCachedArrayList();
+      			$size = $list->size();
+      			for ($i = 0; $i<=$size-1 ;$i++){
+      				?>this.points[<?php echo $i ?>] = point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
+      				<?php 
+      			}
+      			?>
+  				var size = <?php echo $size?>;
+      			for(var i=0; i<=size;i++){
+  					this.points[i] = point(1*i,i*2,i*3);
+          			}
+          
         var i = 0;
         
         for (var x = constants.xMin; x <= constants.xMax; x += constants.xDelta)
@@ -166,11 +180,11 @@ canvas {
         var myCanvas = document.getElementById("myCanvas"); // Required for Firefox.
         var ctx = myCanvas.getContext("2d");
 
-        this.points = surface.points.sort(surface.sortByZIndex); // Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
+        //this.points = surface.points.sort(surface.sortByZIndex); // Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
 
         for (var i = 0; i < this.points.length; i++)
         {
-          ctx.fillStyle = this.points[i].color; 
+          //ctx.fillStyle = this.points[i].color; 
           ctx.fillRect(this.points[i][X] * constants.surfaceScale, this.points[i][Y] * constants.surfaceScale, constants.pointWidth, constants.pointWidth);  
         }    
       }
@@ -361,6 +375,6 @@ canvas {
 </head>
 <body>
 	<h1>Canvas Surface Rotation</h1>
-	<button onclick="point(3,4,5)">Try it</button>
+	
 </body>
 </html>
