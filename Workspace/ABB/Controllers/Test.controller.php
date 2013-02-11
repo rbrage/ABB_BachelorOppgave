@@ -11,6 +11,9 @@ class Test extends Controller {
 		Debuger::RegisterPoint("Test method in Test class called.");
 		require_once("Models/CachedArrayList.php");
 		$this->list = new CachedArrayList();
+		$this->viewmodel->listsize = $this->list->size();
+		$info = apc_cache_info("user", true);
+		$this->viewmodel->listmemory = $info["mem_size"]/1000 . "k";		
 		$this->viewmodel->arr = $this->list->iterator();
 		$this->View();
 	}
