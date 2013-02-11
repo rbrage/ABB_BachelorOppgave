@@ -10,6 +10,8 @@ body {
 </style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
 
 <title>ABB Analyseprogram</title>
 </head>
@@ -57,8 +59,6 @@ body {
 			</div>
 		</div>
 	</div>
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="scripts/bootstrap.min.js"></script>
 </body>
 </html>
 
