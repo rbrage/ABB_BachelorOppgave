@@ -10,6 +10,12 @@ $this->Template("sheard");
 			<div class="page-header">
 				<h2>Last 10 points</h2>
 			</div>
+			<?php 
+			$list = $this->viewmodel->arr->getCachedArrayList();
+			$size = $list->size();
+			
+			if($size != 0){
+			?>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -21,20 +27,26 @@ $this->Template("sheard");
 				</thead>
 				<tbody>
 					<?php 
-					$list = $this->viewmodel->arr->getCachedArrayList();
-					$size = $list->size();
-					for ($i = $size -1; ($size - $i) < 10 && $i >= 0 ;$i--){
+					for ($i = $size -1; ($size - $i) <= 10 && $i >= 0 ;$i--){
 						echo "
 						<tr>
 						<td>".$list->get($i)->x."</td>
 					<td>".$list->get($i)->y."</td>
 							<td>".$list->get($i)->z."</td>
-								<td>".$list->get($i)->timestamp."</td>
+								<td>".$list->get($i)->timestamp." ms - Date and time: " . date("r", round($list->get($i)->timestamp/1000)) . "</td>
 							</tr>";
 					}
 					?>
 				</tbody>
 			</table>
+			<?php 
+			}
+			else{
+			?>
+			<p>Can't find any points in the cache.</p>
+			<?php 
+			}
+			?>
 		</section>
 
 		<section id="plot3d">
@@ -57,15 +69,17 @@ $this->Template("sheard");
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($this->viewmodel->arr as $item){
-						echo "
-		<tr>
-		<td>".$item->x."</td>
-				<td>".$item->y."</td>
-					<td>".$item->z."</td>
-						<td>".$item->timestamp."</td>
-					</tr>";
-					}
+					<?php 
+					
+// 					foreach ($this->viewmodel->arr as $item){
+// 						echo "
+// 		<tr>
+// 		<td>".$item->x."</td>
+// 				<td>".$item->y."</td>
+// 					<td>".$item->z."</td>
+// 						<td>".$item->timestamp."</td>
+// 					</tr>";
+// 					}
 					?>
 				</tbody>
 			</table>
@@ -82,11 +96,11 @@ $this->Template("sheard");
 					<tbody>
 						<tr>
 							<td>Number of trigger points:</td>
-							<td id="sizeOfCache"><?php echo $this->viewmodel->listsize ?></td>
+							<td id="cachesize"><?php echo $this->viewmodel->listsize ?></td>
 						</tr>
 						<tr>
 							<td>Used memory size:</td>
-							<td><?php echo $this->viewmodel->listmemory ?></td>
+							<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -98,11 +112,14 @@ $this->Template("sheard");
 <script>
 if(typeof(EventSource)!=="undefined")
   {
-  var source=new EventSource("http://localhost:8888/SSE/CachedListSize");
-  source.onmessage=function(event)
-    {
-	  $("#sizeOfCache").html(event.data);
-    };
+  var source=new EventSource("http://localhost:8888/SSE/BasicInfo");
+  source.addEventListener("cachesize", function (event) {
+      $("#cachesize").html(event.data);
+  }, true);
+
+  source.addEventListener("memorysize", function (event) {
+      $("#memorysize").html(event.data + "k");
+  }, true);
   
   }
 else
