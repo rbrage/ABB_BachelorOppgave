@@ -71,15 +71,15 @@ $this->Template("sheard");
 				<tbody>
 					<?php 
 					
-// 					foreach ($this->viewmodel->arr as $item){
-// 						echo "
-// 		<tr>
-// 		<td>".$item->x."</td>
-// 				<td>".$item->y."</td>
-// 					<td>".$item->z."</td>
-// 						<td>".$item->timestamp."</td>
-// 					</tr>";
-// 					}
+					foreach ($this->viewmodel->arr as $item){
+						echo "
+		<tr>
+		<td>".$item->x."</td>
+				<td>".$item->y."</td>
+					<td>".$item->z."</td>
+						<td>".$item->timestamp."</td>
+					</tr>";
+					}
 					?>
 				</tbody>
 			</table>
@@ -112,7 +112,7 @@ $this->Template("sheard");
 <script>
 if(typeof(EventSource)!=="undefined")
   {
-  var source=new EventSource("http://localhost:8888/SSE/BasicInfo");
+  var source=new EventSource("http://localhost:8888/SSevents/BasicInfo");
   source.addEventListener("cachesize", function (event) {
       $("#cachesize").html(event.data);
   }, true);
