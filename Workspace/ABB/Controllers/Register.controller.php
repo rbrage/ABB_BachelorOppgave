@@ -5,7 +5,7 @@ require_once("Models/TriggerPoint.model.php");
 
 class Register extends Controller {
 	
-	public $list;
+	private $list;
 	/**
 	 * Register a trigger point and puts it in the shared cache.
 	 * URL examples:
@@ -96,6 +96,35 @@ class Register extends Controller {
 		$this->list = new CachedArrayList();
 		
 		$this->viewmodel->listsize = $this->list->size();
+		
+	}
+	
+	public function Points($id){
+		$this->viewmodel->error = false;
+		$this->viewmodel->noCoding = false;
+		
+		if($id != "json" && $id != "xml"){
+			$this->viewmodel->error = true;
+			$this->viewmodel->errmsg = "The coding you requested is not recognized.";
+			$this->viewmodel->noCoding = true;
+			return $this->View();
+		}
+		$this->viewmodel->returnCoding = $id;
+		
+		$this->viewmodel->list = new CachedArrayList();
+		
+		$start = 0;
+		if(isset($this->urlvalues["start"]))
+			$start = $this->urlvalues["start"];
+		
+		$stop = 0;
+		if(isset($this->urlvalues["stop"]))
+			$stop = $this->urlvalues["stop"];
+		
+		$this->viewmodel->start = $start;
+		$this->viewmodel->stop  = $stop;
+		
+		$this->View();
 		
 	}
 	
