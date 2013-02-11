@@ -121,7 +121,7 @@ public class Simulation_program extends JFrame implements ActionListener
 					}
 					inStream.close();
 					i++;
-					Thread.sleep(200);
+//					Thread.sleep(200);
 					bar.setValue(i);
 				}
 			}catch (Exception e) {}
