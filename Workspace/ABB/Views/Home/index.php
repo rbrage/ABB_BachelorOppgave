@@ -53,6 +53,7 @@ $this->Template("sheard");
 			<div class="page-header">
 				<h2>3D plot</h2>
 				<canvas width="950" height="650" id="myCanvas" style="border:1px solid #000000;"></canvas>
+				
 			</div>
 		</section>
 
@@ -134,8 +135,8 @@ else
 
 <script>   
       var constants = {
-        canvasWidth: 1, // In pixels.
-        canvasHeight: 1, // In pixels.
+        canvasWidth: 500, // In pixels.
+        canvasHeight: 500, // In pixels.
         leftArrow: 37,//in use for orbit
         upArrow: 38,//in use for orbit
         rightArrow: 39,//in use for orbit
@@ -144,7 +145,7 @@ else
         colorMap: ["#060", "#090", "#0C0", "#0F0", "#9F0", "#9C0", "#990", "#960", "#930", "#900", "#C00"], // There are eleven possible "vertical" color values for the surface, based on the last row of http://www.cs.siena.edu/~lederman/truck/AdvanceDesignTrucks/html_color_chart.gif
         pointWidth: 2, // The size of a rendered surface point (i.e., rectangle width and height) in pixels.
         dTheta: 0.05, // The angle delta, in radians, by which to rotate the surface per key press.
-        surfaceScale: 6 // An empirically derived constant that makes the surface a good size for the given canvas size.
+        surfaceScale: 5 // An empirically derived constant that makes the surface a good size for the given canvas size.
       };
       
       // These are constants too but I've removed them from the above constants literal to ease typing and improve clarity.
@@ -175,18 +176,6 @@ else
       */
       {
         this.points = []; // An array of surface points in vector format. That is, each element of this array is a 3 x 1 array, as in [ [x1, y1, z1], [x2, y2, z2], [x3, y3, z3], ... ]
-      }
-      
-      // -----------------------------------------------------------------------------------------------------  
-      
-      Surface.prototype.equation = function(x, y)
-      /*
-        Given the point (x, y), returns the associated z-coordinate based on the provided surface equation, of the form z = f(x, y).
-      */
-      {
-        var d = Math.sqrt(x*x + y*y); // The distance d of the xy-point from the z-axis.
-        
-        return 4*(Math.sin(d) / d); // Return the z-coordinate for the point (x, y, z). 
       }
       
       // -----------------------------------------------------------------------------------------------------  
@@ -263,7 +252,7 @@ else
         canvasElement.height = constants.canvasHeight;
         canvasElement.id = "myCanvas";
 
-        canvasElement.getContext('2d').translate(constants.canvasWidth, constants.canvasHeight); 
+        canvasElement.getContext('2d').translate(constants.canvasWidth/2, constants.canvasHeight/2); 
         // Translate the surface's origin to the center of the canvas.
         
         document.body.appendChild(canvasElement); // Make the canvas element a child of the body element.
@@ -285,7 +274,7 @@ else
 
         //this.points = surface.points.sort(surface.sortByZIndex); // Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
 
-			
+        
         for (var i = 0; i < this.points.length; i++)
         {
           ctx.fillStyle = this.points[i].color; 
