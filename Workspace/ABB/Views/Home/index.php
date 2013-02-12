@@ -52,8 +52,7 @@ $this->Template("sheard");
 		<section id="plot3d">
 			<div class="page-header">
 				<h2>3D plot</h2>
-				<canvas width="950" height="650" id="myCanvas" style="border:1px solid #000000;"></canvas>
-				
+				<div id='canvas' style="border: 1px solid black"></div>
 			</div>
 		</section>
 
@@ -73,16 +72,16 @@ $this->Template("sheard");
 				<tbody>
 					<?php 
 
-					
+
 					foreach ($this->viewmodel->arr as $item){
 						echo "
-		<tr>
-		<td>".$item->x."</td>
+			<tr>
+			<td>".$item->x."</td>
 				<td>".$item->y."</td>
-					<td>".$item->z."</td>
-						<td>".$item->timestamp."</td>
+				<td>".$item->z."</td>
+					<td>".$item->timestamp."</td>
 
-					</tr>";
+						</tr>";
 					}
 					?>
 				</tbody>
@@ -135,8 +134,8 @@ else
 
 <script>   
       var constants = {
-        canvasWidth: 500, // In pixels.
-        canvasHeight: 500, // In pixels.
+        canvasWidth:  950, // In pixels.
+        canvasHeight: 650, // In pixels.
         leftArrow: 37,//in use for orbit
         upArrow: 38,//in use for orbit
         rightArrow: 39,//in use for orbit
@@ -145,14 +144,14 @@ else
         colorMap: ["#060", "#090", "#0C0", "#0F0", "#9F0", "#9C0", "#990", "#960", "#930", "#900", "#C00"], // There are eleven possible "vertical" color values for the surface, based on the last row of http://www.cs.siena.edu/~lederman/truck/AdvanceDesignTrucks/html_color_chart.gif
         pointWidth: 2, // The size of a rendered surface point (i.e., rectangle width and height) in pixels.
         dTheta: 0.05, // The angle delta, in radians, by which to rotate the surface per key press.
-        surfaceScale: 5 // An empirically derived constant that makes the surface a good size for the given canvas size.
+        surfaceScale: 3 // An empirically derived constant that makes the surface a good size for the given canvas size.
       };
       
       // These are constants too but I've removed them from the above constants literal to ease typing and improve clarity.
       var X = 0;
       var Y = 1;
       var Z = 2;
-
+	  var T = 3;
       // -----------------------------------------------------------------------------------------------------  
 
       var controlKeyPressed = false; // Shared between processKeyDown() and processKeyUp().
@@ -160,12 +159,12 @@ else
 
       // -----------------------------------------------------------------------------------------------------
 
-      function point(x, y, z)
+      function point(x, y, z, t)
       /*
         Given a (x, y, z) surface point, returns the 3 x 1 vector form of the point.
       */
       {       
-        return [x, y, z]; // Return a 3 x 1 vector representing a traditional (x, y, z) surface point. This vector form eases matrix multiplication.
+        return [x, y, z, t]; // Return a 3 x 1 vector representing a traditional (x, y, z) surface point. This vector form eases matrix multiplication.
       }
       
       // -----------------------------------------------------------------------------------------------------
@@ -190,7 +189,7 @@ else
       			$list = $this->viewmodel->arr->getCachedArrayList();
       			$size = $list->size();
       			for ($i = 0; $i<=$size-1 ;$i++){
-      				?>this.points[<?php echo $i ?>] = point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
+      				?>this.points[<?php echo $i ?>] = point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>,<?php echo $list->get($i)->timestamp?>);
       				<?php 
       			}
       			?>
@@ -204,21 +203,24 @@ else
         The color of a surface point is a function of its z-coordinate height.
       */
       {
-        var z; // The z-coordinate for a given surface point (x, y, z).
+        var t; // The z-coordinate for a given surface point (x, y, z).
+
         
-        this.zMin = this.zMax = this.points[0][Z]; // A starting value. Note that zMin and zMax are custom properties that could possibly be useful if this code is extended later.
+        
+        this.tMin = this.tMax = this.points[0][T]; // A starting value. Note that zMin and zMax are custom properties that could possibly be useful if this code is extended later.
+
         for (var i = 0; i < this.points.length; i++)
         {            
-          z = this.points[i][Z];
-          if (z < this.zMin) { this.zMin = z; }
-          if (z > this.zMax) { this.zMax = z; }
+          t = this.points[i][T];
+          if (t < this.tMin) { this.tMin = t; }
+          if (t > this.tMax) { this.tMax = t; }
         }   
               
-        var zDelta = Math.abs(this.zMax - this.zMin) / constants.colorMap.length; 
+        var tDelta = Math.abs(this.tMax - this.tMin) / constants.colorMap.length; 
 
         for (var i = 0; i < this.points.length; i++)
         {
-          this.points[i].color = constants.colorMap[ Math.floor( (this.points[i][Z]-this.zMin)/zDelta ) ];
+          this.points[i].color = constants.colorMap[ Math.floor( (this.points[i][T]-this.tMin)/tDelta ) ];
         }
                 
         /* Note that the prior FOR loop is functionally equivalent to the follow (much less elegant) loop:       
@@ -246,23 +248,27 @@ else
         Creates and then appends the "myCanvas" canvas element to the DOM.
       */
       {
-        var canvasElement = document.createElement('canvas');
-        
-        canvasElement.width = constants.canvasWidth;
-        canvasElement.height = constants.canvasHeight;
-        canvasElement.id = "myCanvas";
+    	  var canvasElement = document.createElement('canvas');
+          var ctx = canvasElement.getContext('2d');
+          canvasElement.width = constants.canvasWidth;
+          canvasElement.height = constants.canvasHeight;
+          canvasElement.id = "myCanvas";
 
-        canvasElement.getContext('2d').translate(constants.canvasWidth/2, constants.canvasHeight/2); 
-        // Translate the surface's origin to the center of the canvas.
-        
-        document.body.appendChild(canvasElement); // Make the canvas element a child of the body element.
+          
+          ctx.translate(constants.canvasWidth/2, constants.canvasHeight/2); // Translate the surface's origin to the center of the canvas.
+          
+         
+         
+          
+          document.getElementById('canvas').appendChild(canvasElement);
+        //document.body.appendChild(canvasElement); // Make the canvas element a child of the body element.
       }
 
       //------------------------------------------------------------------------------------------------------
 
-      Surface.prototype.sortByZIndex = function(A, B) 
+      Surface.prototype.sortByTimeIndex = function(A, B) 
       {
-        return A[Z] - B[Z]; // Determines if point A is behind, in front of, or at the same level as point B (with respect to the z-axis).
+        return A[T] - B[T]; // Determines if point A is behind, in front of, or at the same level as point B (with respect to the z-axis).
       }
             
       // -----------------------------------------------------------------------------------------------------
@@ -272,8 +278,9 @@ else
         var myCanvas = document.getElementById("myCanvas"); // Required for Firefox.
         var ctx = myCanvas.getContext("2d");
 
-        //this.points = surface.points.sort(surface.sortByZIndex); // Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
+        this.points = surface.points.sort(surface.sortByTimeIndex);// Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
 
+ 		
         
         for (var i = 0; i < this.points.length; i++)
         {
@@ -464,4 +471,4 @@ else
       surface.color(); // Based on the min and max z-coordinate values, chooses colors for each point based on the point's z-ccordinate value (i.e., height).
       window.addEventListener('load', onloadInit, false); // Perform processing that must occur after the page has fully loaded.
     </script>
-    
+
