@@ -72,24 +72,28 @@ public class Simulation_program extends JFrame implements ActionListener
 
 	}
 
-	
-	public static void setNewTriggerpoint(){
-		x = RandomNumber();
-		y = RandomNumber();
-		z = RandomNumber();
+	public void setNewTriggerpoint(){
+		x = RandomClusterNumber(50, 20);
+		y = RandomClusterNumber(50, 20);
+		z = RandomClusterNumber(50, 20);
 		timestamp = getTime();
 	}
-	public static int RandomNumber(){
+	public int RandomNumber(int max){
 		Random random = new Random(); 
-		int number = random.nextInt(100);
-		return number;
+		return random.nextInt(max);
 
 	}
-	public static long getTime(){
+	
+	public int RandomClusterNumber(int base, int maxRange){
+		return base + (RandomNumber(maxRange*2) - maxRange);
+	}
+	
+	public long getTime(){
 		Calendar cal = Calendar.getInstance();
 		return cal.getTimeInMillis();
 	}
-
+	
+	
 	private class StartConection implements Runnable {
 
 		@Override
