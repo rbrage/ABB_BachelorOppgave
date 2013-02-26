@@ -14,8 +14,8 @@ import java.util.Calendar;
 import java.util.Random;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
@@ -24,50 +24,107 @@ import javax.swing.JTextField;
 public class Simulation_program extends JFrame implements ActionListener
 {
 	JPanel pane = new JPanel();
-	JTextField textField;
+	JTextField numPointsField;
+	JTextField xSentrumField;
+	JTextField ySentrumField;
+	JTextField zSentrumField;
+	JTextField xRangeField;
+	JTextField yRangeField;
+	JTextField zRangeField;
+	JTextField sleepField;
 	JProgressBar bar;
-	JCheckBox sleepbox;
 	String [] args;
 	boolean running = false;
-	boolean sleep = false;
+	Thread t;
 	
 	Simulation_program(String [] args) // the frame constructor method
 	{
-		super("Simulation program"); setBounds(100,100,300,200);
+		super("Simulation program"); 
+		setBounds(100,100,300,300);
 		this.args = args;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Container con = this.getContentPane(); // inherit main frame
 		con.add(pane); // add the panel to frame
-		textField = new JTextField(20);
-		textField.setText("10");
-		pane.add(textField);
+				
+		pane.add(new JLabel("(x,y,z) \\ (Sentrum, Range):"));
+		
+		xSentrumField = new JTextField(14);
+		xSentrumField.setText("50");
+		pane.add(xSentrumField);
+		xRangeField = new JTextField(5);
+		xRangeField.setText("10");
+		pane.add(xRangeField);
+		
+		ySentrumField = new JTextField(14);
+		ySentrumField.setText("50");
+		pane.add(ySentrumField);
+		yRangeField = new JTextField(5);
+		yRangeField.setText("10");
+		pane.add(yRangeField);
+		
+		zSentrumField = new JTextField(14);
+		zSentrumField.setText("50");
+		pane.add(zSentrumField);
+		zRangeField = new JTextField(5);
+		zRangeField.setText("10");
+		pane.add(zRangeField);
+		
+		pane.add(new JLabel("Number of points to submit:"));
+		
+		numPointsField = new JTextField(20);
+		numPointsField.setText("10");
+		pane.add(numPointsField);
+		
+		pane.add(new JLabel("Time between points:"));
+		
+		sleepField = new JTextField(20);
+		sleepField.setText("200");
+		pane.add(sleepField);
 
 		bar = new JProgressBar();
 		bar.setPreferredSize(new Dimension(225, 15));
 		bar.setStringPainted(true);
 		pane.add(bar);
 
-		JButton buttom = new JButton("Start");
-		buttom.addActionListener(this);
-		pane.add(buttom);
+		JButton start = new JButton("Start");
+		start.addActionListener(this);
+		pane.add(start);
 		
-		sleepbox = new JCheckBox("Sleep for 200 mill.sek"); 
-		pane.add(sleepbox);
+		JButton stop = new JButton("Stop");
+		stop.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(t != null){
+					t.interrupt();
+				}
+			}
+			
+		});
+		pane.add(stop);
 
 		setVisible(true); // display this frame
 	}
 	public void actionPerformed(ActionEvent evt) {
 		if(!running){
 			running = true;
-			String text = textField.getText();
-			numberOfTrigerpoints = Integer.parseInt(text);
-			if(sleepbox.isSelected())
-				sleep=true;
-			else
-				sleep=false;
+
+			xSentrum = Integer.parseInt(xSentrumField.getText());
+			xRange = Integer.parseInt(xRangeField.getText());
 			
-			Thread t = new Thread(new StartConection());
+			ySentrum = Integer.parseInt(ySentrumField.getText());
+			yRange = Integer.parseInt(yRangeField.getText());
+			
+			zSentrum = Integer.parseInt(zSentrumField.getText());
+			zRange = Integer.parseInt(zRangeField.getText());
+			
+			String text = numPointsField.getText();
+			numberOfTrigerpoints = Integer.parseInt(text);
+			
+			timeToSleep = Integer.parseInt(sleepField.getText());
+			
+			t = new Thread(new StartConection());
 			t.start();
 		}
 
@@ -77,31 +134,42 @@ public class Simulation_program extends JFrame implements ActionListener
 	static int x;
 	static int y; 
 	static int z;
+	static int xRange;
+	static int yRange; 
+	static int zRange;
+	static int xSentrum;
+	static int ySentrum; 
+	static int zSentrum;
 	static long timestamp;
+	static int timeToSleep;
 
 	public static void main(String[] args) throws Exception {
 		new Simulation_program(args);
 
 	}
 
-	
-	public static void setNewTriggerpoint(){
-		x = RandomNumber();
-		y = RandomNumber();
-		z = RandomNumber();
+	public void setNewTriggerpoint(){
+		x = RandomClusterNumber(xSentrum, xRange);
+		y = RandomClusterNumber(ySentrum, yRange);
+		z = RandomClusterNumber(zSentrum, zRange);
 		timestamp = getTime();
 	}
-	public static int RandomNumber(){
+	public int RandomNumber(int max){
 		Random random = new Random(); 
-		int number = random.nextInt(100);
-		return number;
+		return random.nextInt(max);
 
 	}
-	public static long getTime(){
+	
+	public int RandomClusterNumber(int base, int maxRange){
+		return base + (RandomNumber(maxRange*2) - maxRange);
+	}
+	
+	public long getTime(){
 		Calendar cal = Calendar.getInstance();
 		return cal.getTimeInMillis();
 	}
-
+	
+	
 	private class StartConection implements Runnable {
 
 		@Override
@@ -125,28 +193,29 @@ public class Simulation_program extends JFrame implements ActionListener
 
 					inStream = new DataInputStream(urlConnection.getInputStream());
 
-					String buffer;
-					while((buffer = inStream.readLine()) != null) {
-						if(buffer.contains("false")){
-							System.out.println(buffer);
-						}
-					}
+//					String buffer;
+//					while((buffer = inStream.readLine()) != null) {
+//						if(buffer.contains("false")){
+//							System.out.println(buffer);
+//						}
+//					}
 					inStream.close();
 					i++;
-					if(sleep)
-						Thread.sleep(200);
+					Thread.sleep(timeToSleep);
 					bar.setValue(i);
+					
+					if(t.isInterrupted()) break;
 				}
 			}catch (Exception e) {}
 			
 //			OpenBrowser openBrowser = new OpenBrowser();
-			URI uri = null;
-			try {
-				uri = new URI("http://127.0.0.1:8888");
-			} catch (URISyntaxException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			URI uri = null;
+//			try {
+//				uri = new URI("http://127.0.0.1:8888");
+//			} catch (URISyntaxException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 //			openBrowser.openWebpage(uri);
 			running = false;
 		}
