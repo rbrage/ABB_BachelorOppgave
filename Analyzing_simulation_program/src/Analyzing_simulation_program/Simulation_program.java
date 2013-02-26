@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -25,8 +26,11 @@ public class Simulation_program extends JFrame implements ActionListener
 	JPanel pane = new JPanel();
 	JTextField textField;
 	JProgressBar bar;
+	JCheckBox sleepbox;
 	String [] args;
 	boolean running = false;
+	boolean sleep = false;
+	
 	Simulation_program(String [] args) // the frame constructor method
 	{
 		super("Simulation program"); setBounds(100,100,300,200);
@@ -47,6 +51,9 @@ public class Simulation_program extends JFrame implements ActionListener
 		JButton buttom = new JButton("Start");
 		buttom.addActionListener(this);
 		pane.add(buttom);
+		
+		sleepbox = new JCheckBox("Sleep for 200 mill.sek"); 
+		pane.add(sleepbox);
 
 		setVisible(true); // display this frame
 	}
@@ -55,6 +62,11 @@ public class Simulation_program extends JFrame implements ActionListener
 			running = true;
 			String text = textField.getText();
 			numberOfTrigerpoints = Integer.parseInt(text);
+			if(sleepbox.isSelected())
+				sleep=true;
+			else
+				sleep=false;
+			
 			Thread t = new Thread(new StartConection());
 			t.start();
 		}
@@ -121,7 +133,8 @@ public class Simulation_program extends JFrame implements ActionListener
 					}
 					inStream.close();
 					i++;
-//					Thread.sleep(200);
+					if(sleep)
+						Thread.sleep(200);
 					bar.setValue(i);
 				}
 			}catch (Exception e) {}

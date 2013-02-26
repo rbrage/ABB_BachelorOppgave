@@ -52,8 +52,21 @@ $this->Template("sheard");
 		<section id="plot3d">
 			<div class="page-header">
 				<h2>3D plot</h2>
-				<div id='canvas' style="border: 1px solid black"></div>
+				<div id="surfacePlotDiv"
+					style="float: left; width: 950px; height: 700px;">
+					<!-- SurfacePlot goes here... -->
+					<div id="surfacePlot1" class="surfaceplot"
+						style="background-color: rgb(255, 255, 255); position: relative; left: 0px; top: 0px; background-position: initial initial; background-repeat: initial initial;">
+					</div>
+				</div>
+
+				<div class="row span12">
+					<input id="allowWebGL" type="checkbox" checked=""
+						onclick="toggleChart(this)"> <span style="color: #000">Use webGL</span>
+					<p>Hold down shift for zoom, and ctrl for move</p>
+				</div>
 			</div>
+
 		</section>
 
 		<section id="point">
@@ -105,6 +118,15 @@ $this->Template("sheard");
 							<td>Used memory size:</td>
 							<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
 						</tr>
+
+						<tr>
+							<td><p id="demo"></p>
+							</td>
+
+						</tr>
+						<tr>
+							<td><p id="demo1"></p></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -132,6 +154,117 @@ else
 
 </script>
 
+<!-- New script for 3D plot -->
+<script type="text/javascript">
+		
+		    var surfacePlot;
+		    
+			
+			function setUp()
+			{
+				var numRows = 50;
+				var numCols = 50;
+				
+				var tooltipStrings = new Array();
+				var values = new Array();
+				var data = {nRows: numRows, nCols: numCols, formattedValues: values};
+				var points = new Array();
+				
+				var d = 360 / numRows;
+				var idx = 0;
+
+				 <?php 
+			      			$list = $this->viewmodel->arr->getCachedArrayList();
+			      			$size = $list->size();
+			      			for ($i = 0; $i<=$size-1 ;$i++){
+			      				?>this.points[<?php echo $i ?>] = point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
+			      				<?php 
+			      			}
+			      			?>
+			
+				
+				for (var i = 0; i < numRows; i++) 
+				{
+					values[i] = new Array();
+					
+					for (var j = 0; j < numCols; j++)
+					{
+						var value = (Math.cos(i * d * Math.PI / 180.0) * Math.cos(j * d * Math.PI / 180.0) + Math.sin(i * d * Math.PI / 180.0));
+						
+						values[i][j] = 1;
+						
+						tooltipStrings[idx] = "x:" + i + ", y:" + j + " = " + value;
+						
+						idx++;
+					}
+				}
+
+				surfacePlot = new SurfacePlot(document.getElementById("surfacePlotDiv"));
+				
+				
+				// Don't fill polygons in IE. It's too slow.
+				var fillPly = true;
+				
+				// Define a colour gradient.
+				var colour1 = {red:0, green:0, blue:255};
+				var colour2 = {red:0, green:255, blue:255};
+				var colour3 = {red:0, green:255, blue:0};
+				var colour4 = {red:255, green:255, blue:0};
+				var colour5 = {red:255, green:0, blue:0};
+				var colours = [colour1, colour2, colour3, colour4, colour5];
+				
+				// Axis labels.
+				var xAxisHeader	= "X-axis";
+				var yAxisHeader	= "Y-axis";
+				var zAxisHeader	= "Z-axis";
+				
+				var renderDataPoints = false;
+				var background = '#ffffff';
+				var axisForeColour = '#000000';
+				var hideFloorPolygons = true;
+				var chartOrigin = {x: 425, y:325};
+				
+				// Options for the basic canvas pliot.
+				var basicPlotOptions = {fillPolygons: fillPly, tooltips: tooltipStrings, renderPoints: renderDataPoints };
+				
+				
+				// Options for the webGL plot.
+				var xLabels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+				var yLabels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+				var zLabels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // These labels ar eused when autoCalcZScale is false;
+				var glOptions = {xLabels: xLabels, yLabels: yLabels, zLabels: zLabels, chkControlId: "allowWebGL" ,autoCalcZScale: false};
+				
+				// Options common to both types of plot.
+				var options = {xPos: 0, yPos: 0, width: 950, height: 650, colourGradient: colours, 
+					xTitle: xAxisHeader, yTitle: yAxisHeader, zTitle: zAxisHeader, 
+					backColour: background, axisTextColour: axisForeColour, hideFlatMinPolygons: hideFloorPolygons, origin: chartOrigin};
+				
+				surfacePlot.draw(data, options, basicPlotOptions, glOptions, points);
+				
+				
+				// Link the two charts for rotation.
+				var plot1 = surfacePlot.getChart();
+				
+				
+				plot1.otherPlots = [plot1];  
+				
+			}
+			
+			setUp();
+			
+			function toggleChart(chkbox)
+            { 
+                surfacePlot.redraw();
+                
+            } 
+			function point(x, y, z)
+		      
+		      {       
+		        return [x, y, z]; 
+		         }
+			
+		</script>
+<!-- 
 <script>   
       var constants = {
         canvasWidth:  950, // In pixels.
@@ -143,7 +276,7 @@ else
         
         colorMap: ["#060", "#090", "#0C0", "#0F0", "#9F0", "#9C0", "#990", "#960", "#930", "#900", "#C00"], // There are eleven possible "vertical" color values for the surface, based on the last row of http://www.cs.siena.edu/~lederman/truck/AdvanceDesignTrucks/html_color_chart.gif
         pointWidth: 2, // The size of a rendered surface point (i.e., rectangle width and height) in pixels.
-        dTheta: 0.05, // The angle delta, in radians, by which to rotate the surface per key press.
+        dTheta: 0.02, // The angle delta, in radians, by which to rotate the surface per key press.
         surfaceScale: 3 // An empirically derived constant that makes the surface a good size for the given canvas size.
       };
       
@@ -166,6 +299,12 @@ else
       {       
         return [x, y, z, t]; // Return a 3 x 1 vector representing a traditional (x, y, z) surface point. This vector form eases matrix multiplication.
       }
+
+      function line(x, y, z)
+      
+      {       
+        return [x, y, z]; 
+      }
       
       // -----------------------------------------------------------------------------------------------------
       
@@ -175,7 +314,8 @@ else
       */
       {
         this.points = []; // An array of surface points in vector format. That is, each element of this array is a 3 x 1 array, as in [ [x1, y1, z1], [x2, y2, z2], [x3, y3, z3], ... ]
-      }
+		this.CoorLines = [];
+        }
       
       // -----------------------------------------------------------------------------------------------------  
       
@@ -185,15 +325,11 @@ else
       */
       {
 
-    	  <?php 
-      			$list = $this->viewmodel->arr->getCachedArrayList();
-      			$size = $list->size();
-      			for ($i = 0; $i<=$size-1 ;$i++){
-      				?>this.points[<?php echo $i ?>] = point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>,<?php echo $list->get($i)->timestamp?>);
-      				<?php 
-      			}
-      			?>
-  				
+    	 
+      			
+      			this.CoorLines[0] = line(100, 0, 0);
+      			this.CoorLines[1] = line(0, 100, 0);
+      			this.CoorLines[2] = line(0, 0, 100);	
       }
 
       // -----------------------------------------------------------------------------------------------------
@@ -205,8 +341,6 @@ else
       {
         var t; // The z-coordinate for a given surface point (x, y, z).
 
-        
-        
         this.tMin = this.tMax = this.points[0][T]; // A starting value. Note that zMin and zMax are custom properties that could possibly be useful if this code is extended later.
 
         for (var i = 0; i < this.points.length; i++)
@@ -256,10 +390,7 @@ else
 
           
           ctx.translate(constants.canvasWidth/2, constants.canvasHeight/2); // Translate the surface's origin to the center of the canvas.
-          
-         
-         
-          
+        
           document.getElementById('canvas').appendChild(canvasElement);
         //document.body.appendChild(canvasElement); // Make the canvas element a child of the body element.
       }
@@ -280,13 +411,22 @@ else
 
         this.points = surface.points.sort(surface.sortByTimeIndex);// Sort the set of points based on relative z-axis position. If the points are visibly small, you can sort of get away with removing this step.
 
- 		
+        
         
         for (var i = 0; i < this.points.length; i++)
         {
           ctx.fillStyle = this.points[i].color; 
           ctx.fillRect(this.points[i][X] * constants.surfaceScale, this.points[i][Y] * constants.surfaceScale, constants.pointWidth, constants.pointWidth);  
-        }    
+        } 
+
+        
+        ctx.beginPath();
+        for(var i=0; i<this.CoorLines.length; i++){
+        	ctx.moveTo(0,0);
+            ctx.lineTo(this.CoorLines[i][X] * constants.surfaceScale, this.CoorLines[i][Y] * constants.surfaceScale);
+            }
+        ctx.stroke();
+           
       }
       
       // -----------------------------------------------------------------------------------------------------
@@ -298,6 +438,7 @@ else
       {
         var Px = 0, Py = 0, Pz = 0; // Variables to hold temporary results.
         var P = this.points; // P is a pointer to the set of surface points (i.e., the set of 3 x 1 vectors).
+        var CL = this.CoorLines;
         var sum; // The sum for each row/column matrix product.
   
         for (var V = 0; V < P.length; V++) // For all 3 x 1 vectors in the point list.
@@ -307,6 +448,15 @@ else
           {
             sum = (R[Rrow][X] * Px) + (R[Rrow][Y] * Py) + (R[Rrow][Z] * Pz);
             P[V][Rrow] = sum;
+          }
+        }     
+        for (var V = 0; V < CL.length; V++) // For all 3 x 1 vectors in the point list.
+        {
+          Px = CL[V][X], Py = CL[V][Y], Pz = CL[V][Z];
+          for (var Rrow = 0; Rrow < 3; Rrow++) // For each row in the R matrix.
+          {
+            sum = (R[Rrow][X] * Px) + (R[Rrow][Y] * Py) + (R[Rrow][Z] * Pz);
+            CL[V][Rrow] = sum;
           }
         }     
       }
@@ -400,7 +550,63 @@ else
       }
      
       // -----------------------------------------------------------------------------------------------------
+			var downX = 0;            // mouse starting positions
+			var downY = 0;
+			var moveX = 0;           // current element offset
+			var moveY = 0;
+			var pressed = false;
+			
+      function processMouseDown(e){
+    	  downX=e.clientX;
+    	  downY=e.clientY;
+    	  var coor="Coordinates: (" + downX + "," + downY + ")";
+    	  document.getElementById("demo1").innerHTML=coor;
+    	  pressed = true;
 
+    	  
+
+      }
+      function processMouseUp(e){
+		var coor="Coordinates: (" + downX + "," + downY + ")";
+  	  	document.getElementById("demo1").innerHTML=coor;
+    	  pressed=false;
+          }
+      
+      function processMouseMoved(e){
+    	 moveX=e.clientX;
+    	 moveY=e.clientY;
+    	 var coor1="Coordinates: (" + moveX + "," + moveY + ")";
+    	 document.getElementById("demo").innerHTML=coor1;
+    	 if(pressed){
+        	 
+    		 if(downX>moveX){
+        		 surface.yRotate(-1);
+    	         e.preventDefault(); 
+            	 }
+        	 	if(downX<moveX){
+        		 surface.yRotate(1);
+    	         e.preventDefault(); 
+            	 }
+    	 	 if(downY>moveY){
+        		 surface.xRotate(1);
+    	         e.preventDefault(); 
+            	 }
+        		 if(downY<moveY){
+        		 surface.xRotate(-1);
+    	         e.preventDefault(); 
+            	 }
+    	 	
+		}
+      }
+     function processZoom(e) {
+         if(e.AltKey){
+    	var test = e.detail? e.detail*(-120) : e.wheelDelta;
+    	document.getElementById("demo1").innerHTML=test;
+    	}
+	} 
+      
+      
+      
       function processKeyDown(evt)
       {                    
         if (evt.ctrlKey)
@@ -462,7 +668,14 @@ else
       {
         appendCanvasElement(); // Create and append the canvas element to the DOM.
         surface.draw(); // Draw the surface on the canvas.
-        document.addEventListener('keydown', processKeyDown, false); // Used to detect if the control key has been pressed.
+        document.addEventListener('onmousedown', processMouseDown, false); 
+        document.addEventListener('onmouseup', processMouseUp, false);
+        document.addEventListener('onmousemove', processMouseMove, false);
+        document.addEventListener('onmousewheel', processZoom, false);
+        
+        
+        
+        document.addEventListener('keydown', processKeyDown, false); // Used to detect if the control key has been pressed. 
       }
 
       // -----------------------------------------------------------------------------------------------------
@@ -471,4 +684,4 @@ else
       surface.color(); // Based on the min and max z-coordinate values, chooses colors for each point based on the point's z-ccordinate value (i.e., height).
       window.addEventListener('load', onloadInit, false); // Perform processing that must occur after the page has fully loaded.
     </script>
-
+ -->
