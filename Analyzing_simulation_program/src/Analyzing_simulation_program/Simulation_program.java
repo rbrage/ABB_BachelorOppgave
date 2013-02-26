@@ -35,6 +35,8 @@ public class Simulation_program extends JFrame implements ActionListener
 	JProgressBar bar;
 	String [] args;
 	boolean running = false;
+	Thread t;
+	
 	Simulation_program(String [] args) // the frame constructor method
 	{
 		super("Simulation program"); 
@@ -74,7 +76,7 @@ public class Simulation_program extends JFrame implements ActionListener
 		numPointsField.setText("10");
 		pane.add(numPointsField);
 		
-		pane.add(new JLabel("Sleep time:"));
+		pane.add(new JLabel("Time between points:"));
 		
 		sleepField = new JTextField(20);
 		sleepField.setText("200");
@@ -85,9 +87,22 @@ public class Simulation_program extends JFrame implements ActionListener
 		bar.setStringPainted(true);
 		pane.add(bar);
 
-		JButton buttom = new JButton("Start");
-		buttom.addActionListener(this);
-		pane.add(buttom);
+		JButton start = new JButton("Start");
+		start.addActionListener(this);
+		pane.add(start);
+		
+		JButton stop = new JButton("Stop");
+		stop.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(t != null){
+					t.interrupt();
+				}
+			}
+			
+		});
+		pane.add(stop);
 
 		setVisible(true); // display this frame
 	}
@@ -109,7 +124,7 @@ public class Simulation_program extends JFrame implements ActionListener
 			
 			timeToSleep = Integer.parseInt(sleepField.getText());
 			
-			Thread t = new Thread(new StartConection());
+			t = new Thread(new StartConection());
 			t.start();
 		}
 
@@ -188,11 +203,13 @@ public class Simulation_program extends JFrame implements ActionListener
 					i++;
 					Thread.sleep(timeToSleep);
 					bar.setValue(i);
+					
+					if(t.isInterrupted()) break;
 				}
 			}catch (Exception e) {}
 			
 //			OpenBrowser openBrowser = new OpenBrowser();
-			URI uri = null;
+//			URI uri = null;
 			try {
 				uri = new URI("http://127.0.0.1:8888");
 			} catch (URISyntaxException e) {
