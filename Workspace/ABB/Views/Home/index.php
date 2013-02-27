@@ -177,7 +177,7 @@ else
 			      			$list = $this->viewmodel->arr->getCachedArrayList();
 			      			$size = $list->size();
 			      			for ($i = 0; $i<=$size-1 ;$i++){
-			      				?>this.points[<?php echo $i ?>] = point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
+			      				?>points[<?php echo $i ?>] = new point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
 			      				<?php 
 			      			}
 			      			?>
