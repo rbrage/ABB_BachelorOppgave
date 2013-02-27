@@ -53,7 +53,7 @@ $this->Template("sheard");
 			<div class="page-header">
 				<h2>3D plot</h2>
 				<div id="surfacePlotDiv"
-					style="float: left; width: 950px; height: 700px;">
+					style="float: left; width: 950px; height: 700px;" oncontextmenu="return false">
 					<!-- SurfacePlot goes here... -->
 					<div id="surfacePlot1" class="surfaceplot"
 						style="background-color: rgb(255, 255, 255); position: relative; left: 0px; top: 0px; background-position: initial initial; background-repeat: initial initial;">
