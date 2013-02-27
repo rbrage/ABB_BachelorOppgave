@@ -842,13 +842,6 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			var newRotationMatrix = mat4.create();
 			mat4.identity(newRotationMatrix);
 			var s = delta <  0 ? 0.95 : 1.05;
-			
-			var coor="delta: (" + delta +")";
-	    	  document.getElementById("demo1").innerHTML=coor;
-			
-			 var coor="S: (" + s +")";
-	    	  document.getElementById("demo").innerHTML=coor;
-			
 			mat4.scale(newRotationMatrix, [s, s, s]);
 			mat4.multiply(newRotationMatrix, rotationMatrix, rotationMatrix);
 			mouseWheel = false;
@@ -875,13 +868,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			
 			var s = deltaY < 0 ? 1.05 : 0.95;
 			
-			var coor="S: ("+ s +")";
-	    	  document.getElementById("demo1").innerHTML=coor;
-	    	  var coor="delta: (" + deltaY +")";
-	    	  document.getElementById("demo").innerHTML=coor;
-			
-	    	  
-	    	  mat4.scale(newRotationMatrix, [s, s, s]);
+			mat4.scale(newRotationMatrix, [s, s, s]);
 			mat4.multiply(newRotationMatrix, rotationMatrix, rotationMatrix);
 		} 
 		else if(ctrlPressed || rigthmouseDown){
@@ -1119,13 +1106,14 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			canvas.onmouseout = hideTooltip;
 			canvas.onmousedown = this.mouseDownd;
 			canvas.onmouseup = this.mouseUpd;
-			canvas.onmousewheel = this.mouseWheel;
+			canvas.onmousewheel = this.mouseWheelMove;
 
 
 			canvas.addEventListener("touchstart", this.mouseDownd, false);
 			canvas.addEventListener("touchmove", this.mouseIsMoving, false);
 			canvas.addEventListener("touchend", this.mouseUpd, false);
 			canvas.addEventListener("touchcancel", hideTooltip, false);
+			canvas.addEventListener("wheel", this.mouseWheelMove, false);
 		}
 		else 
 			this.createHiddenCanvasForGLText();
@@ -1168,6 +1156,14 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		mouseDown3 = false;
 	};
 
+	this.mouseWheelMove = function(e){
+		var self = e.target.owner;
+			var coor1="Coordinates: (" + e.wheelDelta + ")";
+   	 		document.getElementById("demo").innerHTML=coor1;
+   	 	
+   	 		self.calculateScale(currentPos);
+		
+	};
 	this.mouseIsMoving = function(e){
 		var self = e.target.owner;
 		var currentPos = getMousePositionFromEvent(e);
@@ -1214,7 +1210,6 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			return true;
 		}
 	};
-
 	function isrigthtmouseDown(event){
 		if (event.button==2){ 
 			return true;
@@ -1241,7 +1236,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		}
 
 		return false;
-	}
+	};
 	function isCtrlPressed(e){
 		var ctrlPressed = 0;
 
@@ -1263,7 +1258,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		}
 
 		return false;
-	}
+	};
 
 	function getMousePositionFromEvent(e){
 		if (getInternetExplorerVersion() > -1) {
@@ -1340,7 +1335,8 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 				scale = JSSurfacePlot.MAX_SCALE - 1;
 
 		lastMousePos.y = scale / JSSurfacePlot.SCALE_FACTOR;
-
+		var coor1="scale: (" + scale + ")";
+	 	document.getElementById("demo1").innerHTML=coor1;
 		closestPointToMouse = null;
 		this.render();
 	};
