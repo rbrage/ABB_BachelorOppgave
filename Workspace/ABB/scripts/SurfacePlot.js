@@ -832,14 +832,11 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		}
 		if(mouseWheel){ 
 			var delta = 0;
-			if (!event) /* For IE. */
-			event = window.event;
-			if (event.wheelDelta) { /* IE/Opera. */
+			if (!event) 
+				event = window.event;
+			if (event.wheelDelta) {
 				delta = event.wheelDelta/120;
-			} else if (event.detail) { /** Mozilla case. */
-				/** In Mozilla, sign of delta is different than in IE.
-				 * Also, delta is multiple of 3.
-				 */
+			} else if (event.detail) { 
 				delta = -event.detail/3;
 			}
 			var newRotationMatrix = mat4.create();
