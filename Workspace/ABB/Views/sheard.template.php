@@ -10,8 +10,8 @@ body {
 </style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="scripts/bootstrap.min.js"></script>
+<script src="/scripts/jquery-1.9.0.js"></script>
+<script src="/scripts/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
@@ -134,9 +134,13 @@ body {
 					href="#"><img src="/img/abbLogo.gif"> </a>
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="/">Home</a></li>
+						<li><a href="/points/">All Points</a></li>
+						<li><a href="/cluster/">Clusters</a></li>
+						<li><a href="/stat/">Statistics</a></li>
+					</ul>
+					<ul class="nav right">
+						<li><a href="/settings/">Settings</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -152,8 +156,6 @@ body {
 						<li class="active"><a href="#last">Last 10 points</a>
 						
 						<li><a href="#plot3d">3D plot</a>
-						
-						<li><a href="#point">Trigger points</a></li>
 					</ul>
 				</div>
 			</div>
