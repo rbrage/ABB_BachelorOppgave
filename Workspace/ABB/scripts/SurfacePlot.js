@@ -118,7 +118,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 
 	var mouseDown1 = false;
 	var mouseDown3 = false;
-
+	var scalefactor = 100;
 	var mousePosX = null;
 	var mousePosY = null;
 	var lastMousePos = new Point(0, 0);
@@ -757,6 +757,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 	var mouseWheel = false;
 	var leftmouseDown = false;
 	var rigthmouseDown = false;
+	
 
 	this.handleMouseUp = function(event){
 		mouseDown = false;
@@ -842,6 +843,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			var newRotationMatrix = mat4.create();
 			mat4.identity(newRotationMatrix);
 			var s = delta <  0 ? 0.95 : 1.05;
+			scalefactor = scalefactor*s;
 			mat4.scale(newRotationMatrix, [s, s, s]);
 			mat4.multiply(newRotationMatrix, rotationMatrix, rotationMatrix);
 			mouseWheel = false;
@@ -1106,14 +1108,14 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			canvas.onmouseout = hideTooltip;
 			canvas.onmousedown = this.mouseDownd;
 			canvas.onmouseup = this.mouseUpd;
-			canvas.onmousewheel = this.mouseWheelMove;
+			
 
 
 			canvas.addEventListener("touchstart", this.mouseDownd, false);
 			canvas.addEventListener("touchmove", this.mouseIsMoving, false);
 			canvas.addEventListener("touchend", this.mouseUpd, false);
 			canvas.addEventListener("touchcancel", hideTooltip, false);
-			canvas.addEventListener("wheel", this.mouseWheelMove, false);
+			
 		}
 		else 
 			this.createHiddenCanvasForGLText();
@@ -1132,9 +1134,6 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 	this.mouseDownd = function(e){
 		if (isShiftPressed(e)) {
 			mouseDown3 = true;
-			mouseButton3Down = getMousePositionFromEvent(e);
-		}
-		else if (isCtrlPressen(e)){
 			mouseButton3Down = getMousePositionFromEvent(e);
 		}
 		else {
@@ -1156,14 +1155,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		mouseDown3 = false;
 	};
 
-	this.mouseWheelMove = function(e){
-		var self = e.target.owner;
-			var coor1="Coordinates: (" + e.wheelDelta + ")";
-   	 		document.getElementById("demo").innerHTML=coor1;
-   	 	
-   	 		self.calculateScale(currentPos);
-		
-	};
+	
 	this.mouseIsMoving = function(e){
 		var self = e.target.owner;
 		var currentPos = getMousePositionFromEvent(e);
@@ -1171,6 +1163,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		if (mouseDown1) {
 			hideTooltip();
 			self.calculateRotation(currentPos);
+			
 		}
 		else 
 			if (mouseDown3) {
@@ -1335,8 +1328,6 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 				scale = JSSurfacePlot.MAX_SCALE - 1;
 
 		lastMousePos.y = scale / JSSurfacePlot.SCALE_FACTOR;
-		var coor1="scale: (" + scale + ")";
-	 	document.getElementById("demo1").innerHTML=coor1;
 		closestPointToMouse = null;
 		this.render();
 	};
@@ -1481,26 +1472,26 @@ GLText.prototype.draw = function(){
 	mat4.identity(rotationMatrix);
 
 	if (this.axis == "y") {
-		mat4.translate(rotationMatrix, [0.0, 0.5, 0.5]);
+		mat4.translate(rotationMatrix, [0.0, 1, 0.0]);
 		mat4.translate(rotationMatrix, [this.pos.x + 0.53, this.pos.y + 0.6, this.pos.z - 0.5]);
 		mat4.rotate(rotationMatrix, degToRad(this.angle), [1, 0, 0]);
-		mat4.translate(rotationMatrix, [0.0, -0.5, -0.5]);
+		mat4.translate(rotationMatrix, [0.0, -1, 0]);
 	}
 	else 
 		if (this.axis == "x") {
-			mat4.translate(rotationMatrix, [0.5, 0.5, 0.0]);
+			mat4.translate(rotationMatrix, [1, 0, 0]);
 			mat4.translate(rotationMatrix, [this.pos.x - 0.5, this.pos.y + 0.47, this.pos.z - 0.5]);
 			mat4.rotate(rotationMatrix, degToRad(this.angle), [0, 0, 1]);
-			mat4.translate(rotationMatrix, [-0.5, -0.5, 0]);
+			mat4.translate(rotationMatrix, [1, 0, 0]);
 		}
 		else 
 			if (this.axis == "z" && this.align == "centre") // Main Z-axis label.
 			{
-				mat4.translate(rotationMatrix, [0.0, 0.5, 0.5]);
+				mat4.translate(rotationMatrix, [0.0, 0, 1]);
 				mat4.translate(rotationMatrix, [this.pos.x - 0.3, this.pos.y + 0.5, this.pos.z - 0.5]);
 				mat4.rotate(rotationMatrix, degToRad(this.angle), [1, 0, 0]);
 				mat4.rotate(rotationMatrix, degToRad(this.angle), [0, 0, 1]);
-				mat4.translate(rotationMatrix, [0.0, -0.5, -0.5]);
+				mat4.translate(rotationMatrix, [0.0, 0, 1]);
 			}
 			else 
 				if (this.axis == "z" && !this.align) {
@@ -1567,6 +1558,8 @@ GLAxes = function(surfacePlot, points){
 	this.axesVertexPositionBuffer = null;
 	this.surfaceVertexColorBuffer = null;
 	this.surfacePlot = surfacePlot;
+	var scalefactor = surfacePlot.scalefactor;
+	
 
 	this.labels = [];
 
@@ -1603,17 +1596,17 @@ GLAxes = function(surfacePlot, points){
 
 		// Set up the main X-axis label.
 		var labelPos = {
-				x: 1,
+				x: 10,
 				y: 0,
 				z: 0
 		};
-		var glText = new GLText(this.surfacePlot.xTitle, labelPos, 90, surfacePlot, "x", "centre");
+		var glText = new GLText(this.surfacePlot.xTitle, labelPos, 0, surfacePlot, "x", "centre");
 		this.labels.push(glText);
 
 		// Set up the main Y-axis label.
 		labelPos = {
 				x: 0,
-				y: 1,
+				y: 10,
 				z: 0
 		};
 		glText = new GLText(this.surfacePlot.yTitle, labelPos, 90, surfacePlot, "x", "centre");
@@ -1623,7 +1616,7 @@ GLAxes = function(surfacePlot, points){
 		labelPos = {
 				x: 0,
 				y: 0,
-				z: 1
+				z: 10
 		};
 		glText = new GLText(this.surfacePlot.zTitle, labelPos, 90, surfacePlot, "z", "centre");
 		this.labels.push(glText);
@@ -2197,6 +2190,6 @@ JSSurfacePlot.DEFAULT_Z_ANGLE = 47;
 JSSurfacePlot.DATA_DOT_SIZE = 1;
 JSSurfacePlot.DEFAULT_SCALE = 300;
 JSSurfacePlot.MIN_SCALE = 5;
-JSSurfacePlot.MAX_SCALE = 2200;
-JSSurfacePlot.SCALE_FACTOR = 2;
+JSSurfacePlot.MAX_SCALE = 5000;
+JSSurfacePlot.SCALE_FACTOR = 1;
 
