@@ -7,6 +7,7 @@ $this->Template("sheard");
 		<div class="page-header">
 			<h2>Table view</h2>
 		</div>
+		
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -19,7 +20,7 @@ $this->Template("sheard");
 			</thead>
 			<tbody>
 				<?php 
-				for($i = 0; $i < 20; $i++){
+				for($i = 0; $i < 20 && $i < $this->viewmodel->cachedarr->size(); $i++){
 					$item = $this->viewmodel->cachedarr->get($i);
 					echo "
 				<tr>
@@ -33,8 +34,11 @@ $this->Template("sheard");
 				?>
 			</tbody>
 		</table>
-		<div>
+		<div class="span4 offset4">
 			<button>Get more results</button>
+			<script type="text/javascript">
+				$.getJSON("/register/points/", function(data){;});
+			</script>
 		</div>
 	</div>
 </div>
