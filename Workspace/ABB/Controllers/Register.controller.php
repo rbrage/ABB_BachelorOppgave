@@ -121,6 +121,10 @@ class Register extends Controller {
 		if(isset($this->urlvalues["stop"]))
 			$stop = $this->urlvalues["stop"];
 		
+		if($stop - $start > 1000){
+			$stop = $start + 1000;
+		}
+		
 		$this->viewmodel->start = $start;
 		$this->viewmodel->stop  = $stop;
 		
