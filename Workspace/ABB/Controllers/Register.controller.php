@@ -112,18 +112,23 @@ class Register extends Controller {
 		$this->viewmodel->returnCoding = $id;
 		
 		$this->viewmodel->list = new CachedArrayList();
+		$this->viewmodel->msg = "";
 		
 		$start = 0;
 		if(isset($this->urlvalues["start"]))
-			$start = $this->urlvalues["start"];
+			$start = $this->urlvalues["start"] + 0;
 		
 		$stop = 0;
 		if(isset($this->urlvalues["stop"]))
-			$stop = $this->urlvalues["stop"];
+			$stop = $this->urlvalues["stop"] + 0;
 		
-		if($stop - $start > 1000){
+		if(($stop - $start) > 1000){
 			$stop = $start + 1000;
+			$this->viewmodel->msg = "Only possible to get 1000 points each time. Request order sized down to 1000 points.";
 		}
+		
+		if($stop >= $this->viewmodel->list->size())
+			$stop = $this->viewmodel->list->size();
 		
 		$this->viewmodel->start = $start;
 		$this->viewmodel->stop  = $stop;
