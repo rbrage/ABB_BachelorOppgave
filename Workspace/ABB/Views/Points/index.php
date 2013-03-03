@@ -8,7 +8,7 @@ $this->Template("sheard");
 			<h2>Table view</h2>
 		</div>
 		
-		<table class="table table-striped">
+		<table class="table table-striped" id="PointTable">
 			<thead>
 				<tr>
 					<th>Number</th>
@@ -20,7 +20,7 @@ $this->Template("sheard");
 			</thead>
 			<tbody>
 				<?php 
-				for($i = 0; $i < 20 && $i < $this->viewmodel->cachedarr->size(); $i++){
+				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
 					$item = $this->viewmodel->cachedarr->get($i);
 					echo "
 				<tr>
@@ -35,9 +35,29 @@ $this->Template("sheard");
 			</tbody>
 		</table>
 		<div class="span4 offset4">
-			<button>Get more results</button>
+			<button id="MoreResults">Get more results</button>
 			<script type="text/javascript">
-				$.getJSON("/register/points/", function(data){;});
+				stop = 50;
+				$("#MoreResults").click(function(){
+					$("#MoreResults").html("Loading");
+					$.getJSON("/Register/Points/json?start=" + stop + "&stop=" + (stop + 50), function(data){
+						start = data.Register.Start;
+						$.each(data.Register.Points, function(key, value){
+							$("#PointTable").find("tbody").append("<tr>" + 
+								"<td>" + start + "</td>" +
+								"<td>" + value.x + "</td>" +
+								"<td>" + value.y + "</td>" +
+								"<td>" + value.z + "</td>" +
+								"<td>" + value.timestamp + "</td>" +
+							"</tr>");
+							start++;
+						});
+						stop = start;
+						$("#MoreResults").html("Get more results");
+					}).error(function(data){
+						$("#MoreResults").html("Error");
+					});
+				});
 			</script>
 		</div>
 	</div>
