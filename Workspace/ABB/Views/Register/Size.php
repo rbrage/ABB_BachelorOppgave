@@ -5,11 +5,12 @@ if($viewmodel->noCoding){
 }
 elseif($viewmodel->error){
 	if($viewmodel->returnCoding == "json"){
-		$response = array("Register" => array("Error" => true, "Message" => $viewmodel->errmsg));
+		$response = array("Request" => array("Success" => false, "Error" => true, "Message" => $viewmodel->errmsg));
 		echo json_encode($response);
 	}
 	elseif($viewmodel->returnCoding == "xml"){
-		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Register></Register>");
+		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Request></Request>");
+		$xml->addChild("Success", true);
 		$xml->addChild("Error", true);
 		$xml->addChild("Message", $viewmodel->errmsg);
 
@@ -21,14 +22,16 @@ elseif($viewmodel->error){
 }
 else{
 	if($viewmodel->returnCoding == "json"){
-		$response = array("Register" => array("Success" => true, "Message" => "Size gotten.", "Size" => $this->viewmodel->listsize));
+		$response = array(	"Request" => array("Success" => true, "Error" => $viewmodel->error, "Message" => "Size gotten."), 
+							"Register" => array("Size" => $this->viewmodel->listsize + 0));
 		echo json_encode($response);
 	}
 	elseif($viewmodel->returnCoding == "xml"){
-		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Register></Register>");
-		$xml->addChild("Success", "true");
-		$xml->addChild("Message", "Size gotten.");
-		$xml->addChild("Size", $this->viewmodel->listsize);
+		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Request></Request><Register></Register>");
+		$xml->addChild("Success", "true", "Request");
+		$xml->addChild("Error", $viewmodel->error, "Request");
+		$xml->addChild("Message", "Size gotten.", "Request");
+		$xml->addChild("Size", $this->viewmodel->listsize, "Register");
 
 		echo $xml->asXML();
 	}

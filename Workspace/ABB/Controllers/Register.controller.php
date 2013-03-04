@@ -99,6 +99,16 @@ class Register extends Controller {
 		
 	}
 	
+	/**
+	 * Sends requested amount of triggerpoint to user/system, from defined startpoint.
+	 * URL examples:
+	 * /register/points/json 	"gets zero points, shows coding options"
+	 * /register/points/xml 	"gets zero points, shows coding options"
+	 * /register/points/(json|xml)?start=[number] 	"Gets points from start number to end of list. Max 1000 points"
+	 * /register/points/(json|xml)?stop=[number] 	"Gets points from zero to stop number. Max 1000 points"
+	 * /register/points/(json|xml)?start=[number]&stop=[number] 	"Gets points from start number to stop number. Max 1000 points"
+	 * @param String $id
+	 */
 	public function Points($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
@@ -124,6 +134,7 @@ class Register extends Controller {
 		
 		if(($stop - $start) > 1000){
 			$stop = $start + 1000;
+			$this->viewmodel->error = true;
 			$this->viewmodel->msg = "Only possible to get 1000 points each time. Request order sized down to 1000 points.";
 		}
 		
