@@ -6,14 +6,16 @@ require_once("Models/CacheIterator.php");
 class CachedArrayList implements arrayaccess {
 	
 	private $cache;
-	const ARRAYLISTLOADED = "CACHEDARRAYLISTLOADED";
-	const SIZEKEYWORD = "CACHEDARRAYLIST_SIZE";
-	const ARRAYLISTPREFIX = "CACHEDARRAYLIST_";
+	private $listprefix;
+	const ARRAYLISTLOADED = "LOADED";
+	const SIZEKEYWORD = "SIZE";
+	const ARRAYLISTPREFIX = "CACHEDARRAYLIST";
 	
-	public function __construct(){
+	public function __construct($listname = self::ARRAYLISTPREFIX){
+		$this->listprefix = $listname;
 		$this->cache = new Cache();
-		if(!$this->cache->hasKey(self::ARRAYLISTLOADED)){
-			$this->cache->setCacheData(self::ARRAYLISTLOADED, true);
+		if(!$this->cache->hasKey($this->listprefix . "_" . self::ARRAYLISTLOADED)){
+			$this->cache->setCacheData($this->listprefix . "_" . self::ARRAYLISTLOADED, true);
 			$this->clear();
 		}
 	}
@@ -25,14 +27,14 @@ class CachedArrayList implements arrayaccess {
 	 */
 	public function add($data, $lock = false){
 		$size = $this->size();
-		$this->lock(self::ARRAYLISTPREFIX . $size);
+		$this->lock($this->listprefix . "_" . $size);
 		
-		$response = $this->cache->setCacheData(self::ARRAYLISTPREFIX . $size, $data);
+		$response = $this->cache->setCacheData($this->listprefix . "_" . $size, $data);
 		if($response)
-			$this->cache->increase(self::SIZEKEYWORD);
+			$this->cache->increase($this->listprefix . "_" . self::SIZEKEYWORD);
 		
 		if(!$lock){
-			$this->unlock(self::ARRAYLISTPREFIX . $size);
+			$this->unlock($this->listprefix . "_" . $size);
 		}
 		
 		return $response;
@@ -44,12 +46,12 @@ class CachedArrayList implements arrayaccess {
 	 * @param boolean $lock
 	 */
 	public function get($index, $lock = false){
-		$this->lock(self::ARRAYLISTPREFIX . $index);
+		$this->lock($this->listprefix . "_" . $index);
 		
-		$data = $this->cache->getCacheData(self::ARRAYLISTPREFIX . $index);
+		$data = $this->cache->getCacheData($this->listprefix . "_" . $index);
 		
 		if(!$lock)
-			$this->unlock(self::ARRAYLISTPREFIX . $index);
+			$this->unlock($this->listprefix . "_" . $index);
 		
 		return $data;
 	}
@@ -61,12 +63,12 @@ class CachedArrayList implements arrayaccess {
 	 * @param boolean $lock
 	 */
 	public function set($index, $data, $lock = false){
-		$this->lock(self::ARRAYLISTPREFIX . $index);
+		$this->lock($this->listprefix . "_" . $index);
 		
-		$this->cache->setCacheData(self::ARRAYLISTPREFIX . $index, $data);
+		$this->cache->setCacheData($this->listprefix . "_" . $index, $data);
 		
 		if(!$lock)
-			$this->unlock(self::ARRAYLISTPREFIX . $index);
+			$this->unlock($this->listprefix . "_" . $index);
 	}
 	
 	/**
@@ -82,7 +84,7 @@ class CachedArrayList implements arrayaccess {
 	 * @param integer $index
 	 */
 	public function lock($index){
-		$this->cache->lock(self::ARRAYLISTPREFIX . $index);
+		$this->cache->lock($this->listprefix . "_" . $index);
 	}
 	
 	/**
@@ -90,7 +92,7 @@ class CachedArrayList implements arrayaccess {
 	 * @param integer $index
 	 */
 	public function unlock($index){
-		$this->cache->unlock(self::ARRAYLISTPREFIX . $index);
+		$this->cache->unlock($this->listprefix . "_" . $index);
 	}
 	
 	/**
@@ -113,7 +115,7 @@ class CachedArrayList implements arrayaccess {
 	 * @param integer $size
 	 */
 	private function setSize($size){
-		$this->cache->setCacheData(self::SIZEKEYWORD, $size);
+		$this->cache->setCacheData($this->listprefix . "_" . self::SIZEKEYWORD, $size);
 	}
 
 	/**
@@ -121,7 +123,7 @@ class CachedArrayList implements arrayaccess {
 	 * @return integer
 	 */
 	public function size(){
-		return $this->cache->getCacheData(self::SIZEKEYWORD);
+		return $this->cache->getCacheData($this->listprefix . "_" . self::SIZEKEYWORD);
 	}
 	
 	/**
@@ -137,14 +139,14 @@ class CachedArrayList implements arrayaccess {
 	 * @return APCIterator
 	 */
 	public function APCIterator(){
-		return new APCIterator('user', '/^' . self::ARRAYLISTPREFIX . '[\d]*$/', APC_ITER_ALL, $this->size());
+		return new APCIterator('user', '/^' . $this->listprefix . "_" . '[\d]*$/', APC_ITER_ALL, $this->size());
 	}
 	
 	/**
 	 * Makes the cachedarraylist invisible for new instances. The new instance will not get any data from the previous instance, it gets a clean start. However all data previosly stored will remain in memory until it's cleaned from memory.
 	 */
 	public function unloadList(){
-		$this->cache->removeCacheData(self::ARRAYLISTLOADED);
+		$this->cache->removeCacheData($this->listprefix . "_" . self::ARRAYLISTLOADED);
 	}
 	
 	/**
