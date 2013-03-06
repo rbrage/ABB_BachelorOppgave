@@ -133,10 +133,10 @@ body {
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/abbLogo.gif"> </a></li>
-						<li><a href="/">Home</a></li>
-						<li><a href="/points/">All Points</a></li>
-						<li><a href="/cluster/">Clusters</a></li>
-						<li><a href="/stat/">Statistics</a></li>
+						<li><a href="/"><i class="icon-home"></i></a></li>
+						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
+						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
+						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
