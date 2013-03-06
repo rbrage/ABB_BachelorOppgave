@@ -10,8 +10,9 @@ body {
 </style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
-<script src="/scripts/jquery-1.9.0.js"></script>
-<script src="/scripts/bootstrap.min.js"></script>
+<script src="/scripts/jquery-1.9.0.js" type="text/javascript"></script>
+<script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
+<script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
@@ -126,46 +127,66 @@ body {
 <body style="padding-top: 60px;">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" style="padding-top: 5px; padding-bottom: 5px;"
-					href="#"><img src="/img/abbLogo.gif"> </a>
-				<div class="nav-collapse collapse">
+			<div class="container-fluid">
+			<div class="span11 offset3">
+				
+				<div class="nav-collapse">
 					<ul class="nav">
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/abbLogo.gif"> </a></li>
 						<li><a href="/">Home</a></li>
 						<li><a href="/points/">All Points</a></li>
 						<li><a href="/cluster/">Clusters</a></li>
 						<li><a href="/stat/">Statistics</a></li>
 					</ul>
-					<ul class="nav right">
-						<li><a href="/settings/">Settings</a></li>
+					<ul class="nav pull-right">
+						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
+			</div>
 			</div>
 		</div>
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
+
 			<div class="span2">
-				<div class="span2" data-spy="affix">
+				<div data-spy="affix">
 					<ul class="nav nav-list">
-						<li class="nav-header">Meny</li>
-						<li class="active"><a href="#last">Last 10 points</a>
-						
-						<li><a href="#plot3d">3D plot</a>
+						<li class="nav-header">Menu</li>
+						<?php 
+						if(is_array($this->viewmodel->templatemenu))
+							foreach ($this->viewmodel->templatemenu as $section => $name)
+								echo "<li><a href=\"#" . $section . "\">" . $name . "</a>";
+						?>
 					</ul>
 				</div>
 			</div>
-
-			<div class="span10">
+			<div class="span7">
 				<?php
 
 				$this->ViewBody();
 
 				?>
+			</div>
+			<div class="span2">
+				<div data-spy="affix">
+					<div class="alert alert-info">
+						<p class="nav-header">Infomation</p>
+						<table class="table table-condensed">
+							<tbody>
+								<tr>
+									<td>Number of triggerpoints:</td>
+									<td id="cachesize"><?php echo $this->viewmodel->listsize ?></td>
+								</tr>
+								<tr>
+									<td>Used memory size:</td>
+									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
