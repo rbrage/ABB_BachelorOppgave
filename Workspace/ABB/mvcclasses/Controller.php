@@ -49,6 +49,13 @@ abstract class Controller {
 		require_once($this->viewloc);
 	}
 
+	protected function RedirectTo($url){
+		if(!headers_sent())
+			header("Location: " . $url);
+		else
+			throw new Exception("Header has already been sent. Can not redirect.");
+	}
+
 }
 
 ?>
