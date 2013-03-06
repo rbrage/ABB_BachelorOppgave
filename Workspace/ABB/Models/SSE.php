@@ -14,6 +14,8 @@ class SSE {
 		header('Content-Type: text/event-stream');
 		header('Cache-Control: no-cache');
 		ob_implicit_flush();
+		
+		echo PHP_EOL;
 	}
 	
 	public function sendData($event, $data){
