@@ -13,7 +13,6 @@ class SSEvents extends Controller {
 		$this->sse = new SSE();
 		
 		$info = apc_cache_info("user", true);
-		$this->viewmodel->listmemory = $info["mem_size"]/1000 . "k";
 		
 		$this->sse->start();
 		
