@@ -18,11 +18,9 @@ body {
 
 <!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
-<script src="/scripts/three.min.js"></script>
-<script src="/scripts/TrackballControls.js"></script>
-<script src="/scripts/Detector.js"></script>
-<
-
+<script type="text/javascript" src="/scripts/three.min.js"></script>
+<script type="text/javascript" src="/scripts/TrackballControls.js"></script>
+<script type="text/javascript" src="/scripts/Detector.js"></script>
 
 <title>ABB Analyseprogram</title>
 </head>
