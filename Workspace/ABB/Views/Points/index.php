@@ -2,8 +2,7 @@
 $this->Template("sheard");
 ?>
 
-<div class="row">
-	<div class=span9>
+
 		<div class="page-header">
 			<h2>Table view</h2>
 		</div>
@@ -37,7 +36,7 @@ $this->Template("sheard");
 		<div class="span4 offset4">
 			<button id="MoreResults">Get more results</button>
 			<script type="text/javascript">
-				stop = 50;
+				stop = <?php echo $i; ?>;
 				$("#MoreResults").click(function(){
 					$("#MoreResults").html("Loading");
 					$.getJSON("/Register/Points/json?start=" + stop + "&stop=" + (stop + 50), function(data){
@@ -60,5 +59,3 @@ $this->Template("sheard");
 				});
 			</script>
 		</div>
-	</div>
-</div>
