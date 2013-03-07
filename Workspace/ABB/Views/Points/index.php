@@ -35,7 +35,7 @@ $this->Template("sheard");
 			</tbody>
 		</table>
 		<div class="span4 offset4">
-			<button id="MoreResults">Get more results</button>
+			<button id="MoreResults" class="btn">Get more results</button>
 			<script type="text/javascript">
 				stop = <?php echo $i; ?>;
 				$("#MoreResults").click(function(){

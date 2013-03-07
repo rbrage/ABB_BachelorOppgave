@@ -3,9 +3,8 @@ $this->viewmodel->templatemenu = array("ClusterSettings" => "Cluster analysis", 
 $this->Template("sheard");
 ?>
 
-<div class="row span9">
 	<section id="ClusterSettings">
-		<div id="page-header">
+		<div class="page-header">
 			<h2>Cluster analysis</h2>
 			<p>qergeg</p>
 		</div>
@@ -53,7 +52,7 @@ $this->Template("sheard");
 		</div>
 	</section>
 	<section id="MasterPointSettings">
-		<div id="page-header">
+		<div class="page-header">
 			<h2>Master Point Triggering</h2>
 		</div>
 		<div>
@@ -72,4 +71,3 @@ $this->Template("sheard");
 			</form>
 		</div>
 	</section>
-</div>
