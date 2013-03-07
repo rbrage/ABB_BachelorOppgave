@@ -657,6 +657,8 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 	var mouseWheel = false;
 	var leftmouseDown = false;
 	var rigthmouseDown = false;
+	var canvasXclik;
+	var canvasYclik;
 	
 
 	this.handleMouseUp = function(event){
@@ -677,11 +679,41 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		
 		mat4.perspective(5, this.gl.viewportWidth / this.gl.viewportHeight, 0.1, 100.0, this.pMatrix);
 		mat4.identity(this.mvMatrix);
+		
+		mat4.translate(this.mvMatrix, [0.0, 0.0, -50.0]);
 
-		var origoX = 0;
-		var origoY = 0;
-		this.moveOrigo(origoX,origoY);
-		//mat4.translate(this.mvMatrix, [0.0, 0.0, -50.0]);
+		mat4.multiply(this.mvMatrix, rotationMatrix);
+
+		// Disable the vertex arrays for the current shader.
+		this.gl.disableVertexAttribArray(this.shaderProgram.vertexPositionAttribute);
+
+		this.glAxes.draw();
+
+		this.glSurface.draw();
+
+		this.mvPopMatrix(this);
+	};
+	
+	this.uptadeDrawScene = function(){
+		this.mvPushMatrix(this);
+
+		this.gl.useProgram(this.shaderProgram);
+
+		// Enable the vertex arrays for the current shader.
+		this.shaderProgram.vertexPositionAttribute = this.gl.getAttribLocation(this.shaderProgram, "aVertexPosition");
+		this.gl.enableVertexAttribArray(this.shaderProgram.vertexPositionAttribute);
+
+		this.gl.viewport(canvasXclik, canvasYclik, this.gl.viewportWidth, this.gl.viewportHeight);
+		this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
+		
+		mat4.perspective(5, this.gl.viewportWidth / this.gl.viewportHeight, 0.1, 100.0, this.pMatrix);
+		mat4.identity(this.mvMatrix);
+
+		var coor="draw: (" + (canvasXclik) + "," + (canvasYclik) + ")";
+    	document.getElementById("demo").innerHTML=coor;
+    	
+		//this.moveOrigo(canvasXclik,canvasYclik);
+		mat4.translate(this.mvMatrix, [canvasXclik, canvasYclik, -50.0]);
 
 		mat4.multiply(this.mvMatrix, rotationMatrix);
 
@@ -696,6 +728,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 	};
 
 	this.moveOrigo = function(x,y){
+		mat4.identity(this.mvMatrix);
 		mat4.translate(this.mvMatrix, [x, y, -50.0]);
 	};
 
@@ -757,7 +790,17 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		}
 
 	};
-
+	
+	this.handelMouseClick = function(event, context){
+		canvasXclik = event.layerX - (canvas.width/2);
+		canvasYclik = event.layerY - (canvas.height/2);
+	
+		var coor="down: (" + (canvasXclik) + "," + (canvasYclik) + ")";
+    	document.getElementById("demo").innerHTML=coor;
+    	
+    	this.uptadeDrawScene();
+	};
+	
 	this.handleMouseMove = function(event, context){
 
 		var newX = event.clientX;
@@ -769,9 +812,12 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		var canvasX = event.layerX - (canvas.width/2);
 		var canvasY = event.layerY - (canvas.height/2);
 		
+		
 		if (!mouseDown) {
+			
 			var coor="canvas: (" + (canvasX) + "," + (canvasY) + ")";
-	    	 document.getElementById("demo1").innerHTML=coor;
+	    	document.getElementById("demo1").innerHTML=coor;
+	    	 
 			return;
 		}
 
@@ -779,8 +825,6 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 		var newRotationMatrix = mat4.create();
 		mat4.identity(newRotationMatrix);
 		
-		
-
 		if (shiftPressed) // scale
 		{
 			
@@ -798,6 +842,10 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 
 		else if(leftmouseDown)// rotate
 		{
+		
+			var coor="canvas: (" + (canvasX)+ "," + (canvasY) + ")";
+	    	document.getElementById("demo1").innerHTML=coor;
+	    	
 			this.moveOrigo(canvasX,canvasY);
 			mat4.rotate(newRotationMatrix, degToRad(deltaX / 2), [0, 1, 0]);
 			mat4.rotate(newRotationMatrix, degToRad(deltaY / 2), [1, 0, 0]);
@@ -805,6 +853,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 
 		}
 
+		
 		lastMouseX = newX;
 		lastMouseY = newY;
 	};
@@ -843,15 +892,28 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 				};//self.handleMouseMove;
 			};
 
+			var handelMouseClicked = function(event){
+				mouseWheel = false;
+				mouseDown = false;
+				mousecliked = true;
+				
+				document.onclick = function(event){
+					self.handelMouseClick(event, self)
+				};
+			};
 			var handleMouseWheel = function(event){
 				mouseWheel = true;
 				mouseDown = false;
 				document.onmousemove = function(event){
 					self.handleMouseWheelMove(event, self)
-				};//self.handleMouseMove;
+				};
 
 			};
-
+			canvas.onclick = handelMouseClicked;
+			document.onclick = this.handelMouseClicked;
+			document.onclick = function(event){
+				self.handelMouseClick(event,self);
+			};
 			canvas.onmousewheel = handleMouseWheel;
 			document.onmousewheel = this.handleMouseWheel;
 			document.onmousewheel = function(event){
@@ -1019,6 +1081,7 @@ JSSurfacePlot = function(x, y, width, height, colourGradient, targetElement, fil
 			canvas.onmouseout = hideTooltip;
 			canvas.onmousedown = this.mouseDownd;
 			canvas.onmouseup = this.mouseUpd;
+			
 			
 
 
