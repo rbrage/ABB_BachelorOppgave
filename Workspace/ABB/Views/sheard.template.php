@@ -15,111 +15,13 @@ body {
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
 <!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
-<script type="text/javascript" src="../scripts/SurfacePlot.js"></script>
-<script type="text/javascript" src="../scripts/ColourGradient.js"></script>
-<script type="text/javascript" src="../scripts/glMatrix-0.9.5.min.js"></script>
-<script type="text/javascript" src="../scripts/webgl-utils.js"></script>
-<script id="shader-fs" type="x-shader/x-fragment">
-            #ifdef GL_ES
-            precision highp float;
-            #endif
-            
-            varying vec4 vColor;
-            varying vec3 vLightWeighting;
-            
-            void main(void)
-            {
-            	gl_FragColor = vec4(vColor.rgb * vLightWeighting, vColor.a);
-            }
-        </script>
-
-<script id="shader-vs" type="x-shader/x-vertex">
-            attribute vec3 aVertexPosition;
-            attribute vec3 aVertexNormal;
-            attribute vec4 aVertexColor;
-
-           
-            uniform mat4 uMVMatrix;
-            uniform mat4 uPMatrix;
-            uniform mat3 uNMatrix;
-            varying vec4 vColor;
-            
-            uniform vec3 uAmbientColor;
-            uniform vec3 uLightingDirection;
-            uniform vec3 uDirectionalColor;
-            varying vec3 vLightWeighting;
-            
-            void main(void)
-            {
-
-				
-				gl_PointSize = 2.0;
-                gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-                
-                vec3 transformedNormal = uNMatrix * aVertexNormal;
-                float directionalLightWeighting = max(dot(transformedNormal, uLightingDirection), 0.0);
-                vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting; 
-
-                vColor = aVertexColor;
-            }
-        </script>
-
-<script id="axes-shader-fs" type="x-shader/x-fragment">
-            precision mediump float;
-			varying vec4 vColor;
-			
-			void main(void)
-			{
-				gl_FragColor = vColor;
-			}
-        </script>
-
-<script id="axes-shader-vs" type="x-shader/x-vertex">
-            attribute vec3 aVertexPosition;
-			attribute vec4 aVertexColor;
-			uniform mat4 uMVMatrix;
-			uniform mat4 uPMatrix;
-			varying vec4 vColor;
-			uniform vec3 uAxesColour;
-			
-			void main(void)
-			{
-				gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-				vColor =  vec4(uAxesColour, 1.0);
-			} 
-        </script>
-
-<script id="texture-shader-fs" type="x-shader/x-fragment">
-            #ifdef GL_ES
-            precision highp float;
-            #endif
-            
-            varying vec2 vTextureCoord;
-            
-            uniform sampler2D uSampler;
-            
-            void main(void)
-            {
-                gl_FragColor = texture2D(uSampler, vTextureCoord);
-            }
-        </script>
-
-<script id="texture-shader-vs" type="x-shader/x-vertex">
-            attribute vec3 aVertexPosition;
-            
-            attribute vec2 aTextureCoord;
-            varying vec2 vTextureCoord;
-            
-            uniform mat4 uMVMatrix;
-            uniform mat4 uPMatrix;
-            
-            void main(void)
-            {
-                gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
-                vTextureCoord = aTextureCoord; 
-            }
-        </script>
+<script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
+<script src="/scripts/three.min.js"></script>
+<script src="/scripts/TrackballControls.js"></script>
+<script src="/scripts/Detector.js"></script>
+<
 
 
 <title>ABB Analyseprogram</title>

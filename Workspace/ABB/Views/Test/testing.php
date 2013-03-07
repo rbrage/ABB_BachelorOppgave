@@ -63,6 +63,8 @@ iframe.dealply-toast.fastestext-revealed {
 	<script src="/scripts/three.min.js"></script>
 	<script src="/scripts/TrackballControls.js"></script>
 	
+	<div id="3DPlotDiv" width="1300" height="700">
+	</div>
 	
 
 	
@@ -72,10 +74,10 @@ iframe.dealply-toast.fastestext-revealed {
 
 			var camera, scene, renderer;
 
-			var uniforms, attributes;
-
-			var WIDTH = window.innerWidth,
-			HEIGHT = window.innerHeight;
+			var targetDiv;
+			
+			var WIDTH = 1300,
+			HEIGHT = 600;
 
 			var light, axis;
 			
@@ -89,14 +91,22 @@ iframe.dealply-toast.fastestext-revealed {
 			    camera.position.z = 250;
 			    
 			    renderer = new THREE.WebGLRenderer();
-			    renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.setSize(WIDTH, HEIGHT);
 			    
 			    scene = new THREE.Scene();
 			    addControls();
 			    addShapes();
-			    document.body.appendChild(renderer.domElement);
+
+			   
+				container = document.createElement( 'div' );
+				container.appendChild(renderer.domElement);
+
+                document.getElementById("3DPlotDiv").appendChild( container );
+			   
+			    
 
 			}
+		
 			function addControls() {
 			    controls = new THREE.TrackballControls(camera, renderer.domElement);
 			    var radius = 14; // scalar value used to determine relative zoom distances
@@ -180,10 +190,7 @@ iframe.dealply-toast.fastestext-revealed {
 			}
 
 		</script>
-	<div>
-		<canvas width="1600" height="809"
-			style="width: 1600px; height: 809px;"></canvas>
-	</div>
+	
 
 </body>
 </html>
