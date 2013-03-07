@@ -1,10 +1,11 @@
 <?php
+$this->viewmodel->templatemenu = array("points" => "Available Points");
 $this->Template("sheard");
 ?>
 
-
+	<section id="points">
 		<div class="page-header">
-			<h2>Table view</h2>
+			<h2>Available points</h2>
 		</div>
 		
 		<table class="table table-striped" id="PointTable">
@@ -59,3 +60,4 @@ $this->Template("sheard");
 				});
 			</script>
 		</div>
+	</section>

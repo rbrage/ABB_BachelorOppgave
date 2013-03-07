@@ -1,4 +1,5 @@
 <?php
+$this->viewmodel->templatemenu = array("ClusterSettings" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering");
 $this->Template("sheard");
 ?>
 
