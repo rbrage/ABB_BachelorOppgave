@@ -32,7 +32,7 @@ body {
 			<div class="container-fluid">
 			<div class="span11 offset3">
 				
-				<div class="nav-collapse">
+				<div class="nav-collapse collapse">
 					<ul class="nav">
 						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/abbLogo.gif"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
