@@ -17,12 +17,14 @@ class Settings extends Controller {
 		$numClusters = $this->urlvalues[CachedSettings::NUMBEROFCLUSTERS];
 		$this->settings = new CachedSettings();
 		
-		if(is_numeric($maxPoints))
-			$this->settings->setSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS, $maxPoints);
-			
 		if(is_numeric($numClusters))
-			$this->settings->setSetting(CachedSettings::NUMBEROFCLUSTERS, $numClusters);
-			
+			if($numClusters > 0)
+				$this->settings->setSetting(CachedSettings::NUMBEROFCLUSTERS, $numClusters);
+
+		if(is_numeric($maxPoints))
+			if($maxPoints >= $this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS))
+				$this->settings->setSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS, $maxPoints);
+		
 		return $this->RedirectTo("./");
 	}
 }
