@@ -11,7 +11,7 @@ class Register extends Controller {
 	 * URL examples:
 	 * /register/trigger/json?x=1&y=2&z=3&time=456789
 	 * /register/trigger/xml?x=1&y=2&z=3&time=456789
-	 * /register/trigger/(json|xml)?x=1&y=2&z=3&time=456789&optionaldelimiter=,&optionalkey=key1,key2,key3&optionalvalue=value1,value2,value3
+	 * /register/trigger/(json|xml)?x=1&y=2&z=3&time=456789[&img=./path/to/file.jpg&angle=90&...]
 	 * @param String $id
 	 */
 	public function Trigger($id){
@@ -53,25 +53,17 @@ class Register extends Controller {
 		$this->list = new CachedArrayList();
 		
 		$data = new TriggerPoint($this->urlvalues["x"], $this->urlvalues["y"], $this->urlvalues["z"], $this->urlvalues["time"]);
-		if(array_key_exists("optionalkey", $this->urlvalues) && array_key_exists("optionalvalue", $this->urlvalues)){
-			$keystring = $this->urlvalues["optionalkey"];
-			$valuestring = $this->urlvalues["optianlvalue"];
-			if(array_key_exists("optionaldelimiter", $this->urlvalues)){
-				$delimiter = $this->urlvalues["optionaldelimiter"];
-			}
-			else{
-				$delimiter = ",";
-			}
+		foreach ($this->urlvalues as $key => $value){
+			if($key == "controller" || 
+					$key == "action" || 
+					$key == "id" || 
+					$key == "time" ||
+					$key == "x" ||
+					$key == "y" ||
+					$key == "z")
+				continue;
 			
-			$keys = explode($delimiter, $keystring);
-			$values = explode($delimiter, $valuestring);
-			
-			$i = 0;
-			foreach ($keys as $key){
-				$value = $values[$i];
-				$data->addAdditionalInfo($key, $value);
-				$i++;
-			}
+			$data->addAdditionalInfo($key, $value);
 		}
 		
 		$success = $this->list->add($data);
