@@ -9,15 +9,19 @@ class CachedSettings {
 	const NUMBEROFCLUSTERS = "Clusters";
 	const MAXPOINTSINCLUSTERANALYSIS = "MaxClusterPointsInAnalysis";
 	const KODETOMASTERPOINTTRIGGERING = "MasterpointTriggeringkode";
+	const RUNMASTERCODEINBACKGROUND = "MastercodeInBackground";
 	const KODETOTRIGGERPROGRAMSTART = "TriggerProgramStartkode";
-	const ANALYSECLUSTERSWHILESUBMITION = "";
+	const RUNTRIGGERPROGRAMINBACKGROUND = "TriggerprogramInBackground";
+	const ANALYSECLUSTERSWHILESUBMITION = "RuntimeClustering";
 	
 	private $defaltvalues = array(
 			self::NUMBEROFCLUSTERS => 1,
 			self::MAXPOINTSINCLUSTERANALYSIS => 100,
 			self::KODETOMASTERPOINTTRIGGERING => "",
 			self::KODETOTRIGGERPROGRAMSTART => "",
-			self::ANALYSECLUSTERSWHILESUBMITION => false
+			self::ANALYSECLUSTERSWHILESUBMITION => false,
+			self::RUNMASTERCODEINBACKGROUND => false,
+			self::RUNTRIGGERPROGRAMINBACKGROUND => false
 			);
 	
 	private $cache;
