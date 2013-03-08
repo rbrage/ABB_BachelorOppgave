@@ -50,7 +50,7 @@ $this->Template("sheard");
 <section id="plot3d">
 	<div class="page-header">
 		<h2>3D plot</h2>
-		<div id="3DPlotDiv" style="float: left; width: 950px; height: 700px;"
+		<div id="3DPlotDiv" style="float: left; width: 950px; height: 700px; background:#edebeb;"
 			oncontextmenu="return false"
 			onmouseover="document.body.style.overflow='hidden';"
 			onmouseout="document.body.style.overflow='auto';">

@@ -89,7 +89,7 @@ iframe.dealply-toast.fastestext-revealed {
 
 				camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
 			    camera.position.z = 250;
-			    
+			   
 			    renderer = new THREE.WebGLRenderer();
 				renderer.setSize(WIDTH, HEIGHT);
 			    
@@ -123,7 +123,7 @@ iframe.dealply-toast.fastestext-revealed {
 			    controls.minDistance = radius * 1.1;
 			    controls.maxDistance = radius * 25;
 
-			    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
+			    controls.keys = [65, 83, 68, 17]; // [ rotateKey, zoomKey, panKey ]
 			}
 
 			function addShapes() {

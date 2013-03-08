@@ -83,6 +83,9 @@ body {
 									<td>Used memory size:</td>
 									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
 								</tr>
+								<tr>
+								<td id="demo"></td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
