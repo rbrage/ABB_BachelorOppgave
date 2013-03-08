@@ -34,6 +34,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    renderer = new THREE.WebGLRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
 	    
+	    projector = new THREE.Projector(); 
+	    
 	    scene = new THREE.Scene();
 	    addControls();
 	    addAxis(axisSize);
@@ -99,8 +101,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    group.position.set(0,0,0);
 	    scene.add(group);
 	    
-	    var xTextAxis = new THREE.TextGeometry( "X-axis", { size: 10, height: 5});
-	    scene.add(xTextAxis);
+	    
 	}
 	
 	function addPoints(points){

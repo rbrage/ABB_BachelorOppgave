@@ -7,7 +7,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 	THREE.EventDispatcher.call( this );
 
 	var _this = this;
-	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5 };
+	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5, CTRL: 6 };
 
 	this.object = object;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
@@ -33,7 +33,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 	this.minDistance = 0;
 	this.maxDistance = Infinity;
 
-	this.keys = [ 65 /*A*/, 83 /*S*/, 68 /*D*/ ];
+	this.keys = [ 65 /*A*/, 83 /*S*/, 68 /*D*/ ,17 /*CTRL*/ ];
 
 	// internals
 
@@ -305,7 +305,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 	// listeners
 
 	function keydown( event ) {
-
+		
 		if ( _this.enabled === false ) return;
 
 		window.removeEventListener( 'keydown', keydown );
@@ -325,10 +325,15 @@ THREE.TrackballControls = function ( object, domElement ) {
 			_state = STATE.ZOOM;
 
 		} else if ( event.keyCode === _this.keys[ STATE.PAN ] && !_this.noPan ) {
-
+			
 			_state = STATE.PAN;
-
+			
+		} else if ( event.keyCode === 17 ) {
+		
+			_state = STATE.CTRL;
+			
 		}
+		
 
 	}
 
@@ -343,7 +348,22 @@ THREE.TrackballControls = function ( object, domElement ) {
 	}
 
 	function mousedown( event ) {
-
+		
+		if( _state === STATE.CTRL){
+			
+			var width = 950, height = 650;
+			var widthHalf = width / 2, heightHalf = height / 2;
+			var projector = new THREE.Projector();
+			var vector = projector.projectVector( object.matrixWorld.getPosition().clone(), camera );
+			
+			vector.x = ( vector.x * widthHalf );
+			vector.y = - ( vector.y * heightHalf );
+			
+			var coor1="Coordinates: (" +vector.x+" , "+vector.y+ ")";
+	    	 document.getElementById("demo").innerHTML=coor1;
+			
+		} 
+		else {
 		if ( _this.enabled === false ) return;
 
 		event.preventDefault();
@@ -368,10 +388,16 @@ THREE.TrackballControls = function ( object, domElement ) {
 			_panStart = _panEnd = _this.getMouseOnScreen( event.clientX, event.clientY );
 
 		}
-
+		
 		document.addEventListener( 'mousemove', mousemove, false );
 		document.addEventListener( 'mouseup', mouseup, false );
+		}
 
+	}
+	
+	function mouseclick( event ){
+		alert("I am an alert box!");
+		return;
 	}
 
 	function mousemove( event ) {
@@ -399,6 +425,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 	function mouseup( event ) {
 
+		
 		if ( _this.enabled === false ) return;
 
 		event.preventDefault();
@@ -408,7 +435,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 
 		document.removeEventListener( 'mousemove', mousemove );
 		document.removeEventListener( 'mouseup', mouseup );
-
+		
 	}
 
 	function mousewheel( event ) {
