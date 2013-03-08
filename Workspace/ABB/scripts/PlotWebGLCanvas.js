@@ -2,7 +2,9 @@
 var targetContainer, container;
 var points;
 var WIDTH, HEIGHT, axisSize;
-var camera, scene, renderer;
+var camera, scene, renderer, scene2;
+var group;
+var centroidSphere;
 
 PlotWebGLCanvas = function(targetContainer, points, data){
 	
@@ -33,11 +35,40 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    
 	    renderer = new THREE.WebGLRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
-	    
-	    projector = new THREE.Projector(); 
+	     
 	    
 	    scene = new THREE.Scene();
-	    addControls();
+	  
+	    var geometry = new THREE.Geometry();
+		
+		geometry.vertices.push(
+			new THREE.Vector3(), new THREE.Vector3( 10, 0, 0 ),
+			new THREE.Vector3(), new THREE.Vector3( 0,  10, 0 ),
+			new THREE.Vector3(), new THREE.Vector3( 0, 0,  10 )
+		);
+
+		geometry.colors.push(
+				new THREE.Color( 0x000000 ), new THREE.Color( 0xff0000 ),
+				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
+				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
+			);
+		
+		var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xFF6600});
+		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
+		var material1 = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
+		
+	    var line = new THREE.Line(geometry, material);
+	    var mesh = new THREE.Mesh(geometry, material1);
+	    var ball = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), sphereMaterial);
+	    centroidSphere = new THREE.Object3D();
+	    centroidSphere.add(ball);
+	    centroidSphere.add(line);
+	    centroidSphere.add(mesh);
+	    scene.add(centroidSphere);
+		centroidSphere.visible=true;
+		
+		addControls();
+		
 	    addAxis(axisSize);
 	    addPoints(points);
 	    
@@ -51,21 +82,21 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	};
 	
 	function addControls() {
-	    controls = new THREE.TrackballControls(camera, renderer.domElement, scene);
+	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere);
 	    var radius = 14; // scalar value used to determine relative zoom distances
-	    controls.rotateSpeed = 1;
+	    controls.rotateSpeed = 0.7;
 	    controls.zoomSpeed = .5;
 	    controls.panSpeed = 1;
 
 	    controls.noZoom = false;
 	    controls.noPan = false;
 
-	    controls.staticMoving = true;
+	    controls.staticMoving = false;
 	    controls.dynamicDampingFactor = 0.3;
 
 	    controls.minDistance = radius * 0.5;
 	    controls.maxDistance = radius * 200;
-
+	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
 	}
 
@@ -89,12 +120,13 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
 				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
 			);
+		
+		
 		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
-	   
-
+		
 	    var line = new THREE.Line(geometry, material);
 	    var mesh = new THREE.Mesh(geometry, material1);
-	    var group = new THREE.Object3D();
+	    group = new THREE.Object3D();
 	    group.add(line);
 	    group.add(mesh);
 	    
@@ -119,6 +151,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 		}
 
+		
 		var material = new THREE.ParticleBasicMaterial( { size: 3, vertexColors: THREE. VertexColors, depthTest: false, opacity: 1, sizeAttenuation: false, transparent: false } );
 
 		var mesh = new THREE.ParticleSystem( geometry, material );
@@ -132,7 +165,9 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    // note: three.js includes requestAnimationFrame shim
 	    requestAnimationFrame(animate);
 	    controls.update();
+	    
 	    renderer.render(scene, camera);
+	     
 
 	};
 	

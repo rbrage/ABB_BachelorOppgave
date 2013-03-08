@@ -2,7 +2,7 @@
  * @author Eberhard Graether / http://egraether.com/
  */
 
-THREE.TrackballControls = function ( object, domElement, scene ) {
+THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 
 	THREE.EventDispatcher.call( this );
 
@@ -12,6 +12,7 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 	this.object = object;
 	this.scene = scene;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
+	this.centroidSphere = centroidSphere;
 
 	// API
 
@@ -281,7 +282,11 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 			lastPosition.copy( _this.object.position );
 
 		}
-
+		
+   	 	
+   	 	this.centroidSphere.position.x = _this.target.x;
+   	 	this.centroidSphere.position.y = _this.target.y;
+   	 	this.centroidSphere.position.z = _this.target.z;
 	};
 
 	this.reset = function () {
@@ -357,13 +362,7 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 
 			var vector = new THREE.Vector3( mousex, mousey, 1 );
 			
-			var ray = new THREE.Ray( camera.position, vector.sub( camera.position ).normalize() );
-			var intersects = ray.intersectObject( scene );
-			
-			vector.x = ( vector.x * widthHalf );
-			vector.y = - ( vector.y * heightHalf );
-			
-			var coor1="Coordinates: (" +intersects[ 0 ].point.x+" , "+intersects[ 0 ].point.y+ ")";
+			var coor1="Coordinates: (" +vector.x+" , "+vector.y+ ")";
 	    	 document.getElementById("demo").innerHTML=coor1;
 			
 		} 
@@ -382,6 +381,8 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 		if ( _state === STATE.ROTATE && !_this.noRotate ) {
 
 			_rotateStart = _rotateEnd = _this.getMouseProjectionOnBall( event.clientX, event.clientY );
+			
+			
 
 		} else if ( _state === STATE.ZOOM && !_this.noZoom ) {
 
@@ -393,16 +394,14 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 
 		}
 		
+	   	 
 		document.addEventListener( 'mousemove', mousemove, false );
 		document.addEventListener( 'mouseup', mouseup, false );
 		}
 
 	}
 	
-	function mouseclick( event ){
-		alert("I am an alert box!");
-		return;
-	}
+	
 
 	function mousemove( event ) {
 
@@ -414,16 +413,18 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 		if ( _state === STATE.ROTATE && !_this.noRotate ) {
 
 			_rotateEnd = _this.getMouseProjectionOnBall( event.clientX, event.clientY );
-
+			
 		} else if ( _state === STATE.ZOOM && !_this.noZoom ) {
 
 			_zoomEnd = _this.getMouseOnScreen( event.clientX, event.clientY );
+			
 
 		} else if ( _state === STATE.PAN && !_this.noPan ) {
 
 			_panEnd = _this.getMouseOnScreen( event.clientX, event.clientY );
-
+			
 		}
+		
 
 	}
 
@@ -462,6 +463,8 @@ THREE.TrackballControls = function ( object, domElement, scene ) {
 		}
 
 		_zoomStart.y += ( 1 / delta ) * 0.05;
+		
+		
 
 	}
 
