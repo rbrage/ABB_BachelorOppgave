@@ -1,7 +1,7 @@
 <?php
 
 require_once("Models/CachedArrayList.php");
-require_once("Models/TriggerPoint.model.php");
+require_once("Models/TriggerPoint.php");
 
 class Home extends Controller {
 

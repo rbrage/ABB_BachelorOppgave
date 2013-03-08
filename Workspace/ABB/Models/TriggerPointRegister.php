@@ -1,7 +1,7 @@
 <?php
 
-include_once("Models/Cache.model.php");
-include_once("Models/TriggerPoint.model.php");
+include_once("Models/Cache.php");
+include_once("Models/TriggerPoint.php");
 
 class TriggerPointRegister {
 	

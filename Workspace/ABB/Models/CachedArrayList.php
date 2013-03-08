@@ -1,6 +1,6 @@
 <?php
 
-require_once("Models/Cache.model.php");
+require_once("Models/Cache.php");
 require_once("Models/CacheIterator.php");
 
 class CachedArrayList implements arrayaccess {

@@ -23,7 +23,7 @@ class Test extends Controller {
 	}
 
 	public function apc(){
-		include("Models/Cache.model.php");
+		include("Models/Cache.php");
 		$cache = new Cache();
 		$cache->unlock();
 		$cache->lock();
@@ -42,13 +42,13 @@ class Test extends Controller {
 	}
 
 	public function unlock(){
-		include("Models/Cache.model.php");
+		include("Models/Cache.php");
 		$cache = new Cache();
 		$cache->unlock();
 	}
 
 	public function lock(){
-		include("Models/Cache.model.php");
+		include("Models/Cache.php");
 		$cache = new Cache();
 		$cache->lock();
 	}
