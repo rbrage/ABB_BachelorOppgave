@@ -2,7 +2,7 @@
  * @author Eberhard Graether / http://egraether.com/
  */
 
-THREE.TrackballControls = function ( object, domElement ) {
+THREE.TrackballControls = function ( object, domElement, scene ) {
 
 	THREE.EventDispatcher.call( this );
 
@@ -10,6 +10,7 @@ THREE.TrackballControls = function ( object, domElement ) {
 	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5, CTRL: 6 };
 
 	this.object = object;
+	this.scene = scene;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 
 	// API
@@ -351,15 +352,18 @@ THREE.TrackballControls = function ( object, domElement ) {
 		
 		if( _state === STATE.CTRL){
 			
-			var width = 950, height = 650;
-			var widthHalf = width / 2, heightHalf = height / 2;
-			var projector = new THREE.Projector();
-			var vector = projector.projectVector( object.matrixWorld.getPosition().clone(), camera );
+			var mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
+			var mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+			var vector = new THREE.Vector3( mousex, mousey, 1 );
+			
+			var ray = new THREE.Ray( camera.position, vector.sub( camera.position ).normalize() );
+			var intersects = ray.intersectObject( scene );
 			
 			vector.x = ( vector.x * widthHalf );
 			vector.y = - ( vector.y * heightHalf );
 			
-			var coor1="Coordinates: (" +vector.x+" , "+vector.y+ ")";
+			var coor1="Coordinates: (" +intersects[ 0 ].point.x+" , "+intersects[ 0 ].point.y+ ")";
 	    	 document.getElementById("demo").innerHTML=coor1;
 			
 		} 

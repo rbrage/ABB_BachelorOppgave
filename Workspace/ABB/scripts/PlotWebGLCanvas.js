@@ -51,7 +51,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	};
 	
 	function addControls() {
-	    controls = new THREE.TrackballControls(camera, renderer.domElement);
+	    controls = new THREE.TrackballControls(camera, renderer.domElement, scene);
 	    var radius = 14; // scalar value used to determine relative zoom distances
 	    controls.rotateSpeed = 1;
 	    controls.zoomSpeed = .5;
@@ -89,7 +89,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
 				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
 			);
-		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors});
+		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
 	   
 
 	    var line = new THREE.Line(geometry, material);
