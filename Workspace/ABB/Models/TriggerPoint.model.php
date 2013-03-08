@@ -9,7 +9,9 @@ class TriggerPoint {
 	public $timestamp;
 	public $img;
 	
-	public function __construct($x = -1, $y = -1, $z = -1, $timestamp = -1, $img = null){
+	public $additionalInfo = array();
+	
+	public function __construct($x = -1, $y = -1, $z = -1, $timestamp = -1){
 		$this->x = $x;
 		$this->y = $y;
 		$this->z = $z;
@@ -30,12 +32,8 @@ class TriggerPoint {
 		return $this->z;
 	}
 	
-	public function getTimestemp(){
+	public function getTimestamp(){
 		return $this->timestamp;
-	}
-	
-	public function getImg(){
-		return $this->img;
 	}
 	
 	public function setX($x){
@@ -50,12 +48,21 @@ class TriggerPoint {
 		$this->z = $z;
 	}
 	
-	public function setTimestemp($timestamp){
+	public function setTimestamp($timestamp){
 		$this->timestamp = $timestamp;
 	}
 	
-	public function setImg($img){
-		$this->img = $img;
+	public function addAdditionalInfo($key, $value){
+		$this->additionalInfo[$key] = $value;
+	}
+	
+	public function getAdditionalInfo($key = null){
+		if($key == null){
+			return $this->additionalInfo;
+		}
+		else {
+			return $this->additionalInfo[$key];
+		}
 	}
 	
 }

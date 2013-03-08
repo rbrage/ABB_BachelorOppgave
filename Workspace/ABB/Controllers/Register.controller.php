@@ -11,8 +11,7 @@ class Register extends Controller {
 	 * URL examples:
 	 * /register/trigger/json?x=1&y=2&z=3&time=456789
 	 * /register/trigger/xml?x=1&y=2&z=3&time=456789
-	 * /register/trigger/json?x=1&y=2&z=3&time=456789&img=./folder/file.jpg
-	 * /register/trigger/xml?x=1&y=2&z=3&time=456789&img=./folder/file.jpg
+	 * /register/trigger/(json|xml)?x=1&y=2&z=3&time=456789&optionaldelimiter=,&optionalkey=key1,key2,key3&optionalvalue=value1,value2,value3
 	 * @param String $id
 	 */
 	public function Trigger($id){
@@ -53,12 +52,27 @@ class Register extends Controller {
 		
 		$this->list = new CachedArrayList();
 		
-		if(array_key_exists("img", $this->urlvalues)){
-			// please implement a check on the image!
-			$data = new TriggerPoint($this->urlvalues["x"], $this->urlvalues["y"], $this->urlvalues["z"], $this->urlvalues["time"], $this->urlvalues["img"]);
+		$data = new TriggerPoint($this->urlvalues["x"], $this->urlvalues["y"], $this->urlvalues["z"], $this->urlvalues["time"]);
+		if(array_key_exists("optionalkey", $this->urlvalues) && array_key_exists("optionalvalue", $this->urlvalues)){
+			$keystring = $this->urlvalues["optionalkey"];
+			$valuestring = $this->urlvalues["optianlvalue"];
+			if(array_key_exists("optionaldelimiter", $this->urlvalues)){
+				$delimiter = $this->urlvalues["optionaldelimiter"];
+			}
+			else{
+				$delimiter = ",";
+			}
+			
+			$keys = explode($delimiter, $keystring);
+			$values = explode($delimiter, $valuestring);
+			
+			$i = 0;
+			foreach ($keys as $key){
+				$value = $values[$i];
+				$data->addAdditionalInfo($key, $value);
+				$i++;
+			}
 		}
-		else 
-			$data = new TriggerPoint($this->urlvalues["x"], $this->urlvalues["y"], $this->urlvalues["z"], $this->urlvalues["time"]);
 		
 		$success = $this->list->add($data);
 		
