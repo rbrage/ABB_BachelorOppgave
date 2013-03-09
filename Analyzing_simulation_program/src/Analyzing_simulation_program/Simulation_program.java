@@ -175,7 +175,7 @@ public class Simulation_program extends JFrame implements ActionListener
 		@Override
 		public void run() {
 			try{
-				String path = "http://127.0.0.1:8888/register/trigger/xml?";
+				String path = "http://abb.hf-data.no/register/trigger/xml?";
 				URL url;
 				URLConnection urlConnection = null;
 				DataInputStream inStream;
