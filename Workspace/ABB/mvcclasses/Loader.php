@@ -12,12 +12,12 @@ class Loader {
 		if($this->urlvalues["controller"] == "")
 			$this->controller = "Home";
 		else
-			$this->controller = $this->urlvalues["controller"];
+			$this->controller = ucfirst(strtolower($this->urlvalues["controller"]));
 		
 		if($this->urlvalues["action"] == "")
 			$this->action = "Index";
 		else
-			$this->action = $this->urlvalues["action"];
+			$this->action = ucfirst(strtolower($this->urlvalues["action"]));
 	}
 
 	public function CreateController(){

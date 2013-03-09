@@ -28,7 +28,7 @@ abstract class Controller {
 		if(!$this->templateAlreadyRun){
 			Debuger::RegisterPoint("Loading the " . $template . " template.", "MVC");
 			$this->templateAlreadyRun = true;
-			$this->templateloc = "views/" . $template . ".template.php";
+			$this->templateloc = "Views/" . $template . ".template.php";
 			require_once($this->templateloc);
 			Debuger::RegisterPoint("MVC avslutter", "MVC");
 			exit();
@@ -42,7 +42,7 @@ abstract class Controller {
 
 	protected function View(){
 		Debuger::RegisterPoint("Moving over to the View section.", "MVC");
-		$this->viewloc = "views/" . get_class($this) . "/" . $this->action . ".php";
+		$this->viewloc = "Views/" . get_class($this) . "/" . $this->action . ".php";
 		$viewmodel = &$this->viewmodel;
 		$ViewModel = &$this->viewmodel;
 		$viewModel = &$this->viewmodel;
