@@ -26,7 +26,7 @@ class SSEvents extends Controller {
 			}
 			
 			$info = apc_cache_info("user", true);
-			$memory = $info["mem_size"]/1000;
+			$memory = round($info["mem_size"]/1024, 2);
 			
 			if($memory != $oldmemory){
 				$oldmemory = $memory;
