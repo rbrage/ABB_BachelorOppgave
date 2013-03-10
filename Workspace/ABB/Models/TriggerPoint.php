@@ -7,7 +7,6 @@ class TriggerPoint {
 	public $z;
 	
 	public $timestamp;
-	public $img;
 	
 	public $additionalInfo = array();
 	
@@ -17,7 +16,6 @@ class TriggerPoint {
 		$this->z = $z;
 		
 		$this->timestamp = $timestamp;
-		$this->img = $img;
 	}
 	
 	public function getX(){
