@@ -4,7 +4,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -14,11 +20,13 @@ import java.util.Calendar;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
+import javax.swing.plaf.FileChooserUI;
 
 
 public class Simulation_program extends JFrame implements ActionListener
@@ -36,7 +44,7 @@ public class Simulation_program extends JFrame implements ActionListener
 	String [] args;
 	boolean running = false;
 	Thread t;
-	
+
 	Simulation_program(String [] args) // the frame constructor method
 	{
 		super("Simulation program"); 
@@ -46,38 +54,38 @@ public class Simulation_program extends JFrame implements ActionListener
 
 		Container con = this.getContentPane(); // inherit main frame
 		con.add(pane); // add the panel to frame
-				
+
 		pane.add(new JLabel("(x,y,z) \\ (Sentrum, Range):"));
-		
+
 		xSentrumField = new JTextField(14);
 		xSentrumField.setText("50");
 		pane.add(xSentrumField);
 		xRangeField = new JTextField(5);
 		xRangeField.setText("10");
 		pane.add(xRangeField);
-		
+
 		ySentrumField = new JTextField(14);
 		ySentrumField.setText("50");
 		pane.add(ySentrumField);
 		yRangeField = new JTextField(5);
 		yRangeField.setText("10");
 		pane.add(yRangeField);
-		
+
 		zSentrumField = new JTextField(14);
 		zSentrumField.setText("50");
 		pane.add(zSentrumField);
 		zRangeField = new JTextField(5);
 		zRangeField.setText("10");
 		pane.add(zRangeField);
-		
+
 		pane.add(new JLabel("Number of points to submit:"));
-		
+
 		numPointsField = new JTextField(20);
 		numPointsField.setText("10");
 		pane.add(numPointsField);
-		
+
 		pane.add(new JLabel("Time between points:"));
-		
+
 		sleepField = new JTextField(20);
 		sleepField.setText("200");
 		pane.add(sleepField);
@@ -90,7 +98,7 @@ public class Simulation_program extends JFrame implements ActionListener
 		JButton start = new JButton("Start");
 		start.addActionListener(this);
 		pane.add(start);
-		
+
 		JButton stop = new JButton("Stop");
 		stop.addActionListener(new ActionListener(){
 
@@ -100,30 +108,110 @@ public class Simulation_program extends JFrame implements ActionListener
 					t.interrupt();
 				}
 			}
-			
+
 		});
 		pane.add(stop);
 
+		JButton file = new JButton("Run file");
+		file.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				runFile();
+			}
+
+		});
+		pane.add(file);
+
 		setVisible(true); // display this frame
 	}
+
+	private void runFile(){
+		running = true;
+		JFileChooser fc = new JFileChooser();
+		int answer = fc.showOpenDialog(this);
+		if(answer == JFileChooser.APPROVE_OPTION ){
+			File file = fc.getSelectedFile();
+			try {
+				FileInputStream fs = new FileInputStream(file);
+				BufferedReader br = new BufferedReader(new InputStreamReader(fs)); 
+
+				String line = br.readLine();
+				long time = getTime();
+				long nowtime = 0;
+				long lasttime = 0;
+				while(line != null){
+					String[] props = line.split(",");
+					String[] names = {"idtag", "time", "x", "y", "z", "a", "b", "img"};
+					String query = "";
+					for(int i = 0; i < props.length; i++){
+						String value = props[i].trim();
+						if(value.equals("0") || value.equals(""))
+							continue;
+
+						String key = names[i];
+						query += key + "=" + value + "&"; 
+					}
+					nowtime = Long.parseLong(props[1].trim());
+
+					if(lasttime != 0){
+						long usedtime = getTime() - time;
+						long neededtime = nowtime - lasttime;
+						long wait = neededtime - usedtime;
+						System.out.println("Må vente i " + neededtime + " ms");
+						System.out.println("Brukte " + usedtime + " ms");
+						System.out.println("Ventet i " + wait + " ms");
+						if(wait > 0)
+							Thread.sleep(wait);
+					}
+					// new time round
+					lasttime = Long.parseLong(props[1].trim());
+					time = getTime();
+
+					String path = "http://127.0.0.1:8888/register/trigger/xml?";
+					URL url;
+					URLConnection urlConnection = null;
+					DataInputStream inStream;
+
+					url = new URL(path + query);
+					urlConnection = url.openConnection();
+					((HttpURLConnection)urlConnection).setRequestMethod("GET");
+					urlConnection.setDoOutput(true);
+					//System.out.println(url.getQuery());
+					urlConnection.getInputStream();
+
+					line = br.readLine();
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+		}
+		running = false;
+	}
+
 	public void actionPerformed(ActionEvent evt) {
 		if(!running){
 			running = true;
 
 			xSentrum = Integer.parseInt(xSentrumField.getText());
 			xRange = Integer.parseInt(xRangeField.getText());
-			
+
 			ySentrum = Integer.parseInt(ySentrumField.getText());
 			yRange = Integer.parseInt(yRangeField.getText());
-			
+
 			zSentrum = Integer.parseInt(zSentrumField.getText());
 			zRange = Integer.parseInt(zRangeField.getText());
-			
+
 			String text = numPointsField.getText();
 			numberOfTrigerpoints = Integer.parseInt(text);
-			
+
 			timeToSleep = Integer.parseInt(sleepField.getText());
-			
+
 			t = new Thread(new StartConection());
 			t.start();
 		}
@@ -159,23 +247,23 @@ public class Simulation_program extends JFrame implements ActionListener
 		return random.nextInt(max);
 
 	}
-	
+
 	public int RandomClusterNumber(int base, int maxRange){
 		return base + (RandomNumber(maxRange*2) - maxRange);
 	}
-	
+
 	public long getTime(){
 		Calendar cal = Calendar.getInstance();
 		return cal.getTimeInMillis();
 	}
-	
-	
+
+
 	private class StartConection implements Runnable {
 
 		@Override
 		public void run() {
 			try{
-				String path = "http://abb.hf-data.no/register/trigger/xml?";
+				String path = "http://localhost:8888/register/trigger/xml?";
 				URL url;
 				URLConnection urlConnection = null;
 				DataInputStream inStream;
@@ -187,36 +275,36 @@ public class Simulation_program extends JFrame implements ActionListener
 					setNewTriggerpoint();
 					url = new URL(path+"x="+x+"&y="+y+"&z="+z+"&time="+timestamp);
 					urlConnection = url.openConnection();
-					((HttpURLConnection)urlConnection).setRequestMethod("POST");
+					((HttpURLConnection)urlConnection).setRequestMethod("GET");
 					urlConnection.setDoOutput(true);
 					System.out.println(url.getQuery());
 
 					inStream = new DataInputStream(urlConnection.getInputStream());
 
-//					String buffer;
-//					while((buffer = inStream.readLine()) != null) {
-//						if(buffer.contains("false")){
-//							System.out.println(buffer);
-//						}
-//					}
+					//					String buffer;
+					//					while((buffer = inStream.readLine()) != null) {
+					//						if(buffer.contains("false")){
+					//							System.out.println(buffer);
+					//						}
+					//					}
 					inStream.close();
 					i++;
 					Thread.sleep(timeToSleep);
 					bar.setValue(i);
-					
+
 					if(t.isInterrupted()) break;
 				}
 			}catch (Exception e) {}
-			
-//			OpenBrowser openBrowser = new OpenBrowser();
-//			URI uri = null;
-//			try {
-//				uri = new URI("http://127.0.0.1:8888");
-//			} catch (URISyntaxException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			openBrowser.openWebpage(uri);
+
+			//			OpenBrowser openBrowser = new OpenBrowser();
+			//			URI uri = null;
+			//			try {
+			//				uri = new URI("http://127.0.0.1:8888");
+			//			} catch (URISyntaxException e) {
+			//				// TODO Auto-generated catch block
+			//				e.printStackTrace();
+			//			}
+			//			openBrowser.openWebpage(uri);
 			running = false;
 		}
 
