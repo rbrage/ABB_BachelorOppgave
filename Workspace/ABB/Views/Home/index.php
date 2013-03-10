@@ -130,12 +130,12 @@ $this->Template("sheard");
 				var idx = 0;
 
 				 <?php 
-			      			$list = $this->viewmodel->arr->getCachedArrayList();
-			      			$size = $list->size();
-			      			for ($i = 0; $i<=$size-1 ;$i++){
-			      				?>points[<?php echo $i ?>] = new point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
+// 			      			$list = $this->viewmodel->arr->getCachedArrayList();
+// 			      			$size = $list->size();
+// 			      			for ($i = 0; $i<=$size-1 ;$i++){
+			      				?>points[<?php //echo $i ?>] = new point(<?php //echo $list->get($i)->x ?>,<?php //echo $list->get($i)->y?>,<?php //echo $list->get($i)->z?>);
 			      				<?php 
-			      			}
+			      			//}
 			      			?>
 			
 				
