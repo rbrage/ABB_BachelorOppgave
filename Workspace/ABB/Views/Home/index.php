@@ -31,7 +31,7 @@ $this->Template("sheard");
 		<td>".$list->get($i)->x."</td>
 		<td>".$list->get($i)->y."</td>
 		<td>".$list->get($i)->z."</td>
-			<td>".$list->get($i)->timestamp." ms - Date and time: " . date("r", round($list->get($i)->timestamp/1000)) . "</td>
+			<td>".$list->get($i)->timestamp." ms</td>
 			</tr>";
 					}
 					?>
