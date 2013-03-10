@@ -27,8 +27,7 @@ body {
 <body style="padding-top: 60px;">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container-fluid">
-			<div class="span11 offset3">
+			<div class="container">
 				
 				<div class="nav-collapse collapse">
 					<ul class="nav">
@@ -43,7 +42,6 @@ body {
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
-			</div>
 			</div>
 		</div>
 	</div>
