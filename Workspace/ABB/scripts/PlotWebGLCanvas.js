@@ -76,7 +76,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		
 	    var line = new THREE.Line(geometry, material);
 	    var mesh = new THREE.Mesh(geometry, material1);
-	    var ball = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), sphereMaterial);
+	    var ball = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), sphereMaterial);
 	    centroidSphere = new THREE.Object3D();
 	    centroidSphere.add(ball);
 	    centroidSphere.add(line);
@@ -87,7 +87,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	
 	function addControls() {
 	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere);
-	    var radius = 14; // scalar value used to determine relative zoom distances
+	    
 	    controls.rotateSpeed = 0.7;
 	    controls.zoomSpeed = .5;
 	    controls.panSpeed = 1;
@@ -98,8 +98,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    controls.staticMoving = false;
 	    controls.dynamicDampingFactor = 0.3;
 
-	    controls.minDistance = radius * 0.5;
-	    controls.maxDistance = radius * 200;
+	    controls.minDistance = 0.5;
+	    controls.maxDistance = Infinity;
 	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
 	}
