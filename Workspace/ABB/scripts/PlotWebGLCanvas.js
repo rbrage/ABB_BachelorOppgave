@@ -39,33 +39,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    
 	    scene = new THREE.Scene();
 	  
-	    var geometry = new THREE.Geometry();
-		
-		geometry.vertices.push(
-			new THREE.Vector3(), new THREE.Vector3( 10, 0, 0 ),
-			new THREE.Vector3(), new THREE.Vector3( 0,  10, 0 ),
-			new THREE.Vector3(), new THREE.Vector3( 0, 0,  10 )
-		);
-
-		geometry.colors.push(
-				new THREE.Color( 0x000000 ), new THREE.Color( 0xff0000 ),
-				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
-				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
-			);
-		
-		var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xFF6600});
-		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
-		var material1 = new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true});
-		
-	    var line = new THREE.Line(geometry, material);
-	    var mesh = new THREE.Mesh(geometry, material1);
-	    var ball = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), sphereMaterial);
-	    centroidSphere = new THREE.Object3D();
-	    centroidSphere.add(ball);
-	    centroidSphere.add(line);
-	    centroidSphere.add(mesh);
-	    scene.add(centroidSphere);
-		centroidSphere.visible=true;
+	    addCameraRotationPoint();
 		
 		addControls();
 		
@@ -79,6 +53,36 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	   
 	    animate();
 		
+	};
+	
+	function addCameraRotationPoint(){
+		var geometry = new THREE.Geometry();
+		
+		geometry.vertices.push(
+			new THREE.Vector3(), new THREE.Vector3( 10, 0, 0 ),
+			new THREE.Vector3(), new THREE.Vector3( 0,  10, 0 ),
+			new THREE.Vector3(), new THREE.Vector3( 0, 0,  10 )
+		);
+
+		geometry.colors.push(
+				new THREE.Color( 0xff0000 ), new THREE.Color( 0xff0000 ),
+				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
+				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
+			);
+		
+		var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xFF6600});
+		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
+		var material1 = new THREE.MeshBasicMaterial( {wireframe: true});
+		
+	    var line = new THREE.Line(geometry, material);
+	    var mesh = new THREE.Mesh(geometry, material1);
+	    var ball = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 16), sphereMaterial);
+	    centroidSphere = new THREE.Object3D();
+	    centroidSphere.add(ball);
+	    centroidSphere.add(line);
+	    centroidSphere.add(mesh);
+	    scene.add(centroidSphere);
+		centroidSphere.visible=true;
 	};
 	
 	function addControls() {
@@ -102,7 +106,6 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 	function addAxis(size) {
 	    var material1 = new THREE.MeshBasicMaterial({
-	        color: 0xff0000,
 	        wireframe: true
 	    });
 
@@ -114,15 +117,20 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 			new THREE.Vector3(), new THREE.Vector3( 0, axisSize || 1, 0 ),
 			new THREE.Vector3(), new THREE.Vector3( 0, 0, axisSize || 1 )
 		);
-
+		
+		var colorBlue = (0x0000ff);
+		var colorRed = (0xff0000);
+		var colorGreen = (0x00ff00);
 		geometry.colors.push(
-				new THREE.Color( 0x000000 ), new THREE.Color( 0xff0000 ),
-				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
-				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
+				new THREE.Color( colorBlue ), 
+				
+				new THREE.Color( colorRed ),new THREE.Color( colorRed ),
+				new THREE.Color( colorGreen ), new THREE.Color( colorGreen ), 
+				new THREE.Color( colorBlue )
 			);
 		
 		
-		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
+		var material = new THREE.LineBasicMaterial({vertexColors: THREE.FaceColors, linewidth: 3});
 		
 	    var line = new THREE.Line(geometry, material);
 	    var mesh = new THREE.Mesh(geometry, material1);
