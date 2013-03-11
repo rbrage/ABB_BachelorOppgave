@@ -4,7 +4,7 @@ var points;
 var WIDTH, HEIGHT, axisSize;
 var camera, scene, renderer, scene2;
 var group;
-var centroidSphere;
+var centroidSphere, line;
 
 PlotWebGLCanvas = function(targetContainer, points, data){
 	
@@ -59,9 +59,9 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		var geometry = new THREE.Geometry();
 		
 		geometry.vertices.push(
-			new THREE.Vector3(), new THREE.Vector3( 10, 0, 0 ),
-			new THREE.Vector3(), new THREE.Vector3( 0,  10, 0 ),
-			new THREE.Vector3(), new THREE.Vector3( 0, 0,  10 )
+			new THREE.Vector3(0,0,0), new THREE.Vector3( 10, 0, 0 ),
+			new THREE.Vector3(0,0,0), new THREE.Vector3( 0, 10, 0 ),
+			new THREE.Vector3(0,0,0), new THREE.Vector3( 0, 0, 10 )
 		);
 
 		geometry.colors.push(
@@ -74,13 +74,14 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
 		var material1 = new THREE.MeshBasicMaterial( {wireframe: true});
 		
-	    var line = new THREE.Line(geometry, material);
+		line = new THREE.Line(geometry, material);
 	    var mesh = new THREE.Mesh(geometry, material1);
-	    var ball = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), sphereMaterial);
+	    var ball = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), sphereMaterial);
 	    centroidSphere = new THREE.Object3D();
 	    centroidSphere.add(ball);
 	    centroidSphere.add(line);
 	    centroidSphere.add(mesh);
+	   
 	    scene.add(centroidSphere);
 		centroidSphere.visible=true;
 	};

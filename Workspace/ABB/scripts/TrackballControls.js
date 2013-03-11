@@ -2,7 +2,7 @@
  * @author Eberhard Graether / http://egraether.com/
  */
 
-THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
+THREE.TrackballControls = function ( object, domElement, centroidSphere, line ) {
 
 	THREE.EventDispatcher.call( this );
 
@@ -13,6 +13,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 	this.scene = scene;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 	this.centroidSphere = centroidSphere;
+	this.line = line;
 
 	// API
 
@@ -59,6 +60,9 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 
 	_panStart = new THREE.Vector2(),
 	_panEnd = new THREE.Vector2();
+	
+	//Zoome
+	var scale = 1;
 
 	// for reset
 
@@ -178,7 +182,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 		} else {
 
 			var factor = 1.0 + ( _zoomEnd.y - _zoomStart.y ) * _this.zoomSpeed;
-
+			
+			
 			if ( factor !== 1.0 && factor > 0.0 ) {
 
 				_eye.multiplyScalar( factor );
@@ -190,7 +195,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 				} else {
 
 					_zoomStart.y += ( _zoomEnd.y - _zoomStart.y ) * this.dynamicDampingFactor;
-					
+				
 
 				}
 
@@ -284,11 +289,25 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 
 		}
 		
+		if(_eye.lengthSq()<1000)
+			scale = 1;
+		if((_eye.lengthSq()<10000) && (_eye.lengthSq()>1000))
+			scale = 2;
+		if((_eye.lengthSq()<15000) && (_eye.lengthSq()>10000))
+			scale = 4;
+		if((_eye.lengthSq()<100000) && (_eye.lengthSq()>15000))
+			scale = 6;
+		if((_eye.lengthSq()<1000000) && (_eye.lengthSq()>100000))
+			scale = 10;
 		
    	 	
    	 	this.centroidSphere.position.x = _this.target.x;
    	 	this.centroidSphere.position.y = _this.target.y;
    	 	this.centroidSphere.position.z = _this.target.z;
+   	 	
+   	 	this.centroidSphere.scale.x = scale;
+	 	this.centroidSphere.scale.y = scale;
+	 	this.centroidSphere.scale.z = scale;
 	};
 
 	this.reset = function () {
@@ -444,7 +463,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 		document.removeEventListener( 'mouseup', mouseup );
 		
 	}
-	var scale = 1;
+	
 	function mousewheel( event ) {
 
 		if ( _this.enabled === false ) return;
@@ -465,17 +484,6 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere ) {
 		}
 
 		_zoomStart.y += ( 1 / delta ) * 0.05;
-		
-		
-		var scalefactor = (delta/10)*-1;
-		scale = scale + scalefactor;
-		var coor1="Coordinates: ("+scale+")";
-   	 	document.getElementById("demo").innerHTML=coor1;
-
-   	 	this.centroidSphere.scale.x = scale;
-		this.centroidSphere.scale.y = scale;
-		this.centroidSphere.scale.z = scale;
-		
 		
 		
 	}
