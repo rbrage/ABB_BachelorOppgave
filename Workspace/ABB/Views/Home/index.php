@@ -87,7 +87,7 @@ $this->Template("sheard");
 	      			}
 	      			?>
 
-	      		var data = {width: 950, height: 650, axisSize: 400};
+	      		var data = {width: 900, height: 650, axisSize: 400};
 	      		var container = document.getElementById("3DPlotDiv");
 	      		 
 	      		point3DPlot = new PlotWebGLCanvas(document.getElementById("3DPlotDiv"), points, data);

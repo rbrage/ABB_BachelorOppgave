@@ -4671,166 +4671,40 @@ THREE.extend( THREE.Matrix4.prototype, {
  * @author bhouston / http://exocortex.com
  */
 
-THREE.Ray = function ( origin, direction ) {
 
-	this.origin = ( origin !== undefined ) ? origin : new THREE.Vector3();
-	this.direction = ( direction !== undefined ) ? direction : new THREE.Vector3();
 
+THREE.Ray = function (a, b) { this.origin = a || new THREE.Vector3; this.direction = b || new THREE.Vector3; this.precision = 1.0E-4; this.threshold = 5 };
+
+THREE.Ray.prototype = {
+    constructor: THREE.Ray, setPrecision: function (a) { this.precision = a; return this }, setOrigin: function (a) { this.origin = a; return this }, setDirection: function (a) { this.direction = a; return this }, setThreshold: function (a) { this.threshold = a; return this }, distanceFromIntersection: function () { var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3; return function (d, e, f) { var g; a.sub(f, d); g = a.dot(e); d = b.add(d, c.copy(e).multiplyScalar(g)); return f.distanceTo(d) } }(), pointInFace3: function () {
+        var a =
+new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3; return function (d, e, f, g) { var h, k; a.sub(g, e); b.sub(f, e); c.sub(d, e); d = a.dot(a); e = a.dot(b); f = a.dot(c); h = b.dot(b); g = b.dot(c); k = 1 / (d * h - e * e); h = (h * f - e * g) * k; d = (d * g - e * f) * k; return h >= 0 && d >= 0 && h + d < 1 }
+    }(), intersectObject: function (a) { var b = []; a instanceof THREE.Particle ? this.intersectParticle(a, b) : a instanceof THREE.ParticleSystem ? this.intersectParticleSystem(a, b) : a instanceof THREE.Mesh && this.intersectMesh(a, b); return b }, intersectObjects: function (a) {
+        for (var b =
+        [], c = 0, d = a.length; c < d; c++) Array.prototype.push.apply(b, this.intersectObject(a[c])); b.sort(function (a, b) { return a.distance - b.distance }); return b
+    }, intersectParticle: function (a, b) { var c = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.getPosition()); c > a.scale.x || b.push({ distance: c, point: a.position, face: null, object: a }) }, intersectParticleSystem: function (a, b) {
+        for (var c = a.geometry.vertices, d, e, f = 0; f < c.length; f++) {
+            d = c[f]; e = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.multiplyVector3(d.clone()));
+            if (!(e > this.threshold)) { d = { distance: e, point: d.clone(), face: null, object: a, vertex: f }; b.push(d) }
+        }
+    }, intersectMesh: function () {
+        var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3, d = new THREE.Vector3, e = new THREE.Vector3, f = new THREE.Vector3, g = new THREE.Vector3, h = new THREE.Vector3, k = new THREE.Vector3; return function (j, l) {
+            var o, m = this.distanceFromIntersection(this.origin, this.direction, j.matrixWorld.getPosition()), p = THREE.Frustum.__v1.set(j.matrixWorld.getColumnX().length(), j.matrixWorld.getColumnY().length(),
+            j.matrixWorld.getColumnZ().length()); if (m > j.geometry.boundingSphere.radius * Math.max(p.x, Math.max(p.y, p.z))) return l; var q, n, r = j.geometry, u = r.vertices, t; j.matrixRotationWorld.extractRotation(j.matrixWorld); m = 0; for (p = r.faces.length; m < p; m++) {
+                o = r.faces[m]; e.copy(this.origin); f.copy(this.direction); t = j.matrixWorld; g = t.multiplyVector3(g.copy(o.centroid)).subSelf(e); h = j.matrixRotationWorld.multiplyVector3(h.copy(o.normal)); q = f.dot(h); if (!(Math.abs(q) < this.precision)) {
+                    n = h.dot(g) / q; if (!(n < 0) && (j.doubleSided ||
+                    (j.flipSided ? q > 0 : q < 0))) {
+                        k.add(e, f.multiplyScalar(n)); if (o instanceof THREE.Face3) { a = t.multiplyVector3(a.copy(u[o.a])); b = t.multiplyVector3(b.copy(u[o.b])); c = t.multiplyVector3(c.copy(u[o.c])); if (this.pointInFace3(k, a, b, c)) { o = { distance: e.distanceTo(k), point: k.clone(), face: o, object: j }; l.push(o) } } else if (o instanceof THREE.Face4) {
+                            a = t.multiplyVector3(a.copy(u[o.a])); b = t.multiplyVector3(b.copy(u[o.b])); c = t.multiplyVector3(c.copy(u[o.c])); d = t.multiplyVector3(d.copy(u[o.d])); if (this.pointInFace3(k, a, b, d) ||
+                            this.pointInFace3(k, b, c, d)) { o = { distance: e.distanceTo(k), point: k.clone(), face: o, object: j }; l.push(o) }
+                        }
+                    }
+                }
+            }
+        }
+    }()
 };
 
-THREE.extend( THREE.Ray.prototype, {
-
-	set: function ( origin, direction ) {
-
-		this.origin.copy( origin );
-		this.direction.copy( direction );
-
-		return this;
-
-	},
-
-	copy: function ( ray ) {
-
-		this.origin.copy( ray.origin );
-		this.direction.copy( ray.direction );
-
-		return this;
-
-	},
-
-	at: function( t, optionalTarget ) {
-
-		var result = optionalTarget || new THREE.Vector3();
-
-		return result.copy( this.direction ).multiplyScalar( t ).add( this.origin );
-
-	},
-
-	recast: function() {
-
-		var v1 = new THREE.Vector3();
-
-		return function ( t ) {
-
-			this.origin.copy( this.at( t, v1 ) );
-
-			return this;
-
-		};
-
-	}(),
-
-	closestPointToPoint: function ( point, optionalTarget ) {
-
-		var result = optionalTarget || new THREE.Vector3();
-		result.subVectors( point, this.origin );
-		var directionDistance = result.dot( this.direction );
-
-		return result.copy( this.direction ).multiplyScalar( directionDistance ).add( this.origin );
-
-	},
-
-	distanceToPoint: function() {
-
-		var v1 = new THREE.Vector3();
-
-		return function ( point ) {
-
-			var directionDistance = v1.subVectors( point, this.origin ).dot( this.direction );
-			v1.copy( this.direction ).multiplyScalar( directionDistance ).add( this.origin );
-
-			return v1.distanceTo( point );
-
-		};
-
-	}(),
-
-	isIntersectionSphere: function( sphere ) {
-
-		return ( this.distanceToPoint( sphere.center ) <= sphere.radius );
-
-	},
-
-	isIntersectionPlane: function ( plane ) {
-
-		// check if the line and plane are non-perpendicular, if they
-		// eventually they will intersect.
-		var denominator = plane.normal.dot( this.direction );
-		if ( denominator != 0 ) {
-
-			return true;
-
-		}
-
-		// line is coplanar, return origin
-		if( plane.distanceToPoint( this.origin ) == 0 ) {
-
-			return true;
-
-		}
-
-		return false;
-
-	},
-
-	distanceToPlane: function ( plane ) {
-
-		var denominator = plane.normal.dot( this.direction );
-		if ( denominator == 0 ) {
-
-			// line is coplanar, return origin
-			if( plane.distanceToPoint( this.origin ) == 0 ) {
-
-				return 0;
-
-			}
-
-			// Unsure if this is the correct method to handle this case.
-			return undefined;
-
-		}
-
-		var t = - ( this.origin.dot( plane.normal ) + plane.constant ) / denominator;
-
-		return t;
-
-	},
-
-	intersectPlane: function ( plane, optionalTarget ) {
-
-		var t = this.distanceToPlane( plane );
-
-		if ( t === undefined ) {
-
-			return undefined;
-		}
-
-		return this.at( t, optionalTarget );
-
-	},
-
-	applyMatrix4: function ( matrix4 ) {
-
-		this.direction.add( this.origin ).applyMatrix4( matrix4 );
-		this.origin.applyMatrix4( matrix4 );
-		this.direction.sub( this.origin );
-
-		return this;
-	},
-
-	equals: function ( ray ) {
-
-		return ray.origin.equals( this.origin ) && ray.direction.equals( this.direction );
-
-	},
-
-	clone: function () {
-
-		return new THREE.Ray().copy( this );
-
-	}
-
-} );
 /**
  * @author bhouston / http://exocortex.com
  * @author mrdoob / http://mrdoob.com/
@@ -33362,7 +33236,7 @@ THREE.AxisHelper = function ( size ) {
 		new THREE.Color( 0x0000ff ), new THREE.Color( 0x00aaff )
 	);
 
-	var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors);
+	var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors });
 
 	THREE.Line.call( this, geometry, material, THREE.LinePieces );
 

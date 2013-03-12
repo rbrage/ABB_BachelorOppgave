@@ -19,8 +19,44 @@ body {
 <!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
 <script type="text/javascript" src="/scripts/three.min.js"></script>
+<script type="text/javascript" src="/scripts/three.js"></script>
 <script type="text/javascript" src="/scripts/TrackballControls.js"></script>
 <script type="text/javascript" src="/scripts/Detector.js"></script>
+
+<script type="x-shader/x-vertex" id="vertexshader">
+			attribute float size;
+			attribute vec3 ca;
+
+			varying vec3 vColor;
+
+			void main() {
+
+				vColor = ca;
+
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+				//gl_PointSize = size;
+				gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
+
+				gl_Position = projectionMatrix * mvPosition;
+
+			}
+
+		</script>	
+<script type="x-shader/x-fragment" id="fragmentshader">
+
+			uniform vec3 color;
+			
+
+			varying vec3 vColor;
+
+			void main() {
+
+				gl_FragColor = vec4( color * vColor, 0.9 );
+				
+			}
+
+		</script>
 
 <title>ABB Analyseprogram</title>
 </head>

@@ -2,9 +2,11 @@
 var targetContainer, container;
 var points;
 var WIDTH, HEIGHT, axisSize;
-var camera, scene, renderer, scene2;
+var camera, scene, renderer;
 var group;
-var centroidSphere, line;
+var centroidSphere, line , pointsSystem;
+
+var PARTICLE_SIZE = 1;
 
 PlotWebGLCanvas = function(targetContainer, points, data){
 	
@@ -36,16 +38,16 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 	    renderer = new THREE.WebGLRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
-	     
+	    
 	    
 	    scene = new THREE.Scene();
 	  
 	    addCameraRotationPoint();
-		
-		addControls();
-		
 	    addAxis(axisSize);
 	    addPoints(points);
+		addControls();
+		
+	    
 	    
 	   
 		var container = document.createElement( 'div' );
@@ -88,7 +90,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	};
 	
 	function addControls() {
-	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere);
+	
+	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, pointsSystem);
 	    
 	    controls.rotateSpeed = 0.7;
 	    controls.zoomSpeed = .5;
@@ -157,7 +160,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 			uniforms = {
 
-				color: { type: "c", value: new THREE.Color( 0xffffff ) },
+				color: { type: "c", value: new THREE.Color( 0xff0000 ) },
 				
 			};
 
@@ -181,17 +184,25 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 			vertex.y = points[i][1];
 			vertex.z = points[i][2];
 			geometry.vertices.push( vertex );
-
-			geometry.colors.push( new THREE.Color( 0xff0000 ) );
-
 		}
 
+		pointsSystem = new THREE.ParticleSystem( geometry, shaderMaterial );
+		pointsSystem.dynamic = true;
+		pointsSystem.sortParticles = true;
+			
+		var vertices = pointsSystem.geometry.vertices;
+		var values_size = attributes.size.value;
+		var values_color = attributes.ca.value;
 		
-		var material = new THREE.ParticleBasicMaterial( { size: 3, vertexColors: THREE. VertexColors, depthTest: false, opacity: 1, sizeAttenuation: false, transparent: false } );
+		for( var v = 0; v < vertices.length; v++ ) {
 
-		var mesh = new THREE.ParticleSystem( geometry, shaderMaterial );
-		scene.position.set(0,0,0);
-		scene.add( mesh );
+			values_size[ v ] = PARTICLE_SIZE * 0.5;
+			values_color[ v ] = new THREE.Color( 0xff0000 );
+			
+		}
+		
+		
+		scene.add( pointsSystem );
 	    
 	    
 	}

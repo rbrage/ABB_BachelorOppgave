@@ -2,7 +2,7 @@
  * @author Eberhard Graether / http://egraether.com/
  */
 
-THREE.TrackballControls = function ( object, domElement, centroidSphere, line ) {
+THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsSystem ) {
 
 	THREE.EventDispatcher.call( this );
 
@@ -10,11 +10,12 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, line ) 
 	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5, CTRL: 6 };
 
 	this.object = object;
-	this.scene = scene;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 	this.centroidSphere = centroidSphere;
 	this.line = line;
-
+	this.camera = object;
+	this.pointsSystem = pointsSystem;
+	
 	// API
 
 	this.enabled = true;
@@ -304,10 +305,12 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, line ) 
    	 	this.centroidSphere.position.x = _this.target.x;
    	 	this.centroidSphere.position.y = _this.target.y;
    	 	this.centroidSphere.position.z = _this.target.z;
-   	 	
+		
    	 	this.centroidSphere.scale.x = scale;
 	 	this.centroidSphere.scale.y = scale;
 	 	this.centroidSphere.scale.z = scale;
+		
+		
 	};
 
 	this.reset = function () {
@@ -376,15 +379,45 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, line ) 
 
 	function mousedown( event ) {
 		
+		if(this.pointsSystem instanceof THREE.ParticleSystem){
+				alert(true);
+				}else{alert(false)};
+				
 		if( _state === STATE.CTRL){
 			
 			var mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
 			var mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
-			var vector = new THREE.Vector3( mousex, mousey, 1 );
+			var projector = new THREE.Projector();
+			var ray = new THREE.Ray();
 			
-			var coor1="Coordinates: (" +vector.x+" , "+vector.y+ ")";
-	    	 document.getElementById("demo").innerHTML=coor1;
+			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
+			projector.unprojectVector( vector, camera );
+
+			ray.setOrigin( camera.position ).setDirection( vector.sub( camera.position ).normalize() );
+
+			var intersects = ray.intersectObjects( [this.pointsSystem] );
+				
+				
+				var text="Coordinates: (" +intersects.length +")";
+				document.getElementById("demo1").innerHTML=text;
+				
+				
+			if ( intersects.length > 0 ) {
+				
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+
+					INTERSECTED = intersects[ 0 ].vertex;
+
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;
+					attributes.size.needsUpdate = true;
+				
+			}else {
+
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+				attributes.size.needsUpdate = true;
+				INTERSECTED = null;
+}
+
 			
 		} 
 		else {
