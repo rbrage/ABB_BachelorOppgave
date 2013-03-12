@@ -33,6 +33,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
 	    camera.position.z = 250;
 	    
+
 	    renderer = new THREE.WebGLRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
 	     
@@ -146,7 +147,32 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	}
 	
 	function addPoints(points){
-	    var geometry = new THREE.Geometry();
+	   
+		attributes = {
+
+				size: { type: 'f', value: [] },
+				ca: { type: 'c', value: [] }
+
+			};
+
+			uniforms = {
+
+				color: { type: "c", value: new THREE.Color( 0xffffff ) },
+				
+			};
+
+			var shaderMaterial = new THREE.ShaderMaterial( {
+
+				uniforms: uniforms,
+				attributes: attributes,
+				vertexShader: document.getElementById( 'vertexshader' ).textContent,
+				fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
+				depthTest: false,
+
+			});
+		
+		
+		var geometry = new THREE.Geometry();
 
 		for ( var i = 0; i < points.length; i ++ ) {
 
@@ -163,7 +189,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		
 		var material = new THREE.ParticleBasicMaterial( { size: 3, vertexColors: THREE. VertexColors, depthTest: false, opacity: 1, sizeAttenuation: false, transparent: false } );
 
-		var mesh = new THREE.ParticleSystem( geometry, material );
+		var mesh = new THREE.ParticleSystem( geometry, shaderMaterial );
 		scene.position.set(0,0,0);
 		scene.add( mesh );
 	    
