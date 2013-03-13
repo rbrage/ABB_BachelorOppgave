@@ -64,7 +64,10 @@ class Cache {
 	public function setCacheData($key, $data){
 		Debuger::RegisterPoint("Sets data in Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		return apc_store($key, $data);
+		$success = apc_store($key, $data);
+		if(!$success)
+			$this->removeCacheData($key);
+		return $success;
 	}
 	
 	/**
