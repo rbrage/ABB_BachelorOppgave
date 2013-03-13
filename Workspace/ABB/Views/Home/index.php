@@ -77,7 +77,7 @@ $this->Template("sheard");
 			{
 
 			var points = new Array();
-
+			var points1 = new Array();
 			<?php 
 	      			$list = $this->viewmodel->arr->getCachedArrayList();
 	      			$size = $list->size();
@@ -89,8 +89,10 @@ $this->Template("sheard");
 
 	      		var data = {width: 900, height: 650, axisSize: 400};
 	      		var container = document.getElementById("3DPlotDiv");
-	      		 
-	      		point3DPlot = new PlotWebGLCanvas(document.getElementById("3DPlotDiv"), points, data);
+	      		for(var i=0;i<10;i++){
+						points1[i] = new point(i,0,0);
+		      		}
+	      		point3DPlot = new PlotWebGLCanvas(document.getElementById("3DPlotDiv"), points1, data);
 				
 
 

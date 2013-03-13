@@ -198,7 +198,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		
 		for( var v = 0; v < vertices.length; v++ ) {
 
-			values_size[ v ] = PARTICLE_SIZE * 0.5;
+			values_size[ v ] = PARTICLE_SIZE;
 			values_color[ v ] = new THREE.Color( 0xff0000 );
 			
 		}
@@ -230,14 +230,14 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 			var mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
 			var projector = new THREE.Projector();
 			var ray = new THREE.Ray();
-			
+			var text="Mouse X,Y: (" +mousex +"," +mousey +")";
+				document.getElementById("mouse").innerHTML=text;
 			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
 			projector.unprojectVector( vector, camera );
-
+			
 			ray.setOrigin( camera.position ).setDirection( vector.sub( camera.position ).normalize() );
 
 			var intersects = ray.intersectObjects( [pointsSystem] );
-				
 				
 				var text="intsersects: (" +intersects.length +")";
 				document.getElementById("demo").innerHTML=text;
@@ -251,10 +251,12 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				var text="Z: (" +intersects[ 0 ].point.z +")";
 				document.getElementById("demo3").innerHTML=text;
 				
+				INTERSECTED = intersects;
+				
 			if ( intersects.length > 0 ) {
 				
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-
+					
 					INTERSECTED = intersects[ 0 ].vertex;
 
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;

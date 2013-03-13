@@ -382,39 +382,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		
 				
 		if( _state === STATE.CTRL){
-			
-			var mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
-			var mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
-			var projector = new THREE.Projector();
-			var ray = new THREE.Ray();
-			
-			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
-			projector.unprojectVector( vector, camera );
-
-			ray.setOrigin( camera.position ).setDirection( vector.sub( camera.position ).normalize() );
-
-			var intersects = ray.intersectObjects( [this.pointsSystem] );
-				
-				
-				var text="Coordinates: (" +intersects.length +")";
-				document.getElementById("demo1").innerHTML=text;
-				
-				
-			if ( intersects.length > 0 ) {
-				
-					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-
-					INTERSECTED = intersects[ 0 ].vertex;
-
-					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;
-					attributes.size.needsUpdate = true;
-				
-			}else {
-
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-				attributes.size.needsUpdate = true;
-				INTERSECTED = null;
-			}
+			return;
 
 			
 		} 

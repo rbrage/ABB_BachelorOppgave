@@ -117,11 +117,24 @@ body {
 									<td>Used memory size:</td>
 									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
 								</tr>
+								</tbody>
+						</table>
+								<table class="table table-condensed">
+							<tbody>
+								<tr>
+								<td id="mouse"></td>
+								</tr>
 								<tr>
 								<td id="demo"></td>
 								</tr>
 								<tr>
 								<td id="demo1"></td>
+								</tr>
+								<tr>
+								<td id="demo2"></td>
+								</tr>
+								<tr>
+								<td id="demo3"></td>
 								</tr>
 							</tbody>
 						</table>
