@@ -252,7 +252,9 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				document.getElementById("demo3").innerHTML=text;
 				
 				INTERSECTED = intersects;
-				
+				for(var i=0;i<intersects.length;i++){
+				console.log(intersects[i].point.x);
+				}
 			if ( intersects.length > 0 ) {
 				
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;

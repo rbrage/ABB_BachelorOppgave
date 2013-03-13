@@ -7,7 +7,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	THREE.EventDispatcher.call( this );
 
 	var _this = this;
-	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5, CTRL: 6 };
+	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5, CTRL: 6, ZOOMEIN: 7, ZOOMEOUT:8 };
 
 	this.object = object;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
@@ -362,6 +362,17 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		
 			_state = STATE.CTRL;
 			
+		
+		} else if ( event.keyCode === 107 ) {
+		
+			_state = STATE.ZOOMEIN;
+			_zoomStart.y += ( 1 / 3 ) * 0.5;
+			
+		
+		} else if ( event.keyCode === 109 ) {
+		
+			_state = STATE.ZOOMEOUT;
+			_zoomStart.y += ( 1 / -3 ) * 0.5;
 		}
 		
 
@@ -378,9 +389,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	}
 
 	function mousedown( event ) {
-		
-		
-				
+			
 		if( _state === STATE.CTRL){
 			return;
 
