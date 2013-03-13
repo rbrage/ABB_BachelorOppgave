@@ -117,7 +117,17 @@ public class Simulation_program extends JFrame implements ActionListener
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				runFile();
+				if(!running){
+					t = new Thread(new Runnable(){
+
+						@Override
+						public void run() {
+							runFile();
+						}
+
+					});
+					t.start();
+				}
 			}
 
 		});
@@ -136,16 +146,31 @@ public class Simulation_program extends JFrame implements ActionListener
 				FileInputStream fs = new FileInputStream(file);
 				BufferedReader br = new BufferedReader(new InputStreamReader(fs)); 
 
+				int chr;
+				int numline = 0;
+				System.out.println("Kalkulerer antall linjer.");
+				while((chr = br.read()) != -1){
+					if(((char) chr) == '\n') numline++;
+				}
+
+				bar.setMinimum(0);
+				bar.setMaximum(numline);
+
+				br.close();
+				fs = new FileInputStream(file);
+				br = new BufferedReader(new InputStreamReader(fs));
 				String line = br.readLine();
 				long time = getTime();
 				long nowtime = 0;
 				long lasttime = 0;
+				int j = 0;
 				while(line != null){
 					String[] props = line.split(",");
 					String[] names = {"idtag", "time", "x", "y", "z", "a", "b", "img"};
 					String query = "";
 					for(int i = 0; i < props.length; i++){
 						String value = props[i].trim();
+						value = value.replaceAll("\"", "");
 						if(value.equals("0") || value.equals(""))
 							continue;
 
@@ -181,13 +206,19 @@ public class Simulation_program extends JFrame implements ActionListener
 					urlConnection.getInputStream();
 
 					line = br.readLine();
+					j++;
+					bar.setValue(j);
+
+					if(t.isInterrupted()) break;
 				}
+				br.close();
+				fs.close();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				
 			}
 
 		}
