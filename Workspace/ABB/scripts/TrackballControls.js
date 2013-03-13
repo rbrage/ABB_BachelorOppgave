@@ -379,9 +379,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 
 	function mousedown( event ) {
 		
-		if(this.pointsSystem instanceof THREE.ParticleSystem){
-				alert(true);
-				}else{alert(false)};
+		
 				
 		if( _state === STATE.CTRL){
 			
@@ -416,7 +414,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
 				attributes.size.needsUpdate = true;
 				INTERSECTED = null;
-}
+			}
 
 			
 		} 

@@ -5,6 +5,7 @@ var WIDTH, HEIGHT, axisSize;
 var camera, scene, renderer;
 var group;
 var centroidSphere, line , pointsSystem;
+var _state;
 
 var PARTICLE_SIZE = 1;
 
@@ -48,12 +49,13 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		addControls();
 		
 	    
-	    
-	   
 		var container = document.createElement( 'div' );
 		container.appendChild(renderer.domElement);
 		this.targetContainer.appendChild( container );
-	   
+		
+		container.addEventListener( 'mousedown', mousedown, false );
+		window.addEventListener( 'keydown', keydown, false );
+		window.addEventListener( 'keyup', keyup, false );
 	    animate();
 		
 	};
@@ -218,5 +220,72 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	};
 	
 	
+	function mousedown( event ) {
+		
+		
+				
+		if( _state === 17){
+			
+			var mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
+			var mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
+			var projector = new THREE.Projector();
+			var ray = new THREE.Ray();
+			
+			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
+			projector.unprojectVector( vector, camera );
 
+			ray.setOrigin( camera.position ).setDirection( vector.sub( camera.position ).normalize() );
 
+			var intersects = ray.intersectObjects( [pointsSystem] );
+				
+				
+				var text="intsersects: (" +intersects.length +")";
+				document.getElementById("demo").innerHTML=text;
+				
+				var text="X: (" +intersects[ 0 ].point.x +")";
+				document.getElementById("demo1").innerHTML=text;
+				
+				var text="Y: (" +intersects[ 0 ].point.y +")";
+				document.getElementById("demo2").innerHTML=text;
+				
+				var text="Z: (" +intersects[ 0 ].point.z +")";
+				document.getElementById("demo3").innerHTML=text;
+				
+			if ( intersects.length > 0 ) {
+				
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+
+					INTERSECTED = intersects[ 0 ].vertex;
+
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;
+					attributes.size.needsUpdate = true;
+				
+			}else {
+
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+				attributes.size.needsUpdate = true;
+				INTERSECTED = null;
+			}
+		}
+	}
+
+	function keydown( event ) {
+		
+		window.removeEventListener( 'keydown', keydown );
+		if ( event.keyCode === 17 ) {
+		
+			_state = 17;
+			
+		}
+		
+
+	}
+	function keyup( event ) {
+
+		
+
+		_state = 0;
+
+		window.addEventListener( 'keydown', keydown, false );
+
+	}
