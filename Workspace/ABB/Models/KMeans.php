@@ -33,8 +33,8 @@ class KMeans {
 		
 	}
 	
-	private function distance(){
-		
+	private function distance($first, $second){
+		return sqrt(pow(($first->x - $second->x), 2) + pow(($first->y - $second->y), 2) + pow(($first->z - $second->z), 2));
 	}
 	
 	public function addPoint(){
