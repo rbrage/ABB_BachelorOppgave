@@ -52,7 +52,7 @@ class Register extends Controller {
 		
 		$this->list = new CachedArrayList();
 		
-		$data = new TriggerPoint($this->urlvalues["x"], $this->urlvalues["y"], $this->urlvalues["z"], $this->urlvalues["time"]);
+		$data = new TriggerPoint(floatval($this->urlvalues["x"]), floatval($this->urlvalues["y"]), floatval($this->urlvalues["z"]), floatval($this->urlvalues["time"]));
 		foreach ($this->urlvalues as $key => $value){
 			if($key == "controller" || 
 					$key == "action" || 
@@ -74,7 +74,7 @@ class Register extends Controller {
 		}
 		else{
 			$this->viewmodel->error = true;
-			$this->viewmodel->errmsg = "Couldn't put the triggerpoint in to memory.";
+			$this->viewmodel->errmsg = "Couldn't put the triggerpoint into memory.";
 			return $this->View();
 		}
 		
@@ -102,6 +102,8 @@ class Register extends Controller {
 		$this->list = new CachedArrayList();
 		
 		$this->viewmodel->listsize = $this->list->size();
+		
+		return $this->View();
 		
 	}
 	
@@ -140,17 +142,24 @@ class Register extends Controller {
 		
 		if(($stop - $start) > 1000){
 			$stop = $start + 1000;
-			$this->viewmodel->error = true;
+// 			$this->viewmodel->error = true;
 			$this->viewmodel->msg = "Only possible to get 1000 points each time. Request order sized down to 1000 points.";
 		}
 		
-		if($stop >= $this->viewmodel->list->size())
+		if($stop >= $this->viewmodel->list->size()){
 			$stop = $this->viewmodel->list->size();
+			$this->viewmodel->msg = "Your request is outside the cached size. Request order is sized down.";
+		}
+		
+		if($start >= $this->viewmodel->list->size()){
+			$start = $this->viewmodel->list->size();
+			$this->viewmodel->msg = "Your request is outside the cached size. Request order is sized down.";
+		}
 		
 		$this->viewmodel->start = $start;
 		$this->viewmodel->stop  = $stop;
 		
-		$this->View();
+		return $this->View();
 		
 	}
 	

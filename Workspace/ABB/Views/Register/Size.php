@@ -27,11 +27,12 @@ else{
 		echo json_encode($response);
 	}
 	elseif($viewmodel->returnCoding == "xml"){
-		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Request></Request><Register></Register>");
-		$xml->addChild("Success", "true", "Request");
-		$xml->addChild("Error", $viewmodel->error, "Request");
-		$xml->addChild("Message", "Size gotten.", "Request");
-		$xml->addChild("Size", $this->viewmodel->listsize, "Register");
+		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Request></Request>");
+		$xml->addChild("Success", "true");
+		$xml->addChild("Error", $viewmodel->error);
+		$xml->addChild("Message", "Size gotten.");
+		$reg = $xml->addChild("Register");
+		$reg->addAttribute("Size", $this->viewmodel->listsize);
 
 		echo $xml->asXML();
 	}
