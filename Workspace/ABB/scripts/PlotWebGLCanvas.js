@@ -53,9 +53,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		container.appendChild(renderer.domElement);
 		this.targetContainer.appendChild( container );
 		
-		container.addEventListener( 'mousedown', mousedown, false );
-		window.addEventListener( 'keydown', keydown, false );
-		window.addEventListener( 'keyup', keyup, false );
+		
 	    animate();
 		
 	};
@@ -103,7 +101,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    controls.noPan = false;
 
 	    controls.staticMoving = false;
-	    controls.dynamicDampingFactor = 0.3;
+	    controls.dynamicDampingFactor = 0.1;
 
 	    controls.minDistance = 0.5;
 	    controls.maxDistance = Infinity;
@@ -190,7 +188,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 		pointsSystem = new THREE.ParticleSystem( geometry, shaderMaterial );
 		pointsSystem.dynamic = true;
-		pointsSystem.sortParticles = true;
+		pointsSystem.sortParticles = false;
 			
 		var vertices = pointsSystem.geometry.vertices;
 		var values_size = attributes.size.value;
@@ -220,76 +218,4 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	};
 	
 	
-	function mousedown( event ) {
-		
-		
-				
-		if( _state === 17){
-			
-			var mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
-			var mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
-			var projector = new THREE.Projector();
-			var ray = new THREE.Ray();
-			var text="Mouse X,Y: (" +mousex +"," +mousey +")";
-				document.getElementById("mouse").innerHTML=text;
-			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
-			projector.unprojectVector( vector, camera );
-			
-			ray.setOrigin( camera.position ).setDirection( vector.sub( camera.position ).normalize() );
-
-			var intersects = ray.intersectObjects( [pointsSystem] );
-				
-				var text="intsersects: (" +intersects.length +")";
-				document.getElementById("demo").innerHTML=text;
-				
-				var text="X: (" +intersects[ 0 ].point.x +")";
-				document.getElementById("demo1").innerHTML=text;
-				
-				var text="Y: (" +intersects[ 0 ].point.y +")";
-				document.getElementById("demo2").innerHTML=text;
-				
-				var text="Z: (" +intersects[ 0 ].point.z +")";
-				document.getElementById("demo3").innerHTML=text;
-				
-				INTERSECTED = intersects;
-				for(var i=0;i<intersects.length;i++){
-				console.log(intersects[i].point.x);
-				}
-			if ( intersects.length > 0 ) {
-				
-					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-					
-					INTERSECTED = intersects[ 0 ].vertex;
-
-					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;
-					attributes.size.needsUpdate = true;
-				
-			}else {
-
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-				attributes.size.needsUpdate = true;
-				INTERSECTED = null;
-			}
-		}
-	}
-
-	function keydown( event ) {
-		
-		window.removeEventListener( 'keydown', keydown );
-		if ( event.keyCode === 17 ) {
-		
-			_state = 17;
-			
-		}
-		
-
-	}
-	function keyup( event ) {
-
-		
-
-		_state = 0;
-
-		window.addEventListener( 'keydown', keydown, false );
-
-	}
+	

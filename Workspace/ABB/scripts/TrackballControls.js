@@ -64,6 +64,9 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	
 	//Zoome
 	var scale = 1;
+	var mousex;
+	var mousey;
+	var mouseDown = false;
 
 	// for reset
 
@@ -253,6 +256,58 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		}
 
 	};
+	
+	this.checkSelect = function(){
+	
+	if(_state === STATE.CTRL && mouseDown){
+		var projector = new THREE.Projector();
+		var ray = new THREE.Ray();
+		
+		var text="Mouse X,Y: (" +mousex +"," +mousey +")";
+				document.getElementById("mouse").innerHTML=text;
+		var vector = new THREE.Vector3( mousex, mousey, 0.5 );
+			
+		projector.pickingRay( vector, _this.object );
+		ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
+		
+		console.log(projector);
+		var intersects = ray.intersectObjects( [pointsSystem] );
+			console.log(pointsSystem);
+			console.log(intersects[0]);
+			
+			INTERSECTED = intersects;
+			
+			
+		if ( intersects.length > 0 ) {
+			
+			var text="intsersects: (" +intersects.length +")";
+			document.getElementById("demo").innerHTML=text;
+			
+			var text="X: (" +intersects[ 0 ].point.x +")";
+			document.getElementById("demo1").innerHTML=text;
+			
+			var text="Y: (" +intersects[ 0 ].point.y +")";
+			document.getElementById("demo2").innerHTML=text;
+			
+			var text="Z: (" +intersects[ 0 ].point.z +")";
+			document.getElementById("demo3").innerHTML=text;
+				
+				
+				INTERSECTED = intersects[ 0 ].vertex;
+				
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+				
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;
+				attributes.size.needsUpdate = true;
+				
+		}else {
+
+			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+			attributes.size.needsUpdate = true;
+			INTERSECTED = null;
+		}
+	}
+	};
 
 	this.update = function () {
 
@@ -275,6 +330,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 			_this.panCamera();
 
 		}
+		
+		_this.checkSelect();
 
 		_this.object.position.addVectors( _this.target, _eye );
 
@@ -391,9 +448,10 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	function mousedown( event ) {
 			
 		if( _state === STATE.CTRL){
-			return;
-
-			
+			mouseDown = true;
+			mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
+			mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
+			document.addEventListener( 'mouseup', mouseup, false );
 		} 
 		else {
 		if ( _this.enabled === false ) return;
@@ -458,7 +516,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	}
 
 	function mouseup( event ) {
-
+		
+		mouseDown = false;
 		
 		if ( _this.enabled === false ) return;
 

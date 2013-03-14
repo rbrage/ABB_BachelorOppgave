@@ -1423,6 +1423,7 @@ THREE.extend( THREE.Vector3.prototype, {
 		return this;
 
 	},
+	
 
 	subVectors: function ( a, b ) {
 
@@ -4676,27 +4677,131 @@ THREE.extend( THREE.Matrix4.prototype, {
 THREE.Ray = function (a, b) { this.origin = a || new THREE.Vector3; this.direction = b || new THREE.Vector3; this.precision = 1.0E-4; this.threshold = 5 };
 
 THREE.Ray.prototype = {
-    constructor: THREE.Ray, setPrecision: function (a) { this.precision = a; return this }, setOrigin: function (a) { this.origin = a; return this }, setDirection: function (a) { this.direction = a; return this }, setThreshold: function (a) { this.threshold = a; return this }, distanceFromIntersection: function () { var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3; return function (d, e, f) { var g; a.sub(f, d); g = a.dot(e); d = b.add(d, c.copy(e).multiplyScalar(g)); return f.distanceTo(d) } }(), pointInFace3: function () {
-        var a =
-new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3; return function (d, e, f, g) { var h, k; a.sub(g, e); b.sub(f, e); c.sub(d, e); d = a.dot(a); e = a.dot(b); f = a.dot(c); h = b.dot(b); g = b.dot(c); k = 1 / (d * h - e * e); h = (h * f - e * g) * k; d = (d * g - e * f) * k; return h >= 0 && d >= 0 && h + d < 1 }
-    }(), intersectObject: function (a) { var b = []; a instanceof THREE.Particle ? this.intersectParticle(a, b) : a instanceof THREE.ParticleSystem ? this.intersectParticleSystem(a, b) : a instanceof THREE.Mesh && this.intersectMesh(a, b); return b }, intersectObjects: function (a) {
-        for (var b =
-        [], c = 0, d = a.length; c < d; c++) Array.prototype.push.apply(b, this.intersectObject(a[c])); b.sort(function (a, b) { return a.distance - b.distance }); return b
-    }, intersectParticle: function (a, b) { var c = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.getPosition()); c > a.scale.x || b.push({ distance: c, point: a.position, face: null, object: a }) }, intersectParticleSystem: function (a, b) {
+    constructor: THREE.Ray, 
+	
+	setPrecision: function (a) { 
+	this.precision = a;
+	return this; 
+	}, 
+	
+	setOrigin: function (a) {
+	this.origin = a; 
+	return this;
+	},
+
+	setDirection: function (a) {
+	this.direction = a;
+	return this;
+	},
+
+	setThreshold: function (a) { 
+	this.threshold = a;
+	return this;
+	}, 
+	
+	distanceFromIntersection: function () {
+	var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3; 
+	return function (d, e, f) { 
+			var g; 
+			a.sub(f, d); 
+			g = a.dot(e); 
+			d = b.add(d, 
+			c.copy(e).multiplyScalar(g));
+			return f.distanceTo(d);
+			} 
+		}(),
+
+		pointInFace3: function () {
+        var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3;
+		return function (d, e, f, g) { 
+			var h, k;
+			a.sub(g, e);
+			b.sub(f, e);
+			c.sub(d, e);
+			d = a.dot(a);
+			e = a.dot(b);
+			f = a.dot(c);
+			h = b.dot(b);
+			g = b.dot(c);
+			k = 1 / (d * h - e * e);
+			h = (h * f - e * g) * k;
+			d = (d * g - e * f) * k;
+			return h >= 0 && d >= 0 && h + d < 1 ;
+			}
+    }(), 
+	
+	intersectObject: function (a) { 
+	var b = []; 
+	a instanceof THREE.Particle ? this.intersectParticle(a, b) : a instanceof THREE.ParticleSystem ? this.intersectParticleSystem(a, b) : a instanceof THREE.Mesh && this.intersectMesh(a, b);
+	return b; 
+	},
+
+	intersectObjects: function (a) {
+        for (var b =[], c = 0, d = a.length; c < d; c++) {
+			Array.prototype.push.apply(b, this.intersectObject(a[c]));
+			b.sort(function (a, b) { 
+				return a.distance - b.distance;
+				}); 
+			return b;
+			}
+    },
+
+	intersectParticle: function (a, b) {
+		var c = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.getPosition());
+		c > a.scale.x || b.push({ distance: c, point: a.position, face: null, object: a }) 
+	},
+
+	intersectParticleSystem: function (a, b) {
         for (var c = a.geometry.vertices, d, e, f = 0; f < c.length; f++) {
-            d = c[f]; e = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.multiplyVector3(d.clone()));
-            if (!(e > this.threshold)) { d = { distance: e, point: d.clone(), face: null, object: a, vertex: f }; b.push(d) }
+            d = c[f];
+			e = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.multiplyVector3(d.clone()));
+            if (!(e > this.threshold)) { 
+				d = { distance: e, point: d.clone(), face: null, object: a, vertex: f }; 
+				b.push(d) 
+			}
         }
-    }, intersectMesh: function () {
-        var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3, d = new THREE.Vector3, e = new THREE.Vector3, f = new THREE.Vector3, g = new THREE.Vector3, h = new THREE.Vector3, k = new THREE.Vector3; return function (j, l) {
-            var o, m = this.distanceFromIntersection(this.origin, this.direction, j.matrixWorld.getPosition()), p = THREE.Frustum.__v1.set(j.matrixWorld.getColumnX().length(), j.matrixWorld.getColumnY().length(),
-            j.matrixWorld.getColumnZ().length()); if (m > j.geometry.boundingSphere.radius * Math.max(p.x, Math.max(p.y, p.z))) return l; var q, n, r = j.geometry, u = r.vertices, t; j.matrixRotationWorld.extractRotation(j.matrixWorld); m = 0; for (p = r.faces.length; m < p; m++) {
-                o = r.faces[m]; e.copy(this.origin); f.copy(this.direction); t = j.matrixWorld; g = t.multiplyVector3(g.copy(o.centroid)).subSelf(e); h = j.matrixRotationWorld.multiplyVector3(h.copy(o.normal)); q = f.dot(h); if (!(Math.abs(q) < this.precision)) {
-                    n = h.dot(g) / q; if (!(n < 0) && (j.doubleSided ||
-                    (j.flipSided ? q > 0 : q < 0))) {
-                        k.add(e, f.multiplyScalar(n)); if (o instanceof THREE.Face3) { a = t.multiplyVector3(a.copy(u[o.a])); b = t.multiplyVector3(b.copy(u[o.b])); c = t.multiplyVector3(c.copy(u[o.c])); if (this.pointInFace3(k, a, b, c)) { o = { distance: e.distanceTo(k), point: k.clone(), face: o, object: j }; l.push(o) } } else if (o instanceof THREE.Face4) {
-                            a = t.multiplyVector3(a.copy(u[o.a])); b = t.multiplyVector3(b.copy(u[o.b])); c = t.multiplyVector3(c.copy(u[o.c])); d = t.multiplyVector3(d.copy(u[o.d])); if (this.pointInFace3(k, a, b, d) ||
-                            this.pointInFace3(k, b, c, d)) { o = { distance: e.distanceTo(k), point: k.clone(), face: o, object: j }; l.push(o) }
+    }, 
+	
+	
+	intersectMesh: function () {
+        var a = new THREE.Vector3, b = new THREE.Vector3, c = new THREE.Vector3, d = new THREE.Vector3, e = new THREE.Vector3, f = new THREE.Vector3, g = new THREE.Vector3, h = new THREE.Vector3, k = new THREE.Vector3; 
+		return function (j, l) {
+            var o, m = this.distanceFromIntersection(this.origin, this.direction, j.matrixWorld.getPosition()), p = THREE.Frustum.__v1.set(j.matrixWorld.getColumnX().length(), j.matrixWorld.getColumnY().length(), j.matrixWorld.getColumnZ().length()); 
+			if (m > j.geometry.boundingSphere.radius * Math.max(p.x, Math.max(p.y, p.z))) 
+				return l; 
+			
+			var q, n, r = j.geometry, u = r.vertices, t;
+			j.matrixRotationWorld.extractRotation(j.matrixWorld); 
+			m = 0; 
+			for (p = r.faces.length; m < p; m++) {
+                o = r.faces[m]; 
+				e.copy(this.origin);
+				f.copy(this.direction);
+				t = j.matrixWorld;
+				g = t.multiplyVector3(g.copy(o.centroid)).subSelf(e);
+				h = j.matrixRotationWorld.multiplyVector3(h.copy(o.normal));
+				q = f.dot(h);
+				if (!(Math.abs(q) < this.precision)) {
+                    n = h.dot(g) / q; 
+					if (!(n < 0) && (j.doubleSided ||(j.flipSided ? q > 0 : q < 0))) {
+                        k.add(e, f.multiplyScalar(n)); 
+						if (o instanceof THREE.Face3) { 
+							a = t.multiplyVector3(a.copy(u[o.a])); 
+							b = t.multiplyVector3(b.copy(u[o.b])); 
+							c = t.multiplyVector3(c.copy(u[o.c])); 
+								if (this.pointInFace3(k, a, b, c)) { 
+								o = { distance: e.distanceTo(k), point: k.clone(), face: o, object: j };
+								l.push(o); 
+								} 
+						} else if (o instanceof THREE.Face4) {
+                            a = t.multiplyVector3(a.copy(u[o.a])); 
+							b = t.multiplyVector3(b.copy(u[o.b])); 
+							c = t.multiplyVector3(c.copy(u[o.c])); 
+							d = t.multiplyVector3(d.copy(u[o.d])); 
+							if (this.pointInFace3(k, a, b, d) || this.pointInFace3(k, b, c, d)) { 
+								o = { distance: e.distanceTo(k), point: k.clone(), face: o, object: j };
+								l.push(o) 
+							}
                         }
                     }
                 }
