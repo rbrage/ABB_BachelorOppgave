@@ -106,7 +106,7 @@ body {
 			<div class="span2">
 				<div data-spy="affix">
 					<div class="alert alert-info">
-						<p class="nav-header">Infomation</p>
+						<p class="nav-header">Information</p>
 						<table class="table table-condensed">
 							<tbody>
 								<tr>
