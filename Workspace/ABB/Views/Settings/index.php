@@ -1,8 +1,39 @@
 <?php
-$this->viewmodel->templatemenu = array("ClusterSettings" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
+$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterSettings" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
 $this->Template("sheard");
 ?>
-
+<section id="ClusterSettings">
+	<div class="page-header">
+		<h2>Cache settings</h2>
+		<p>qergeg</p>
+	</div>
+	<div class="form-horizontal">
+		<h4>Clear point cache</h4>
+		<p>This option can be used to clear the cache for trigger points. If
+			this is used the pointlist will be put back to zero points. This does
+			not clear the memory, but old points will be overwriten as new points
+			gets submitted.
+		
+		
+		<p>
+		
+		
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" class="btn" id="ClearPointlist" value="Clear cache">
+			</div>
+		</div>
+		<script type="text/javascript">$(function(){
+				$("#ClearPointlist").click(function(){
+					if(confirm("Are you sure about clearing the cache?")){
+						$.getJSON("/register/reset/json", function(data){
+							alert("Cache cleared!");
+						});
+					}
+				});
+			});</script>
+	</div>
+</section>
 <section id="ClusterSettings">
 	<div class="page-header">
 		<h2>Cluster analysis</h2>

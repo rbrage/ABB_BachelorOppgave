@@ -99,7 +99,7 @@ class CachedArrayList implements arrayaccess {
 	 * Makes the cachedarraylist to set it's startpoint back to zero. This function doesn't remove any data, but new data will overwrite the old data in the cache. 
 	 */
 	public function clear(){
-		$this->setSize(0);
+		return $this->setSize(0);
 	}
 	
 	/**
@@ -115,7 +115,7 @@ class CachedArrayList implements arrayaccess {
 	 * @param integer $size
 	 */
 	private function setSize($size){
-		$this->cache->setCacheData($this->listprefix . "_" . self::SIZEKEYWORD, $size);
+		return $this->cache->setCacheData($this->listprefix . "_" . self::SIZEKEYWORD, $size);
 	}
 
 	/**

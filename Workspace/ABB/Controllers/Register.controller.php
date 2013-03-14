@@ -163,6 +163,35 @@ class Register extends Controller {
 		
 	}
 	
+	/**
+	 * Resets the cache back to zero points.
+	 * URL examples:
+	 * /register/points/json 	"shows coding options"
+	 * /register/points/xml 	"shows coding options"
+	 * @param String $id
+	 */
+	public function reset($id){
+		$this->viewmodel->error = false;
+		$this->viewmodel->noCoding = false;
+		
+		if($id != "json" && $id != "xml"){
+			$this->viewmodel->error = true;
+			$this->viewmodel->errmsg = "The coding you requested is not recognized.";
+			$this->viewmodel->noCoding = true;
+			return $this->View();
+		}
+		$this->viewmodel->returnCoding = $id;
+		
+		$this->list = new CachedArrayList();
+		$this->viewmodel->success = $this->list->clear();
+		if($this->viewmodel->success)
+			$this->viewmodel->msg = "Cache is now reset.";
+		else 
+			$this->viewmodel->msg = "Couldn't reset cache.";
+		
+		return $this->View();
+	}
+	
 }
 
 ?>
