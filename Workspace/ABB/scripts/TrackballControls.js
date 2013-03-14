@@ -2,7 +2,7 @@
  * @author Eberhard Graether / http://egraether.com/
  */
 
-THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsSystem ) {
+THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsSystem, plotWebGL ) {
 
 	THREE.EventDispatcher.call( this );
 
@@ -15,7 +15,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	this.line = line;
 	this.camera = object;
 	this.pointsSystem = pointsSystem;
-	
+	this.plotWebGL = plotWebGL;
 	// API
 
 	this.enabled = true;
@@ -68,7 +68,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	var mousey;
 	var mouseDown = false;
 	var INTERSECTED;
-
+	
+	
 	// for reset
 
 	this.target0 = this.target.clone();
@@ -264,57 +265,41 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		var projector = new THREE.Projector();
 		var ray = new THREE.Ray();
 		
-		var text="Mouse X,Y: (" +mousex +"," +mousey +")";
-		document.getElementById("mouse").innerHTML=text;
-		
-		
 		var vector = new THREE.Vector3( mousex, mousey, 0.5 );
 		projector.unprojectVector ( vector, _this.object );
 		ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
 		
-		console.log(ray);
 		var intersects = ray.intersectObjects( [pointsSystem] );
-			console.log(pointsSystem);
-			console.log(intersects[0]);
-			
-			
-			var text="intsersects: (" +intersects.length +")";
-			document.getElementById("demo").innerHTML=text;
-			
-			var text="X: (" +intersects[ 0 ].point.x +")";
-			document.getElementById("demo1").innerHTML=text;
-			
-			var text="Y: (" +intersects[ 0 ].point.y +")";
-			document.getElementById("demo2").innerHTML=text;
-			
-			var text="Z: (" +intersects[ 0 ].point.z +")";
-			document.getElementById("demo3").innerHTML=text;
-				
-			
-		if ( intersects.length > 0 ) {
-			
-			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-			attributes.ca.value[ INTERSECTED ] = 0xff0000;
-			
-			INTERSECTED = intersects[ 0 ].vertex;
-			
-			attributes.ca.value[ INTERSECTED ] = 0x000000;
-			attributes.ca.needsUpdate = true;
-			
-			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
-			attributes.size.needsUpdate = true;
-			
-			
-				
-		}else {
-
-			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-			attributes.size.needsUpdate = true;
-				
-			attributes.ca.value[ INTERSECTED ] = 0xff0000;
-			attributes.ca.needsUpdate = true;
 		
-			INTERSECTED = null;
+		if(intersects != null){	
+		
+		plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z )
+			
+			if ( intersects.length > 0 ) {
+				
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+				attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+				
+				INTERSECTED = intersects[ 0 ].vertex;
+				
+				attributes.ca.value[ INTERSECTED ] = 0x000000;
+				attributes.ca.needsUpdate = true;
+				
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
+				attributes.size.needsUpdate = true;
+				
+				
+					
+			}else {
+
+				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+				attributes.size.needsUpdate = true;
+					
+				attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+				attributes.ca.needsUpdate = true;
+			
+				INTERSECTED = null;
+			}
 		}
 	}
 	};
