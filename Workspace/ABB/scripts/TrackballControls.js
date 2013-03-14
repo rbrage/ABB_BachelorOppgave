@@ -67,6 +67,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	var mousex;
 	var mousey;
 	var mouseDown = false;
+	var INTERSECTED;
 
 	// for reset
 
@@ -264,21 +265,18 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		var ray = new THREE.Ray();
 		
 		var text="Mouse X,Y: (" +mousex +"," +mousey +")";
-				document.getElementById("mouse").innerHTML=text;
+		document.getElementById("mouse").innerHTML=text;
+		
+		
 		var vector = new THREE.Vector3( mousex, mousey, 0.5 );
-			
-		projector.pickingRay( vector, _this.object );
+		projector.unprojectVector ( vector, _this.object );
 		ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
 		
-		console.log(projector);
+		console.log(ray);
 		var intersects = ray.intersectObjects( [pointsSystem] );
 			console.log(pointsSystem);
 			console.log(intersects[0]);
 			
-			INTERSECTED = intersects;
-			
-			
-		if ( intersects.length > 0 ) {
 			
 			var text="intsersects: (" +intersects.length +")";
 			document.getElementById("demo").innerHTML=text;
@@ -292,18 +290,30 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 			var text="Z: (" +intersects[ 0 ].point.z +")";
 			document.getElementById("demo3").innerHTML=text;
 				
-				
-				INTERSECTED = intersects[ 0 ].vertex;
-				
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-				
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE * 1.25;
-				attributes.size.needsUpdate = true;
+			
+		if ( intersects.length > 0 ) {
+			
+			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+			attributes.ca.value[ INTERSECTED ] = 0xff0000;
+			
+			INTERSECTED = intersects[ 0 ].vertex;
+			
+			attributes.ca.value[ INTERSECTED ] = 0x000000;
+			attributes.ca.needsUpdate = true;
+			
+			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
+			attributes.size.needsUpdate = true;
+			
+			
 				
 		}else {
 
 			attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
 			attributes.size.needsUpdate = true;
+				
+			attributes.ca.value[ INTERSECTED ] = 0xff0000;
+			attributes.ca.needsUpdate = true;
+		
 			INTERSECTED = null;
 		}
 	}
@@ -347,7 +357,9 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 
 		}
 		
-		if(_eye.lengthSq()<1000)
+		if(_eye.lengthSq()<500)
+			scale = 0.5;
+		if(_eye.lengthSq()<1000&& (_eye.lengthSq()>500))
 			scale = 1;
 		if((_eye.lengthSq()<10000) && (_eye.lengthSq()>1000))
 			scale = 2;

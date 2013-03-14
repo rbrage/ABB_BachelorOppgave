@@ -33,8 +33,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		this.axisSize = data.axisSize;
 		this.targetContainer = targetContainer;
 		
-		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
-	    camera.position.z = 250;
+		camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1, 10000);
+	    camera.position.z = 200;
 	    
 
 	    renderer = new THREE.WebGLRenderer();
@@ -59,31 +59,31 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	};
 	
 	function addCameraRotationPoint(){
-		var geometry = new THREE.Geometry();
 		
-		geometry.vertices.push(
-			new THREE.Vector3(0,0,0), new THREE.Vector3( 10, 0, 0 ),
-			new THREE.Vector3(0,0,0), new THREE.Vector3( 0, 10, 0 ),
-			new THREE.Vector3(0,0,0), new THREE.Vector3( 0, 0, 10 )
-		);
+		centroidSphere = new THREE.Object3D();
+		var lineGeometry = new THREE.Geometry();
 
-		geometry.colors.push(
-				new THREE.Color( 0xff0000 ), new THREE.Color( 0xff0000 ),
-				new THREE.Color( 0x000000 ), new THREE.Color( 0x00ff00 ),
-				new THREE.Color( 0x000000 ), new THREE.Color( 0x0000ff )
-			);
+			lineGeometry.vertices.push( new THREE.Vector3() );
+			lineGeometry.vertices.push( new THREE.Vector3( 0, 10, 0 ) );
+		
+		// X-Axis
+		var x_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0xff0000 } ) );
+		x_line.rotation.z = - Math.PI / 2;
+		centroidSphere.add( x_line );
+		
+		// Y-Axis
+		var y_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0x00ff00 } ) );
+		centroidSphere.add( y_line );
+		
+		// Z-Axis
+		var z_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0x0000ff } ) );
+		z_line.rotation.x = Math.PI / 2;
+		centroidSphere.add( z_line );
 		
 		var sphereMaterial = new THREE.MeshLambertMaterial({color: 0xFF6600});
-		var material = new THREE.LineBasicMaterial({vertexColors: THREE.VertexColors, linewidth: 3});
-		var material1 = new THREE.MeshBasicMaterial( {wireframe: true});
-		
-		line = new THREE.Line(geometry, material);
-	    var mesh = new THREE.Mesh(geometry, material1);
 	    var ball = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), sphereMaterial);
-	    centroidSphere = new THREE.Object3D();
+	   
 	    centroidSphere.add(ball);
-	    centroidSphere.add(line);
-	    centroidSphere.add(mesh);
 	   
 	    scene.add(centroidSphere);
 		centroidSphere.visible=true;
@@ -93,57 +93,47 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	
 	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, pointsSystem);
 	    
-	    controls.rotateSpeed = 0.7;
-	    controls.zoomSpeed = .5;
-	    controls.panSpeed = 1;
+	    controls.rotateSpeed = 0.5;
+	    controls.zoomSpeed = 0.5;
+	    controls.panSpeed = 0.5;
 
 	    controls.noZoom = false;
 	    controls.noPan = false;
 
 	    controls.staticMoving = false;
-	    controls.dynamicDampingFactor = 0.1;
+	    controls.dynamicDampingFactor = 0.5;
 
-	    controls.minDistance = 0.5;
+	    controls.minDistance = 10.0;
 	    controls.maxDistance = Infinity;
 	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
 	}
 
 	function addAxis(size) {
-	    var material1 = new THREE.MeshBasicMaterial({
-	        wireframe: true
-	    });
-
-	    var geometry = new THREE.Geometry();
-		this.axisSize= size;
-		
-		geometry.vertices.push(
-			new THREE.Vector3(), new THREE.Vector3( axisSize || 1, 0, 0 ),
-			new THREE.Vector3(), new THREE.Vector3( 0, axisSize || 1, 0 ),
-			new THREE.Vector3(), new THREE.Vector3( 0, 0, axisSize || 1 )
-		);
-		
-		var colorBlue = (0x0000ff);
-		var colorRed = (0xff0000);
-		var colorGreen = (0x00ff00);
-		geometry.colors.push(
-				new THREE.Color( colorBlue ), 
-				
-				new THREE.Color( colorRed ),new THREE.Color( colorRed ),
-				new THREE.Color( colorGreen ), new THREE.Color( colorGreen ), 
-				new THREE.Color( colorBlue )
-			);
-		
-		
-		var material = new THREE.LineBasicMaterial({vertexColors: THREE.FaceColors, linewidth: 3});
-		
-	    var line = new THREE.Line(geometry, material);
-	    var mesh = new THREE.Mesh(geometry, material1);
-	    group = new THREE.Object3D();
-	    group.add(line);
-	    group.add(mesh);
 	    
-	    group.position.set(0,0,0);
+		this.axisSize= size;
+		group = new THREE.Object3D();
+		
+		var lineGeometry = new THREE.Geometry();
+
+			lineGeometry.vertices.push( new THREE.Vector3() );
+			lineGeometry.vertices.push( new THREE.Vector3( 0, size, 0 ) );
+		
+		// X-Axis
+		var x_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0xff0000 } ) );
+		x_line.rotation.z = - Math.PI / 2;
+		group.add( x_line );
+		
+		// Y-Axis
+		var y_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0x00ff00 } ) );
+		group.add( y_line );
+		
+		// Z-Axis
+		var z_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0x0000ff } ) );
+		z_line.rotation.x = Math.PI / 2;
+		group.add( z_line );
+		
+	    
 	    scene.add(group);
 	    
 	    
@@ -155,6 +145,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 				size: { type: 'f', value: [] },
 				ca: { type: 'c', value: [] }
+				
 
 			};
 

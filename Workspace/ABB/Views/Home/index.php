@@ -50,10 +50,7 @@ $this->Template("sheard");
 <section id="plot3d">
 	<div class="page-header">
 		<h2>3D plot</h2>
-		<div id="3DPlotDiv" style="float: left; width: 950px; height: 700px; background:#edebeb;"
-			oncontextmenu="return false"
-			onmouseover="document.body.style.overflow='hidden';"
-			onmouseout="document.body.style.overflow='auto';">
+		<div id="3DPlotDiv" style="float: left; width: 900px; height: 600px; background:#edebeb;">
 			
 		</div>
 
@@ -77,7 +74,6 @@ $this->Template("sheard");
 			{
 
 			var points = new Array();
-			var points1 = new Array();
 			<?php 
 	      			$list = $this->viewmodel->arr->getCachedArrayList();
 	      			$size = $list->size();
@@ -87,12 +83,10 @@ $this->Template("sheard");
 	      			}
 	      			?>
 
-	      		var data = {width: 900, height: 650, axisSize: 400};
+	      		var data = {width: 900, height: 600, axisSize: 350};
 	      		var container = document.getElementById("3DPlotDiv");
-	      		for(var i=0;i<20;i++){
-						points1[i] = new point(i,0,0);
-		      		}
-	      		point3DPlot = new PlotWebGLCanvas(document.getElementById("3DPlotDiv"), points1, data);
+	      		
+	      		point3DPlot = new PlotWebGLCanvas(document.getElementById("3DPlotDiv"), points, data);
 				
 
 

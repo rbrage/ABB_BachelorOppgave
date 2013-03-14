@@ -36,9 +36,10 @@ body {
 				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 
 				//gl_PointSize = size;
-				gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
+				gl_PointSize = size * ( 250.0 / length( mvPosition.xyz ) );
 
 				gl_Position = projectionMatrix * mvPosition;
+				
 
 			}
 
@@ -47,12 +48,11 @@ body {
 
 			uniform vec3 color;
 			
-
 			varying vec3 vColor;
 
 			void main() {
 
-				gl_FragColor = vec4( color * vColor, 0.9 );
+				gl_FragColor = vec4(vColor, 0.9 );
 				
 			}
 
