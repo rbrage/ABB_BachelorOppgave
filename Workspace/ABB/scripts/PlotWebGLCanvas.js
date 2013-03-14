@@ -8,13 +8,11 @@ var centroidSphere, line , pointsSystem;
 var _state;
 
 var PARTICLE_SIZE = 1;
-var PARTICLE_COLOR;
 
 PlotWebGLCanvas = function(targetContainer, points, data){
 	
 	
 	init(targetContainer, points, data);
-	this.points = points;
 	
 };
 
@@ -35,17 +33,16 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		this.axisSize = data.axisSize;
 		this.targetContainer = targetContainer;
 		
-		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
-		camera.up = new THREE.Vector3( 0, 0, 1 );
-	    camera.position.x = 200;
-		
+		camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1, 10000);
+	    camera.position.z = 200;
+	    
+
 	    renderer = new THREE.WebGLRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
 	    
 	    
 	    scene = new THREE.Scene();
-		
-		PARTICLE_COLOR = new THREE.Color(0xff0000);
+	  
 	    addCameraRotationPoint();
 	    addAxis(axisSize);
 	    addPoints(points);
@@ -94,7 +91,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	
 	function addControls() {
 	
-	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, pointsSystem, this);
+	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, pointsSystem);
 	    
 	    controls.rotateSpeed = 0.5;
 	    controls.zoomSpeed = 0.5;
@@ -191,7 +188,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		for( var v = 0; v < vertices.length; v++ ) {
 
 			values_size[ v ] = PARTICLE_SIZE;
-			values_color[ v ] = PARTICLE_COLOR;
+			values_color[ v ] = new THREE.Color( 0xff0000 );
 			
 		}
 		
@@ -211,13 +208,5 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 	};
 	
-	function getSelectedPoint(x,y,z){
-	console.log(x,y,z);
-	console.log(points);
 	
-			//var text="intsersects: (" +intersects.length +")";
-			//document.getElementById("demo").innerHTML=text;
-			
-				
-	}
 	

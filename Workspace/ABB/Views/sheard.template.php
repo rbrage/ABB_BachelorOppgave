@@ -119,15 +119,13 @@ body {
 								</tr>
 								</tbody>
 						</table>
-						<hr>
-						<p class="nav-header">Selected point</p>
 								<table class="table table-condensed">
 							<tbody>
 								<tr>
-								<td id="coordinates"></td>
+								<td id="mouse"></td>
 								</tr>
 								<tr>
-								<td id="timestamp"></td>
+								<td id="demo"></td>
 								</tr>
 								<tr>
 								<td id="demo1"></td>

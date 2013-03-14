@@ -78,7 +78,7 @@ $this->Template("sheard");
 	      			$list = $this->viewmodel->arr->getCachedArrayList();
 	      			$size = $list->size();
 	      			for ($i = 0; $i<=$size-1 ;$i++){
-	      				?>points[<?php echo $i ?>] = new point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>,<?php echo $list->get($i)->timestamp?>);
+	      				?>points[<?php echo $i ?>] = new point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>);
 	      				<?php 
 	      			}
 	      			?>
@@ -93,10 +93,10 @@ $this->Template("sheard");
 			};
 			
 				
-				function point(x, y, z, t)
+				function point(x, y, z)
 			      
 			      {       
-			        return [x, y, z, t]; 
+			        return [x, y, z]; 
 			    };
 				
 
