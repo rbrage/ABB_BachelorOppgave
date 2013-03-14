@@ -1,7 +1,7 @@
 <?php 
 $this->viewmodel->templatemenu = array("last" => "Last 10 Points", "plot3d" => "3D Plot");
 
-$this->Template("sheard");
+$this->Template("Shared");
 ?>
 
 <section id="last">

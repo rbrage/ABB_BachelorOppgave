@@ -1,6 +1,6 @@
 <?php
 $this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterSettings" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
-$this->Template("sheard");
+$this->Template("Shared");
 ?>
 <section id="ClusterSettings">
 	<div class="page-header">

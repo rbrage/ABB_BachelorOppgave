@@ -1,5 +1,5 @@
 <?php
-$this->Template("sheard");
+$this->Template("Shared");
 ?>
 
 <div class="row">

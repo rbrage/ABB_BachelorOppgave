@@ -1,6 +1,6 @@
 <?php
 $this->viewmodel->templatemenu = array("points" => "Available Points");
-$this->Template("sheard");
+$this->Template("Shared");
 ?>
 
 	<section id="points">
