@@ -203,7 +203,8 @@ public class Simulation_program extends JFrame implements ActionListener
 					((HttpURLConnection)urlConnection).setRequestMethod("GET");
 					urlConnection.setDoOutput(true);
 					//System.out.println(url.getQuery());
-					urlConnection.getInputStream();
+					urlConnection.getInputStream().close();
+					
 
 					line = br.readLine();
 					j++;
@@ -274,8 +275,7 @@ public class Simulation_program extends JFrame implements ActionListener
 		timestamp = getTime();
 	}
 	public int RandomNumber(int max){
-		Random random = new Random(); 
-		return random.nextInt(max);
+		return (int)Math.random()*max;
 
 	}
 
