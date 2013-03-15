@@ -193,18 +193,19 @@ public class Simulation_program extends JFrame implements ActionListener
 					lasttime = Long.parseLong(props[1].trim());
 					time = getTime();
 
-					String path = "http://127.0.0.1:8888/register/trigger/xml?";
+					String path = "http://abb.hf-data.no/register/trigger/xml?";
 					URL url;
 					URLConnection urlConnection = null;
 					DataInputStream inStream;
 
 					url = new URL(path + query);
+					long contime = getTime();
 					urlConnection = url.openConnection();
 					((HttpURLConnection)urlConnection).setRequestMethod("GET");
 					urlConnection.setDoOutput(true);
 					//System.out.println(url.getQuery());
 					urlConnection.getInputStream().close();
-					
+					System.out.println("Tilkoblingstid " + (getTime()-contime) + " ms");
 
 					line = br.readLine();
 					j++;
