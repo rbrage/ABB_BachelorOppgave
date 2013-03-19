@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
@@ -193,7 +194,7 @@ public class Simulation_program extends JFrame implements ActionListener
 					lasttime = Long.parseLong(props[1].trim());
 					time = getTime();
 
-					String path = "http://abb.hf-data.no/register/trigger/xml?";
+					String path = "http://localhost:8888/register/trigger/xml?";
 					URL url;
 					URLConnection urlConnection = null;
 					DataInputStream inStream;
@@ -204,7 +205,12 @@ public class Simulation_program extends JFrame implements ActionListener
 					((HttpURLConnection)urlConnection).setRequestMethod("GET");
 					urlConnection.setDoOutput(true);
 					//System.out.println(url.getQuery());
-					urlConnection.getInputStream().close();
+					inStream = new DataInputStream(urlConnection.getInputStream());
+					String buffer;
+					while((buffer = inStream.readLine()) != null) {
+							//System.out.println(buffer);
+					}
+					inStream.close();
 					System.out.println("Tilkoblingstid " + (getTime()-contime) + " ms");
 
 					line = br.readLine();
