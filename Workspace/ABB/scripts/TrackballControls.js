@@ -269,11 +269,28 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		projector.unprojectVector ( vector, _this.object );
 		ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
 		
-		var intersects = ray.intersectObjects( [pointsSystem] );
+		console.log(pointsSystem);
 		
-		if(intersects != null){	
+		if(pointsSystem.children[0] instanceof THREE.Particle){
+			var intersects = ray.intersectParticle(pointsSystem);
+			
+			if(intersects != null){	
+			
+				plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
+				
+					INTERSECTED = intersects[ 0 ].vertex
+			
+					pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0x00ff00);
+					pointsSystem.children[INTERSECTED].material.needsUpdate = true;
+				
+			}
+			
+		}else{
+			var intersects = ray.intersectObject(pointsSystem);
+			
+			if(intersects != null){	
 		
-		plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z )
+			plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
 			
 			if ( intersects.length > 0 ) {
 				
@@ -301,6 +318,10 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 				INTERSECTED = null;
 			}
 		}
+		}
+		
+		console.log(intersects);
+		
 	}
 	};
 
