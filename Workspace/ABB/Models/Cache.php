@@ -25,8 +25,11 @@ class Cache {
 	public function lock($key){
 		Debuger::RegisterPoint("Locking Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		$i = 0;
 		while(!apc_add($key . self::LOCKSUFFIX, true)){
 			usleep(500);
+			$i++;
+			if($i > 2000) $this->removeCacheData($key . self::LOCKSUFFIX);
 		}
 	}
 	
@@ -38,7 +41,7 @@ class Cache {
 	public function unlock($key){
 		Debuger::RegisterPoint("Unlocking Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		apc_delete($key . self::LOCKSUFFIX);
+		$this->removeCacheData($key . self::LOCKSUFFIX);
 	}
 	
 	/**
@@ -79,7 +82,7 @@ class Cache {
 	public function removeCacheData($key){
 		Debuger::RegisterPoint("Removes data from Apc cache.", "Cache");
 		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
-		if(!apc_key_exists($key)) return true;
+		if(!apc_exists($key)) return true;
 		return apc_delete($key);
 	}
 	
