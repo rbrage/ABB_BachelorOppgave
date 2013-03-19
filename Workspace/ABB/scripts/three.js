@@ -4747,8 +4747,16 @@ THREE.Ray.prototype = {
     },
 
 	intersectParticle: function (a, b) {
-		var c = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.getPosition());
-		c > a.scale.x || b.push({ distance: c, point: a.position, face: null, object: a }) 
+	var b = []; 
+	for (var c = a.children, d, e, f = 0; f < c.length; f++) {
+            d = c[f];
+			e = this.distanceFromIntersection(this.origin, this.direction, a.matrixWorld.multiplyVector3(d.position));
+            if (!(e > this.threshold)) { 
+				d = { distance: e, point: d.position , face: null, object: a, vertex: f }; 
+				b.push(d) 
+			}
+        }
+		return b; 
 	},
 
 	intersectParticleSystem: function (a, b) {
