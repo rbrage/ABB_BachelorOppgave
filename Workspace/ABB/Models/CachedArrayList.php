@@ -26,16 +26,18 @@ class CachedArrayList implements arrayaccess {
 	 * @param boolean $lock
 	 */
 	public function add($data, $lock = false){
+		$this->lock($this->listprefix);
 		$size = $this->size();
-		$this->lock($this->listprefix . "_" . $size);
+// 		$this->lock($this->listprefix . "_" . $size);
 		
 		$response = $this->cache->setCacheData($this->listprefix . "_" . $size, $data);
 		if($response)
 			$this->cache->increase($this->listprefix . "_" . self::SIZEKEYWORD);
 		
-		if(!$lock){
-			$this->unlock($this->listprefix . "_" . $size);
-		}
+
+// 		$this->unlock($this->listprefix . "_" . $size);
+		$this->unlock($this->listprefix);
+		
 		
 		return $response;
 	}
@@ -46,29 +48,37 @@ class CachedArrayList implements arrayaccess {
 	 * @param boolean $lock
 	 */
 	public function get($index, $lock = false){
-		$this->lock($this->listprefix . "_" . $index);
+		if($lock)
+			$this->lock($index);
+// 		$this->lock($this->listprefix . "_" . $index);
 		
 		$data = $this->cache->getCacheData($this->listprefix . "_" . $index);
 		
-		if(!$lock)
-			$this->unlock($this->listprefix . "_" . $index);
+// 		if(!$lock)
+// 			$this->unlock($this->listprefix . "_" . $index);
 		
 		return $data;
 	}
 	
 	/**
-	 * Sets an element in the list. Its posible to lock the data so it dont get temperd with while your script is running.
+	 * Sets an element in the list. Its posible to lock the data so it dont get temperd with while your script is running. If the index is outside the size range of the list the new data will be put at the end of the list.
 	 * @param integer $index
 	 * @param mixed $data
 	 * @param boolean $lock
 	 */
-	public function set($index, $data, $lock = false){
-		$this->lock($this->listprefix . "_" . $index);
+	public function set($index, $data, $unlock = false){
+// 		if(!$lock)
+// 			$this->lock($this->listprefix . "_" . $index);
 		
-		$this->cache->setCacheData($this->listprefix . "_" . $index, $data);
+		if($index == $this->size())
+			$this->add($data);
+		elseif ($index < $this->size() && $index >= 0)
+			$this->cache->setCacheData($this->listprefix . "_" . $index, $data);
+		else 
+			throw new Exception("Index out of range.");
 		
-		if(!$lock)
-			$this->unlock($this->listprefix . "_" . $index);
+		if($unlock)
+			$this->unlock($index);
 	}
 	
 	/**
