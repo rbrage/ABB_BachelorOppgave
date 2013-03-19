@@ -1,11 +1,16 @@
 <?php
 
-require_once("Models/CachedArrayList.php");
-require_once("Models/TriggerPoint.php");
+require_once "Models/CachedArrayList.php";
+require_once "Models/TriggerPoint.php";
+require_once 'Models/CachedSettings.php';
+require_once 'Models/KMeans.php';
 
 class Register extends Controller {
 	
 	private $list;
+	private $settings;
+	private $cluster;
+	
 	/**
 	 * Register a trigger point and puts it in the shared cache.
 	 * URL examples:
@@ -66,10 +71,24 @@ class Register extends Controller {
 			$data->addAdditionalInfo($key, $value);
 		}
 		
-		$success = $this->list->add($data);
+
+		$this->settings = new CachedSettings();
+		if($this->settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION)){
+			$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
+			$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
+			$runAnalysis = $this->cluster->asignCluster($data);
+			$success = $this->list->add($data);
+			if($runAnalysis)
+				$this->cluster->calculateClusters();
+		}
+		else {
+			$success = $this->list->add($data);
+		}
+		
 		
 		if($success){
 			$this->viewmodel->success = true;
+			
 			return $this->View();
 		}
 		else{
