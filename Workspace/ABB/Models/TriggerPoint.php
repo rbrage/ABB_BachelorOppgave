@@ -8,6 +8,8 @@ class TriggerPoint {
 	
 	public $timestamp;
 	
+	public $cluster = 0;
+	
 	public $additionalInfo = array();
 	
 	public function __construct($x = -1, $y = -1, $z = -1, $timestamp = -1){
@@ -61,6 +63,14 @@ class TriggerPoint {
 		else {
 			return $this->additionalInfo[$key];
 		}
+	}
+	
+	public function getAsignedCluster(){
+		return $this->cluster;
+	}
+	
+	public function setAsignedCluster($cluster){
+		$this->cluster = $cluster;
 	}
 	
 }
