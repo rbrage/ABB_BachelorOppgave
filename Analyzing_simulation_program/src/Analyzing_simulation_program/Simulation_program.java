@@ -189,6 +189,8 @@ public class Simulation_program extends JFrame implements ActionListener
 						System.out.println("Ventet i " + wait + " ms");
 						if(wait > 0)
 							Thread.sleep(wait);
+						else
+							System.err.println("Brukte lengre tid enn tildelt!!!!!!!!!");
 					}
 					// new time round
 					lasttime = Long.parseLong(props[1].trim());
