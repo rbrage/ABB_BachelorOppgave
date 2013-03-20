@@ -302,6 +302,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 				attributes.ca.value[ INTERSECTED ] = 0x000000;
 				attributes.ca.needsUpdate = true;
 				
+				
+				
 				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
 				attributes.size.needsUpdate = true;
 				

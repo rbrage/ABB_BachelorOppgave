@@ -7,7 +7,7 @@ var group;
 var centroidSphere, line , pointsSystem;
 var _state;
 
-var PARTICLE_SIZE = 1;
+var PARTICLE_SIZE = 2;
 var PARTICLE_COLOR;
 var webGL;
 
@@ -42,8 +42,9 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		camera.up = new THREE.Vector3( 0, 0, 1 );
 	    camera.position.x = 200;
 		
-	    renderer = new THREE.WebGLRenderer();
-	    renderer.setSize(WIDTH, HEIGHT);
+	   
+		renderer = new THREE.WebGLRenderer( { clearColor: 0xffffff, clearAlpha: 1 } );
+		renderer.setSize(WIDTH, HEIGHT);
 	    
 	    scene = new THREE.Scene();
 		
@@ -189,9 +190,11 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		uniforms = {
 
 				color: { type: "c", value: new THREE.Color( 0xff0000 ) },
-				texture: { type: "t", value: 0, texture: THREE.ImageUtils.loadTexture( "/img/point.png" ) }
+				texture: { type: "t", value: THREE.ImageUtils.loadTexture( "img/ball.png" ) }
 				
 			};
+
+			
 
 		var shaderMaterial = new THREE.ShaderMaterial( {
 
@@ -199,8 +202,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				attributes: attributes,
 				vertexShader: document.getElementById( 'vertexshader' ).textContent,
 				fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
-				depthTest: false,
-
+				transparent:	true
+  
 			});
 		
 		var geometry = new THREE.Geometry();
@@ -216,8 +219,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 		pointsSystem = new THREE.ParticleSystem( geometry, shaderMaterial );
 		pointsSystem.dynamic = true;
-		pointsSystem.sortParticles = false;
-			
+		pointsSystem.sortParticles = true;
+		
 		var vertices = pointsSystem.geometry.vertices;
 		var values_size = attributes.size.value;
 		var values_color = attributes.ca.value;
@@ -226,6 +229,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 
 			values_size[ v ] = PARTICLE_SIZE;
 			values_color[ v ] = PARTICLE_COLOR;
+			
 			
 		}
 		

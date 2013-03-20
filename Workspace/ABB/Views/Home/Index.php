@@ -53,12 +53,6 @@ $this->Template("Shared");
 		<div id="3DPlotDiv" style="float: left; width: 900px; height: 600px; background:#edebeb;">
 			
 		</div>
-
-		<div class="row span12">
-			<input id="allowWebGL" type="checkbox" checked=""
-				onclick="toggleChart(this)"> <span style="color: #000">Use webGL</span>
-			<p>Hold down shift for zoom, and ctrl for move</p>
-		</div>
 	</div>
 
 </section>
