@@ -15,6 +15,7 @@ $this->Template("Shared");
 					<th>X</th>
 					<th>Y</th>
 					<th>Z</th>
+					<th>Cluster</th>
 					<th>Time</th>
 				</tr>
 			</thead>
@@ -28,6 +29,7 @@ $this->Template("Shared");
 				<td>".$item->x."</td>
 				<td>".$item->y."</td>
 				<td>".$item->z."</td>
+				<td>".$item->cluster."</td>
 				<td>".$item->timestamp."</td>
 				</tr>";
 				}
@@ -48,6 +50,7 @@ $this->Template("Shared");
 								"<td>" + value.x + "</td>" +
 								"<td>" + value.y + "</td>" +
 								"<td>" + value.z + "</td>" +
+								"<td>" + value.cluster + "</td>" +
 								"<td>" + value.timestamp + "</td>" +
 							"</tr>");
 							start++;

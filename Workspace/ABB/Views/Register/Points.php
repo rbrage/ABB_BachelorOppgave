@@ -28,7 +28,7 @@ else{
 		$points = array();
 		for($i = $this->viewmodel->start; $i < $this->viewmodel->stop && $i < $this->viewmodel->list->size(); $i++){
 			$item = $this->viewmodel->list->get($i);
-			$points[] = array("x" => floatval($item->x), "y" => floatval($item->y), "z" => floatval($item->z), "timestamp" => doubleval($item->timestamp), "additionalinfo" => $item->getAdditionalInfo());
+			$points[] = array("x" => floatval($item->x), "y" => floatval($item->y), "z" => floatval($item->z), "cluster" => intval($item->cluster), "timestamp" => doubleval($item->timestamp), "additionalinfo" => $item->getAdditionalInfo());
 		}
 		$response["Register"]["Points"] = $points;
 		echo json_encode($response);
@@ -49,6 +49,7 @@ else{
 				$point->addChild("x", $item->x);
 				$point->addChild("y", $item->y);
 				$point->addChild("z", $item->z);
+				$point->addChild("cluster", $item->cluster);
 				$point->addChild("time", $item->timestamp);
 				$additionalinfo = $item->getAditionalInfo();
 				$info = $point->addChild("additionalinfo");
