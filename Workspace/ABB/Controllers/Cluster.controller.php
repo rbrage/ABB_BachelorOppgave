@@ -24,7 +24,7 @@ class Cluster extends Controller {
 		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
 		$this->clusterlist->clear();
 		
-		echo json_encode(array("msg" => "The cachelist is cleared."));
+		echo json_encode(array("msg" => "The clusterlist is cleared."));
 	}
 
 	public function run($id){
@@ -32,6 +32,7 @@ class Cluster extends Controller {
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
 		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
 		$this->cluster->calculateClusters();
+		$this->cluster->asignAllPointsToClusters();
 		
 		echo json_encode(array("msg" => "The clusters are done calculating."));
 	}
@@ -39,11 +40,9 @@ class Cluster extends Controller {
 	public function force($id){
 		$this->settings = new CachedSettings();
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
-		$this->cluster->forceNewAnalysis();
 		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
+		$this->cluster->forceNewAnalysis();
 		$this->cluster->calculateClusters();
-		$KMeans = new KMeans(0);
-		$KMeans->forceNewAnalysis();
 		echo json_encode(array("msg" => "The new analysis is done."));
 	}
 	

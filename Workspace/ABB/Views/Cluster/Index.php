@@ -49,7 +49,7 @@ $this->template("Shared");
 			});
 
 			$("#reasignButton").click(function(){
-				$.getJSON("/cluster/reset/json", function(data){
+				$.getJSON("/cluster/reasign/json", function(data){
 						$("#options > .alert").text(data.msg).fadeIn(800);
 					});
 			});
@@ -102,11 +102,11 @@ $this->template("Shared");
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<td>Number</td>
-					<td>X</td>
-					<td>Y</td>
-					<td>Z</td>
-					<td>Connections</td>
+					<th>Number</th>
+					<th>X</th>
+					<th>Y</th>
+					<th>Z</th>
+					<th>Connections</th>
 				</tr>
 			</thead>
 			<tbody>
