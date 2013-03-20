@@ -13,17 +13,18 @@ class Cluster extends Controller {
 
 	public function index(){
 		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
-		echo "begin\n";
-		echo "Size:" . $this->clusterlist->size();
-		for($i = 0; $i < $this->clusterlist->size(); $i++){
-			print_r($this->clusterlist->get($i));
-		}
-		echo "end\n";
+		$this->settings = new CachedSettings();
+		$this->viewmodel->clusterlist = $this->clusterlist;
+		$this->viewmodel->settings = $this->settings;
+
+		return $this->View();
 	}
 
 	public function reset($id){
-		$KMeans = new KMeans(0);
-		$KMeans->forceNewAnalysis();
+		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->clusterlist->clear();
+		
+		echo json_encode(array("msg" => "The cachelist is cleared."));
 	}
 
 	public function run($id){
@@ -31,6 +32,26 @@ class Cluster extends Controller {
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
 		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
 		$this->cluster->calculateClusters();
+		
+		echo json_encode(array("msg" => "The clusters are done calculating."));
+	}
+	
+	public function force($id){
+		$this->settings = new CachedSettings();
+		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
+		$this->cluster->forceNewAnalysis();
+		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
+		$this->cluster->calculateClusters();
+		$KMeans = new KMeans(0);
+		$KMeans->forceNewAnalysis();
+		echo json_encode(array("msg" => "The new analysis is done."));
+	}
+	
+	public function reasign($id){
+		$this->settings = new CachedSettings();
+		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
+		$this->cluster->asignAllPointsToClusters();
+		echo json_encode(array("msg" => "All points are now in nearest cluster."));
 	}
 
 }
