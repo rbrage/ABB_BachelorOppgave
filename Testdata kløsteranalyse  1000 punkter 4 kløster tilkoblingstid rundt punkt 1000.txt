@@ -1,0 +1,4569 @@
+Kalkulerer antall linjer.
+Tilkoblingstid 32 ms
+Må vente i 96 ms
+Brukte 33 ms
+Ventet i 63 ms
+Tilkoblingstid 10 ms
+Må vente i 154 ms
+Brukte 10 ms
+Ventet i 144 ms
+Tilkoblingstid 17 ms
+Må vente i 223 ms
+Brukte 17 ms
+Ventet i 206 ms
+Tilkoblingstid 14 ms
+Må vente i 683 ms
+Brukte 15 ms
+Ventet i 668 ms
+Tilkoblingstid 16 ms
+Må vente i 101 ms
+Brukte 16 ms
+Ventet i 85 ms
+Tilkoblingstid 16 ms
+Må vente i 170 ms
+Brukte 16 ms
+Ventet i 154 ms
+Tilkoblingstid 16 ms
+Må vente i 192 ms
+Brukte 16 ms
+Ventet i 176 ms
+Tilkoblingstid 16 ms
+Må vente i 749 ms
+Brukte 16 ms
+Ventet i 733 ms
+Tilkoblingstid 17 ms
+Må vente i 112 ms
+Brukte 17 ms
+Ventet i 95 ms
+Tilkoblingstid 19 ms
+Må vente i 163 ms
+Brukte 19 ms
+Ventet i 144 ms
+Tilkoblingstid 19 ms
+Må vente i 168 ms
+Brukte 19 ms
+Ventet i 149 ms
+Tilkoblingstid 18 ms
+Må vente i 727 ms
+Brukte 19 ms
+Ventet i 708 ms
+Tilkoblingstid 30 ms
+Må vente i 102 ms
+Brukte 30 ms
+Ventet i 72 ms
+Tilkoblingstid 23 ms
+Må vente i 165 ms
+Brukte 23 ms
+Ventet i 142 ms
+Tilkoblingstid 20 ms
+Må vente i 167 ms
+Brukte 20 ms
+Ventet i 147 ms
+Tilkoblingstid 20 ms
+Må vente i 828 ms
+Brukte 20 ms
+Ventet i 808 ms
+Tilkoblingstid 20 ms
+Må vente i 104 ms
+Brukte 20 ms
+Ventet i 84 ms
+Tilkoblingstid 21 ms
+Må vente i 168 ms
+Brukte 21 ms
+Ventet i 147 ms
+Tilkoblingstid 26 ms
+Må vente i 197 ms
+Brukte 27 ms
+Ventet i 170 ms
+Tilkoblingstid 27 ms
+Må vente i 712 ms
+Brukte 27 ms
+Ventet i 685 ms
+Tilkoblingstid 22 ms
+Må vente i 91 ms
+Brukte 23 ms
+Ventet i 68 ms
+Tilkoblingstid 22 ms
+Må vente i 184 ms
+Brukte 22 ms
+Ventet i 162 ms
+Tilkoblingstid 24 ms
+Må vente i 230 ms
+Brukte 24 ms
+Ventet i 206 ms
+Tilkoblingstid 24 ms
+Må vente i 703 ms
+Brukte 24 ms
+Ventet i 679 ms
+Tilkoblingstid 22 ms
+Må vente i 95 ms
+Brukte 22 ms
+Ventet i 73 ms
+Tilkoblingstid 23 ms
+Må vente i 182 ms
+Brukte 23 ms
+Ventet i 159 ms
+Tilkoblingstid 35 ms
+Må vente i 160 ms
+Brukte 36 ms
+Ventet i 124 ms
+Tilkoblingstid 23 ms
+Må vente i 820 ms
+Brukte 23 ms
+Ventet i 797 ms
+Tilkoblingstid 25 ms
+Må vente i 99 ms
+Brukte 25 ms
+Ventet i 74 ms
+Tilkoblingstid 26 ms
+Må vente i 177 ms
+Brukte 26 ms
+Ventet i 151 ms
+Tilkoblingstid 31 ms
+Må vente i 199 ms
+Brukte 31 ms
+Ventet i 168 ms
+Tilkoblingstid 29 ms
+Må vente i 759 ms
+Brukte 30 ms
+Ventet i 729 ms
+Tilkoblingstid 33 ms
+Må vente i 93 ms
+Brukte 33 ms
+Ventet i 60 ms
+Tilkoblingstid 26 ms
+Må vente i 133 ms
+Brukte 26 ms
+Ventet i 107 ms
+Tilkoblingstid 31 ms
+Må vente i 176 ms
+Brukte 31 ms
+Ventet i 145 ms
+Tilkoblingstid 31 ms
+Må vente i 792 ms
+Brukte 32 ms
+Ventet i 760 ms
+Tilkoblingstid 35 ms
+Må vente i 83 ms
+Brukte 35 ms
+Ventet i 48 ms
+Tilkoblingstid 27 ms
+Må vente i 157 ms
+Brukte 27 ms
+Ventet i 130 ms
+Tilkoblingstid 30 ms
+Må vente i 166 ms
+Brukte 31 ms
+Ventet i 135 ms
+Tilkoblingstid 49 ms
+Må vente i 813 ms
+Brukte 49 ms
+Ventet i 764 ms
+Tilkoblingstid 38 ms
+Må vente i 108 ms
+Brukte 38 ms
+Ventet i 70 ms
+Tilkoblingstid 31 ms
+Må vente i 167 ms
+Brukte 31 ms
+Ventet i 136 ms
+Tilkoblingstid 32 ms
+Må vente i 228 ms
+Brukte 32 ms
+Ventet i 196 ms
+Tilkoblingstid 47 ms
+Må vente i 702 ms
+Brukte 48 ms
+Ventet i 654 ms
+Tilkoblingstid 32 ms
+Må vente i 110 ms
+Brukte 32 ms
+Ventet i 78 ms
+Tilkoblingstid 32 ms
+Må vente i 164 ms
+Brukte 32 ms
+Ventet i 132 ms
+Tilkoblingstid 32 ms
+Må vente i 201 ms
+Brukte 33 ms
+Ventet i 168 ms
+Tilkoblingstid 32 ms
+Må vente i 688 ms
+Brukte 32 ms
+Ventet i 656 ms
+Tilkoblingstid 34 ms
+Må vente i 111 ms
+Brukte 34 ms
+Ventet i 77 ms
+Tilkoblingstid 35 ms
+Må vente i 148 ms
+Brukte 35 ms
+Ventet i 113 ms
+Tilkoblingstid 34 ms
+Må vente i 197 ms
+Brukte 35 ms
+Ventet i 162 ms
+Tilkoblingstid 36 ms
+Må vente i 805 ms
+Brukte 36 ms
+Ventet i 769 ms
+Tilkoblingstid 43 ms
+Må vente i 101 ms
+Brukte 44 ms
+Ventet i 57 ms
+Tilkoblingstid 50 ms
+Må vente i 184 ms
+Brukte 50 ms
+Ventet i 134 ms
+Tilkoblingstid 34 ms
+Må vente i 197 ms
+Brukte 35 ms
+Ventet i 162 ms
+Tilkoblingstid 37 ms
+Må vente i 717 ms
+Brukte 37 ms
+Ventet i 680 ms
+Tilkoblingstid 36 ms
+Må vente i 274 ms
+Brukte 37 ms
+Ventet i 237 ms
+Tilkoblingstid 39 ms
+Må vente i 198 ms
+Brukte 40 ms
+Ventet i 158 ms
+Tilkoblingstid 38 ms
+Må vente i 686 ms
+Brukte 38 ms
+Ventet i 648 ms
+Tilkoblingstid 63 ms
+Må vente i 115 ms
+Brukte 64 ms
+Ventet i 51 ms
+Tilkoblingstid 39 ms
+Må vente i 172 ms
+Brukte 39 ms
+Ventet i 133 ms
+Tilkoblingstid 39 ms
+Må vente i 207 ms
+Brukte 39 ms
+Ventet i 168 ms
+Tilkoblingstid 40 ms
+Må vente i 753 ms
+Brukte 40 ms
+Ventet i 713 ms
+Tilkoblingstid 40 ms
+Må vente i 99 ms
+Brukte 41 ms
+Ventet i 58 ms
+Tilkoblingstid 48 ms
+Må vente i 146 ms
+Brukte 48 ms
+Ventet i 98 ms
+Tilkoblingstid 41 ms
+Må vente i 199 ms
+Brukte 41 ms
+Ventet i 158 ms
+Tilkoblingstid 42 ms
+Må vente i 800 ms
+Brukte 42 ms
+Ventet i 758 ms
+Tilkoblingstid 43 ms
+Må vente i 106 ms
+Brukte 43 ms
+Ventet i 63 ms
+Tilkoblingstid 44 ms
+Må vente i 166 ms
+Brukte 45 ms
+Ventet i 121 ms
+Tilkoblingstid 89 ms
+Må vente i 159 ms
+Brukte 89 ms
+Ventet i 70 ms
+Tilkoblingstid 46 ms
+Må vente i 764 ms
+Brukte 46 ms
+Ventet i 718 ms
+Tilkoblingstid 71 ms
+Må vente i 89 ms
+Brukte 72 ms
+Ventet i 17 ms
+Tilkoblingstid 43 ms
+Må vente i 158 ms
+Brukte 44 ms
+Ventet i 114 ms
+Tilkoblingstid 60 ms
+Må vente i 184 ms
+Brukte 60 ms
+Ventet i 124 ms
+Tilkoblingstid 47 ms
+Må vente i 744 ms
+Brukte 47 ms
+Ventet i 697 ms
+Tilkoblingstid 45 ms
+Må vente i 76 ms
+Brukte 45 ms
+Ventet i 31 ms
+Tilkoblingstid 46 ms
+Må vente i 154 ms
+Brukte 46 ms
+Ventet i 108 ms
+Tilkoblingstid 47 ms
+Må vente i 187 ms
+Brukte 47 ms
+Ventet i 140 ms
+Tilkoblingstid 46 ms
+Må vente i 888 ms
+Brukte 46 ms
+Ventet i 842 ms
+Tilkoblingstid 46 ms
+Må vente i 170 ms
+Brukte 46 ms
+Ventet i 124 ms
+Tilkoblingstid 58 ms
+Må vente i 204 ms
+Brukte 59 ms
+Ventet i 145 ms
+Tilkoblingstid 48 ms
+Må vente i 668 ms
+Brukte 48 ms
+Ventet i 620 ms
+Tilkoblingstid 49 ms
+Må vente i 120 ms
+Brukte 49 ms
+Ventet i 71 ms
+Tilkoblingstid 48 ms
+Må vente i 175 ms
+Brukte 49 ms
+Ventet i 126 ms
+Tilkoblingstid 54 ms
+Må vente i 172 ms
+Brukte 55 ms
+Ventet i 117 ms
+Tilkoblingstid 49 ms
+Må vente i 745 ms
+Brukte 49 ms
+Ventet i 696 ms
+Tilkoblingstid 51 ms
+Må vente i 108 ms
+Brukte 52 ms
+Ventet i 56 ms
+Tilkoblingstid 51 ms
+Må vente i 155 ms
+Brukte 51 ms
+Ventet i 104 ms
+Tilkoblingstid 51 ms
+Må vente i 217 ms
+Brukte 51 ms
+Ventet i 166 ms
+Tilkoblingstid 53 ms
+Må vente i 737 ms
+Brukte 53 ms
+Ventet i 684 ms
+Tilkoblingstid 76 ms
+Må vente i 87 ms
+Brukte 76 ms
+Ventet i 11 ms
+Tilkoblingstid 54 ms
+Må vente i 141 ms
+Brukte 54 ms
+Ventet i 87 ms
+Tilkoblingstid 83 ms
+Må vente i 193 ms
+Brukte 83 ms
+Ventet i 110 ms
+Tilkoblingstid 53 ms
+Må vente i 692 ms
+Brukte 53 ms
+Ventet i 639 ms
+Tilkoblingstid 54 ms
+Må vente i 93 ms
+Brukte 55 ms
+Ventet i 38 ms
+Tilkoblingstid 53 ms
+Må vente i 146 ms
+Brukte 53 ms
+Ventet i 93 ms
+Tilkoblingstid 54 ms
+Må vente i 150 ms
+Brukte 54 ms
+Ventet i 96 ms
+Tilkoblingstid 54 ms
+Må vente i 796 ms
+Brukte 54 ms
+Ventet i 742 ms
+Tilkoblingstid 55 ms
+Må vente i 83 ms
+Brukte 55 ms
+Ventet i 28 ms
+Tilkoblingstid 56 ms
+Må vente i 155 ms
+Brukte 56 ms
+Ventet i 99 ms
+Tilkoblingstid 60 ms
+Må vente i 163 ms
+Brukte 60 ms
+Ventet i 103 ms
+Tilkoblingstid 69 ms
+Må vente i 831 ms
+Brukte 69 ms
+Ventet i 762 ms
+Tilkoblingstid 61 ms
+Må vente i 101 ms
+Brukte 61 ms
+Ventet i 40 ms
+Tilkoblingstid 64 ms
+Må vente i 158 ms
+Brukte 65 ms
+Ventet i 93 ms
+Tilkoblingstid 57 ms
+Må vente i 180 ms
+Brukte 57 ms
+Ventet i 123 ms
+Tilkoblingstid 59 ms
+Må vente i 912 ms
+Brukte 59 ms
+Ventet i 853 ms
+Tilkoblingstid 61 ms
+Må vente i 172 ms
+Brukte 61 ms
+Ventet i 111 ms
+Tilkoblingstid 61 ms
+Må vente i 235 ms
+Brukte 62 ms
+Ventet i 173 ms
+Tilkoblingstid 60 ms
+Må vente i 643 ms
+Brukte 60 ms
+Ventet i 583 ms
+Tilkoblingstid 61 ms
+Må vente i 96 ms
+Brukte 62 ms
+Ventet i 34 ms
+Tilkoblingstid 59 ms
+Må vente i 155 ms
+Brukte 59 ms
+Ventet i 96 ms
+Tilkoblingstid 61 ms
+Må vente i 225 ms
+Brukte 61 ms
+Ventet i 164 ms
+Tilkoblingstid 66 ms
+Må vente i 688 ms
+Brukte 66 ms
+Ventet i 622 ms
+Tilkoblingstid 62 ms
+Må vente i 100 ms
+Brukte 62 ms
+Ventet i 38 ms
+Tilkoblingstid 61 ms
+Må vente i 148 ms
+Brukte 61 ms
+Ventet i 87 ms
+Tilkoblingstid 62 ms
+Må vente i 188 ms
+Brukte 62 ms
+Ventet i 126 ms
+Tilkoblingstid 62 ms
+Må vente i 813 ms
+Brukte 62 ms
+Ventet i 751 ms
+Tilkoblingstid 64 ms
+Må vente i 101 ms
+Brukte 65 ms
+Ventet i 36 ms
+Tilkoblingstid 63 ms
+Må vente i 141 ms
+Brukte 63 ms
+Ventet i 78 ms
+Tilkoblingstid 64 ms
+Må vente i 210 ms
+Brukte 64 ms
+Ventet i 146 ms
+Tilkoblingstid 62 ms
+Må vente i 751 ms
+Brukte 62 ms
+Ventet i 689 ms
+Tilkoblingstid 68 ms
+Må vente i 86 ms
+Brukte 68 ms
+Ventet i 18 ms
+Tilkoblingstid 66 ms
+Må vente i 121 ms
+Brukte 67 ms
+Ventet i 54 ms
+Tilkoblingstid 69 ms
+Må vente i 150 ms
+Brukte 69 ms
+Ventet i 81 ms
+Tilkoblingstid 66 ms
+Må vente i 894 ms
+Brukte 66 ms
+Ventet i 828 ms
+Tilkoblingstid 68 ms
+Må vente i 104 ms
+Brukte 68 ms
+Ventet i 36 ms
+Tilkoblingstid 66 ms
+Må vente i 165 ms
+Brukte 67 ms
+Ventet i 98 ms
+Tilkoblingstid 68 ms
+Må vente i 203 ms
+Brukte 68 ms
+Ventet i 135 ms
+Tilkoblingstid 67 ms
+Må vente i 678 ms
+Brukte 67 ms
+Ventet i 611 ms
+Tilkoblingstid 69 ms
+Må vente i 119 ms
+Brukte 69 ms
+Ventet i 50 ms
+Tilkoblingstid 69 ms
+Må vente i 125 ms
+Brukte 69 ms
+Ventet i 56 ms
+Tilkoblingstid 69 ms
+Må vente i 211 ms
+Brukte 69 ms
+Ventet i 142 ms
+Tilkoblingstid 70 ms
+Må vente i 752 ms
+Brukte 70 ms
+Ventet i 682 ms
+Tilkoblingstid 70 ms
+Må vente i 103 ms
+Brukte 70 ms
+Ventet i 33 ms
+Tilkoblingstid 69 ms
+Må vente i 191 ms
+Brukte 69 ms
+Ventet i 122 ms
+Tilkoblingstid 70 ms
+Må vente i 263 ms
+Brukte 70 ms
+Ventet i 193 ms
+Tilkoblingstid 71 ms
+Må vente i 691 ms
+Brukte 71 ms
+Ventet i 620 ms
+Tilkoblingstid 75 ms
+Må vente i 90 ms
+Brukte 76 ms
+Ventet i 14 ms
+Tilkoblingstid 72 ms
+Må vente i 167 ms
+Brukte 73 ms
+Ventet i 94 ms
+Tilkoblingstid 106 ms
+Må vente i 141 ms
+Brukte 106 ms
+Ventet i 35 ms
+Tilkoblingstid 72 ms
+Må vente i 780 ms
+Brukte 73 ms
+Ventet i 707 ms
+Tilkoblingstid 83 ms
+Må vente i 91 ms
+Brukte 83 ms
+Ventet i 8 ms
+Tilkoblingstid 75 ms
+Må vente i 157 ms
+Brukte 75 ms
+Ventet i 82 ms
+Tilkoblingstid 74 ms
+Må vente i 191 ms
+Brukte 74 ms
+Ventet i 117 ms
+Tilkoblingstid 75 ms
+Må vente i 813 ms
+Brukte 75 ms
+Ventet i 738 ms
+Tilkoblingstid 75 ms
+Må vente i 74 ms
+Brukte 76 ms
+Ventet i -2 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 76 ms
+Må vente i 140 ms
+Brukte 77 ms
+Ventet i 63 ms
+Tilkoblingstid 75 ms
+Må vente i 211 ms
+Brukte 75 ms
+Ventet i 136 ms
+Tilkoblingstid 76 ms
+Må vente i 730 ms
+Brukte 77 ms
+Ventet i 653 ms
+Tilkoblingstid 97 ms
+Må vente i 112 ms
+Brukte 97 ms
+Ventet i 15 ms
+Tilkoblingstid 77 ms
+Må vente i 158 ms
+Brukte 78 ms
+Ventet i 80 ms
+Tilkoblingstid 81 ms
+Må vente i 186 ms
+Brukte 81 ms
+Ventet i 105 ms
+Tilkoblingstid 78 ms
+Må vente i 740 ms
+Brukte 78 ms
+Ventet i 662 ms
+Tilkoblingstid 96 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 81 ms
+Brukte 97 ms
+Ventet i -16 ms
+Tilkoblingstid 76 ms
+Må vente i 168 ms
+Brukte 77 ms
+Ventet i 91 ms
+Tilkoblingstid 78 ms
+Må vente i 213 ms
+Brukte 78 ms
+Ventet i 135 ms
+Tilkoblingstid 79 ms
+Må vente i 737 ms
+Brukte 79 ms
+Ventet i 658 ms
+Tilkoblingstid 83 ms
+Må vente i 111 ms
+Brukte 83 ms
+Ventet i 28 ms
+Tilkoblingstid 79 ms
+Må vente i 174 ms
+Brukte 79 ms
+Ventet i 95 ms
+Tilkoblingstid 82 ms
+Må vente i 194 ms
+Brukte 82 ms
+Ventet i 112 ms
+Tilkoblingstid 81 ms
+Må vente i 681 ms
+Brukte 81 ms
+Ventet i 600 ms
+Tilkoblingstid 83 ms
+Må vente i 89 ms
+Brukte 83 ms
+Ventet i 6 ms
+Tilkoblingstid 84 ms
+Må vente i 139 ms
+Brukte 85 ms
+Ventet i 54 ms
+Tilkoblingstid 85 ms
+Må vente i 195 ms
+Brukte 86 ms
+Ventet i 109 ms
+Tilkoblingstid 84 ms
+Må vente i 837 ms
+Brukte 84 ms
+Ventet i 753 ms
+Tilkoblingstid 84 ms
+Må vente i 104 ms
+Brukte 84 ms
+Ventet i 20 ms
+Tilkoblingstid 84 ms
+Må vente i 163 ms
+Brukte 84 ms
+Ventet i 79 ms
+Tilkoblingstid 86 ms
+Må vente i 208 ms
+Brukte 87 ms
+Ventet i 121 ms
+Tilkoblingstid 85 ms
+Må vente i 683 ms
+Brukte 85 ms
+Ventet i 598 ms
+Tilkoblingstid 84 ms
+Må vente i 115 ms
+Brukte 84 ms
+Ventet i 31 ms
+Tilkoblingstid 84 ms
+Må vente i 192 ms
+Brukte 84 ms
+Ventet i 108 ms
+Tilkoblingstid 93 ms
+Må vente i 186 ms
+Brukte 93 ms
+Ventet i 93 ms
+Tilkoblingstid 96 ms
+Må vente i 687 ms
+Brukte 96 ms
+Ventet i 591 ms
+Tilkoblingstid 88 ms
+Må vente i 100 ms
+Brukte 88 ms
+Ventet i 12 ms
+Tilkoblingstid 88 ms
+Må vente i 136 ms
+Brukte 88 ms
+Ventet i 48 ms
+Tilkoblingstid 90 ms
+Må vente i 173 ms
+Brukte 90 ms
+Ventet i 83 ms
+Tilkoblingstid 87 ms
+Må vente i 808 ms
+Brukte 87 ms
+Ventet i 721 ms
+Tilkoblingstid 88 ms
+Må vente i 102 ms
+Brukte 88 ms
+Ventet i 14 ms
+Tilkoblingstid 91 ms
+Må vente i 167 ms
+Brukte 91 ms
+Ventet i 76 ms
+Tilkoblingstid 90 ms
+Må vente i 161 ms
+Brukte 90 ms
+Ventet i 71 ms
+Tilkoblingstid 89 ms
+Må vente i 754 ms
+Brukte 90 ms
+Ventet i 664 ms
+Tilkoblingstid 93 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 90 ms
+Brukte 93 ms
+Ventet i -3 ms
+Tilkoblingstid 94 ms
+Må vente i 174 ms
+Brukte 94 ms
+Ventet i 80 ms
+Tilkoblingstid 94 ms
+Må vente i 212 ms
+Brukte 94 ms
+Ventet i 118 ms
+Tilkoblingstid 94 ms
+Må vente i 734 ms
+Brukte 94 ms
+Ventet i 640 ms
+Tilkoblingstid 93 ms
+Må vente i 99 ms
+Brukte 93 ms
+Ventet i 6 ms
+Tilkoblingstid 93 ms
+Må vente i 168 ms
+Brukte 93 ms
+Ventet i 75 ms
+Tilkoblingstid 94 ms
+Må vente i 208 ms
+Brukte 94 ms
+Ventet i 114 ms
+Tilkoblingstid 93 ms
+Må vente i 656 ms
+Brukte 93 ms
+Ventet i 563 ms
+Tilkoblingstid 103 ms
+Må vente i 106 ms
+Brukte 103 ms
+Ventet i 3 ms
+Tilkoblingstid 93 ms
+Må vente i 167 ms
+Brukte 93 ms
+Ventet i 74 ms
+Tilkoblingstid 95 ms
+Må vente i 215 ms
+Brukte 96 ms
+Ventet i 119 ms
+Tilkoblingstid 100 ms
+Må vente i 754 ms
+Brukte 100 ms
+Ventet i 654 ms
+Tilkoblingstid 120 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 107 ms
+Brukte 121 ms
+Ventet i -14 ms
+Tilkoblingstid 95 ms
+Må vente i 172 ms
+Brukte 95 ms
+Ventet i 77 ms
+Tilkoblingstid 97 ms
+Må vente i 192 ms
+Brukte 97 ms
+Ventet i 95 ms
+Tilkoblingstid 98 ms
+Må vente i 761 ms
+Brukte 98 ms
+Ventet i 663 ms
+Tilkoblingstid 98 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 98 ms
+Ventet i -4 ms
+Tilkoblingstid 98 ms
+Må vente i 165 ms
+Brukte 99 ms
+Ventet i 66 ms
+Tilkoblingstid 98 ms
+Må vente i 174 ms
+Brukte 98 ms
+Ventet i 76 ms
+Tilkoblingstid 99 ms
+Må vente i 778 ms
+Brukte 100 ms
+Ventet i 678 ms
+Tilkoblingstid 104 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 81 ms
+Brukte 104 ms
+Ventet i -23 ms
+Tilkoblingstid 102 ms
+Må vente i 166 ms
+Brukte 102 ms
+Ventet i 64 ms
+Tilkoblingstid 103 ms
+Må vente i 186 ms
+Brukte 103 ms
+Ventet i 83 ms
+Tilkoblingstid 102 ms
+Må vente i 733 ms
+Brukte 102 ms
+Ventet i 631 ms
+Tilkoblingstid 101 ms
+Må vente i 92 ms
+Brukte 101 ms
+Ventet i -9 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 103 ms
+Må vente i 164 ms
+Brukte 103 ms
+Ventet i 61 ms
+Tilkoblingstid 103 ms
+Må vente i 214 ms
+Brukte 103 ms
+Ventet i 111 ms
+Tilkoblingstid 103 ms
+Må vente i 687 ms
+Brukte 103 ms
+Ventet i 584 ms
+Tilkoblingstid 103 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 88 ms
+Brukte 103 ms
+Ventet i -15 ms
+Tilkoblingstid 101 ms
+Må vente i 159 ms
+Brukte 101 ms
+Ventet i 58 ms
+Tilkoblingstid 106 ms
+Må vente i 218 ms
+Brukte 106 ms
+Ventet i 112 ms
+Tilkoblingstid 109 ms
+Må vente i 726 ms
+Brukte 109 ms
+Ventet i 617 ms
+Tilkoblingstid 106 ms
+Må vente i 108 ms
+Brukte 106 ms
+Ventet i 2 ms
+Tilkoblingstid 105 ms
+Må vente i 157 ms
+Brukte 106 ms
+Ventet i 51 ms
+Tilkoblingstid 107 ms
+Må vente i 228 ms
+Brukte 107 ms
+Ventet i 121 ms
+Tilkoblingstid 106 ms
+Må vente i 776 ms
+Brukte 106 ms
+Ventet i 670 ms
+Tilkoblingstid 119 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 105 ms
+Brukte 119 ms
+Ventet i -14 ms
+Tilkoblingstid 104 ms
+Må vente i 152 ms
+Brukte 104 ms
+Ventet i 48 ms
+Tilkoblingstid 105 ms
+Må vente i 216 ms
+Brukte 106 ms
+Ventet i 110 ms
+Tilkoblingstid 107 ms
+Må vente i 647 ms
+Brukte 107 ms
+Ventet i 540 ms
+Tilkoblingstid 113 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 106 ms
+Brukte 113 ms
+Ventet i -7 ms
+Tilkoblingstid 115 ms
+Må vente i 177 ms
+Brukte 115 ms
+Ventet i 62 ms
+Tilkoblingstid 117 ms
+Må vente i 177 ms
+Brukte 118 ms
+Ventet i 59 ms
+Tilkoblingstid 109 ms
+Må vente i 760 ms
+Brukte 109 ms
+Ventet i 651 ms
+Tilkoblingstid 110 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 111 ms
+Ventet i -1 ms
+Tilkoblingstid 110 ms
+Må vente i 156 ms
+Brukte 110 ms
+Ventet i 46 ms
+Tilkoblingstid 111 ms
+Må vente i 205 ms
+Brukte 111 ms
+Ventet i 94 ms
+Tilkoblingstid 109 ms
+Må vente i 788 ms
+Brukte 109 ms
+Ventet i 679 ms
+Tilkoblingstid 112 ms
+Må vente i 145 ms
+Brukte 113 ms
+Ventet i 32 ms
+Tilkoblingstid 113 ms
+Må vente i 196 ms
+Brukte 113 ms
+Ventet i 83 ms
+Tilkoblingstid 115 ms
+Må vente i 782 ms
+Brukte 115 ms
+Ventet i 667 ms
+Tilkoblingstid 113 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 113 ms
+Ventet i -12 ms
+Tilkoblingstid 113 ms
+Må vente i 164 ms
+Brukte 114 ms
+Ventet i 50 ms
+Tilkoblingstid 112 ms
+Må vente i 219 ms
+Brukte 112 ms
+Ventet i 107 ms
+Tilkoblingstid 116 ms
+Må vente i 763 ms
+Brukte 116 ms
+Ventet i 647 ms
+Tilkoblingstid 114 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 87 ms
+Brukte 114 ms
+Ventet i -27 ms
+Tilkoblingstid 114 ms
+Må vente i 159 ms
+Brukte 115 ms
+Ventet i 44 ms
+Tilkoblingstid 117 ms
+Må vente i 164 ms
+Brukte 117 ms
+Ventet i 47 ms
+Tilkoblingstid 115 ms
+Må vente i 782 ms
+Brukte 116 ms
+Ventet i 666 ms
+Tilkoblingstid 130 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 130 ms
+Ventet i -20 ms
+Tilkoblingstid 115 ms
+Må vente i 156 ms
+Brukte 115 ms
+Ventet i 41 ms
+Tilkoblingstid 134 ms
+Må vente i 240 ms
+Brukte 134 ms
+Ventet i 106 ms
+Tilkoblingstid 119 ms
+Må vente i 740 ms
+Brukte 119 ms
+Ventet i 621 ms
+Tilkoblingstid 119 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 120 ms
+Ventet i -16 ms
+Tilkoblingstid 119 ms
+Må vente i 200 ms
+Brukte 119 ms
+Ventet i 81 ms
+Tilkoblingstid 138 ms
+Må vente i 183 ms
+Brukte 138 ms
+Ventet i 45 ms
+Tilkoblingstid 122 ms
+Må vente i 660 ms
+Brukte 122 ms
+Ventet i 538 ms
+Tilkoblingstid 129 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 106 ms
+Brukte 130 ms
+Ventet i -24 ms
+Tilkoblingstid 127 ms
+Må vente i 167 ms
+Brukte 127 ms
+Ventet i 40 ms
+Tilkoblingstid 159 ms
+Må vente i 223 ms
+Brukte 159 ms
+Ventet i 64 ms
+Tilkoblingstid 133 ms
+Må vente i 687 ms
+Brukte 133 ms
+Ventet i 554 ms
+Tilkoblingstid 122 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 100 ms
+Brukte 122 ms
+Ventet i -22 ms
+Tilkoblingstid 122 ms
+Må vente i 146 ms
+Brukte 122 ms
+Ventet i 24 ms
+Tilkoblingstid 148 ms
+Må vente i 214 ms
+Brukte 148 ms
+Ventet i 66 ms
+Tilkoblingstid 125 ms
+Må vente i 687 ms
+Brukte 125 ms
+Ventet i 562 ms
+Tilkoblingstid 122 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 96 ms
+Brukte 122 ms
+Ventet i -26 ms
+Tilkoblingstid 120 ms
+Må vente i 155 ms
+Brukte 120 ms
+Ventet i 35 ms
+Tilkoblingstid 139 ms
+Må vente i 158 ms
+Brukte 139 ms
+Ventet i 19 ms
+Tilkoblingstid 124 ms
+Må vente i 769 ms
+Brukte 124 ms
+Ventet i 645 ms
+Tilkoblingstid 127 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 128 ms
+Ventet i -31 ms
+Tilkoblingstid 128 ms
+Må vente i 154 ms
+Brukte 128 ms
+Ventet i 26 ms
+Tilkoblingstid 128 ms
+Må vente i 190 ms
+Brukte 129 ms
+Ventet i 61 ms
+Tilkoblingstid 124 ms
+Må vente i 748 ms
+Brukte 124 ms
+Ventet i 624 ms
+Tilkoblingstid 128 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 128 ms
+Ventet i -29 ms
+Tilkoblingstid 127 ms
+Må vente i 179 ms
+Brukte 127 ms
+Ventet i 52 ms
+Tilkoblingstid 126 ms
+Må vente i 201 ms
+Brukte 126 ms
+Ventet i 75 ms
+Tilkoblingstid 125 ms
+Må vente i 784 ms
+Brukte 126 ms
+Ventet i 658 ms
+Tilkoblingstid 130 ms
+Må vente i 89 ms
+Brukte 130 ms
+Ventet i -41 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 147 ms
+Må vente i 145 ms
+Brukte 147 ms
+Ventet i -2 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 137 ms
+Må vente i 184 ms
+Brukte 137 ms
+Ventet i 47 ms
+Tilkoblingstid 136 ms
+Må vente i 867 ms
+Brukte 137 ms
+Ventet i 730 ms
+Tilkoblingstid 140 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 140 ms
+Ventet i -46 ms
+Tilkoblingstid 129 ms
+Må vente i 163 ms
+Brukte 129 ms
+Ventet i 34 ms
+Tilkoblingstid 144 ms
+Må vente i 212 ms
+Brukte 145 ms
+Ventet i 67 ms
+Tilkoblingstid 134 ms
+Må vente i 734 ms
+Brukte 134 ms
+Ventet i 600 ms
+Tilkoblingstid 132 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 133 ms
+Ventet i -36 ms
+Tilkoblingstid 131 ms
+Må vente i 139 ms
+Brukte 131 ms
+Ventet i 8 ms
+Tilkoblingstid 133 ms
+Må vente i 184 ms
+Brukte 133 ms
+Ventet i 51 ms
+Tilkoblingstid 141 ms
+Må vente i 781 ms
+Brukte 141 ms
+Ventet i 640 ms
+Tilkoblingstid 134 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 134 ms
+Ventet i -30 ms
+Tilkoblingstid 133 ms
+Må vente i 149 ms
+Brukte 133 ms
+Ventet i 16 ms
+Tilkoblingstid 136 ms
+Må vente i 224 ms
+Brukte 137 ms
+Ventet i 87 ms
+Tilkoblingstid 133 ms
+Må vente i 672 ms
+Brukte 133 ms
+Ventet i 539 ms
+Tilkoblingstid 135 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 135 ms
+Ventet i -34 ms
+Tilkoblingstid 133 ms
+Må vente i 174 ms
+Brukte 134 ms
+Ventet i 40 ms
+Tilkoblingstid 137 ms
+Må vente i 193 ms
+Brukte 137 ms
+Ventet i 56 ms
+Tilkoblingstid 136 ms
+Må vente i 726 ms
+Brukte 136 ms
+Ventet i 590 ms
+Tilkoblingstid 143 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 144 ms
+Ventet i -45 ms
+Tilkoblingstid 147 ms
+Må vente i 169 ms
+Brukte 147 ms
+Ventet i 22 ms
+Tilkoblingstid 141 ms
+Må vente i 170 ms
+Brukte 141 ms
+Ventet i 29 ms
+Tilkoblingstid 140 ms
+Må vente i 748 ms
+Brukte 140 ms
+Ventet i 608 ms
+Tilkoblingstid 139 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 115 ms
+Brukte 139 ms
+Ventet i -24 ms
+Tilkoblingstid 145 ms
+Må vente i 151 ms
+Brukte 145 ms
+Ventet i 6 ms
+Tilkoblingstid 151 ms
+Må vente i 211 ms
+Brukte 151 ms
+Ventet i 60 ms
+Tilkoblingstid 139 ms
+Må vente i 662 ms
+Brukte 139 ms
+Ventet i 523 ms
+Tilkoblingstid 140 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 123 ms
+Brukte 140 ms
+Ventet i -17 ms
+Tilkoblingstid 143 ms
+Må vente i 142 ms
+Brukte 143 ms
+Ventet i -1 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 140 ms
+Må vente i 166 ms
+Brukte 140 ms
+Ventet i 26 ms
+Tilkoblingstid 146 ms
+Må vente i 832 ms
+Brukte 147 ms
+Ventet i 685 ms
+Tilkoblingstid 144 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 144 ms
+Ventet i -51 ms
+Tilkoblingstid 141 ms
+Må vente i 166 ms
+Brukte 143 ms
+Ventet i 23 ms
+Tilkoblingstid 145 ms
+Må vente i 199 ms
+Brukte 145 ms
+Ventet i 54 ms
+Tilkoblingstid 142 ms
+Må vente i 735 ms
+Brukte 142 ms
+Ventet i 593 ms
+Tilkoblingstid 145 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 113 ms
+Brukte 145 ms
+Ventet i -32 ms
+Tilkoblingstid 144 ms
+Må vente i 148 ms
+Brukte 144 ms
+Ventet i 4 ms
+Tilkoblingstid 145 ms
+Må vente i 203 ms
+Brukte 145 ms
+Ventet i 58 ms
+Tilkoblingstid 146 ms
+Må vente i 793 ms
+Brukte 146 ms
+Ventet i 647 ms
+Tilkoblingstid 152 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 153 ms
+Ventet i -51 ms
+Tilkoblingstid 146 ms
+Må vente i 159 ms
+Brukte 147 ms
+Ventet i 12 ms
+Tilkoblingstid 148 ms
+Må vente i 209 ms
+Brukte 148 ms
+Ventet i 61 ms
+Tilkoblingstid 163 ms
+Må vente i 710 ms
+Brukte 163 ms
+Ventet i 547 ms
+Tilkoblingstid 148 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 148 ms
+Ventet i -39 ms
+Tilkoblingstid 148 ms
+Må vente i 158 ms
+Brukte 148 ms
+Ventet i 10 ms
+Tilkoblingstid 146 ms
+Må vente i 162 ms
+Brukte 146 ms
+Ventet i 16 ms
+Tilkoblingstid 148 ms
+Må vente i 764 ms
+Brukte 148 ms
+Ventet i 616 ms
+Tilkoblingstid 146 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 108 ms
+Brukte 146 ms
+Ventet i -38 ms
+Tilkoblingstid 155 ms
+Må vente i 166 ms
+Brukte 155 ms
+Ventet i 11 ms
+Tilkoblingstid 163 ms
+Må vente i 202 ms
+Brukte 164 ms
+Ventet i 38 ms
+Tilkoblingstid 164 ms
+Må vente i 724 ms
+Brukte 164 ms
+Ventet i 560 ms
+Tilkoblingstid 160 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 160 ms
+Ventet i -58 ms
+Tilkoblingstid 153 ms
+Må vente i 163 ms
+Brukte 153 ms
+Ventet i 10 ms
+Tilkoblingstid 152 ms
+Må vente i 228 ms
+Brukte 152 ms
+Ventet i 76 ms
+Tilkoblingstid 153 ms
+Må vente i 742 ms
+Brukte 154 ms
+Ventet i 588 ms
+Tilkoblingstid 150 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 151 ms
+Ventet i -50 ms
+Tilkoblingstid 151 ms
+Må vente i 197 ms
+Brukte 151 ms
+Ventet i 46 ms
+Tilkoblingstid 155 ms
+Må vente i 223 ms
+Brukte 155 ms
+Ventet i 68 ms
+Tilkoblingstid 156 ms
+Må vente i 710 ms
+Brukte 156 ms
+Ventet i 554 ms
+Tilkoblingstid 160 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 90 ms
+Brukte 161 ms
+Ventet i -71 ms
+Tilkoblingstid 151 ms
+Må vente i 172 ms
+Brukte 151 ms
+Ventet i 21 ms
+Tilkoblingstid 153 ms
+Må vente i 183 ms
+Brukte 153 ms
+Ventet i 30 ms
+Tilkoblingstid 155 ms
+Må vente i 701 ms
+Brukte 155 ms
+Ventet i 546 ms
+Tilkoblingstid 156 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 156 ms
+Ventet i -46 ms
+Tilkoblingstid 157 ms
+Må vente i 163 ms
+Brukte 158 ms
+Ventet i 5 ms
+Tilkoblingstid 156 ms
+Må vente i 175 ms
+Brukte 156 ms
+Ventet i 19 ms
+Tilkoblingstid 155 ms
+Må vente i 785 ms
+Brukte 155 ms
+Ventet i 630 ms
+Tilkoblingstid 165 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 165 ms
+Ventet i -63 ms
+Tilkoblingstid 172 ms
+Må vente i 159 ms
+Brukte 173 ms
+Ventet i -14 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 157 ms
+Må vente i 164 ms
+Brukte 157 ms
+Ventet i 7 ms
+Tilkoblingstid 156 ms
+Må vente i 706 ms
+Brukte 156 ms
+Ventet i 550 ms
+Tilkoblingstid 160 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 160 ms
+Ventet i -61 ms
+Tilkoblingstid 159 ms
+Må vente i 174 ms
+Brukte 159 ms
+Ventet i 15 ms
+Tilkoblingstid 163 ms
+Må vente i 205 ms
+Brukte 164 ms
+Ventet i 41 ms
+Tilkoblingstid 159 ms
+Må vente i 794 ms
+Brukte 160 ms
+Ventet i 634 ms
+Tilkoblingstid 160 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 160 ms
+Ventet i -59 ms
+Tilkoblingstid 161 ms
+Må vente i 368 ms
+Brukte 161 ms
+Ventet i 207 ms
+Tilkoblingstid 171 ms
+Må vente i 659 ms
+Brukte 172 ms
+Ventet i 487 ms
+Tilkoblingstid 176 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 176 ms
+Ventet i -66 ms
+Tilkoblingstid 162 ms
+Må vente i 183 ms
+Brukte 162 ms
+Ventet i 21 ms
+Tilkoblingstid 164 ms
+Må vente i 218 ms
+Brukte 164 ms
+Ventet i 54 ms
+Tilkoblingstid 164 ms
+Må vente i 663 ms
+Brukte 164 ms
+Ventet i 499 ms
+Tilkoblingstid 162 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 114 ms
+Brukte 162 ms
+Ventet i -48 ms
+Tilkoblingstid 166 ms
+Må vente i 148 ms
+Brukte 166 ms
+Ventet i -18 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 161 ms
+Må vente i 191 ms
+Brukte 161 ms
+Ventet i 30 ms
+Tilkoblingstid 166 ms
+Må vente i 769 ms
+Brukte 167 ms
+Ventet i 602 ms
+Tilkoblingstid 172 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 117 ms
+Brukte 173 ms
+Ventet i -56 ms
+Tilkoblingstid 164 ms
+Må vente i 171 ms
+Brukte 165 ms
+Ventet i 6 ms
+Tilkoblingstid 166 ms
+Må vente i 217 ms
+Brukte 166 ms
+Ventet i 51 ms
+Tilkoblingstid 168 ms
+Må vente i 701 ms
+Brukte 168 ms
+Ventet i 533 ms
+Tilkoblingstid 169 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 116 ms
+Brukte 169 ms
+Ventet i -53 ms
+Tilkoblingstid 167 ms
+Må vente i 167 ms
+Brukte 167 ms
+Ventet i 0 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 168 ms
+Må vente i 186 ms
+Brukte 168 ms
+Ventet i 18 ms
+Tilkoblingstid 167 ms
+Må vente i 734 ms
+Brukte 168 ms
+Ventet i 566 ms
+Tilkoblingstid 200 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 100 ms
+Brukte 200 ms
+Ventet i -100 ms
+Tilkoblingstid 187 ms
+Må vente i 136 ms
+Brukte 187 ms
+Ventet i -51 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 181 ms
+Må vente i 218 ms
+Brukte 182 ms
+Ventet i 36 ms
+Tilkoblingstid 171 ms
+Må vente i 733 ms
+Brukte 171 ms
+Ventet i 562 ms
+Tilkoblingstid 169 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 108 ms
+Brukte 170 ms
+Ventet i -62 ms
+Tilkoblingstid 170 ms
+Må vente i 162 ms
+Brukte 170 ms
+Ventet i -8 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 172 ms
+Må vente i 201 ms
+Brukte 172 ms
+Ventet i 29 ms
+Tilkoblingstid 171 ms
+Må vente i 680 ms
+Brukte 171 ms
+Ventet i 509 ms
+Tilkoblingstid 188 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 188 ms
+Ventet i -91 ms
+Tilkoblingstid 172 ms
+Må vente i 170 ms
+Brukte 172 ms
+Ventet i -2 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 173 ms
+Må vente i 191 ms
+Brukte 173 ms
+Ventet i 18 ms
+Tilkoblingstid 190 ms
+Må vente i 651 ms
+Brukte 190 ms
+Ventet i 461 ms
+Tilkoblingstid 175 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 175 ms
+Ventet i -71 ms
+Tilkoblingstid 175 ms
+Må vente i 147 ms
+Brukte 175 ms
+Ventet i -28 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 176 ms
+Må vente i 190 ms
+Brukte 176 ms
+Ventet i 14 ms
+Tilkoblingstid 174 ms
+Må vente i 767 ms
+Brukte 174 ms
+Ventet i 593 ms
+Tilkoblingstid 173 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 96 ms
+Brukte 173 ms
+Ventet i -77 ms
+Tilkoblingstid 173 ms
+Må vente i 164 ms
+Brukte 173 ms
+Ventet i -9 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 177 ms
+Må vente i 989 ms
+Brukte 177 ms
+Ventet i 812 ms
+Tilkoblingstid 187 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 95 ms
+Brukte 187 ms
+Ventet i -92 ms
+Tilkoblingstid 182 ms
+Må vente i 146 ms
+Brukte 182 ms
+Ventet i -36 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 179 ms
+Må vente i 197 ms
+Brukte 180 ms
+Ventet i 17 ms
+Tilkoblingstid 180 ms
+Må vente i 756 ms
+Brukte 180 ms
+Ventet i 576 ms
+Tilkoblingstid 179 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 179 ms
+Ventet i -70 ms
+Tilkoblingstid 180 ms
+Må vente i 136 ms
+Brukte 180 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Ventet i -44 ms
+Tilkoblingstid 179 ms
+Må vente i 186 ms
+Brukte 179 ms
+Ventet i 7 ms
+Tilkoblingstid 177 ms
+Må vente i 799 ms
+Brukte 177 ms
+Ventet i 622 ms
+Tilkoblingstid 196 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 196 ms
+Ventet i -87 ms
+Tilkoblingstid 202 ms
+Må vente i 176 ms
+Brukte 202 ms
+Ventet i -26 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 197 ms
+Må vente i 198 ms
+Brukte 197 ms
+Ventet i 1 ms
+Tilkoblingstid 180 ms
+Må vente i 754 ms
+Brukte 180 ms
+Ventet i 574 ms
+Tilkoblingstid 200 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 200 ms
+Ventet i -107 ms
+Tilkoblingstid 186 ms
+Må vente i 198 ms
+Brukte 186 ms
+Ventet i 12 ms
+Tilkoblingstid 185 ms
+Må vente i 195 ms
+Brukte 185 ms
+Ventet i 10 ms
+Tilkoblingstid 182 ms
+Må vente i 694 ms
+Brukte 182 ms
+Ventet i 512 ms
+Tilkoblingstid 202 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 90 ms
+Brukte 202 ms
+Ventet i -112 ms
+Tilkoblingstid 187 ms
+Må vente i 156 ms
+Brukte 187 ms
+Ventet i -31 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 209 ms
+Må vente i 222 ms
+Brukte 209 ms
+Ventet i 13 ms
+Tilkoblingstid 188 ms
+Må vente i 707 ms
+Brukte 188 ms
+Ventet i 519 ms
+Tilkoblingstid 204 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 81 ms
+Brukte 204 ms
+Ventet i -123 ms
+Tilkoblingstid 188 ms
+Må vente i 171 ms
+Brukte 188 ms
+Ventet i -17 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 188 ms
+Må vente i 174 ms
+Brukte 188 ms
+Ventet i -14 ms
+Tilkoblingstid 187 ms
+Må vente i 752 ms
+Brukte 187 ms
+Ventet i 565 ms
+Tilkoblingstid 185 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 185 ms
+Ventet i -76 ms
+Tilkoblingstid 187 ms
+Må vente i 158 ms
+Brukte 188 ms
+Ventet i -30 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 190 ms
+Må vente i 209 ms
+Brukte 191 ms
+Ventet i 18 ms
+Tilkoblingstid 192 ms
+Må vente i 749 ms
+Brukte 192 ms
+Ventet i 557 ms
+Tilkoblingstid 186 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 84 ms
+Brukte 187 ms
+Ventet i -103 ms
+Tilkoblingstid 187 ms
+Må vente i 152 ms
+Brukte 187 ms
+Ventet i -35 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 192 ms
+Må vente i 182 ms
+Brukte 192 ms
+Ventet i -10 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 189 ms
+Må vente i 928 ms
+Brukte 190 ms
+Ventet i 738 ms
+Tilkoblingstid 210 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 156 ms
+Brukte 210 ms
+Ventet i -54 ms
+Tilkoblingstid 195 ms
+Må vente i 175 ms
+Brukte 195 ms
+Ventet i -20 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 192 ms
+Må vente i 789 ms
+Brukte 193 ms
+Ventet i 596 ms
+Tilkoblingstid 198 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 198 ms
+Ventet i -99 ms
+Tilkoblingstid 200 ms
+Må vente i 122 ms
+Brukte 200 ms
+Ventet i -78 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 194 ms
+Må vente i 149 ms
+Brukte 195 ms
+Ventet i -46 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 195 ms
+Må vente i 880 ms
+Brukte 195 ms
+Ventet i 685 ms
+Tilkoblingstid 194 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 111 ms
+Brukte 195 ms
+Ventet i -84 ms
+Tilkoblingstid 194 ms
+Må vente i 155 ms
+Brukte 194 ms
+Ventet i -39 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 195 ms
+Må vente i 176 ms
+Brukte 195 ms
+Ventet i -19 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 197 ms
+Må vente i 780 ms
+Brukte 197 ms
+Ventet i 583 ms
+Tilkoblingstid 207 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 123 ms
+Brukte 207 ms
+Ventet i -84 ms
+Tilkoblingstid 212 ms
+Må vente i 151 ms
+Brukte 212 ms
+Ventet i -61 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 196 ms
+Må vente i 205 ms
+Brukte 196 ms
+Ventet i 9 ms
+Tilkoblingstid 193 ms
+Må vente i 662 ms
+Brukte 193 ms
+Ventet i 469 ms
+Tilkoblingstid 199 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 106 ms
+Brukte 199 ms
+Ventet i -93 ms
+Tilkoblingstid 203 ms
+Må vente i 170 ms
+Brukte 203 ms
+Ventet i -33 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 200 ms
+Må vente i 201 ms
+Brukte 200 ms
+Ventet i 1 ms
+Tilkoblingstid 201 ms
+Må vente i 708 ms
+Brukte 201 ms
+Ventet i 507 ms
+Tilkoblingstid 199 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 200 ms
+Ventet i -99 ms
+Tilkoblingstid 206 ms
+Må vente i 149 ms
+Brukte 206 ms
+Ventet i -57 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 218 ms
+Må vente i 191 ms
+Brukte 218 ms
+Ventet i -27 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 212 ms
+Må vente i 731 ms
+Brukte 212 ms
+Ventet i 519 ms
+Tilkoblingstid 203 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 92 ms
+Brukte 203 ms
+Ventet i -111 ms
+Tilkoblingstid 200 ms
+Må vente i 161 ms
+Brukte 200 ms
+Ventet i -39 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 202 ms
+Må vente i 205 ms
+Brukte 202 ms
+Ventet i 3 ms
+Tilkoblingstid 205 ms
+Må vente i 792 ms
+Brukte 205 ms
+Ventet i 587 ms
+Tilkoblingstid 200 ms
+Må vente i 99 ms
+Brukte 200 ms
+Ventet i -101 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 200 ms
+Må vente i 151 ms
+Brukte 200 ms
+Ventet i -49 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 205 ms
+Må vente i 198 ms
+Brukte 205 ms
+Ventet i -7 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 223 ms
+Må vente i 797 ms
+Brukte 223 ms
+Ventet i 574 ms
+Tilkoblingstid 202 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 202 ms
+Ventet i -108 ms
+Tilkoblingstid 228 ms
+Må vente i 171 ms
+Brukte 229 ms
+Ventet i -58 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 251 ms
+Må vente i 179 ms
+Brukte 252 ms
+Ventet i -73 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 328 ms
+Må vente i 769 ms
+Brukte 329 ms
+Ventet i 440 ms
+Tilkoblingstid 784 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 784 ms
+Ventet i -691 ms
+Tilkoblingstid 290 ms
+Må vente i 173 ms
+Brukte 290 ms
+Ventet i -117 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 291 ms
+Må vente i 194 ms
+Brukte 291 ms
+Ventet i -97 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 268 ms
+Må vente i 771 ms
+Brukte 269 ms
+Ventet i 502 ms
+Tilkoblingstid 307 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 79 ms
+Brukte 308 ms
+Ventet i -229 ms
+Tilkoblingstid 275 ms
+Må vente i 142 ms
+Brukte 276 ms
+Ventet i -134 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 272 ms
+Må vente i 195 ms
+Brukte 272 ms
+Ventet i -77 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 270 ms
+Må vente i 743 ms
+Brukte 270 ms
+Ventet i 473 ms
+Tilkoblingstid 289 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 289 ms
+Ventet i -185 ms
+Tilkoblingstid 278 ms
+Må vente i 180 ms
+Brukte 278 ms
+Ventet i -98 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 272 ms
+Må vente i 205 ms
+Brukte 272 ms
+Ventet i -67 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 268 ms
+Må vente i 733 ms
+Brukte 268 ms
+Ventet i 465 ms
+Tilkoblingstid 276 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 100 ms
+Brukte 276 ms
+Ventet i -176 ms
+Tilkoblingstid 266 ms
+Må vente i 171 ms
+Brukte 267 ms
+Ventet i -96 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 272 ms
+Må vente i 213 ms
+Brukte 272 ms
+Ventet i -59 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 271 ms
+Må vente i 719 ms
+Brukte 272 ms
+Ventet i 447 ms
+Tilkoblingstid 290 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 83 ms
+Brukte 291 ms
+Ventet i -208 ms
+Tilkoblingstid 277 ms
+Må vente i 165 ms
+Brukte 277 ms
+Ventet i -112 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 275 ms
+Må vente i 187 ms
+Brukte 275 ms
+Ventet i -88 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 277 ms
+Må vente i 791 ms
+Brukte 277 ms
+Ventet i 514 ms
+Tilkoblingstid 275 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 85 ms
+Brukte 276 ms
+Ventet i -191 ms
+Tilkoblingstid 276 ms
+Må vente i 156 ms
+Brukte 277 ms
+Ventet i -121 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 274 ms
+Må vente i 980 ms
+Brukte 275 ms
+Ventet i 705 ms
+Tilkoblingstid 290 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 100 ms
+Brukte 290 ms
+Ventet i -190 ms
+Tilkoblingstid 282 ms
+Må vente i 178 ms
+Brukte 282 ms
+Ventet i -104 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 233 ms
+Må vente i 184 ms
+Brukte 233 ms
+Ventet i -49 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 219 ms
+Må vente i 758 ms
+Brukte 219 ms
+Ventet i 539 ms
+Tilkoblingstid 219 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 114 ms
+Brukte 219 ms
+Ventet i -105 ms
+Tilkoblingstid 215 ms
+Må vente i 420 ms
+Brukte 215 ms
+Ventet i 205 ms
+Tilkoblingstid 234 ms
+Må vente i 728 ms
+Brukte 234 ms
+Ventet i 494 ms
+Tilkoblingstid 234 ms
+Brukte lengre tid enn tildelt!!!!!!!!!Må vente i 92 ms
+Brukte 234 ms
+Ventet i -142 ms
+
+Tilkoblingstid 237 ms
+Må vente i 166 ms
+Brukte 237 ms
+Ventet i -71 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 224 ms
+Må vente i 161 ms
+Brukte 224 ms
+Ventet i -63 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 221 ms
+Må vente i 815 ms
+Brukte 221 ms
+Ventet i 594 ms
+Tilkoblingstid 224 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 224 ms
+Ventet i -123 ms
+Tilkoblingstid 219 ms
+Må vente i 177 ms
+Brukte 219 ms
+Ventet i -42 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 219 ms
+Må vente i 212 ms
+Brukte 221 ms
+Ventet i -9 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 218 ms
+Må vente i 725 ms
+Brukte 219 ms
+Ventet i 506 ms
+Tilkoblingstid 236 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 87 ms
+Brukte 236 ms
+Ventet i -149 ms
+Tilkoblingstid 232 ms
+Må vente i 164 ms
+Brukte 232 ms
+Ventet i -68 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 225 ms
+Må vente i 205 ms
+Brukte 225 ms
+Ventet i -20 ms
+Tilkoblingstid 223 ms
+Må vente i 660 ms
+Brukte 223 ms
+Ventet i 437 ms
+Tilkoblingstid 223 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 113 ms
+Brukte 223 ms
+Ventet i -110 ms
+Tilkoblingstid 225 ms
+Må vente i 177 ms
+Brukte 226 ms
+Ventet i -49 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 223 ms
+Må vente i 209 ms
+Brukte 223 ms
+Ventet i -14 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 222 ms
+Må vente i 627 ms
+Brukte 223 ms
+Ventet i 404 ms
+Tilkoblingstid 227 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 227 ms
+Ventet i -128 ms
+Tilkoblingstid 246 ms
+Må vente i 169 ms
+Brukte 247 ms
+Ventet i -78 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 242 ms
+Må vente i 209 ms
+Brukte 242 ms
+Ventet i -33 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 226 ms
+Må vente i 789 ms
+Brukte 226 ms
+Ventet i 563 ms
+Tilkoblingstid 240 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 96 ms
+Brukte 240 ms
+Ventet i -144 ms
+Tilkoblingstid 230 ms
+Må vente i 167 ms
+Brukte 231 ms
+Ventet i -64 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 231 ms
+Må vente i 176 ms
+Brukte 231 ms
+Ventet i -55 ms
+Tilkoblingstid 228 ms
+Må vente i 749 ms
+Brukte 228 ms
+Ventet i 521 ms
+Tilkoblingstid 231 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 117 ms
+Brukte 232 ms
+Ventet i -115 ms
+Tilkoblingstid 249 ms
+Må vente i 150 ms
+Brukte 249 ms
+Ventet i -99 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 252 ms
+Må vente i 193 ms
+Brukte 252 ms
+Ventet i -59 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 227 ms
+Må vente i 793 ms
+Brukte 227 ms
+Ventet i 566 ms
+Tilkoblingstid 238 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 239 ms
+Ventet i -146 ms
+Tilkoblingstid 238 ms
+Må vente i 153 ms
+Brukte 238 ms
+Ventet i -85 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 243 ms
+Må vente i 200 ms
+Brukte 243 ms
+Ventet i -43 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 239 ms
+Må vente i 732 ms
+Brukte 239 ms
+Ventet i 493 ms
+Tilkoblingstid 246 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 246 ms
+Ventet i -137 ms
+Tilkoblingstid 253 ms
+Må vente i 158 ms
+Brukte 253 ms
+Ventet i -95 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 248 ms
+Må vente i 206 ms
+Brukte 248 ms
+Ventet i -42 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 234 ms
+Må vente i 788 ms
+Brukte 235 ms
+Ventet i 553 ms
+Tilkoblingstid 257 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 257 ms
+Ventet i -155 ms
+Tilkoblingstid 239 ms
+Må vente i 169 ms
+Brukte 239 ms
+Ventet i -70 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 235 ms
+Må vente i 215 ms
+Brukte 236 ms
+Ventet i -21 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 233 ms
+Må vente i 692 ms
+Brukte 233 ms
+Ventet i 459 ms
+Tilkoblingstid 238 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 83 ms
+Brukte 238 ms
+Ventet i -155 ms
+Tilkoblingstid 250 ms
+Må vente i 180 ms
+Brukte 250 ms
+Ventet i -70 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 260 ms
+Må vente i 206 ms
+Brukte 260 ms
+Ventet i -54 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 242 ms
+Må vente i 692 ms
+Brukte 242 ms
+Ventet i 450 ms
+Tilkoblingstid 245 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 245 ms
+Ventet i -143 ms
+Tilkoblingstid 236 ms
+Må vente i 146 ms
+Brukte 236 ms
+Ventet i -90 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 236 ms
+Må vente i 209 ms
+Brukte 238 ms
+Ventet i -29 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 239 ms
+Må vente i 717 ms
+Brukte 239 ms
+Ventet i 478 ms
+Tilkoblingstid 240 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 106 ms
+Brukte 240 ms
+Ventet i -134 ms
+Tilkoblingstid 244 ms
+Må vente i 144 ms
+Brukte 245 ms
+Ventet i -101 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 270 ms
+Må vente i 1043 ms
+Brukte 271 ms
+Ventet i 772 ms
+Tilkoblingstid 237 ms
+Må vente i 163 ms
+Brukte 237 ms
+Ventet i -74 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 243 ms
+Må vente i 187 ms
+Brukte 244 ms
+Ventet i -57 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 243 ms
+Må vente i 815 ms
+Brukte 243 ms
+Ventet i 572 ms
+Tilkoblingstid 245 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 245 ms
+Ventet i -152 ms
+Tilkoblingstid 242 ms
+Må vente i 173 ms
+Brukte 242 ms
+Ventet i -69 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 253 ms
+Må vente i 181 ms
+Brukte 253 ms
+Ventet i -72 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 264 ms
+Må vente i 646 ms
+Brukte 264 ms
+Ventet i 382 ms
+Tilkoblingstid 265 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 265 ms
+Ventet i -168 ms
+Tilkoblingstid 245 ms
+Må vente i 173 ms
+Brukte 245 ms
+Ventet i -72 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 245 ms
+Må vente i 202 ms
+Brukte 245 ms
+Ventet i -43 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 249 ms
+Må vente i 791 ms
+Brukte 249 ms
+Ventet i 542 ms
+Tilkoblingstid 247 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 247 ms
+Ventet i -150 ms
+Tilkoblingstid 248 ms
+Må vente i 164 ms
+Brukte 249 ms
+Ventet i -85 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 261 ms
+Må vente i 212 ms
+Brukte 262 ms
+Ventet i -50 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 270 ms
+Må vente i 682 ms
+Brukte 270 ms
+Ventet i 412 ms
+Tilkoblingstid 254 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 100 ms
+Brukte 255 ms
+Ventet i -155 ms
+Tilkoblingstid 251 ms
+Må vente i 172 ms
+Brukte 251 ms
+Ventet i -79 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 249 ms
+Må vente i 219 ms
+Brukte 250 ms
+Ventet i -31 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 250 ms
+Må vente i 747 ms
+Brukte 250 ms
+Ventet i 497 ms
+Tilkoblingstid 249 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 250 ms
+Ventet i -153 ms
+Tilkoblingstid 248 ms
+Må vente i 162 ms
+Brukte 248 ms
+Ventet i -86 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 249 ms
+Må vente i 231 ms
+Brukte 249 ms
+Ventet i -18 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 274 ms
+Må vente i 727 ms
+Brukte 274 ms
+Ventet i 453 ms
+Tilkoblingstid 255 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 85 ms
+Brukte 255 ms
+Ventet i -170 ms
+Tilkoblingstid 251 ms
+Må vente i 324 ms
+Brukte 252 ms
+Ventet i 72 ms
+Tilkoblingstid 254 ms
+Må vente i 790 ms
+Brukte 254 ms
+Ventet i 536 ms
+Tilkoblingstid 252 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 252 ms
+Ventet i -158 ms
+Tilkoblingstid 253 ms
+Må vente i 159 ms
+Brukte 254 ms
+Ventet i -95 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 250 ms
+Må vente i 204 ms
+Brukte 251 ms
+Ventet i -47 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 259 ms
+Må vente i 746 ms
+Brukte 259 ms
+Ventet i 487 ms
+Tilkoblingstid 254 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 92 ms
+Brukte 254 ms
+Ventet i -162 ms
+Tilkoblingstid 256 ms
+Må vente i 162 ms
+Brukte 256 ms
+Ventet i -94 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 262 ms
+Må vente i 205 ms
+Brukte 262 ms
+Ventet i -57 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 253 ms
+Må vente i 798 ms
+Brukte 253 ms
+Ventet i 545 ms
+Tilkoblingstid 249 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 103 ms
+Brukte 250 ms
+Ventet i -147 ms
+Tilkoblingstid 254 ms
+Må vente i 182 ms
+Brukte 254 ms
+Ventet i -72 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 257 ms
+Må vente i 189 ms
+Brukte 257 ms
+Ventet i -68 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 277 ms
+Må vente i 678 ms
+Brukte 277 ms
+Ventet i 401 ms
+Tilkoblingstid 337 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 103 ms
+Brukte 337 ms
+Ventet i -234 ms
+Tilkoblingstid 333 ms
+Må vente i 177 ms
+Brukte 333 ms
+Ventet i -156 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 335 ms
+Må vente i 185 ms
+Brukte 335 ms
+Ventet i -150 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 331 ms
+Må vente i 776 ms
+Brukte 331 ms
+Ventet i 445 ms
+Tilkoblingstid 328 ms
+Må vente i 95 ms
+Brukte 328 ms
+Ventet i -233 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 350 ms
+Må vente i 140 ms
+Brukte 350 ms
+Ventet i -210 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 371 ms
+Må vente i 217 ms
+Brukte 371 ms
+Ventet i -154 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 340 ms
+Må vente i 800 ms
+Brukte 341 ms
+Ventet i 459 ms
+Tilkoblingstid 341 ms
+Må vente i 112 ms
+Brukte 341 ms
+Ventet i -229 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 332 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 135 ms
+Brukte 332 ms
+Ventet i -197 ms
+Tilkoblingstid 259 ms
+Må vente i 185 ms
+Brukte 259 ms
+Ventet i -74 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 255 ms
+Må vente i 730 ms
+Brukte 256 ms
+Ventet i 474 ms
+Tilkoblingstid 297 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 298 ms
+Ventet i -199 ms
+Tilkoblingstid 287 ms
+Må vente i 167 ms
+Brukte 287 ms
+Ventet i -120 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 259 ms
+Må vente i 234 ms
+Brukte 261 ms
+Ventet i -27 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 262 ms
+Må vente i 657 ms
+Brukte 262 ms
+Ventet i 395 ms
+Tilkoblingstid 263 ms
+Må vente i 86 ms
+Brukte 263 ms
+Ventet i -177 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 265 ms
+Må vente i 148 ms
+Brukte 265 ms
+Ventet i -117 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 273 ms
+Må vente i 186 ms
+Brukte 273 ms
+Ventet i -87 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 268 ms
+Må vente i 726 ms
+Brukte 268 ms
+Ventet i 458 ms
+Tilkoblingstid 279 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 108 ms
+Brukte 280 ms
+Ventet i -172 ms
+Tilkoblingstid 284 ms
+Må vente i 148 ms
+Brukte 284 ms
+Ventet i -136 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 267 ms
+Må vente i 202 ms
+Brukte 268 ms
+Ventet i -66 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 267 ms
+Må vente i 773 ms
+Brukte 267 ms
+Ventet i 506 ms
+Tilkoblingstid 271 ms
+Må vente i 94 ms
+Brukte 271 ms
+Ventet i -177 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 267 ms
+Må vente i 186 ms
+Brukte 267 ms
+Ventet i -81 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 265 ms
+Må vente i 234 ms
+Brukte 266 ms
+Ventet i -32 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 264 ms
+Må vente i 653 ms
+Brukte 265 ms
+Ventet i 388 ms
+Tilkoblingstid 286 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 286 ms
+Ventet i -189 ms
+Tilkoblingstid 284 ms
+Må vente i 141 ms
+Brukte 285 ms
+Ventet i -144 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 270 ms
+Må vente i 222 ms
+Brukte 270 ms
+Ventet i -48 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 269 ms
+Må vente i 714 ms
+Brukte 269 ms
+Ventet i 445 ms
+Tilkoblingstid 276 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 91 ms
+Brukte 276 ms
+Ventet i -185 ms
+Tilkoblingstid 267 ms
+Må vente i 174 ms
+Brukte 267 ms
+Ventet i -93 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 265 ms
+Må vente i 217 ms
+Brukte 266 ms
+Ventet i -49 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 268 ms
+Må vente i 757 ms
+Brukte 269 ms
+Ventet i 488 ms
+Tilkoblingstid 291 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 291 ms
+Ventet i -182 ms
+Tilkoblingstid 281 ms
+Må vente i 156 ms
+Brukte 281 ms
+Ventet i -125 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 277 ms
+Må vente i 188 ms
+Brukte 278 ms
+Ventet i -90 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 273 ms
+Må vente i 770 ms
+Brukte 273 ms
+Ventet i 497 ms
+Tilkoblingstid 279 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 92 ms
+Brukte 279 ms
+Ventet i -187 ms
+Tilkoblingstid 274 ms
+Må vente i 162 ms
+Brukte 274 ms
+Ventet i -112 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 273 ms
+Må vente i 223 ms
+Brukte 274 ms
+Ventet i -51 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 273 ms
+Må vente i 686 ms
+Brukte 273 ms
+Ventet i 413 ms
+Tilkoblingstid 297 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 114 ms
+Brukte 297 ms
+Ventet i -183 ms
+Tilkoblingstid 275 ms
+Må vente i 140 ms
+Brukte 275 ms
+Ventet i -135 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 276 ms
+Må vente i 203 ms
+Brukte 276 ms
+Ventet i -73 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 276 ms
+Må vente i 787 ms
+Brukte 277 ms
+Ventet i 510 ms
+Tilkoblingstid 273 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 108 ms
+Brukte 274 ms
+Ventet i -166 ms
+Tilkoblingstid 270 ms
+Må vente i 153 ms
+Brukte 270 ms
+Ventet i -117 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 299 ms
+Må vente i 202 ms
+Brukte 299 ms
+Ventet i -97 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 288 ms
+Må vente i 853 ms
+Brukte 288 ms
+Ventet i 565 ms
+Tilkoblingstid 301 ms
+Må vente i 161 ms
+Brukte 301 ms
+Ventet i -140 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 276 ms
+Må vente i 218 ms
+Brukte 277 ms
+Ventet i -59 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 360 ms
+Må vente i 771 ms
+Brukte 360 ms
+Ventet i 411 ms
+Tilkoblingstid 365 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 83 ms
+Brukte 365 ms
+Ventet i -282 ms
+Tilkoblingstid 364 ms
+Må vente i 166 ms
+Brukte 364 ms
+Ventet i -198 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 374 ms
+Må vente i 225 ms
+Brukte 375 ms
+Ventet i -150 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 388 ms
+Må vente i 717 ms
+Brukte 388 ms
+Ventet i 329 ms
+Tilkoblingstid 362 ms
+Må vente i 94 ms
+Brukte 362 ms
+Ventet i -268 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 361 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 130 ms
+Brukte 362 ms
+Ventet i -232 ms
+Tilkoblingstid 370 ms
+Må vente i 191 ms
+Brukte 370 ms
+Ventet i -179 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 363 ms
+Må vente i 710 ms
+Brukte 364 ms
+Ventet i 346 ms
+Tilkoblingstid 367 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 117 ms
+Brukte 367 ms
+Ventet i -250 ms
+Tilkoblingstid 390 ms
+Må vente i 153 ms
+Brukte 390 ms
+Ventet i -237 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 380 ms
+Må vente i 190 ms
+Brukte 380 ms
+Ventet i -190 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 366 ms
+Må vente i 725 ms
+Brukte 366 ms
+Ventet i 359 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 372 ms
+Må vente i 107 ms
+Brukte 372 ms
+Ventet i -265 ms
+Tilkoblingstid 366 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 155 ms
+Brukte 367 ms
+Ventet i -212 ms
+Tilkoblingstid 365 ms
+Må vente i 226 ms
+Brukte 365 ms
+Ventet i -139 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 372 ms
+Må vente i 683 ms
+Brukte 372 ms
+Ventet i 311 ms
+Tilkoblingstid 380 ms
+Må vente i 105 ms
+Brukte 381 ms
+Ventet i -276 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 372 ms
+Må vente i 167 ms
+Brukte 373 ms
+Ventet i -206 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 372 ms
+Må vente i 218 ms
+Brukte 372 ms
+Ventet i -154 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 377 ms
+Må vente i 735 ms
+Brukte 377 ms
+Ventet i 358 ms
+Tilkoblingstid 372 ms
+Må vente i 99 ms
+Brukte 372 ms
+Ventet i -273 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 373 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 162 ms
+Brukte 373 ms
+Ventet i -211 ms
+Tilkoblingstid 305 ms
+Må vente i 169 ms
+Brukte 306 ms
+Ventet i -137 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 320 ms
+Må vente i 800 ms
+Brukte 320 ms
+Ventet i 480 ms
+Tilkoblingstid 290 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 290 ms
+Ventet i -191 ms
+Tilkoblingstid 287 ms
+Må vente i 151 ms
+Brukte 287 ms
+Ventet i -136 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 296 ms
+Må vente i 187 ms
+Brukte 296 ms
+Ventet i -109 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 292 ms
+Må vente i 740 ms
+Brukte 292 ms
+Ventet i 448 ms
+Tilkoblingstid 320 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 98 ms
+Brukte 320 ms
+Ventet i -222 ms
+Tilkoblingstid 306 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 141 ms
+Brukte 306 ms
+Ventet i -165 ms
+Tilkoblingstid 307 ms
+Må vente i 205 ms
+Brukte 307 ms
+Ventet i -102 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 303 ms
+Må vente i 709 ms
+Brukte 304 ms
+Ventet i 405 ms
+Tilkoblingstid 295 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 295 ms
+Ventet i -198 ms
+Tilkoblingstid 297 ms
+Må vente i 160 ms
+Brukte 297 ms
+Ventet i -137 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 298 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 209 ms
+Brukte 298 ms
+Ventet i -89 ms
+Tilkoblingstid 295 ms
+Må vente i 649 ms
+Brukte 295 ms
+Ventet i 354 ms
+Tilkoblingstid 296 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 98 ms
+Brukte 296 ms
+Ventet i -198 ms
+Tilkoblingstid 319 ms
+Må vente i 155 ms
+Brukte 319 ms
+Ventet i -164 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 306 ms
+Må vente i 195 ms
+Brukte 306 ms
+Ventet i -111 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 300 ms
+Må vente i 756 ms
+Brukte 300 ms
+Ventet i 456 ms
+Tilkoblingstid 300 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 83 ms
+Brukte 300 ms
+Ventet i -217 ms
+Tilkoblingstid 306 ms
+Må vente i 174 ms
+Brukte 306 ms
+Ventet i -132 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 302 ms
+Må vente i 201 ms
+Brukte 302 ms
+Ventet i -101 ms
+Tilkoblingstid 297 ms
+Må vente i 772 ms
+Brukte 297 ms
+Ventet i 475 ms
+Tilkoblingstid 324 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 80 ms
+Brukte 324 ms
+Ventet i -244 ms
+Tilkoblingstid 303 ms
+Må vente i 167 ms
+Brukte 304 ms
+Ventet i -137 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 301 ms
+Må vente i 196 ms
+Brukte 301 ms
+Ventet i -105 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 305 ms
+Må vente i 728 ms
+Brukte 306 ms
+Ventet i 422 ms
+Tilkoblingstid 302 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 113 ms
+Brukte 302 ms
+Ventet i -189 ms
+Tilkoblingstid 297 ms
+Må vente i 157 ms
+Brukte 297 ms
+Ventet i -140 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 291 ms
+Må vente i 196 ms
+Brukte 291 ms
+Ventet i -95 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 298 ms
+Må vente i 790 ms
+Brukte 299 ms
+Ventet i 491 ms
+Tilkoblingstid 304 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 95 ms
+Brukte 305 ms
+Ventet i -210 ms
+Tilkoblingstid 308 ms
+Må vente i 167 ms
+Brukte 308 ms
+Ventet i -141 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 304 ms
+Må vente i 227 ms
+Brukte 304 ms
+Ventet i -77 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 310 ms
+Må vente i 838 ms
+Brukte 310 ms
+Ventet i 528 ms
+Tilkoblingstid 300 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 184 ms
+Brukte 300 ms
+Ventet i -116 ms
+Tilkoblingstid 298 ms
+Må vente i 224 ms
+Brukte 298 ms
+Ventet i -74 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 313 ms
+Må vente i 728 ms
+Brukte 313 ms
+Ventet i 415 ms
+Tilkoblingstid 311 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 311 ms
+Ventet i -212 ms
+Tilkoblingstid 307 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 155 ms
+Brukte 307 ms
+Ventet i -152 ms
+Tilkoblingstid 392 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 186 ms
+Brukte 392 ms
+Ventet i -206 ms
+Tilkoblingstid 398 ms
+Må vente i 700 ms
+Brukte 398 ms
+Ventet i 302 ms
+Tilkoblingstid 395 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 95 ms
+Brukte 396 ms
+Ventet i -301 ms
+Tilkoblingstid 409 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 160 ms
+Brukte 409 ms
+Ventet i -249 ms
+Tilkoblingstid 435 ms
+Må vente i 201 ms
+Brukte 435 ms
+Ventet i -234 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 411 ms
+Må vente i 771 ms
+Brukte 411 ms
+Ventet i 360 ms
+Tilkoblingstid 401 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 401 ms
+Ventet i -300 ms
+Tilkoblingstid 401 ms
+Må vente i 166 ms
+Brukte 401 ms
+Ventet i -235 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 401 ms
+Må vente i 208 ms
+Brukte 401 ms
+Ventet i -193 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 399 ms
+Må vente i 718 ms
+Brukte 399 ms
+Ventet i 319 ms
+Tilkoblingstid 422 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 92 ms
+Brukte 422 ms
+Ventet i -330 ms
+Tilkoblingstid 406 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 175 ms
+Brukte 406 ms
+Ventet i -231 ms
+Tilkoblingstid 399 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 184 ms
+Brukte 399 ms
+Ventet i -215 ms
+Tilkoblingstid 408 ms
+Må vente i 715 ms
+Brukte 408 ms
+Ventet i 307 ms
+Tilkoblingstid 404 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 405 ms
+Ventet i -303 ms
+Tilkoblingstid 397 ms
+Må vente i 162 ms
+Brukte 397 ms
+Ventet i -235 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 429 ms
+Må vente i 223 ms
+Brukte 429 ms
+Ventet i -206 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 422 ms
+Må vente i 747 ms
+Brukte 422 ms
+Ventet i 325 ms
+Tilkoblingstid 410 ms
+Må vente i 116 ms
+Brukte 410 ms
+Ventet i -294 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 410 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 169 ms
+Brukte 410 ms
+Ventet i -241 ms
+Tilkoblingstid 404 ms
+Må vente i 196 ms
+Brukte 404 ms
+Ventet i -208 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 404 ms
+Må vente i 724 ms
+Brukte 404 ms
+Ventet i 320 ms
+Tilkoblingstid 438 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 125 ms
+Brukte 438 ms
+Ventet i -313 ms
+Tilkoblingstid 394 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 388 ms
+Brukte 395 ms
+Ventet i -7 ms
+Tilkoblingstid 321 ms
+Må vente i 650 ms
+Brukte 321 ms
+Ventet i 329 ms
+Tilkoblingstid 316 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 96 ms
+Brukte 316 ms
+Ventet i -220 ms
+Tilkoblingstid 313 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 167 ms
+Brukte 313 ms
+Ventet i -146 ms
+Tilkoblingstid 313 ms
+Må vente i 210 ms
+Brukte 313 ms
+Ventet i -103 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 316 ms
+Må vente i 728 ms
+Brukte 316 ms
+Ventet i 412 ms
+Tilkoblingstid 338 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 85 ms
+Brukte 338 ms
+Ventet i -253 ms
+Tilkoblingstid 319 ms
+Må vente i 173 ms
+Brukte 319 ms
+Ventet i -146 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 318 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 192 ms
+Brukte 318 ms
+Ventet i -126 ms
+Tilkoblingstid 317 ms
+Må vente i 639 ms
+Brukte 317 ms
+Ventet i 322 ms
+Tilkoblingstid 319 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 82 ms
+Brukte 319 ms
+Ventet i -237 ms
+Tilkoblingstid 317 ms
+Må vente i 149 ms
+Brukte 318 ms
+Ventet i -169 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 326 ms
+Må vente i 185 ms
+Brukte 327 ms
+Ventet i -142 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 331 ms
+Må vente i 779 ms
+Brukte 331 ms
+Ventet i 448 ms
+Tilkoblingstid 320 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 105 ms
+Brukte 320 ms
+Ventet i -215 ms
+Tilkoblingstid 318 ms
+Må vente i 156 ms
+Brukte 318 ms
+Ventet i -162 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 321 ms
+Må vente i 196 ms
+Brukte 321 ms
+Ventet i -125 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 327 ms
+Må vente i 765 ms
+Brukte 327 ms
+Ventet i 438 ms
+Tilkoblingstid 325 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 98 ms
+Brukte 325 ms
+Ventet i -227 ms
+Tilkoblingstid 324 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 151 ms
+Brukte 324 ms
+Ventet i -173 ms
+Tilkoblingstid 402 ms
+Må vente i 228 ms
+Brukte 402 ms
+Ventet i -174 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 431 ms
+Må vente i 771 ms
+Brukte 431 ms
+Ventet i 340 ms
+Tilkoblingstid 428 ms
+Må vente i 93 ms
+Brukte 428 ms
+Ventet i -335 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 422 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 145 ms
+Brukte 422 ms
+Ventet i -277 ms
+Tilkoblingstid 421 ms
+Må vente i 236 ms
+Brukte 421 ms
+Ventet i -185 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 423 ms
+Må vente i 717 ms
+Brukte 423 ms
+Ventet i 294 ms
+Tilkoblingstid 448 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 448 ms
+Ventet i -338 ms
+Tilkoblingstid 420 ms
+Må vente i 157 ms
+Brukte 420 ms
+Ventet i -263 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 423 ms
+Må vente i 202 ms
+Brukte 423 ms
+Ventet i -221 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 425 ms
+Må vente i 744 ms
+Brukte 425 ms
+Ventet i 319 ms
+Tilkoblingstid 422 ms
+Må vente i 96 ms
+Brukte 422 ms
+Ventet i -326 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 424 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 149 ms
+Brukte 424 ms
+Ventet i -275 ms
+Tilkoblingstid 461 ms
+Må vente i 231 ms
+Brukte 462 ms
+Ventet i -231 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 436 ms
+Må vente i 748 ms
+Brukte 436 ms
+Ventet i 312 ms
+Tilkoblingstid 424 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 126 ms
+Brukte 425 ms
+Ventet i -299 ms
+Tilkoblingstid 434 ms
+Må vente i 155 ms
+Brukte 434 ms
+Ventet i -279 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 430 ms
+Må vente i 172 ms
+Brukte 431 ms
+Ventet i -259 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 428 ms
+Må vente i 708 ms
+Brukte 428 ms
+Ventet i 280 ms
+Tilkoblingstid 444 ms
+Må vente i 100 ms
+Brukte 445 ms
+Ventet i -345 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 428 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 155 ms
+Brukte 428 ms
+Ventet i -273 ms
+Tilkoblingstid 430 ms
+Må vente i 170 ms
+Brukte 430 ms
+Ventet i -260 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 437 ms
+Må vente i 746 ms
+Brukte 438 ms
+Ventet i 308 ms
+Tilkoblingstid 428 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 428 ms
+Ventet i -334 ms
+Tilkoblingstid 446 ms
+Må vente i 171 ms
+Brukte 446 ms
+Ventet i -275 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 471 ms
+Må vente i 214 ms
+Brukte 471 ms
+Ventet i -257 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 431 ms
+Må vente i 787 ms
+Brukte 431 ms
+Ventet i 356 ms
+Tilkoblingstid 435 ms
+Må vente i 98 ms
+Brukte 435 ms
+Ventet i -337 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 436 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 178 ms
+Brukte 436 ms
+Ventet i -258 ms
+Tilkoblingstid 439 ms
+Må vente i 192 ms
+Brukte 440 ms
+Ventet i -248 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 442 ms
+Må vente i 771 ms
+Brukte 442 ms
+Ventet i 329 ms
+Tilkoblingstid 430 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 430 ms
+Ventet i -328 ms
+Tilkoblingstid 436 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 180 ms
+Brukte 436 ms
+Ventet i -256 ms
+Tilkoblingstid 436 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 209 ms
+Brukte 436 ms
+Ventet i -227 ms
+Tilkoblingstid 456 ms
+Må vente i 697 ms
+Brukte 456 ms
+Ventet i 241 ms
+Tilkoblingstid 434 ms
+Må vente i 91 ms
+Brukte 434 ms
+Ventet i -343 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 485 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 148 ms
+Brukte 485 ms
+Ventet i -337 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 443 ms
+Må vente i 197 ms
+Brukte 444 ms
+Ventet i -247 ms
+Tilkoblingstid 473 ms
+Må vente i 750 ms
+Brukte 473 ms
+Ventet i 277 ms
+Tilkoblingstid 445 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 445 ms
+Ventet i -344 ms
+Tilkoblingstid 464 ms
+Må vente i 168 ms
+Brukte 464 ms
+Ventet i -296 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 446 ms
+Må vente i 163 ms
+Brukte 447 ms
+Ventet i -284 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 465 ms
+Må vente i 671 ms
+Brukte 465 ms
+Ventet i 206 ms
+Tilkoblingstid 445 ms
+Må vente i 108 ms
+Brukte 445 ms
+Ventet i -337 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 448 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 139 ms
+Brukte 448 ms
+Ventet i -309 ms
+Tilkoblingstid 446 ms
+Må vente i 225 ms
+Brukte 447 ms
+Ventet i -222 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 444 ms
+Må vente i 782 ms
+Brukte 444 ms
+Ventet i 338 ms
+Tilkoblingstid 458 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 84 ms
+Brukte 459 ms
+Ventet i -375 ms
+Tilkoblingstid 485 ms
+Må vente i 164 ms
+Brukte 485 ms
+Ventet i -321 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 451 ms
+Må vente i 204 ms
+Brukte 451 ms
+Ventet i -247 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 456 ms
+Må vente i 718 ms
+Brukte 456 ms
+Ventet i 262 ms
+Tilkoblingstid 463 ms
+Må vente i 99 ms
+Brukte 463 ms
+Ventet i -364 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 449 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 183 ms
+Brukte 449 ms
+Ventet i -266 ms
+Tilkoblingstid 468 ms
+Må vente i 210 ms
+Brukte 468 ms
+Ventet i -258 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 521 ms
+Må vente i 760 ms
+Brukte 521 ms
+Ventet i 239 ms
+Tilkoblingstid 471 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 471 ms
+Ventet i -378 ms
+Tilkoblingstid 474 ms
+Må vente i 178 ms
+Brukte 474 ms
+Ventet i -296 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 471 ms
+Må vente i 161 ms
+Brukte 471 ms
+Ventet i -310 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 465 ms
+Må vente i 767 ms
+Brukte 465 ms
+Ventet i 302 ms
+Tilkoblingstid 509 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 509 ms
+Ventet i -415 ms
+Tilkoblingstid 447 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 158 ms
+Brukte 447 ms
+Ventet i -289 ms
+Tilkoblingstid 368 ms
+Må vente i 210 ms
+Brukte 368 ms
+Ventet i -158 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 376 ms
+Må vente i 687 ms
+Brukte 377 ms
+Ventet i 310 ms
+Tilkoblingstid 363 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 103 ms
+Brukte 363 ms
+Ventet i -260 ms
+Tilkoblingstid 369 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 152 ms
+Brukte 369 ms
+Ventet i -217 ms
+Tilkoblingstid 392 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 211 ms
+Brukte 392 ms
+Ventet i -181 ms
+Tilkoblingstid 389 ms
+Må vente i 780 ms
+Brukte 389 ms
+Ventet i 391 ms
+Tilkoblingstid 381 ms
+Må vente i 114 ms
+Brukte 381 ms
+Ventet i -267 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 373 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 165 ms
+Brukte 374 ms
+Ventet i -209 ms
+Tilkoblingstid 369 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 206 ms
+Brukte 369 ms
+Ventet i -163 ms
+Tilkoblingstid 370 ms
+Må vente i 680 ms
+Brukte 370 ms
+Ventet i 310 ms
+Tilkoblingstid 399 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 89 ms
+Brukte 399 ms
+Ventet i -310 ms
+Tilkoblingstid 392 ms
+Må vente i 153 ms
+Brukte 392 ms
+Ventet i -239 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 371 ms
+Må vente i 213 ms
+Brukte 371 ms
+Ventet i -158 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 521 ms
+Må vente i 643 ms
+Brukte 521 ms
+Ventet i 122 ms
+Tilkoblingstid 378 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 378 ms
+Ventet i -274 ms
+Tilkoblingstid 375 ms
+Må vente i 175 ms
+Brukte 377 ms
+Ventet i -202 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 373 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 203 ms
+Brukte 373 ms
+Ventet i -170 ms
+Tilkoblingstid 398 ms
+Må vente i 767 ms
+Brukte 398 ms
+Ventet i 369 ms
+Tilkoblingstid 372 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 372 ms
+Ventet i -271 ms
+Tilkoblingstid 370 ms
+Må vente i 158 ms
+Brukte 371 ms
+Ventet i -213 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 394 ms
+Må vente i 244 ms
+Brukte 394 ms
+Ventet i -150 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 387 ms
+Må vente i 715 ms
+Brukte 387 ms
+Ventet i 328 ms
+Tilkoblingstid 380 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 78 ms
+Brukte 380 ms
+Ventet i -302 ms
+Tilkoblingstid 403 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 157 ms
+Brukte 403 ms
+Ventet i -246 ms
+Tilkoblingstid 405 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 208 ms
+Brukte 405 ms
+Ventet i -197 ms
+Tilkoblingstid 377 ms
+Må vente i 834 ms
+Brukte 378 ms
+Ventet i 456 ms
+Tilkoblingstid 382 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 100 ms
+Brukte 382 ms
+Ventet i -282 ms
+Tilkoblingstid 381 ms
+Må vente i 169 ms
+Brukte 381 ms
+Ventet i -212 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 386 ms
+Må vente i 909 ms
+Brukte 387 ms
+Ventet i 522 ms
+Tilkoblingstid 409 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 409 ms
+Ventet i -299 ms
+Tilkoblingstid 383 ms
+Må vente i 180 ms
+Brukte 383 ms
+Ventet i -203 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 377 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 165 ms
+Brukte 377 ms
+Ventet i -212 ms
+Tilkoblingstid 379 ms
+Må vente i 751 ms
+Brukte 380 ms
+Ventet i 371 ms
+Tilkoblingstid 382 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 98 ms
+Brukte 382 ms
+Ventet i -284 ms
+Tilkoblingstid 386 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 161 ms
+Brukte 387 ms
+Ventet i -226 ms
+Tilkoblingstid 404 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 191 ms
+Brukte 404 ms
+Ventet i -213 ms
+Tilkoblingstid 522 ms
+Må vente i 739 ms
+Brukte 522 ms
+Ventet i 217 ms
+Tilkoblingstid 503 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 88 ms
+Brukte 503 ms
+Ventet i -415 ms
+Tilkoblingstid 497 ms
+Må vente i 193 ms
+Brukte 498 ms
+Ventet i -305 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 500 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 202 ms
+Brukte 500 ms
+Ventet i -298 ms
+Tilkoblingstid 505 ms
+Må vente i 718 ms
+Brukte 506 ms
+Ventet i 212 ms
+Tilkoblingstid 518 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 110 ms
+Brukte 518 ms
+Ventet i -408 ms
+Tilkoblingstid 500 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 181 ms
+Brukte 500 ms
+Ventet i -319 ms
+Tilkoblingstid 499 ms
+Må vente i 203 ms
+Brukte 499 ms
+Ventet i -296 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 504 ms
+Må vente i 692 ms
+Brukte 504 ms
+Ventet i 188 ms
+Tilkoblingstid 497 ms
+Må vente i 112 ms
+Brukte 497 ms
+Ventet i -385 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 531 ms
+Må vente i 184 ms
+Brukte 532 ms
+Ventet i -348 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 505 ms
+Må vente i 205 ms
+Brukte 505 ms
+Ventet i -300 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 507 ms
+Må vente i 747 ms
+Brukte 507 ms
+Ventet i 240 ms
+Tilkoblingstid 518 ms
+Må vente i 251 ms
+Brukte 518 ms
+Ventet i -267 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 499 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 154 ms
+Brukte 499 ms
+Ventet i -345 ms
+Tilkoblingstid 520 ms
+Må vente i 736 ms
+Brukte 520 ms
+Ventet i 216 ms
+Tilkoblingstid 511 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 511 ms
+Ventet i -407 ms
+Tilkoblingstid 509 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 172 ms
+Brukte 509 ms
+Ventet i -337 ms
+Tilkoblingstid 508 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 193 ms
+Brukte 508 ms
+Ventet i -315 ms
+Tilkoblingstid 395 ms
+Må vente i 714 ms
+Brukte 396 ms
+Ventet i 318 ms
+Tilkoblingstid 396 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 97 ms
+Brukte 396 ms
+Ventet i -299 ms
+Tilkoblingstid 428 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 179 ms
+Brukte 428 ms
+Ventet i -249 ms
+Tilkoblingstid 399 ms
+Må vente i 255 ms
+Brukte 399 ms
+Ventet i -144 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 409 ms
+Må vente i 699 ms
+Brukte 409 ms
+Ventet i 290 ms
+Tilkoblingstid 400 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 85 ms
+Brukte 401 ms
+Ventet i -316 ms
+Tilkoblingstid 391 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 139 ms
+Brukte 391 ms
+Ventet i -252 ms
+Tilkoblingstid 396 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 203 ms
+Brukte 396 ms
+Ventet i -193 ms
+Tilkoblingstid 406 ms
+Må vente i 810 ms
+Brukte 406 ms
+Ventet i 404 ms
+Tilkoblingstid 397 ms
+Må vente i 109 ms
+Brukte 397 ms
+Ventet i -288 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 406 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 169 ms
+Brukte 406 ms
+Ventet i -237 ms
+Tilkoblingstid 404 ms
+Må vente i 187 ms
+Brukte 404 ms
+Ventet i -217 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 401 ms
+Må vente i 811 ms
+Brukte 401 ms
+Ventet i 410 ms
+Tilkoblingstid 446 ms
+Må vente i 106 ms
+Brukte 446 ms
+Ventet i -340 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 439 ms
+Må vente i 175 ms
+Brukte 440 ms
+Ventet i -265 ms
+Tilkoblingstid 406 ms
+Må vente i 200 ms
+Brukte 406 ms
+Ventet i -206 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 401 ms
+Må vente i 764 ms
+Brukte 401 ms
+Ventet i 363 ms
+Tilkoblingstid 403 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 403 ms
+Ventet i -302 ms
+Tilkoblingstid 396 ms
+Må vente i 162 ms
+Brukte 396 ms
+Ventet i -234 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 399 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 208 ms
+Brukte 399 ms
+Ventet i -191 ms
+Tilkoblingstid 423 ms
+Må vente i 740 ms
+Brukte 423 ms
+Ventet i 317 ms
+Tilkoblingstid 400 ms
+Må vente i 104 ms
+Brukte 400 ms
+Ventet i -296 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 401 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 147 ms
+Brukte 401 ms
+Ventet i -254 ms
+Tilkoblingstid 409 ms
+Må vente i 228 ms
+Brukte 409 ms
+Ventet i -181 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 408 ms
+Må vente i 734 ms
+Brukte 408 ms
+Ventet i 326 ms
+Tilkoblingstid 401 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 91 ms
+Brukte 401 ms
+Ventet i -310 ms
+Tilkoblingstid 439 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 163 ms
+Brukte 439 ms
+Ventet i -276 ms
+Tilkoblingstid 426 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 208 ms
+Brukte 426 ms
+Ventet i -218 ms
+Tilkoblingstid 428 ms
+Må vente i 716 ms
+Brukte 428 ms
+Ventet i 288 ms
+Tilkoblingstid 526 ms
+Må vente i 101 ms
+Brukte 526 ms
+Ventet i -425 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 526 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 153 ms
+Brukte 526 ms
+Ventet i -373 ms
+Tilkoblingstid 544 ms
+Må vente i 191 ms
+Brukte 545 ms
+Ventet i -354 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 557 ms
+Må vente i 794 ms
+Brukte 557 ms
+Ventet i 237 ms
+Tilkoblingstid 549 ms
+Må vente i 255 ms
+Brukte 549 ms
+Ventet i -294 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 533 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 206 ms
+Brukte 533 ms
+Ventet i -327 ms
+Tilkoblingstid 528 ms
+Må vente i 734 ms
+Brukte 528 ms
+Ventet i 206 ms
+Tilkoblingstid 558 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 101 ms
+Brukte 558 ms
+Ventet i -457 ms
+Tilkoblingstid 550 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 177 ms
+Brukte 551 ms
+Ventet i -374 ms
+Tilkoblingstid 536 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 185 ms
+Brukte 536 ms
+Ventet i -351 ms
+Tilkoblingstid 540 ms
+Må vente i 681 ms
+Brukte 540 ms
+Ventet i 141 ms
+Tilkoblingstid 534 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 82 ms
+Brukte 534 ms
+Ventet i -452 ms
+Tilkoblingstid 541 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 180 ms
+Brukte 541 ms
+Ventet i -361 ms
+Tilkoblingstid 583 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 210 ms
+Brukte 583 ms
+Ventet i -373 ms
+Tilkoblingstid 541 ms
+Må vente i 712 ms
+Brukte 541 ms
+Ventet i 171 ms
+Tilkoblingstid 548 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 116 ms
+Brukte 548 ms
+Ventet i -432 ms
+Tilkoblingstid 538 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 142 ms
+Brukte 538 ms
+Ventet i -396 ms
+Tilkoblingstid 536 ms
+Må vente i 227 ms
+Brukte 536 ms
+Ventet i -309 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 558 ms
+Må vente i 689 ms
+Brukte 558 ms
+Ventet i 131 ms
+Tilkoblingstid 533 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 109 ms
+Brukte 533 ms
+Ventet i -424 ms
+Tilkoblingstid 564 ms
+Må vente i 181 ms
+Brukte 565 ms
+Ventet i -384 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 548 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 219 ms
+Brukte 548 ms
+Ventet i -329 ms
+Tilkoblingstid 586 ms
+Må vente i 733 ms
+Brukte 586 ms
+Ventet i 147 ms
+Tilkoblingstid 564 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 71 ms
+Brukte 564 ms
+Ventet i -493 ms
+Tilkoblingstid 536 ms
+Må vente i 403 ms
+Brukte 536 ms
+Ventet i -133 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 541 ms
+Må vente i 732 ms
+Brukte 541 ms
+Ventet i 191 ms
+Tilkoblingstid 554 ms
+Må vente i 114 ms
+Brukte 554 ms
+Ventet i -440 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 542 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 162 ms
+Brukte 542 ms
+Ventet i -380 ms
+Tilkoblingstid 591 ms
+Må vente i 157 ms
+Brukte 592 ms
+Ventet i -435 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 541 ms
+Må vente i 730 ms
+Brukte 541 ms
+Ventet i 189 ms
+Tilkoblingstid 556 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 106 ms
+Brukte 556 ms
+Ventet i -450 ms
+Tilkoblingstid 566 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 156 ms
+Brukte 566 ms
+Ventet i -410 ms
+Tilkoblingstid 547 ms
+Må vente i 207 ms
+Brukte 547 ms
+Ventet i -340 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 597 ms
+Må vente i 737 ms
+Brukte 597 ms
+Ventet i 140 ms
+Tilkoblingstid 541 ms
+Må vente i 112 ms
+Brukte 541 ms
+Ventet i -429 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 556 ms
+Må vente i 146 ms
+Brukte 556 ms
+Ventet i -410 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 546 ms
+Må vente i 217 ms
+Brukte 547 ms
+Ventet i -330 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 547 ms
+Må vente i 702 ms
+Brukte 547 ms
+Ventet i 155 ms
+Tilkoblingstid 592 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 592 ms
+Ventet i -488 ms
+Tilkoblingstid 570 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 137 ms
+Brukte 570 ms
+Ventet i -433 ms
+Tilkoblingstid 555 ms
+Må vente i 185 ms
+Brukte 555 ms
+Ventet i -370 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 549 ms
+Må vente i 748 ms
+Brukte 549 ms
+Ventet i 199 ms
+Tilkoblingstid 609 ms
+Må vente i 107 ms
+Brukte 609 ms
+Ventet i -502 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 594 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 143 ms
+Brukte 594 ms
+Ventet i -451 ms
+Tilkoblingstid 547 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 185 ms
+Brukte 548 ms
+Ventet i -363 ms
+Tilkoblingstid 560 ms
+Må vente i 717 ms
+Brukte 560 ms
+Ventet i 157 ms
+Tilkoblingstid 562 ms
+Må vente i 99 ms
+Brukte 563 ms
+Ventet i -464 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 575 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 170 ms
+Brukte 575 ms
+Ventet i -405 ms
+Tilkoblingstid 579 ms
+Må vente i 220 ms
+Brukte 579 ms
+Ventet i -359 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 556 ms
+Må vente i 665 ms
+Brukte 557 ms
+Ventet i 108 ms
+Tilkoblingstid 635 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 635 ms
+Ventet i -533 ms
+Tilkoblingstid 561 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 155 ms
+Brukte 561 ms
+Ventet i -406 ms
+Tilkoblingstid 575 ms
+Må vente i 203 ms
+Brukte 576 ms
+Ventet i -373 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 581 ms
+Må vente i 792 ms
+Brukte 581 ms
+Ventet i 211 ms
+Tilkoblingstid 564 ms
+Må vente i 89 ms
+Brukte 565 ms
+Ventet i -476 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 583 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 168 ms
+Brukte 583 ms
+Ventet i -415 ms
+Tilkoblingstid 557 ms
+Må vente i 225 ms
+Brukte 557 ms
+Ventet i -332 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 580 ms
+Må vente i 764 ms
+Brukte 580 ms
+Ventet i 184 ms
+Tilkoblingstid 555 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 96 ms
+Brukte 555 ms
+Ventet i -459 ms
+Tilkoblingstid 562 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 170 ms
+Brukte 562 ms
+Ventet i -392 ms
+Tilkoblingstid 555 ms
+Må vente i 194 ms
+Brukte 556 ms
+Ventet i -362 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 552 ms
+Må vente i 735 ms
+Brukte 552 ms
+Ventet i 183 ms
+Tilkoblingstid 592 ms
+Må vente i 104 ms
+Brukte 592 ms
+Ventet i -488 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 581 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 161 ms
+Brukte 581 ms
+Ventet i -420 ms
+Tilkoblingstid 559 ms
+Må vente i 202 ms
+Brukte 559 ms
+Ventet i -357 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 567 ms
+Må vente i 750 ms
+Brukte 567 ms
+Ventet i 183 ms
+Tilkoblingstid 557 ms
+Må vente i 97 ms
+Brukte 557 ms
+Ventet i -460 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 523 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 137 ms
+Brukte 524 ms
+Ventet i -387 ms
+Tilkoblingstid 451 ms
+Må vente i 206 ms
+Brukte 451 ms
+Ventet i -245 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 442 ms
+Må vente i 861 ms
+Brukte 443 ms
+Ventet i 418 ms
+Tilkoblingstid 446 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 162 ms
+Brukte 446 ms
+Ventet i -284 ms
+Tilkoblingstid 442 ms
+Må vente i 196 ms
+Brukte 442 ms
+Ventet i -246 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 456 ms
+Må vente i 730 ms
+Brukte 457 ms
+Ventet i 273 ms
+Tilkoblingstid 459 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 459 ms
+Ventet i -357 ms
+Tilkoblingstid 440 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 138 ms
+Brukte 440 ms
+Ventet i -302 ms
+Tilkoblingstid 439 ms
+Må vente i 209 ms
+Brukte 439 ms
+Ventet i -230 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 444 ms
+Må vente i 787 ms
+Brukte 444 ms
+Ventet i 343 ms
+Tilkoblingstid 463 ms
+Må vente i 96 ms
+Brukte 464 ms
+Ventet i -368 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 479 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 160 ms
+Brukte 479 ms
+Ventet i -319 ms
+Tilkoblingstid 447 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 190 ms
+Brukte 447 ms
+Ventet i -257 ms
+Tilkoblingstid 440 ms
+Må vente i 694 ms
+Brukte 440 ms
+Ventet i 254 ms
+Tilkoblingstid 460 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 119 ms
+Brukte 461 ms
+Ventet i -342 ms
+Tilkoblingstid 445 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 134 ms
+Brukte 445 ms
+Ventet i -311 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 440 ms
+Må vente i 209 ms
+Brukte 440 ms
+Ventet i -231 ms
+Tilkoblingstid 481 ms
+Må vente i 742 ms
+Brukte 482 ms
+Ventet i 260 ms
+Tilkoblingstid 582 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 116 ms
+Brukte 583 ms
+Ventet i -467 ms
+Tilkoblingstid 582 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 176 ms
+Brukte 582 ms
+Ventet i -406 ms
+Tilkoblingstid 576 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 192 ms
+Brukte 576 ms
+Ventet i -384 ms
+Tilkoblingstid 579 ms
+Må vente i 708 ms
+Brukte 579 ms
+Ventet i 129 ms
+Tilkoblingstid 617 ms
+Må vente i 93 ms
+Brukte 617 ms
+Ventet i -524 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 586 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 154 ms
+Brukte 586 ms
+Ventet i -432 ms
+Tilkoblingstid 586 ms
+Må vente i 198 ms
+Brukte 586 ms
+Ventet i -388 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 584 ms
+Må vente i 792 ms
+Brukte 584 ms
+Ventet i 208 ms
+Tilkoblingstid 609 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 93 ms
+Brukte 609 ms
+Ventet i -516 ms
+Tilkoblingstid 592 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 144 ms
+Brukte 594 ms
+Ventet i -450 ms
+Tilkoblingstid 593 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 193 ms
+Brukte 594 ms
+Ventet i -401 ms
+Tilkoblingstid 590 ms
+Må vente i 773 ms
+Brukte 590 ms
+Ventet i 183 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 591 ms
+Må vente i 101 ms
+Brukte 591 ms
+Ventet i -490 ms
+Tilkoblingstid 636 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 167 ms
+Brukte 636 ms
+Ventet i -469 ms
+Tilkoblingstid 586 ms
+Må vente i 197 ms
+Brukte 587 ms
+Ventet i -390 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 585 ms
+Må vente i 758 ms
+Brukte 585 ms
+Ventet i 173 ms
+Tilkoblingstid 598 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 598 ms
+Ventet i -504 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 586 ms
+Må vente i 323 ms
+Brukte 586 ms
+Ventet i -263 ms
+Tilkoblingstid 616 ms
+Må vente i 789 ms
+Brukte 616 ms
+Ventet i 173 ms
+Tilkoblingstid 606 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 94 ms
+Brukte 606 ms
+Ventet i -512 ms
+Tilkoblingstid 601 ms
+Må vente i 160 ms
+Brukte 601 ms
+Ventet i -441 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 601 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 152 ms
+Brukte 601 ms
+Ventet i -449 ms
+Tilkoblingstid 605 ms
+Må vente i 749 ms
+Brukte 605 ms
+Ventet i 144 ms
+Tilkoblingstid 595 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 102 ms
+Brukte 595 ms
+Ventet i -493 ms
+Tilkoblingstid 590 ms
+Må vente i 149 ms
+Brukte 590 ms
+Ventet i -441 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 600 ms
+Må vente i 223 ms
+Brukte 600 ms
+Ventet i -377 ms
+Tilkoblingstid 587 ms
+Må vente i 764 ms
+Brukte 588 ms
+Ventet i 176 ms
+Tilkoblingstid 686 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 115 ms
+Brukte 686 ms
+Ventet i -571 ms
+Tilkoblingstid 642 ms
+Må vente i 183 ms
+Brukte 642 ms
+Ventet i -459 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 630 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 197 ms
+Brukte 630 ms
+Ventet i -433 ms
+Tilkoblingstid 593 ms
+Må vente i 653 ms
+Brukte 593 ms
+Ventet i 60 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 600 ms
+Må vente i 106 ms
+Brukte 601 ms
+Ventet i -495 ms
+Tilkoblingstid 617 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 149 ms
+Brukte 617 ms
+Ventet i -468 ms
+Tilkoblingstid 589 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 195 ms
+Brukte 589 ms
+Ventet i -394 ms
+Tilkoblingstid 601 ms
+Må vente i 794 ms
+Brukte 601 ms
+Ventet i 193 ms
+Tilkoblingstid 457 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 91 ms
+Brukte 457 ms
+Ventet i -366 ms
+Tilkoblingstid 460 ms
+Må vente i 190 ms
+Brukte 460 ms
+Ventet i -270 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 501 ms
+Må vente i 205 ms
+Brukte 501 ms
+Ventet i -296 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Tilkoblingstid 462 ms
+Må vente i 705 ms
+Brukte 462 ms
+Ventet i 243 ms
+Tilkoblingstid 476 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 99 ms
+Brukte 476 ms
+Ventet i -377 ms
+Tilkoblingstid 475 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 150 ms
+Brukte 476 ms
+Ventet i -326 ms
+Tilkoblingstid 489 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 182 ms
+Brukte 489 ms
+Ventet i -307 ms
+Tilkoblingstid 479 ms
+Må vente i 735 ms
+Brukte 479 ms
+Ventet i 256 ms
+Tilkoblingstid 499 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 104 ms
+Brukte 499 ms
+Ventet i -395 ms
+Tilkoblingstid 472 ms
+Brukte lengre tid enn tildelt!!!!!!!!!
+Må vente i 160 ms
+Brukte 472 ms
+Ventet i -312 ms
+Tilkoblingstid 11 ms
+Må vente i 214 ms
+Brukte 11 ms
+Ventet i 203 ms
+Tilkoblingstid 12 ms
+Må vente i 747 ms
+Brukte 12 ms
+Ventet i 735 ms
+Tilkoblingstid 11 ms
+Må vente i 105 ms
+Brukte 11 ms
+Ventet i 94 ms
+Tilkoblingstid 11 ms
+Må vente i 161 ms
+Brukte 11 ms
+Ventet i 150 ms
+Tilkoblingstid 11 ms
+Må vente i 194 ms
+Brukte 11 ms
+Ventet i 183 ms
+Tilkoblingstid 11 ms
+Må vente i 875 ms
+Brukte 11 ms
+Ventet i 864 ms
+Tilkoblingstid 11 ms
+Må vente i 153 ms
+Brukte 11 ms
+Ventet i 142 ms
+Tilkoblingstid 11 ms
+Må vente i 207 ms
+Brukte 11 ms
+Ventet i 196 ms
+Tilkoblingstid 11 ms
+Må vente i 707 ms
+Brukte 12 ms
+Ventet i 695 ms
+Tilkoblingstid 12 ms
+Må vente i 115 ms
+Brukte 12 ms
+Ventet i 103 ms
+Tilkoblingstid 11 ms
+Må vente i 164 ms
+Brukte 11 ms
+Ventet i 153 ms
+Tilkoblingstid 10 ms
+Må vente i 213 ms
+Brukte 10 ms
+Ventet i 203 ms
+Tilkoblingstid 21 ms
+Må vente i 669 ms
+Brukte 22 ms
+Ventet i 647 ms
+Tilkoblingstid 20 ms
+Må vente i 93 ms
+Brukte 21 ms
+Ventet i 72 ms
