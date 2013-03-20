@@ -27,8 +27,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				drawCanvas(targetContainer, points, data);
 	
 			}else{
-				webGL = false;
-				drawCanvas(targetContainer, points, data);
+				webGL = true;
+				drawWebGL(targetContainer, points, data);
 				}
 	};
 	
@@ -189,6 +189,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		uniforms = {
 
 				color: { type: "c", value: new THREE.Color( 0xff0000 ) },
+				texture: { type: "t", value: 0, texture: THREE.ImageUtils.loadTexture( "/img/point.png" ) }
 				
 			};
 
