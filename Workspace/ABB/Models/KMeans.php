@@ -187,16 +187,14 @@ class KMeans {
 				$clusterpoint->z = $sum["z"]/$countarray[$cluster];
 				
 				$clusterpoint->addAdditionalInfo(self::CLUSTERCOUNTNAME, $countarray[$cluster]);
+				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, false);
 			}
 			else{
-				$clusterpoint->x = 0;
-				$clusterpoint->y = 0;
-				$clusterpoint->z = 0;
-				
+				$clusterpoint = $this->pointlist->get($this->pointlist->size() - 1);
 				$clusterpoint->addAdditionalInfo(self::CLUSTERCOUNTNAME, 0);
+				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, true);
 			}
 			
-			$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, false);
 			$this->clusterlist->set($cluster, $clusterpoint, true);
 				
 			Debuger::RegisterPoint("Cluster " . $cluster . " has " . $clusterpoint->getAdditionalInfo(self::CLUSTERCOUNTNAME) . " points.", "KMeans");
