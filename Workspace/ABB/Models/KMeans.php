@@ -258,7 +258,7 @@ class KMeans {
 	public function forceNewAnalysis(){
 		$this->clusterlist->clear();
 		$this->cache->removeCacheData(self::CLUSTERANALYSISRUNNINGNAME);
-		for($i = 0; $i < $this->pointsToCrush; $i++){
+		for($i = 0; $i < $this->pointsToCrush && $i < $this->pointlist->size(); $i++){
 			$point = $this->pointlist->get($i, true);
 			$point->cluster = 0;
 			$this->pointlist->set($i, $point, true);
