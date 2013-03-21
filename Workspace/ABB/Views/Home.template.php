@@ -133,6 +133,27 @@ $this->template("Shared");
 								</tbody>
 						</table>
 						<hr>
+						<p class="nav-header">Selected point</p>
+								<table class="table table-condensed">
+							<tbody>
+								<tr></tr>
+								<tr><td> X Y Z:</td><td id="coordinates"></td></tr>
+								<tr>
+								<td> Time: </td>
+								<td id="timestamp"></td>
+								</tr>
+								<tr>
+								<td> Cluster: </td>
+								<td id="cluster"></td>
+								</tr>
+								<tr>
+								<td id="demo2"></td>
+								</tr>
+								<tr>
+								<td id="demo3"></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

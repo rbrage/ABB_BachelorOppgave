@@ -1,8 +1,20 @@
 <?php 
 $this->viewmodel->templatemenu = array("last" => "Last 10 Points", "plot3d" => "3D Plot");
 
-$this->Template("Shared");
+$this->Template("Home");
 ?>
+
+<section id="plot3d">
+	<div class="page-header">
+		<h2>3D plot</h2>
+		
+			<div id="3DPlotDiv" style="border:1px solid">
+			
+		</div>
+		<button class="btn btn-small btn-primary" type="button" onclick="loadPoint()">Reload</button>
+	</div>
+
+</section>
 
 <section id="last">
 	<div class="page-header">
@@ -47,19 +59,6 @@ $this->Template("Shared");
 			?>
 </section>
 
-<section id="plot3d">
-	<div class="page-header">
-		<h2>3D plot</h2>
-		
-			<div id="3DPlotDiv" style="border:1px solid">
-			
-		</div>
-		<button class="btn btn-small btn-primary" type="button" onclick="loadPoint()">Reload</button>
-	</div>
-
-</section>
-
-
 <script type="text/javascript">
 
 			var point3DPlot;
@@ -102,6 +101,6 @@ $this->Template("Shared");
 			window.onresize = function(event) {
 				reload();
 			};
-			</script>
+</script>
 
 
