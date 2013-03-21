@@ -268,7 +268,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 			ray.setThreshold(20);
 			console.log(ray.precision, ray.threshold);
 			
-			var vector = new THREE.Vector3( mousex, mousey, 0.1 );
+			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
 			projector.unprojectVector ( vector, _this.object );
 			ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
 			
@@ -296,16 +296,14 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 				if ( intersects.length > 0 ) {
 					
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-					attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+					//attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
 					
 					INTERSECTED = intersects[ 0 ].vertex;
 					
-					attributes.ca.value[ INTERSECTED ] = 0x000000;
-					attributes.ca.needsUpdate = true;
+					//attributes.ca.value[ INTERSECTED ] = 0x000000;
+					//attributes.ca.needsUpdate = true;
 					
-					
-					
-					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *2;
 					attributes.size.needsUpdate = true;
 				
 				}else {
@@ -313,8 +311,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
 					attributes.size.needsUpdate = true;
 					
-					attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
-					attributes.ca.needsUpdate = true;
+					//attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+					//attributes.ca.needsUpdate = true;
 			
 					INTERSECTED = null;
 					}

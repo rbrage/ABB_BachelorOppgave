@@ -60,6 +60,13 @@ body {
 		</script>
 
 <title>ABB Analyseprogram</title>
+
+<?php
+$this->viewmodel->templatemenu = array("options" => "Options", "points" => "Clusterpoints");
+$this->template("Shared");
+
+?>
+
 </head>
 <body style="padding-top: 60px;">
 	<div class="navbar navbar-fixed-top">
@@ -118,6 +125,11 @@ body {
 									<td>Used memory size:</td>
 									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
 								</tr>
+								<tr>
+									<td>Number of cluster:</td>
+									<?php $settings = $this->viewmodel->settings; ?>
+									<td><?php echo $settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?></td>
+								</tr>
 								</tbody>
 						</table>
 						<hr>
@@ -131,7 +143,8 @@ body {
 								<td id="timestamp"></td>
 								</tr>
 								<tr>
-								<td id="demo1"></td>
+								<td> Cluster: </td>
+								<td id="cluster"></td>
 								</tr>
 								<tr>
 								<td id="demo2"></td>

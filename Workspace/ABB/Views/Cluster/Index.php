@@ -63,10 +63,10 @@ $this->template("Shared");
 	
 		<?php 
 		$list = $this->viewmodel->clusterlist;
+		
 		if($list->size() > 0){ 
 			
 		?>
-
 		<?php 
 			for($i = 0; $i < $list->size(); $i++){
 			$point = $list->get($i);

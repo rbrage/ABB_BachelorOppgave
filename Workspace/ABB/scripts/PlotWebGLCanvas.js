@@ -7,7 +7,7 @@ var group;
 var centroidSphere, line , pointsSystem;
 var _state;
 
-var PARTICLE_SIZE = 1;
+var PARTICLE_SIZE = 2;
 var PARTICLE_COLOR;
 var webGL;
 
@@ -205,7 +205,8 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				});
 			
 			var geometry = new THREE.Geometry();
-
+			var color = [new THREE.Color(0x0000FF), new THREE.Color(0x008000), new THREE.Color(0xFFA000), new THREE.Color(0xFF0000), new THREE.Color(0xFFFF00), new THREE.Color(0x800080)];
+			
 			for ( var i = 0; i < points.length; i ++ ) {
 
 				var vertex = new THREE.Vector3();
@@ -213,6 +214,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				vertex.y = points[i][1];
 				vertex.z = points[i][2];
 				geometry.vertices.push( vertex );
+				
 			}
 
 			pointsSystem = new THREE.ParticleSystem( geometry, shaderMaterial );
@@ -224,9 +226,28 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 			var values_color = attributes.ca.value;
 			
 			for( var v = 0; v < vertices.length; v++ ) {
-
+				if((vertices[v].x==points[v][0])&&(vertices[v].y==points[v][1])&&(vertices[v].z==points[v][2])){
+					if(points[v][4]==0){
+						values_color[ v ] = color[0];
+					}else if(points[v][4]==1){
+						values_color[ v ] = color[1];
+					}else if(points[v][4]==2){
+						values_color[ v ] = color[2];
+					}else if(points[v][4]==3){
+						values_color[ v ] = color[3];
+					}else if(points[v][4]==4){
+						values_color[ v ] = color[4];
+					}else if(points[v][4]==5){
+						values_color[ v ] = color[5];
+					}
+					else{
+						values_color[ v ] = 0xffffff;
+					}
+					
+				};
+				
 				values_size[ v ] = PARTICLE_SIZE;
-				values_color[ v ] = PARTICLE_COLOR;
+				
 				
 				
 			}
@@ -260,6 +281,25 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    
 	}
 	
+	function drawClusterCircle(x,y,z, size){
+		var resolution = 100;
+		var amplitude = size;
+		var size = 360 / resolution;
+
+		var geometry = new THREE.Geometry();
+		var material = new THREE.LineBasicMaterial( { color: 0xaa00ff, opacity: 0.9} );
+		for(var i = 0; i <= resolution; i++) {
+			var segment = ( i * size ) * Math.PI / 180;
+			geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( Math.cos( segment ) * amplitude, 0, Math.sin( segment ) * amplitude ) ) );         
+		}
+
+		var line = new THREE.Line( geometry, material );
+		line.position.set(x,y,z);
+		line.rotation.z = - Math.PI / 2;
+		scene.add(line);
+		
+	};
+	
 	function animate() {
 
 	    requestAnimationFrame(animate);
@@ -271,20 +311,23 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	function getSelectedPoint(x,y,z){
 		
 		for(var i=0;i<this.points.length;i++){
-			
 			if((this.points[i][0] == x) && (this.points[i][1] == y) && (this.points[i][2] == z)) {
 				
 				var text="" +this.points[i][0]+" ," +this.points[i][1]+" ," +this.points[i][2]+"";
 				document.getElementById("coordinates").innerHTML=text;
+				
 				var time="" +this.points[i][3];
 				document.getElementById("timestamp").innerHTML=time;
+				var clusternumber = this.points[i][4];
+				var cluster="" +this.points[i][4];
+				document.getElementById("cluster").innerHTML=cluster;
+				
 				
 			}
 		}
 	}
 	
 	function reload(){
-	console.log("reloade");
 	addPoints();
 	addControls();
 	animate();

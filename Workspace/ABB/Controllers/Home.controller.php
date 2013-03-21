@@ -1,7 +1,9 @@
 <?php
 
-require_once("Models/CachedArrayList.php");
-require_once("Models/TriggerPoint.php");
+require_once 'Models/CachedArrayList.php';
+require_once 'Models/TriggerPoint.php';
+require_once 'Models/KMeans.php';
+require_once 'Models/CachedSettings.php';
 
 class Home extends Controller {
 
@@ -13,8 +15,12 @@ class Home extends Controller {
 		$this->viewmodel->listsize = $this->list->size();
 		$info = apc_cache_info("user", true);
 		$this->viewmodel->listmemory = $info["mem_size"]/1000 . "k";
-
 		
+		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->settings = new CachedSettings();
+		$this->viewmodel->clusterlist = $this->clusterlist;
+		$this->viewmodel->settings = $this->settings;	
+	
 		$this->viewmodel->arr = $this->list->iterator();
 		return $this->View();
 

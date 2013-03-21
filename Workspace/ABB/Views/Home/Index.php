@@ -83,10 +83,10 @@ $this->Template("Shared");
 			
 			function loadPoint(){
 			
-			$.getJSON("/Register/Points/json?start=0&stop=1000", function(data){
+			$.getJSON("/Register/Points/json?start=0&stop=10000", function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
-						points[start] = new point(value.x,value.y,value.z,value.timestamp);
+						points[start] = new point(value.x,value.y,value.z,value.timestamp,value.cluster);
 							start++;
 						});
 				reload(points);
@@ -94,11 +94,10 @@ $this->Template("Shared");
 			}
 			
 				
-			function point(x, y, z, t){       
-				return [x, y, z, t]; 
+			function point(x, y, z, t, c){       
+				return [x, y, z, t, c]; 
 			};
 				
-			
 			
 			window.onresize = function(event) {
 				reload();
