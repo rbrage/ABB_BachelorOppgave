@@ -138,7 +138,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    controls.staticMoving = false;
 	    controls.dynamicDampingFactor = 0.5;
 
-	    controls.minDistance = 10.0;
+	    controls.minDistance = 0.1;
 	    controls.maxDistance = 5000;
 	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
@@ -175,6 +175,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	}
 	
 	function addPoints(points){
+	if(points==null) points=this.points;
 		if(webGL){	  
 			attributes = {
 
@@ -282,7 +283,9 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		}
 	}
 	
-function reload(points){
-	addPoints(points);
+	function reload(){
+	console.log("reloade");
+	addPoints();
 	addControls();
+	animate();
 };

@@ -54,7 +54,7 @@ $this->Template("Shared");
 			<div id="3DPlotDiv" style="border:1px solid">
 			
 		</div>
-		<button class="btn btn-small btn-primary" type="button" onclick="reload()">Reload</button>
+		<button class="btn btn-small btn-primary" type="button" onclick="loadPoint()">Reload</button>
 	</div>
 
 </section>

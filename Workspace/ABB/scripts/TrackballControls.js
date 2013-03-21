@@ -261,67 +261,68 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	
 	this.checkSelect = function(){
 	
-	if(_state === STATE.CTRL && mouseDown){
-		var projector = new THREE.Projector();
-		var ray = new THREE.Ray();
-		ray.setPrecision( 0.000001);
-		console.log(mousex, mousey);
-		var vector = new THREE.Vector3( mousex, mousey, 0.5 );
-		projector.unprojectVector ( vector, _this.object );
-		ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
-		console.log(ray);
-		
-		if(pointsSystem.children[0] instanceof THREE.Particle){
-			var intersects = ray.intersectParticle(pointsSystem);
+		if(_state === STATE.CTRL && mouseDown){
+			var projector = new THREE.Projector();
+			var ray = new THREE.Ray();
+			ray.setPrecision( 1e-20);
+			ray.setThreshold(20);
+			console.log(ray.precision, ray.threshold);
 			
-			if(intersects != null){	
+			var vector = new THREE.Vector3( mousex, mousey, 0.1 );
+			projector.unprojectVector ( vector, _this.object );
+			ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
 			
-				getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
+			if(pointsSystem.children[0] instanceof THREE.Particle){
+				var intersects = ray.intersectParticle(pointsSystem);
 				
-					INTERSECTED = intersects[ 0 ].vertex
-			
-					pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0x00ff00);
-					pointsSystem.children[INTERSECTED].material.needsUpdate = true;
+				if(intersects != null){	
 				
-			}
-			
-		}else{
-			var intersects = ray.intersectObject(pointsSystem);
-			if(intersects != null){	
-		
-			plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
-			
-			if ( intersects.length > 0 ) {
-				
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-				attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
-				
-				INTERSECTED = intersects[ 0 ].vertex;
-				
-				attributes.ca.value[ INTERSECTED ] = 0x000000;
-				attributes.ca.needsUpdate = true;
-				
-				
-				
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
-				attributes.size.needsUpdate = true;
-				
-				
+					getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
 					
-			}else {
+						INTERSECTED = intersects[ 0 ].vertex
+				
+						pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0x00ff00);
+						pointsSystem.children[INTERSECTED].material.needsUpdate = true;
+					
+				}
+				
+			}else{
+			
+				var intersects = ray.intersectObject(pointsSystem);
+				if(intersects != null){	
+			
+				plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
+				
+				if ( intersects.length > 0 ) {
+					
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+					attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+					
+					INTERSECTED = intersects[ 0 ].vertex;
+					
+					attributes.ca.value[ INTERSECTED ] = 0x000000;
+					attributes.ca.needsUpdate = true;
+					
+					
+					
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
+					attributes.size.needsUpdate = true;
+				
+				}else {
 
-				attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-				attributes.size.needsUpdate = true;
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
+					attributes.size.needsUpdate = true;
 					
-				attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
-				attributes.ca.needsUpdate = true;
+					attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+					attributes.ca.needsUpdate = true;
 			
-				INTERSECTED = null;
+					INTERSECTED = null;
+					}
+				}
+			console.log("error");
 			}
+			
 		}
-		}
-		
-	}
 	};
 
 	this.update = function () {
