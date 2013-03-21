@@ -7,19 +7,16 @@ var group;
 var centroidSphere, line , pointsSystem;
 var _state;
 
-var PARTICLE_SIZE = 2;
+var PARTICLE_SIZE = 1;
 var PARTICLE_COLOR;
 var webGL;
 
 PlotWebGLCanvas = function(targetContainer, points, data){
 	
-	
 	init(targetContainer, points, data);
 	this.points = points;
+	};
 	
-};
-
-
 	init = function(targetContainer, points, data){
 		
 			if ( ! Detector.webgl ) {
@@ -40,7 +37,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		
 		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
-	    camera.position.x = 200;
+	    camera.position.x = 500;
 		
 	   
 		renderer = new THREE.WebGLRenderer( { clearColor: 0xffffff, clearAlpha: 1 } );
@@ -56,6 +53,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		
 	    
 		var container = document.createElement( 'div' );
+		container.id ="canvas";
 		container.appendChild(renderer.domElement);
 		this.targetContainer.appendChild( container );
 		
@@ -141,7 +139,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    controls.dynamicDampingFactor = 0.5;
 
 	    controls.minDistance = 10.0;
-	    controls.maxDistance = Infinity;
+	    controls.maxDistance = 5000;
 	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
 	}
@@ -177,83 +175,82 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	}
 	
 	function addPoints(points){
-	  
 		if(webGL){	  
-		attributes = {
+			attributes = {
 
-				size: { type: 'f', value: [] },
-				ca: { type: 'c', value: [] }
+					size: { type: 'f', value: [] },
+					ca: { type: 'c', value: [] }
+					
+
+				};
+
+			uniforms = {
+
+					color: { type: "c", value: new THREE.Color( 0xff0000 ) },
+					texture: { type: "t", value: THREE.ImageUtils.loadTexture( "img/ball.png" ) }
+					
+				};
+
 				
 
-			};
+			var shaderMaterial = new THREE.ShaderMaterial( {
 
-		uniforms = {
+					uniforms: uniforms,
+					attributes: attributes,
+					vertexShader: document.getElementById( 'vertexshader' ).textContent,
+					fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
+					transparent:	true
+	  
+				});
+			
+			var geometry = new THREE.Geometry();
 
-				color: { type: "c", value: new THREE.Color( 0xff0000 ) },
-				texture: { type: "t", value: THREE.ImageUtils.loadTexture( "img/ball.png" ) }
+			for ( var i = 0; i < points.length; i ++ ) {
+
+				var vertex = new THREE.Vector3();
+				vertex.x = points[i][0];
+				vertex.y = points[i][1];
+				vertex.z = points[i][2];
+				geometry.vertices.push( vertex );
+			}
+
+			pointsSystem = new THREE.ParticleSystem( geometry, shaderMaterial );
+			pointsSystem.dynamic = true;
+			pointsSystem.sortParticles = true;
+			
+			var vertices = pointsSystem.geometry.vertices;
+			var values_size = attributes.size.value;
+			var values_color = attributes.ca.value;
+			
+			for( var v = 0; v < vertices.length; v++ ) {
+
+				values_size[ v ] = PARTICLE_SIZE;
+				values_color[ v ] = PARTICLE_COLOR;
 				
-			};
-
+				
+			}
 			
-
-		var shaderMaterial = new THREE.ShaderMaterial( {
-
-				uniforms: uniforms,
-				attributes: attributes,
-				vertexShader: document.getElementById( 'vertexshader' ).textContent,
-				fragmentShader: document.getElementById( 'fragmentshader' ).textContent,
-				transparent:	true
-  
-			});
-		
-		var geometry = new THREE.Geometry();
-
-		for ( var i = 0; i < points.length; i ++ ) {
-
-			var vertex = new THREE.Vector3();
-			vertex.x = points[i][0];
-			vertex.y = points[i][1];
-			vertex.z = points[i][2];
-			geometry.vertices.push( vertex );
-		}
-
-		pointsSystem = new THREE.ParticleSystem( geometry, shaderMaterial );
-		pointsSystem.dynamic = true;
-		pointsSystem.sortParticles = true;
-		
-		var vertices = pointsSystem.geometry.vertices;
-		var values_size = attributes.size.value;
-		var values_color = attributes.ca.value;
-		
-		for( var v = 0; v < vertices.length; v++ ) {
-
-			values_size[ v ] = PARTICLE_SIZE;
-			values_color[ v ] = PARTICLE_COLOR;
-			
-			
-		}
-		
 		}else{
 		
-		var PI2 = Math.PI * 2;
-				var program = function ( context ) {
+			var PI2 = Math.PI * 2;
+					var program = function ( context ) {
 
-					context.beginPath();
-					context.arc( 0, 0, 0.1, 0, PI2, true );
-					context.closePath();
-					context.fill();
+						context.beginPath();
+						context.arc( 0, 0, 0.1, 0, PI2, true );
+						context.closePath();
+						context.fill();
 
-				}
-		pointsSystem = new THREE.Object3D();
-				
-				for ( var i = 0; i < points.length; i++ ) {
-					particle = new THREE.Particle( new THREE.ParticleCanvasMaterial( { color: PARTICLE_COLOR, program: program } ) );
-					particle.position.x = points[i][0];
-					particle.position.y = points[i][1];
-					particle.position.z = points[i][2];
-					particle.scale.x = particle.scale.y = 5;
-					pointsSystem.add( particle );
-				}
+					}
+			pointsSystem = new THREE.Object3D();
+					
+					for ( var i = 0; i < points.length; i++ ) {
+						particle = new THREE.Particle( new THREE.ParticleCanvasMaterial( { color: PARTICLE_COLOR, program: program } ) );
+						particle.position.x = points[i][0];
+						particle.position.y = points[i][1];
+						particle.position.z = points[i][2];
+						particle.scale.x = particle.scale.y = 5;
+						pointsSystem.add( particle );
+					}
 
 		}
 		
@@ -261,23 +258,31 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    
 	    
 	}
+	
 	function animate() {
 
-	    
 	    requestAnimationFrame(animate);
 	    controls.update();
 	    renderer.render(scene, camera);
-	     
-
+	
 	};
 	
 	function getSelectedPoint(x,y,z){
-	console.log(x,y,z);
-	
-	
-			//var text="intsersects: (" +intersects.length +")";
-			//document.getElementById("demo").innerHTML=text;
+		
+		for(var i=0;i<this.points.length;i++){
 			
+			if((this.points[i][0] == x) && (this.points[i][1] == y) && (this.points[i][2] == z)) {
 				
+				var text="" +this.points[i][0]+" ," +this.points[i][1]+" ," +this.points[i][2]+"";
+				document.getElementById("coordinates").innerHTML=text;
+				var time="" +this.points[i][3];
+				document.getElementById("timestamp").innerHTML=time;
+				
+			}
+		}
 	}
 	
+function reload(points){
+	addPoints(points);
+	addControls();
+};

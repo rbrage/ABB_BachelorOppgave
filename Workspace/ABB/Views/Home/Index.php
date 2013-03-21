@@ -50,9 +50,11 @@ $this->Template("Shared");
 <section id="plot3d">
 	<div class="page-header">
 		<h2>3D plot</h2>
-		<div id="3DPlotDiv" style="float: left; width: 900px; height: 600px; background:#edebeb;">
+		
+			<div id="3DPlotDiv" style="border:1px solid">
 			
 		</div>
+		<button class="btn btn-small btn-primary" type="button" onclick="reload()">Reload</button>
 	</div>
 
 </section>
@@ -61,39 +63,46 @@ $this->Template("Shared");
 <script type="text/javascript">
 
 			var point3DPlot;
-
-			setUp();
+			var points;
+			
+				setUp();
 			
 			function setUp()
 			{
 
-			var points = new Array();
-			<?php 
-	      			$list = $this->viewmodel->arr->getCachedArrayList();
-	      			$size = $list->size();
-	      			for ($i = 0; $i<=$size-1 ;$i++){
-	      				?>points[<?php echo $i ?>] = new point(<?php echo $list->get($i)->x ?>,<?php echo $list->get($i)->y?>,<?php echo $list->get($i)->z?>,<?php echo $list->get($i)->timestamp?>);
-	      				<?php 
-	      			}
-	      			?>
-
-	      		var data = {width: 900, height: 600, axisSize: 350};
-	      		var container = document.getElementById("3DPlotDiv");
+			points = new Array();
+			
+			var container = document.getElementById("3DPlotDiv");
+	      	var data = {width: container.offsetWidth-15, height: 600, axisSize: 350};
 	      		
-	      		point3DPlot = new PlotWebGLCanvas(document.getElementById("3DPlotDiv"), points, data);
-				
-
-
-			};
+	      	point3DPlot = new PlotWebGLCanvas(container, points, data);
+			loadPoint();
+			
+		
+			}
+			
+			function loadPoint(){
+			
+			$.getJSON("/Register/Points/json?start=0&stop=1000", function(data){
+						start = data.Register.Start;
+						$.each(data.Register.Points, function(key, value){
+						points[start] = new point(value.x,value.y,value.z,value.timestamp);
+							start++;
+						});
+				reload(points);
+			});
+			}
 			
 				
-				function point(x, y, z, t)
-			      
-			      {       
-			        return [x, y, z, t]; 
-			    };
+			function point(x, y, z, t){       
+				return [x, y, z, t]; 
+			};
 				
-
+			
+			
+			window.onresize = function(event) {
+				reload();
+			};
 			</script>
 
 

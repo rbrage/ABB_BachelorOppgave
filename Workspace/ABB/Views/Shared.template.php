@@ -16,7 +16,6 @@ body {
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-<!--[if IE]><script type="text/javascript" src="../scripts/excanvas.js"></script><![endif]-->
 <script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
 <script type="text/javascript" src="/scripts/three.min.js"></script>
 <script type="text/javascript" src="/scripts/three.js"></script>
@@ -125,10 +124,10 @@ body {
 						<p class="nav-header">Selected point</p>
 								<table class="table table-condensed">
 							<tbody>
+								<tr></tr>
+								<tr><td> X Y Z:</td><td id="coordinates"></td></tr>
 								<tr>
-								<td id="coordinates"></td>
-								</tr>
-								<tr>
+								<td> Time: </td>
 								<td id="timestamp"></td>
 								</tr>
 								<tr>
