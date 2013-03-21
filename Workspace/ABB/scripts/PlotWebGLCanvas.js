@@ -40,7 +40,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 	    camera.position.x = 500;
 		
 	   
-		renderer = new THREE.WebGLRenderer( { clearColor: 0xffffff, clearAlpha: 1 } );
+		renderer = new THREE.WebGLRenderer( { clearColor: 0xF2F2F2, clearAlpha: 1 } );
 		renderer.setSize(WIDTH, HEIGHT);
 	    
 	    scene = new THREE.Scene();
@@ -318,6 +318,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				
 				var time="" +this.points[i][3];
 				document.getElementById("timestamp").innerHTML=time;
+				
 				var clusternumber = this.points[i][4];
 				var cluster="" +this.points[i][4];
 				document.getElementById("cluster").innerHTML=cluster;

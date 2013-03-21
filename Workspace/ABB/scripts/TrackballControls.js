@@ -265,7 +265,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 			var projector = new THREE.Projector();
 			var ray = new THREE.Ray();
 			ray.setPrecision( 1e-20);
-			ray.setThreshold(20);
+			ray.setThreshold(10);
 			console.log(ray.precision, ray.threshold);
 			
 			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
@@ -277,13 +277,14 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 				
 				if(intersects != null){	
 				
-					getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
+					plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
 					
+					if ( intersects.length > 0 ) {
 						INTERSECTED = intersects[ 0 ].vertex
 				
 						pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0x00ff00);
 						pointsSystem.children[INTERSECTED].material.needsUpdate = true;
-					
+					}
 				}
 				
 			}else{
@@ -293,17 +294,19 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 			
 				plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
 				
+				
 				if ( intersects.length > 0 ) {
 					
+					
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
-					//attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+					attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
 					
 					INTERSECTED = intersects[ 0 ].vertex;
+					PARTICLE_COLOR = intersects[0].object.material.attributes.ca.value[INTERSECTED];
+					attributes.ca.value[ INTERSECTED ] = 0x000000;
+					attributes.ca.needsUpdate = true;
 					
-					//attributes.ca.value[ INTERSECTED ] = 0x000000;
-					//attributes.ca.needsUpdate = true;
-					
-					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *2;
+					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE *1.5;
 					attributes.size.needsUpdate = true;
 				
 				}else {
@@ -311,13 +314,12 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 					attributes.size.value[ INTERSECTED ] = PARTICLE_SIZE;
 					attributes.size.needsUpdate = true;
 					
-					//attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
-					//attributes.ca.needsUpdate = true;
+					attributes.ca.value[ INTERSECTED ] = PARTICLE_COLOR;
+					attributes.ca.needsUpdate = true;
 			
 					INTERSECTED = null;
 					}
 				}
-			console.log("error");
 			}
 			
 		}
