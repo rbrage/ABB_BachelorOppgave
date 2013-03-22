@@ -1,0 +1,123 @@
+<html lang="en">
+<head>
+<?php 
+$this->viewmodel->templatemenu = array("last" => "Last 10 Points", "plot3d" => "3D Plot");
+?>
+<title>ABB</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+body {
+	color: #ffffff;
+	font-family: Monospace;
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #ffffff;
+	margin: 0px;
+	overflow: hidden;
+}
+
+#info {
+	color: #fff;
+	position: absolute;
+	top: 0px;
+	width: 100%;
+	padding: 5px;
+	z-index: 100;
+}
+
+a {
+	color: red
+}
+
+#stats {
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+#stats #fps {
+	background: transparent !important
+}
+
+#stats #fps #fpsText {
+	color: #777 !important
+}
+
+#stats #fps #fpsGraph {
+	display: none
+}
+</style>
+<style type="text/css">
+iframe.dealply-toast {
+	right: -99999px !important;
+}
+
+iframe.dealply-toast.fastestext-revealed {
+	right: 0px !important;
+}
+</style>
+
+</head>
+<body>
+
+	<script src="/scripts/three.min.js"></script>
+	<script src="/scripts/TrackballControls.js"></script>
+	
+	<div id="3DPlotDiv">
+	</div>
+	
+
+	
+	<script>
+
+			<script type="text/javascript">
+
+			var point3DPlot;
+			var points;
+			
+				setUp();
+			
+			function setUp()
+			{
+
+			points = new Array();
+			
+			var container = document.getElementById("3DPlotDiv");
+	      	var data = {width: container.offsetWidth-15, height: container.offsetHeight, axisSize: 350};
+	      		
+	      	point3DPlot = new PlotWebGLCanvas(container, points, data);
+			loadPoint();
+			
+		
+			}
+			
+			function loadPoint(){
+			
+			$.getJSON("/Register/Points/json?start=0&stop=10000", function(data){
+						start = data.Register.Start;
+						$.each(data.Register.Points, function(key, value){
+						points[start] = new point(value.x,value.y,value.z,value.timestamp,value.cluster);
+							start++;
+						});
+				reload(points);
+			});
+			}
+			
+				
+			function point(x, y, z, t, c){       
+				return [x, y, z, t, c]; 
+			};
+				
+			
+			window.onresize = function(event) {
+				reload();
+			};
+			
+</script>
+	
+
+</body>
+</html>

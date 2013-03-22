@@ -101,6 +101,7 @@ $this->template("Shared");
 							foreach ($this->viewmodel->templatemenu as $section => $name)
 								echo "<li><a href=\"#" . $section . "\">" . $name . "</a>";
 						?>
+						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i>FullSkjerm 3Dplot</a></li>
 					</ul>
 				</div>
 			</div>

@@ -264,9 +264,8 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		if(_state === STATE.CTRL && mouseDown){
 			var projector = new THREE.Projector();
 			var ray = new THREE.Ray();
-			ray.setPrecision( 1e-20);
-			ray.setThreshold(10);
-			console.log(ray.precision, ray.threshold);
+			ray.setPrecision( 1e-4);
+			ray.setThreshold(5);
 			
 			var vector = new THREE.Vector3( mousex, mousey, 0.5 );
 			projector.unprojectVector ( vector, _this.object );

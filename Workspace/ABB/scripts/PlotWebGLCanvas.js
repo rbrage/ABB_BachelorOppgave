@@ -35,7 +35,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 		this.axisSize = data.axisSize;
 		this.targetContainer = targetContainer;
 		
-		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
+		camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
 	    camera.position.x = 500;
 		
@@ -188,7 +188,7 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 			uniforms = {
 
 					color: { type: "c", value: new THREE.Color( 0xff0000 ) },
-					texture: { type: "t", value: THREE.ImageUtils.loadTexture( "img/ball.png" ) }
+					texture: { type: "t", value: THREE.ImageUtils.loadTexture( "/img/ball.png" ) }
 					
 				};
 

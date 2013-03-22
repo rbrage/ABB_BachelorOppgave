@@ -76,8 +76,8 @@ iframe.dealply-toast.fastestext-revealed {
 
 			var targetDiv;
 			
-			var WIDTH = 1300,
-			HEIGHT = 600;
+			var WIDTH = window.innerWidth,
+			HEIGHT = window.innerHeight;
 
 			var light, axis;
 			
