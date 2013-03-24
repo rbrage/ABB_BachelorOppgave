@@ -1,36 +1,49 @@
 <?php
 
-require_once("Models/CachedArrayList.php");
-require_once("Models/SSE.php");
+require_once 'Models/Cache.php';
+require_once 'Models/CachedArrayList.php';
+require_once 'Models/SSE.php';
+require_once 'Models/KMeans.php';
 
 class SSEvents extends Controller {
 
-	private $list;
+	private $pointlist;
+	private $clusterlist;
 	private $sse;
+	private $cache;
 	
 	public function BasicInfo(){
-		$this->list = new CachedArrayList();
+		$this->pointlist = new CachedArrayList();
+		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
 		$this->sse = new SSE();
+		$this->cache = new Cache();
 		
-		$info = apc_cache_info("user", true);
+		$info = $this->cache->getCacheInfo();
 		
 		$this->sse->start();
 		
-		$oldsize = -1;
+		$oldpointsize = -1;
 		$oldmemory = -1;
+		$oldclustersize = -1;
 		while (true){
-			$size = $this->list->size();
-			if($oldsize != $size){
-				$oldsize = $size;
-				$this->sse->sendData("cachesize", $size);
+			$size = $this->pointlist->size();
+			if($oldpointsize != $size){
+				$oldpointsize = $size;
+				$this->sse->sendData("pointsize", $size);
 			}
 			
-			$info = apc_cache_info("user", true);
-			$memory = round($info["mem_size"]/1024, 2);
+			$size = $this->clusterlist->size();
+			if($oldclustersize != $size){
+				$oldclustersize = $size;
+				$this->sse->sendData("clustersize", $size);
+			}
+			
+			$info = $this->cache->getCacheInfo();
+			$memory = round($info["mem_size"]/1000, 2);
 			
 			if($memory != $oldmemory){
 				$oldmemory = $memory;
-				$this->sse->sendData("memorysize", $memory);
+				$this->sse->sendData("usedmemory", $memory);
 			}
 			
 			// sover i 1 sec

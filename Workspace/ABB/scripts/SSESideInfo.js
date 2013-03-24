@@ -1,14 +1,20 @@
+var ssesource = null;
+
 $(function(){
 
 	if(typeof(EventSource)!=="undefined")
 	{
-		var source=new EventSource("/SSevents/BasicInfo");
-		source.addEventListener("cachesize", function (event) {
-			$("#cachesize").html(event.data);
+		ssesource = new EventSource("/SSevents/BasicInfo");
+		ssesource.addEventListener("pointsize", function (event) {
+			$("#pointsize").html(event.data);
 		}, true);
 
-		source.addEventListener("memorysize", function (event) {
-			$("#memorysize").html(event.data + "k");
+		ssesource.addEventListener("usedmemory", function (event) {
+			$("#usedmemory").html(event.data + "k");
+		}, true);
+		
+		ssesource.addEventListener("clustersize", function (event) {
+			$("#clustersize").html(event.data);
 		}, true);
 
 	}
