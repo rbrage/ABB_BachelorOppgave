@@ -46,11 +46,11 @@ public class Simulation_program extends JFrame implements ActionListener
 	boolean running = false;
 	Thread t;
 
-	Simulation_program(String [] args) // the frame constructor method
+	Simulation_program(String [] arg) // the frame constructor method
 	{
 		super("Simulation program"); 
 		setBounds(100,100,300,300);
-		this.args = args;
+		this.args = arg;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		Container con = this.getContentPane(); // inherit main frame
@@ -123,7 +123,12 @@ public class Simulation_program extends JFrame implements ActionListener
 
 						@Override
 						public void run() {
-							runFile();
+							JFileChooser fc = new JFileChooser();
+							int answer = fc.showOpenDialog(new JPanel());
+							if(answer == JFileChooser.APPROVE_OPTION ){
+								File file = fc.getSelectedFile();
+								runFile(file);
+							}
 						}
 
 					});
@@ -135,103 +140,114 @@ public class Simulation_program extends JFrame implements ActionListener
 		pane.add(file);
 
 		setVisible(true); // display this frame
-	}
+		if(args.length == 1){
+			t = new Thread(new Runnable(){
 
-	private void runFile(){
-		running = true;
-		JFileChooser fc = new JFileChooser();
-		int answer = fc.showOpenDialog(this);
-		if(answer == JFileChooser.APPROVE_OPTION ){
-			File file = fc.getSelectedFile();
-			try {
-				FileInputStream fs = new FileInputStream(file);
-				BufferedReader br = new BufferedReader(new InputStreamReader(fs)); 
-
-				int chr;
-				int numline = 0;
-				System.out.println("Kalkulerer antall linjer.");
-				while((chr = br.read()) != -1){
-					if(((char) chr) == '\n') numline++;
+				@Override
+				public void run() {
+					File file = new File(args[0]);
+					if(file.isFile())
+						runFile(file);
 				}
-
-				bar.setMinimum(0);
-				bar.setMaximum(numline);
-
-				br.close();
-				fs = new FileInputStream(file);
-				br = new BufferedReader(new InputStreamReader(fs));
-				String line = br.readLine();
-				long time = getTime();
-				long nowtime = 0;
-				long lasttime = 0;
-				int j = 0;
-				while(line != null){
-					String[] props = line.split(",");
-					String[] names = {"idtag", "time", "x", "y", "z", "a", "b", "img"};
-					String query = "";
-					for(int i = 0; i < props.length; i++){
-						String value = props[i].trim();
-						value = value.replaceAll("\"", "");
-						if(value.equals("0") || value.equals(""))
-							continue;
-
-						String key = names[i];
-						query += key + "=" + value + "&"; 
-					}
-					nowtime = Long.parseLong(props[1].trim());
-
-					if(lasttime != 0){
-						long usedtime = getTime() - time;
-						long neededtime = nowtime - lasttime;
-						long wait = neededtime - usedtime;
-						System.out.println("Må vente i " + neededtime + " ms");
-						System.out.println("Brukte " + usedtime + " ms");
-						System.out.println("Ventet i " + wait + " ms");
-						if(wait > 0)
-							Thread.sleep(wait);
-						else
-							System.err.println("Brukte lengre tid enn tildelt!!!!!!!!!");
-					}
-					// new time round
-					lasttime = Long.parseLong(props[1].trim());
-					time = getTime();
-
-					String path = "http://localhost:8888/register/trigger/xml?";
-					URL url;
-					URLConnection urlConnection = null;
-					DataInputStream inStream;
-
-					url = new URL(path + query);
-					long contime = getTime();
-					urlConnection = url.openConnection();
-					((HttpURLConnection)urlConnection).setRequestMethod("GET");
-					urlConnection.setDoOutput(true);
-					//System.out.println(url.getQuery());
-					inStream = new DataInputStream(urlConnection.getInputStream());
-					String buffer;
-					while((buffer = inStream.readLine()) != null) {
-							//System.out.println(buffer);
-					}
-					inStream.close();
-					System.out.println("Tilkoblingstid " + (getTime()-contime) + " ms");
-
-					line = br.readLine();
-					j++;
-					bar.setValue(j);
-
-					if(t.isInterrupted()) break;
-				}
-				br.close();
-				fs.close();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
 				
+			});
+			t.start();
+		}
+	}
+	
+
+	private void runFile(File file){
+		running = true;
+
+		try {
+			FileInputStream fs = new FileInputStream(file);
+			BufferedReader br = new BufferedReader(new InputStreamReader(fs)); 
+
+			int chr;
+			int numline = 0;
+			System.out.println("Kalkulerer antall linjer.");
+			while((chr = br.read()) != -1){
+				if(((char) chr) == '\n') numline++;
 			}
 
+			bar.setMinimum(0);
+			bar.setMaximum(numline);
+
+			br.close();
+			fs = new FileInputStream(file);
+			br = new BufferedReader(new InputStreamReader(fs));
+			String line = br.readLine();
+			long time = getTime();
+			long nowtime = 0;
+			long lasttime = 0;
+			int j = 0;
+			while(line != null){
+				String[] props = line.split(",");
+				String[] names = {"idtag", "time", "x", "y", "z", "a", "b", "img"};
+				String query = "";
+				for(int i = 0; i < props.length; i++){
+					String value = props[i].trim();
+					value = value.replaceAll("\"", "");
+					if(value.equals("0") || value.equals(""))
+						continue;
+
+					String key = names[i];
+					query += key + "=" + value + "&"; 
+				}
+				nowtime = Long.parseLong(props[1].trim());
+
+				if(lasttime != 0){
+					long usedtime = getTime() - time;
+					long neededtime = nowtime - lasttime;
+					long wait = neededtime - usedtime;
+					System.out.println("Må vente i " + neededtime + " ms");
+					System.out.println("Brukte " + usedtime + " ms");
+					System.out.println("Ventet i " + wait + " ms");
+					if(wait > 0)
+						Thread.sleep(wait);
+					else
+						System.err.println("Brukte lengre tid enn tildelt!!!!!!!!!");
+				}
+				// new time round
+				lasttime = Long.parseLong(props[1].trim());
+				time = getTime();
+
+				String path = "http://localhost:8888/register/trigger/xml?";
+				URL url;
+				URLConnection urlConnection = null;
+				DataInputStream inStream;
+
+				url = new URL(path + query);
+				long contime = getTime();
+				urlConnection = url.openConnection();
+				((HttpURLConnection)urlConnection).setRequestMethod("GET");
+				urlConnection.setDoOutput(true);
+				//System.out.println(url.getQuery());
+				inStream = new DataInputStream(urlConnection.getInputStream());
+				String buffer;
+				while((buffer = inStream.readLine()) != null) {
+					//System.out.println(buffer);
+				}
+				inStream.close();
+				System.out.println("Tilkoblingstid " + (getTime()-contime) + " ms");
+
+				line = br.readLine();
+				j++;
+				bar.setValue(j);
+
+				if(t.isInterrupted()) break;
+			}
+			br.close();
+			fs.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+
 		}
+
+
 		running = false;
 	}
 
