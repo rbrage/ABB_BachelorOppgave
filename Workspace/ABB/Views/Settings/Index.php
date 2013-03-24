@@ -1,5 +1,5 @@
 <?php
-$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterSettings" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
+$this->viewmodel->templatemenu = array("ClusterSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
 $this->Template("Shared");
 ?>
 <section id="ClusterSettings">
@@ -34,7 +34,7 @@ $this->Template("Shared");
 			});</script>
 	</div>
 </section>
-<section id="ClusterSettings">
+<section id="ClusterAnalysis">
 	<div class="page-header">
 		<h2>Cluster analysis</h2>
 		<p>qergeg</p>
