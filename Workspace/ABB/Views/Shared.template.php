@@ -16,7 +16,7 @@ body {
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
 <script src="/scripts/jquery-1.9.0.js" type="text/javascript"></script>
-<script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
+<script src="/scripts/bootstrap.js" type="text/javascript"></script>
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -99,7 +99,6 @@ body {
 								</tr>
 								</tbody>
 						</table>
-						<hr>
 					</div>
 				</div>
 			</div>
