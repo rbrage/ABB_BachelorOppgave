@@ -1,3 +1,8 @@
+<?php 
+require_once 'Models/Cache.php';
+require_once 'Models/CachedArrayList.php';
+require_once 'Models/KMeans.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,22 +65,14 @@ body {
 		</script>
 
 <title>ABB Analyseprogram</title>
-
-<?php
-$this->viewmodel->templatemenu = array("options" => "Options", "points" => "Clusterpoints");
-$this->template("Shared");
-
-?>
-
 </head>
 <body style="padding-top: 60px;">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/abbLogo.gif"> </a></li>
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
@@ -112,24 +109,36 @@ $this->template("Shared");
 
 				?>
 			</div>
-			<div class="span2">
+			<div class="span2" style="margin-left: 10px;">
 				<div data-spy="affix">
 					<div class="alert alert-info">
 						<p class="nav-header">Information</p>
+						<?php 
+
+						$cache = new Cache();
+						$pointlist = new CachedArrayList();
+						$clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+						
+						$cacheinfo = $cache->getCacheInfo();
+						
+						?>
 						<table class="table table-condensed">
 							<tbody>
 								<tr>
 									<td>Number of triggerpoints:</td>
-									<td id="cachesize"><?php echo $this->viewmodel->listsize ?></td>
+									<td id="pointsize"><?php echo $pointlist->size(); ?></td>
 								</tr>
 								<tr>
-									<td>Used memory size:</td>
-									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
+									<td>Used memory:</td>
+									<td id="usedmemory"><?php echo $cacheinfo["mem_size"]/1000 . "k"; ?></td>
+								</tr>
+								<tr>
+									<td>Available memory:</td>
+									<td id="availablememory"><?php echo ini_get("apc.shm_size") * 1000 . "k"; ?></td>
 								</tr>
 								<tr>
 									<td>Number of cluster:</td>
-									<?php $settings = $this->viewmodel->settings; ?>
-									<td><?php echo $settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?></td>
+									<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
 								</tr>
 								</tbody>
 						</table>

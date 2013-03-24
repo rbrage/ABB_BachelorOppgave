@@ -1,3 +1,8 @@
+<?php 
+require_once 'Models/Cache.php';
+require_once 'Models/CachedArrayList.php';
+require_once 'Models/KMeans.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,66 +21,16 @@ body {
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-<script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
-<script type="text/javascript" src="/scripts/three.min.js"></script>
-<script type="text/javascript" src="/scripts/three.js"></script>
-<script type="text/javascript" src="/scripts/TrackballControls.js"></script>
-<script type="text/javascript" src="/scripts/Detector.js"></script>
-
-<script type="x-shader/x-vertex" id="vertexshader">
-			attribute float size;
-			attribute vec3 ca;
-
-			varying vec3 vColor;
-
-			void main() {
-
-				vColor = ca;
-
-				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-
-				//gl_PointSize = size;
-				gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
-
-				gl_Position = projectionMatrix * mvPosition;
-				
-
-			}
-
-		</script>	
-<script type="x-shader/x-fragment" id="fragmentshader">
-
-			uniform vec3 color;
-			uniform sampler2D texture;
-
-			varying vec3 vColor;
-
-			void main() {
-
-				gl_FragColor = vec4(vColor, 1.0 );
-				gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
-
-			}
-
-		</script>
-
 <title>ABB Analyseprogram</title>
-
-<?php
-$this->viewmodel->templatemenu = array("options" => "Options", "points" => "Clusterpoints");
-$this->template("Shared");
-
-?>
 
 </head>
 <body style="padding-top: 60px;">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/abbLogo.gif"> </a></li>
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
@@ -111,24 +66,36 @@ $this->template("Shared");
 
 				?>
 			</div>
-			<div class="span2">
+			<div class="span2" style="magin-left: 10px;">
 				<div data-spy="affix">
 					<div class="alert alert-info">
 						<p class="nav-header">Information</p>
+						<?php 
+
+						$cache = new Cache();
+						$pointlist = new CachedArrayList();
+						$clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+						
+						$cacheinfo = $cache->getCacheInfo();
+						
+						?>
 						<table class="table table-condensed">
 							<tbody>
 								<tr>
 									<td>Number of triggerpoints:</td>
-									<td id="cachesize"><?php echo $this->viewmodel->listsize ?></td>
+									<td id="pointsize"><?php echo $pointlist->size(); ?></td>
 								</tr>
 								<tr>
-									<td>Used memory size:</td>
-									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
+									<td>Used memory:</td>
+									<td id="usedsize"><?php echo $cacheinfo["mem_size"]/1000 . "k"; ?></td>
+								</tr>
+								<tr>
+									<td>Available memory:</td>
+									<td id="availablesize"><?php echo ini_get("apc.shm_size") * 1000 . "k"; ?></td>
 								</tr>
 								<tr>
 									<td>Number of cluster:</td>
-									<?php $settings = $this->viewmodel->settings; ?>
-									<td><?php echo $settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?></td>
+									<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
 								</tr>
 								</tbody>
 						</table>
