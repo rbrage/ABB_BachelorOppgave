@@ -66,7 +66,7 @@ body {
 
 <title>ABB Analyseprogram</title>
 </head>
-<body style="padding-top: 60px;">
+<body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
@@ -89,10 +89,9 @@ body {
 	<div class="container-fluid">
 		<div class="row-fluid">
 
-			<div class="span2">
-				<div data-spy="affix">
-					<ul class="nav nav-list">
-						<li class="nav-header">Menu</li>
+			<div class="span2 bs-docs-sidebar">
+					<ul class="nav nav-list bs-docs-sidenav affix">
+						<li class="nav-header">Headline</li>
 						<?php 
 						if(is_array($this->viewmodel->templatemenu))
 							foreach ($this->viewmodel->templatemenu as $section => $name)
@@ -100,7 +99,6 @@ body {
 						?>
 						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i>FullSkjerm 3Dplot</a></li>
 					</ul>
-				</div>
 			</div>
 			<div class="span8">
 				<?php
@@ -109,8 +107,8 @@ body {
 
 				?>
 			</div>
-			<div class="span2" style="margin-left: 10px;">
-				<div data-spy="affix">
+			<div class="span2">
+				<div data-spy="affix" style="padding-right: 10px;">
 					<div class="alert alert-info">
 						<p class="nav-header">Information</p>
 						<?php 
