@@ -77,6 +77,8 @@ class Test extends Controller {
 	
 	public function memUse(){
 		$info = apc_cache_info("user", true);
+		echo ini_get("apc.shm_size") *1024;
+		print_r($info);
 		print_r(($info["mem_size"]/1000) . "k");
 	}
 	
