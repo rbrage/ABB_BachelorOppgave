@@ -12,19 +12,18 @@ class KMeans {
 	private $clusterlist;
 	private $pointlist;
 	private $pointMoved;
+	private $randomSelection = false;
 	
 	const CLUSTERLISTNAME = "CLUSTERANALYSIS";
 	const CLUSTERANALYSISRUNNINGNAME = "CLUSTERANALYSISRUNNING";
-// 	const CLUSTERTOUCHEDNAME = "Touched";
 	const CLUSTERCOUNTNAME = "CLUSTERCOUNT";
-// 	const CLUSTERARRAYNAME = "Clusterarray";
-// 	const CLUSTERHASINITIALCLUSTER = "ClusterHasInitialClusters";
 	
 	/**
-	 * Creates a new instance of the KMeans class.
+	 * Creates a new instance of the KMeans class. Sets the ini time limit of the script to infinite to make it possible to run large clusters.
 	 * @param int $k
 	 */
 	public function __construct($k){
+		set_time_limit(0);
 		Debuger::SetupNewDebugID("KMeans");
 		Debuger::SetSendInfoToBrowser("KMeans", false);
 		$this->k = $k;
@@ -53,17 +52,6 @@ class KMeans {
 			while(true){
 
 				$this->reasignPointsToClusters();
-					
-// 				$tuched = false;
-// 				foreach($this->clusterlist->iterator() as $cluster){
-// 					if($cluster->getAdditionalInfo(self::CLUSTERTOUCHEDNAME)){
-// 						$tuched = true;
-// 						break;
-// 					}
-// 				}
-					
-// 				if(!$tuched)
-// 					break;
 				
 				if(!$this->pointMoved)
 					break;
@@ -80,7 +68,7 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Sets the max numbers of point to define a cluster.
 	 * @param int $numberOfPoints
 	 */
 	public function setNumberOfPointsToDeterminClusters($numberOfPoints){
@@ -88,24 +76,36 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Sets if the initial clusters should be selected at random.
+	 * @param boolean $isRandom
+	 */
+	public function setRandomSelectionOfInitialCluster($randomSelection){
+		$this->randomSelection = $randomSelection;
+	}
+	
+	/**
+	 * Asigns the initial clusters.
 	 */
 	private function asignInitialCluster(){
 		for($i = $this->clusterlist->size(); $i < $this->k && $i < $this->pointlist->size(); $i++){
 			Debuger::RegisterPoint("Asigning cluster " . $i, "KMeans");
-			$point = $this->pointlist->get($i, true);
+			$pointnumber = $i;
+			if($this->randomSelection){
+				$pointnumber = rand(0, $this->pointlist->size()-1);
+				$point = $this->pointlist->get($pointnumber, true);
+			}
+			else 
+				$point = $this->pointlist->get($pointnumber, true);
 			$point->setAsignedCluster($i);
-			$this->pointlist->set($i, $point, true);
+			$this->pointlist->set($pointnumber, $point, true);
 			
-// 			$point->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, false);
 			$point->addAdditionalInfo(self::CLUSTERCOUNTNAME, 0);
-// 			$point->addAdditionalInfo(self::CLUSTERARRAYNAME, array());
 			$this->clusterlist->set($i, $point);
 		}
 	}
 	
 	/**
-	 * 
+	 * Puts a point in its asigned cluster defined with the parameters.
 	 * @param int $pointNumber
 	 * @param int $clusterNumber
 	 */
@@ -117,28 +117,10 @@ class KMeans {
 		$oldclusternumber = $point->getAsignedCluster();
 		$point->setAsignedCluster($clusterNumber);
 		$this->pointlist->set($pointNumber, $point, true);
-		
-		// adding point to new cluster
-// 		$clusterpoint = $this->clusterlist->get($clusterNumber, true);
-// 		if($pointNumber < $this->pointsToCrush)
-// 			$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, true);
-// 		$clusterarray = $clusterpoint->getAdditionalInfo(self::CLUSTERARRAYNAME);
-// 		$clusterarray[$pointNumber] = $pointNumber;
-// 		$clusterpoint->addAdditionalInfo(self::CLUSTERARRAYNAME, $clusterarray);
-// 		$this->clusterlist->set($clusterNumber, $clusterpoint, true);
-		
-		// removing point from old cluster
-// 		$clusterpoint = $this->clusterlist->get($oldclusternumber);
-// 		if($pointNumber < $this->pointsToCrush)
-// 			$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, true);
-// 		$clusterarray = $clusterpoint->getAdditionalInfo(self::CLUSTERARRAYNAME);
-// 		$clusterarray[$pointNumber] = -1;
-// 		$clusterpoint->addAdditionalInfo(self::CLUSTERARRAYNAME, $clusterarray);
-// 		$this->clusterlist->set($oldclusternumber, $clusterpoint, true);
 	}
 	
 	/**
-	 * 
+	 * Reasigns all the points to nearest cluster limited to the max points it should go through. 
 	 */
 	private function reasignPointsToClusters(){
 		for($i = 0; $i < $this->pointsToCrush && $i < $this->pointlist->size(); $i++){
@@ -165,7 +147,7 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Reasigns all the points to nearest cluster not limited to the max points it should go through.
 	 */
 	public function asignAllPointsToClusters(){
 		foreach ($this->pointlist->iterator() as $i => $point){
@@ -191,7 +173,7 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Calculates the center of a cluster.
 	 */
 	private function updateClusterCenter(){
 		$sumarray = array();
@@ -243,7 +225,7 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Gives the distance between two points. 
 	 * @param TriggerPoint $first
 	 * @param TriggerPoint $second
 	 * @return float
@@ -253,7 +235,7 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Clears any analysis that has been run earlier by clearing any defined clusters and put all points that has been asigned back to cluster 0 limited by max points it should go through.
 	 */
 	public function forceNewAnalysis(){
 		$this->clusterlist->clear();
@@ -266,9 +248,9 @@ class KMeans {
 	}
 	
 	/**
-	 * 
+	 * Asigns a new point to a defined nearast cluster. Return a boolean to tell if a new analysis should be run. 
 	 * @param TriggerPoint $point
-	 * @return boolean
+	 * @return boolean - If you should do a new analysis or not.
 	 */
 	public function asignCluster(&$point){
 
