@@ -11,12 +11,13 @@ $this->Template("Shared");
 		<table class="table table-striped" id="PointTable">
 			<thead>
 				<tr>
-					<th>Number</th>
+					<th>#</th>
 					<th>X</th>
 					<th>Y</th>
 					<th>Z</th>
 					<th>Cluster</th>
 					<th>Time</th>
+					<th>Additional Info</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,29 +31,46 @@ $this->Template("Shared");
 				<td>".$item->y."</td>
 				<td>".$item->z."</td>
 				<td>".$item->cluster."</td>
-				<td>".$item->timestamp."</td>
-				</tr>";
+				<td>".$item->timestamp."</td>";
+					
+					$moreinfo = $item->getAdditionalInfo();
+					if(count($moreinfo)){
+						echo "<td>";
+						foreach($item->getAdditionalInfo() as $key => $value){
+							echo "" . $key . ": " . $value . "<br>";
+						}
+						echo "</td>";
+					}
+					else{
+						echo "<td></td>";
+					}
+					
+				echo "</tr>";
 				}
 				?>
 			</tbody>
 		</table>
 		<div class="span4 offset4">
-			<button id="MoreResults" class="btn">Get more results</button>
+			<button id="MoreResults" class="btn" data-loading-text="Loading...">Get more results</button>
 			<script type="text/javascript">
 				stop = <?php echo $i; ?>;
 				$("#MoreResults").click(function(){
-					$("#MoreResults").html("Loading");
+					//$("#MoreResults").html("Loading");
 					$.getJSON("/Register/Points/json?start=" + stop + "&stop=" + (stop + 50), function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
 							$("#PointTable").find("tbody").append("<tr>" + 
-								"<td>" + start + "</td>" +
-								"<td>" + value.x + "</td>" +
-								"<td>" + value.y + "</td>" +
-								"<td>" + value.z + "</td>" +
-								"<td>" + value.cluster + "</td>" +
-								"<td>" + value.timestamp + "</td>" +
-							"</tr>");
+								"<td id=\"num\">" + start + "</td>" +
+								"<td id=\"x\">" + value.x + "</td>" +
+								"<td id=\"y\">" + value.y + "</td>" +
+								"<td id=\"z\">" + value.z + "</td>" +
+								"<td id=\"cluster\">" + value.cluster + "</td>" +
+								"<td id=\"time\">" + value.timestamp + "</td>" +
+								"<td id=\"additionalinfo\">");
+								$.each(value.additionalinfo, function(key, value){
+									$("#PointTable").find("tbody > tr > #additionalinfo").last().append(key + ": " + value + "<br>");
+								});
+							$("#PointTable").find("tbody").append("</td></tr>");
 							start++;
 						});
 						stop = start;
