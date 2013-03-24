@@ -127,6 +127,16 @@ class Cache {
 		return $success;
 	}
 	
+	/**
+	 * Gets information on the cache in arrayform.
+	 * @throws Exception
+	 */
+	public function getCacheInfo($cacheType = "user"){
+		Debuger::RegisterPoint("Gets cache info.", "Cache");
+		if(!$this->apcInstalled) throw new Exception("The Extension APC is not installed. Install APC before using this modelclass.");
+		return apc_cache_info($cacheType, true);
+	}
+	
 }
 
 ?>
