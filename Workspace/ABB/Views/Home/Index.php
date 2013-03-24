@@ -1,8 +1,40 @@
 <?php 
-$this->viewmodel->templatemenu = array("last" => "Last 10 Points", "plot3d" => "3D Plot");
+$this->viewmodel->templatemenu = array("execute" => "Run triggering", "plot3d" => "3D Plot", "last" => "Last 10 Points");
 
 $this->Template("Home");
 ?>
+
+<section id="execute">
+	<div class="page-header">
+		<h2>Run triggering</h2>
+	</div>
+	<div class="alert hide"></div>
+	<button id="triggerprogramButton" class="btn">Run Triggerprogram</button>
+	<script type="text/javascript">
+		$(function(){
+			$("#triggerprogramButton").click(function(){
+				$.getJSON("/Execute/RunTriggeringProgram/json", function(data){
+					$("#execute > .alert").html(data.msg).fadeIn(800);
+				}).error(function(){
+					$("#execute > .alert").html("An error occured.").fadeIn(800);
+				});
+			});
+		});
+	</script>
+	
+	<button id="masterpointButton" class="btn">Retrive masterpoint</button>
+	<script type="text/javascript">
+		$(function(){
+			$("#masterpointButton").click(function(){
+				$.getJSON("/Execute/RunMasterpointTriggering/json", function(data){
+					$("#execute > .alert").html(data.msg).fadeIn(800);
+				}).error(function(){
+					$("#execute > .alert").html("An error occured.").fadeIn(800);
+				});
+			});
+		});
+	</script>
+</section>
 
 <section id="plot3d">
 	<div class="page-header">
@@ -53,7 +85,7 @@ $this->Template("Home");
 			}
 			else{
 			?>
-	<p>Can't find any points in the cache.</p>
+	<p id="empty">Can't find any points in the cache.</p>
 	<?php 
 			}
 			?>
@@ -63,44 +95,46 @@ $this->Template("Home");
 
 			var point3DPlot;
 			var points;
-			
+			$(function(){
+				
 				setUp();
 			
-			function setUp()
-			{
+				function setUp()
+				{	
 
-			points = new Array();
+				points = new Array();
 			
-			var container = document.getElementById("3DPlotDiv");
-	      	var data = {width: container.offsetWidth-15, height: 600, axisSize: 350};
+				var container = document.getElementById("3DPlotDiv");
+		      	var data = {width: container.offsetWidth-15, height: 600, axisSize: 350};
 	      		
-	      	point3DPlot = new PlotWebGLCanvas(container, points, data);
-			loadPoint();
+		      	point3DPlot = new PlotWebGLCanvas(container, points, data);
+				loadPoint();
 			
 		
-			}
+				};
 			
-			function loadPoint(){
+				function loadPoint(){
 			
-			$.getJSON("/Register/Points/json?start=0&stop=10000", function(data){
+					$.getJSON("/Register/Points/json?start=0&stop=10000", function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
 						points[start] = new point(value.x,value.y,value.z,value.timestamp,value.cluster);
 							start++;
 						});
-				reload(points);
+						reload(points);
+					});
+				}
+			
+				
+				function point(x, y, z, t, c){       
+					return [x, y, z, t, c]; 
+				};
+				
+			
+				window.onresize = function(event) {	
+					reload();
+				};
 			});
-			}
-			
-				
-			function point(x, y, z, t, c){       
-				return [x, y, z, t, c]; 
-			};
-				
-			
-			window.onresize = function(event) {
-				reload();
-			};
 </script>
 
 
