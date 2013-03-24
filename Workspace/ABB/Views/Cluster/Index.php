@@ -28,14 +28,15 @@ $this->template("Shared");
 			$("#runButton").click(function(){
 				$("#options > .alert").html("New analysis is started. Don't refresh the browser!").fadeIn(800);
 				$.getJSON("/cluster/run/json", function(data){
-					$("#options > .alert").text(data.msg);
+					$("#options > .alert").html(data.msg);
 				});
 			});
 			
 			$("#forceNewButton").click(function(){
 				if(confirm("This will remove the clusters that are present now, and a new calculation will start. Are you sure you want to do this?")){
+					$("#options > .alert").html("New analysis is started. Don't refresh the browser!").fadeIn(800);
 					$.getJSON("/cluster/force/json", function(data){
-						$("#options > .alert").text(data.msg).fadeIn(800);
+						$("#options > .alert").html(data.msg).fadeIn(800);
 					});
 				}
 			});
@@ -43,14 +44,14 @@ $this->template("Shared");
 			$("#clearButton").click(function(){
 				if(confirm("This will remove all clusterdata thats present. Are you sure you want to do this?")){
 					$.getJSON("/cluster/reset/json", function(data){
-						$("#options > .alert").text(data.msg).fadeIn(800);
+						$("#options > .alert").html(data.msg).fadeIn(800);
 					});
 				}
 			});
 
 			$("#reasignButton").click(function(){
 				$.getJSON("/cluster/reasign/json", function(data){
-						$("#options > .alert").text(data.msg).fadeIn(800);
+						$("#options > .alert").html(data.msg).fadeIn(800);
 					});
 			});
 		});
