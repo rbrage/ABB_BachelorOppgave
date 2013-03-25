@@ -300,7 +300,7 @@ public class Simulation_program extends JFrame implements ActionListener
 		timestamp = getTime();
 	}
 	public int RandomNumber(int max){
-		return (int)Math.random()*max;
+		return (int)(Math.random()*max);
 
 	}
 
