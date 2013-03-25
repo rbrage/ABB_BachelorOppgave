@@ -73,4 +73,8 @@ class TriggerPoint {
 		$this->cluster = $cluster;
 	}
 	
+	public function toString(){
+		return $this->x . "," . $this->y . "," . $this->z . "," . $this->timestamp . "," . $this->cluster;
+	}
+	
 }
