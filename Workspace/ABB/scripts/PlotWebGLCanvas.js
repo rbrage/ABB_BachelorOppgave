@@ -1,6 +1,6 @@
 
 var targetContainer, container;
-var points clusterList;
+var points, clusterList;
 var WIDTH, HEIGHT, axisSize;
 var camera, scene, renderer;
 var group;
@@ -13,10 +13,11 @@ var webGL;
 
 PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
-	this.clusterList = cluster;
 	
-	init(targetContainer, points, data);
-	this.points = points;
+	
+	init(targetContainer, points, data, cluster);
+		this.points = points;
+		this.clusterList = cluster;
 	};
 	
 	init = function(targetContainer, points, data){
@@ -327,8 +328,8 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 				
 			}
 		}
-		console.log(clusterList[clusternumber];);	
-		}
+		console.log(this.clusterList);	
+		
 	}
 	
 	function reload(){

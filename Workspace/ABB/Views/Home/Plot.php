@@ -212,7 +212,7 @@ iframe.dealply-toast.fastestext-revealed {
 
 			points = new Array();
 			cluster = new Array();
-			cluster = new Array();
+			
 			
 			var container = document.getElementById("3DPlotDiv");
 	      	var data = {width: window.innerWidth, height: window.innerHeight, axisSize: 350};
@@ -240,12 +240,13 @@ iframe.dealply-toast.fastestext-revealed {
 			<?php 
 					$list = $this->viewmodel->clusterlist;
 					if($list->size() > 0){ 
-					?>
-				<?php 
-					for($i = 0; $i < $list->size(); $i++){
-					$point = $list->get($i);?>
-					cluster[<?php $point ?>] = new point(<?php echo round($point->x, 3)?>,<?php echo round($point->y, 3)?>,<?php echo round($point->z, 3)?>, null, <?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?>);
+						for($i = 0; $i < $list->size(); $i++){
+							$point = $list->get($i);
+							?>
+							cluster[<?php echo $i ?>] = new point(<?php echo round($point->x, 3)?>,<?php echo round($point->y, 3)?>,<?php echo round($point->z, 3)?>, 
+							null, <?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?>);
 			<?php 
+				};
 			}; 
 			
 			?>
