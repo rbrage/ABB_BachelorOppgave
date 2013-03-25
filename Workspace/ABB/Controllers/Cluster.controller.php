@@ -24,7 +24,7 @@ class Cluster extends Controller {
 	}
 
 	/**
-	 * Clears all clusters that has been calculated before. Answers either in json or xml, given in id that have to be set.
+	 * Clears all clusters that has been calculated before. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
 	public function reset($id){
@@ -46,7 +46,7 @@ class Cluster extends Controller {
 	}
 
 	/**
-	 * Runs a new cluster analysis. If a analysis if already run it will continue on that one. Answers either in json or xml, given in id that have to be set.
+	 * Runs a new cluster analysis. If a analysis if already run it will continue on that one. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
 	public function run($id){
@@ -71,7 +71,7 @@ class Cluster extends Controller {
 	}
 	
 	/**
-	 * Forces a new cluster analysis by clearing all previus information first. Answers either in json or xml, given in id that have to be set. 
+	 * Forces a new cluster analysis by clearing all previus information first. Answers either in json or xml, given in id, that have to be set. 
 	 * @param unknown_type $id
 	 */
 	public function force($id){
@@ -96,7 +96,7 @@ class Cluster extends Controller {
 	}
 	
 	/**
-	 * Reasigns all points to the defined clusters. Answers either in json or xml, given in id that have to be set.
+	 * Reasigns all points to the defined clusters. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
 	public function reasign($id){
@@ -118,7 +118,7 @@ class Cluster extends Controller {
 	}
 	
 	/**
-	 * Gives all or one of the points that defines cluster sentrums. Answers either in json or xml, given in id that have to be set.
+	 * Gives all of the points that defines cluster sentrums. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
 	public function points($id){
@@ -133,6 +133,10 @@ class Cluster extends Controller {
 		}
 		$this->viewmodel->returnCoding = $id;
 		
+		$this->viewmodel->list = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->viewmodel->msg = "Clusterlist transmitted";
+		
+		return $this->View();
 	}
 
 }
