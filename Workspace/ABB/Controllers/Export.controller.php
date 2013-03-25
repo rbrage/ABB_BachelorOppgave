@@ -9,7 +9,7 @@ class Export extends Controller {
 	private $filepointer;
 	private $filename;
 	
-	public function csv($id){
+	public function PointsToCSV($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		
@@ -32,12 +32,32 @@ class Export extends Controller {
 		if(isset($this->urlvalues["stop"]))
 			$stop = $this->urlvalues["stop"] + 0;
 		
+		if($stop > $this->pointlist->size()){
+			$stop = $this->pointlist->size();
+		}
+		
+		if($stop < 0){
+			$stop = 0;
+		}
+		
+		if($start > $this->pointlist->size()){
+			$stop = $this->pointlist->size();
+		}
+		
+		if($start < 0){
+			$stop = 0;
+		}
+		
 		if($start == $stop){
 			$start = 0;
 			$stop = $this->pointlist->size();
 		}
 		
-		$this->filename ="Files" . DIRECTORY_SEPARATOR . date("dmYHis") . ".csv";
+		if(!is_dir("files")){
+			mkdir("files");
+		}
+		
+		$this->filename ="files" . DIRECTORY_SEPARATOR . date("d-m-Y His") . ".csv";
 		$this->filepointer = fopen($this->filename, "x+");
 		
 		if(!is_resource($this->filepointer)){
@@ -46,13 +66,14 @@ class Export extends Controller {
 			return $this->View();
 		}
 		
-		foreach($this->pointlist->iterator() as $point){
+		for($i = $start; $i < $stop; $i++){
+			$point = $this->pointlist->get($i);
 			fwrite($this->filepointer, $point->toString() . PHP_EOL);
 		}
 		
 		fclose($this->filepointer);
 		
-		echo json_encode(array("msg" => "Pointlist created.", "link" => $this->filename));
+		echo json_encode(array("msg" => "Pointlist created.", "link" => DIRECTORY_SEPARATOR . ($this->filename), "success" => true));
 		
 	}
 		

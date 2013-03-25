@@ -1,9 +1,54 @@
 <?php
-$this->viewmodel->templatemenu = array("points" => "Available Points");
+$this->viewmodel->templatemenu = array("export" => "Export pointset", "points" => "Available Points");
 $this->Template("Shared");
 ?>
 
-	<section id="points">
+<section id="export">
+	<div class="page-header">
+		<h2>Export pointset</h2>
+	</div>
+	<h4>Export to CSV file</h4>
+
+	<div class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label">Start point</label>
+			<div class="controls">
+				<input type="text" id="startpoint">
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label">Stop point</label>
+			<div class="controls">
+				<input type="text" id="stoppoint">
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<button class="btn" id="exportPointsButton">Export</button>
+			</div>
+		</div>
+		
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#exportPointsButton").click(function(){
+				var start = $("#startpoint").val();
+				var stop = $("#stoppoint").val();
+
+				$.getJSON("/Export/PointsToCSV/json?start=" + start + "&stop=" + stop, function(data){
+					if(data.success){
+						window.open(data.link, "_self");
+					}
+				});
+			});
+		});
+	</script>
+	
+</section>
+<section id="points">
 		<div class="page-header">
 			<h2>Available points</h2>
 		</div>
