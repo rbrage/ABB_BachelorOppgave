@@ -109,9 +109,8 @@ iframe.dealply-toast.fastestext-revealed {
 			<div class="accordion" id="accordion2">
 				<div class="accordion-group backgroundColor">
 					<div class="accordion-heading">
-						<p class="accordion-toggle nav-header" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-							Information
-						</p>
+						<p class="accordion-toggle nav-header" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Information
+						<a href="/Home/" class="btn btn-small btn-primary" type="button">Exit</a></p>
 					</div>
 					<div id="collapseOne" class="accordion-body collapse in">
 						<div class="accordion-inner">
