@@ -51,7 +51,7 @@ else{
 				$point->addChild("z", $item->z);
 				$point->addChild("cluster", $item->cluster);
 				$point->addChild("time", $item->timestamp);
-				$additionalinfo = $item->getAditionalInfo();
+				$additionalinfo = $item->getAdditionalInfo();
 				$info = $point->addChild("additionalinfo");
 				foreach ($additionalinfo as $key => $value){
 					$info->addChild($key, $value);
