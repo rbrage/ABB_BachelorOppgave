@@ -37,8 +37,15 @@ iframe.dealply-toast.fastestext-revealed {
 				padding: 5px;
 				
 			}
+			#exit {
+				position:absolute;
+				right: 10px;
+				top: 5px;
+				padding: 5px;
+				
+			}
 			.backgroundColor{
-				background: rgba(0, 0, 255, 0.2);
+				background: rgba(20, 150, 255, 0.3);
 			}
 
 			a {
@@ -103,14 +110,34 @@ iframe.dealply-toast.fastestext-revealed {
 
 	<div id="3DPlotDiv">
 	</div>
-	
+	<script>
+	$(function(){
+		$('#accordion1').on('show', function(){
+							$('#icon1').removeClass('icon-chevron-right').addClass('icon-chevron-down');
+							});	
+						
+		$('#accordion1').on('hide', function(){
+							$('#icon1').removeClass('icon-chevron-down').addClass('icon-chevron-right');
+							});	
+						
+		$('#accordion2').on('show', function(){
+							$('#icon2').removeClass('icon-chevron-right').addClass('icon-chevron-down');
+						});	
+						
+		$('#accordion2').on('hide', function(){
+							$('#icon2').removeClass('icon-chevron-down').addClass('icon-chevron-right');
+						});	
+					
+			});
+		</script>
 	<div id="info">
-		<div class="span4">
-			<div class="accordion" id="accordion2">
+		<div class="">
+			<div class="accordion" id="accordion1">
 				<div class="accordion-group backgroundColor">
 					<div class="accordion-heading">
-						<p class="accordion-toggle nav-header" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Information
-						<a href="/Home/" class="btn btn-small btn-primary" type="button">Exit</a></p>
+						<p class="accordion-toggle nav-header" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Information 
+						<i id="icon1" class="icon-chevron-down pull-right"></i>
+						</p>
 					</div>
 					<div id="collapseOne" class="accordion-body collapse in">
 						<div class="accordion-inner">
@@ -134,10 +161,13 @@ iframe.dealply-toast.fastestext-revealed {
 						</div>
 					</div>
 				</div>
+				</div>
+			<div class="accordion" id="accordion2">
 				<div class="accordion-group backgroundColor">
 					<div class="accordion-heading">
 						<p class="accordion-toggle nav-header" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-							Selected point
+							Selected point 
+							<i id="icon2" class="icon-chevron-right pull-right"></i>
 						</p>
 					</div>
 					<div id="collapseTwo" class="accordion-body collapse">
@@ -162,6 +192,9 @@ iframe.dealply-toast.fastestext-revealed {
 				</div>
 			</div>
 		</div>
+	</div>
+	<div id="exit">
+	<a class="close" href="/Home/">&times;</a>
 	</div>
 	
 

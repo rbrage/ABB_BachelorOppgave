@@ -16,6 +16,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 	this.camera = object;
 	this.pointsSystem = pointsSystem;
 	this.plotWebGL = plotWebGL;
+	
 	// API
 
 	this.enabled = true;

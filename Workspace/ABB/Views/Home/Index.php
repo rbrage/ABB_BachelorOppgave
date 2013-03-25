@@ -38,12 +38,20 @@ $this->Template("Home");
 
 <section id="plot3d">
 	<div class="page-header">
-		<h2>3D plot</h2>
+	
+		<h2>3D plot
 		
-			<div id="3DPlotDiv" style="border:1px solid">
+			<button class="btn btn-primary pull-right" type="button" href="/Home/Plot">Full Screan <i class="icon-fullscreen"></i></button> 
+			
+			<button class="btn btn-success pull-right" type="button" onclick="loadPoint()">Reload <i class="icon-refresh"></i></button>
+		
+		</h2> 
+		
+			<div id="3DPlotDiv" style="border:1px solid; background-color:#F2F2F2">
+			<a href="/Home/Plot"><i class="icon-fullscreen pull-right"></i></a>
 			
 		</div>
-		<button class="btn btn-small btn-primary" type="button" onclick="loadPoint()">Reload</button>
+		
 	</div>
 
 </section>
