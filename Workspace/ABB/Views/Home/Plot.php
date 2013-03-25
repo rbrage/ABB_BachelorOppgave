@@ -200,9 +200,10 @@ iframe.dealply-toast.fastestext-revealed {
 
 	
 <script type="text/javascript">
-
 			var point3DPlot;
 			var points;
+			var cluster;
+			var clusterPoints;
 			
 				setUp();
 			
@@ -210,11 +211,14 @@ iframe.dealply-toast.fastestext-revealed {
 			{
 
 			points = new Array();
+			cluster = new Array();
+			cluster = new Array();
 			
 			var container = document.getElementById("3DPlotDiv");
 	      	var data = {width: window.innerWidth, height: window.innerHeight, axisSize: 350};
-	      		
-	      	point3DPlot = new PlotWebGLCanvas(container, points, data);
+	      	
+			loadCluster();	
+	      	point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
 			loadPoint();
 			
 		
@@ -232,6 +236,21 @@ iframe.dealply-toast.fastestext-revealed {
 			});
 			}
 			
+			function loadCluster(){
+			<?php 
+					$list = $this->viewmodel->clusterlist;
+					if($list->size() > 0){ 
+					?>
+				<?php 
+					for($i = 0; $i < $list->size(); $i++){
+					$point = $list->get($i);?>
+					cluster[<?php $point ?>] = new point(<?php echo round($point->x, 3)?>,<?php echo round($point->y, 3)?>,<?php echo round($point->z, 3)?>, null, <?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?>);
+			<?php 
+			}; 
+			
+			?>
+			
+			};
 				
 			function point(x, y, z, t, c){       
 				return [x, y, z, t, c]; 

@@ -1,6 +1,6 @@
 
 var targetContainer, container;
-var points;
+var points clusterList;
 var WIDTH, HEIGHT, axisSize;
 var camera, scene, renderer;
 var group;
@@ -11,7 +11,9 @@ var PARTICLE_SIZE = 2;
 var PARTICLE_COLOR;
 var webGL;
 
-PlotWebGLCanvas = function(targetContainer, points, data){
+PlotWebGLCanvas = function(targetContainer, points, data, cluster){
+	
+	this.clusterList = cluster;
 	
 	init(targetContainer, points, data);
 	this.points = points;
@@ -320,11 +322,12 @@ PlotWebGLCanvas = function(targetContainer, points, data){
 				document.getElementById("timestamp").innerHTML=time;
 				
 				var clusternumber = this.points[i][4];
-				var cluster="" +this.points[i][4];
-				document.getElementById("cluster").innerHTML=cluster;
-				
+				var clustertext="" +this.points[i][4];
+				document.getElementById("cluster").innerHTML=clustertext;
 				
 			}
+		}
+		console.log(clusterList[clusternumber];);	
 		}
 	}
 	
