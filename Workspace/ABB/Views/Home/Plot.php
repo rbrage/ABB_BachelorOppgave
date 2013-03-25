@@ -33,7 +33,7 @@ iframe.dealply-toast.fastestext-revealed {
 
 			#info {
 				position: absolute;
-				top: 0px; width: 100%;
+				top: 0px;
 				padding: 5px;
 				
 			}
