@@ -103,7 +103,7 @@ $this->template("Shared");
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Number</th>
+					<th>#</th>
 					<th>X</th>
 					<th>Y</th>
 					<th>Z</th>
