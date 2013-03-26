@@ -103,6 +103,7 @@ $this->Template("Home");
 
 			var point3DPlot;
 			var points;
+			var cluster;
 			$(function(){
 				
 				setUp();
@@ -111,11 +112,14 @@ $this->Template("Home");
 				{	
 
 				points = new Array();
-			
+				cluster = new Array();
+				
 				var container = document.getElementById("3DPlotDiv");
 		      	var data = {width: container.offsetWidth-15, height: 600, axisSize: 350};
 	      		
-		      	point3DPlot = new PlotWebGLCanvas(container, points, data);
+		      	
+				loadCluster();	
+				point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
 				loadPoint();
 			
 		
@@ -133,6 +137,22 @@ $this->Template("Home");
 					});
 				}
 			
+			function loadCluster(){
+			<?php 
+					$list = $this->viewmodel->clusterlist;
+					if($list->size() > 0){ 
+						for($i = 0; $i < $list->size(); $i++){
+							$point = $list->get($i);
+							?>
+							cluster[<?php echo $i ?>] = new point(<?php echo round($point->x, 3)?>,<?php echo round($point->y, 3)?>,<?php echo round($point->z, 3)?>, 
+							null, <?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?>);
+			<?php 
+				};
+			}; 
+			
+			?>
+			
+			};
 				
 				function point(x, y, z, t, c){       
 					return [x, y, z, t, c]; 

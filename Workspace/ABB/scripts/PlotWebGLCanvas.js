@@ -20,28 +20,29 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		this.clusterList = cluster;
 	};
 	
-	init = function(targetContainer, points, data){
+	init = function(targetContainer, points, data, cluster){
 		
 			if ( ! Detector.webgl ) {
 				webGL = false;
-				drawCanvas(targetContainer, points, data);
+				drawCanvas(targetContainer, points, data, cluster);
 	
 			}else{
 				webGL = true;
-				drawWebGL(targetContainer, points, data);
+				drawWebGL(targetContainer, points, data, cluster);
 				}
 	};
 	
-	drawWebGL = function(targetContainer, points, data){
+	drawWebGL = function(targetContainer, points, data, cluster){
 		this.WIDTH = data.width;
 		this.HEIGHT = data.height;
 		this.axisSize = data.axisSize;
 		this.targetContainer = targetContainer;
+		this.clusterList = cluster;
 		
 		camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
 	    camera.position.x = 500;
-		
+	
 	   
 		renderer = new THREE.WebGLRenderer( { clearColor: 0xF2F2F2, clearAlpha: 1 } );
 		renderer.setSize(WIDTH, HEIGHT);
@@ -65,11 +66,12 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		
 	};
 	
-	drawCanvas = function(targetContainer, points, data){
+	drawCanvas = function(targetContainer, points, data, cluster){
 		this.WIDTH = data.width;
 		this.HEIGHT = data.height;
 		this.axisSize = data.axisSize;
 		this.targetContainer = targetContainer;
+		this.clusterList = cluster;
 		
 		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
@@ -81,11 +83,12 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    scene = new THREE.Scene();
 		
 		PARTICLE_COLOR = new THREE.Color(0xff0000);
+		
 	    addCameraRotationPoint();
 	    addAxis(axisSize);
 	    addPoints(points);
 		addControls();
-		
+		console.log(this.clusterList);
 	    
 		var container = document.createElement( 'div' );
 		container.appendChild(renderer.domElement);
@@ -313,6 +316,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
 	function getSelectedPoint(x,y,z){
 		
+		
 		for(var i=0;i<this.points.length;i++){
 			if((this.points[i][0] == x) && (this.points[i][1] == y) && (this.points[i][2] == z)) {
 				
@@ -324,11 +328,28 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 				
 				var clusternumber = this.points[i][4];
 				var clustertext="" +this.points[i][4];
-				document.getElementById("cluster").innerHTML=clustertext;
+				document.getElementById("clusterIDSelected").innerHTML=clustertext;
 				
 			}
 		}
-		console.log(this.clusterList);	
+		if(this.clusterList.length>0){
+			var clusterX = this.clusterList[clusternumber][0];
+			var clusterY = this.clusterList[clusternumber][1];
+			var clusterZ = this.clusterList[clusternumber][2];
+			var clusterConections = this.clusterList[clusternumber][4];
+			
+			var clustertext="" + clusterX;
+			document.getElementById("clusterCoorXSelected").innerHTML=clustertext;
+			var clustertext="" + clusterY;
+			document.getElementById("clusterCoorYSelected").innerHTML=clustertext;
+			var clustertext="" + clusterZ;
+			document.getElementById("clusterCoorZSelected").innerHTML=clustertext;
+			
+			var clustertext="" +clusterConections;
+			document.getElementById("clusterConectionSelected").innerHTML=clustertext;
+		
+		};
+			
 		
 	}
 	
@@ -336,4 +357,9 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	addPoints();
 	addControls();
 	animate();
+	controls.handleResize();
 };
+
+	function moveView(x,y,z){
+		controls.moveView(x,y,z);
+	};

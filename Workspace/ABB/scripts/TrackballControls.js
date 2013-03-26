@@ -11,7 +11,6 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 
 	this.object = object;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
-	console.log(this.domElement);
 	this.centroidSphere = centroidSphere;
 	this.line = line;
 	this.camera = object;
@@ -388,6 +387,15 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		
 		
 	};
+	
+	this.moveView = function(x,y,z) {
+		_this.target.x = x;
+		_this.target.y = y;
+		_this.target.z = z;
+		
+		this.update();
+		
+	};
 
 	this.reset = function () {
 
@@ -414,7 +422,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 		
 		if ( _this.enabled === false ) return;
 
-		
+		window.removeEventListener( 'keydown', keydown );
 
 		_prevState = _state;
 
