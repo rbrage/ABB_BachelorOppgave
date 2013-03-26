@@ -98,8 +98,9 @@ $this->Template("Shared");
 		<div class="span4 offset4">
 			<button id="MoreResults" class="btn" data-loading-text="Loading...">Get more results</button>
 			<script type="text/javascript">
-				stop = <?php echo $i; ?>;
-				$("#MoreResults").click(function(){
+				$(function(){
+				var stop = <?php echo $i; ?>;
+				var updatePointTable = function(){
 					//$("#MoreResults").html("Loading");
 					$.getJSON("/Register/Points/json?start=" + stop + "&stop=" + (stop + 50), function(data){
 						start = data.Register.Start;
@@ -123,6 +124,15 @@ $this->Template("Shared");
 					}).error(function(data){
 						$("#MoreResults").html("Error");
 					});
+				};
+				
+				$("#MoreResults").click(updatePointTable);
+
+				$(window).scroll(function(){
+					if($(window).scrollTop() + $(window).height() == $(document).height()) {
+						updatePointTable();
+					}
+				});
 				});
 			</script>
 		</div>
