@@ -1,8 +1,8 @@
 <?php
-$this->viewmodel->templatemenu = array("ClusterSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
+$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
 $this->Template("Shared");
 ?>
-<section id="ClusterSettings">
+<section id="CacheSettings">
 	<div class="page-header">
 		<h2>Cache settings</h2>
 		<p>qergeg</p>
@@ -51,6 +51,15 @@ $this->Template("Shared");
 						name="<?php echo CachedSettings::ANALYSECLUSTERSWHILESUBMITION; ?>"
 						<?php if($this->viewmodel->settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION)) echo "checked"; ?> />
 						Calculate on each point submittion
+					</label>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox"> <input type="checkbox"
+						name="<?php echo CachedSettings::RANDOMINITIALCLUSTERPOINTS; ?>"
+						<?php if($this->viewmodel->settings->getSetting(CachedSettings::RANDOMINITIALCLUSTERPOINTS)) echo "checked"; ?> />
+						Random initial clusterpoints
 					</label>
 				</div>
 			</div>

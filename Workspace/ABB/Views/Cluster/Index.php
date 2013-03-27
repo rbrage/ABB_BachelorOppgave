@@ -17,6 +17,7 @@ $this->template("Shared");
 	<p>Number of clusters: <?php echo $settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?></p>
 	<p>Max points to use: <?php echo $settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS); ?></p>
 	<p>Run analysis while submition: <?php echo (($settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION))?"Yes":"No"); ?></p>
+	<p>Random initial clusterpoints: <?php echo (($settings->getSetting(CachedSettings::RANDOMINITIALCLUSTERPOINTS))?"Yes":"No"); ?></p>
 	
 	<h4>Actions</h4>
 	<button class="btn" id="runButton">Run analysis</button>

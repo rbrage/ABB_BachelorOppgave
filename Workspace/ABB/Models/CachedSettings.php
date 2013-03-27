@@ -13,6 +13,7 @@ class CachedSettings {
 	const KODETOTRIGGERPROGRAMSTART = "TriggerProgramStartkode";
 	const RUNTRIGGERPROGRAMINBACKGROUND = "TriggerprogramInBackground";
 	const ANALYSECLUSTERSWHILESUBMITION = "RuntimeClustering";
+	const RANDOMINITIALCLUSTERPOINTS = "RandomInitialClusterPoints";
 	
 	private $defaltvalues = array(
 			self::NUMBEROFCLUSTERS => 1,
@@ -21,7 +22,8 @@ class CachedSettings {
 			self::KODETOTRIGGERPROGRAMSTART => "",
 			self::ANALYSECLUSTERSWHILESUBMITION => false,
 			self::RUNMASTERCODEINBACKGROUND => false,
-			self::RUNTRIGGERPROGRAMINBACKGROUND => false
+			self::RUNTRIGGERPROGRAMINBACKGROUND => false,
+			self::RANDOMINITIALCLUSTERPOINTS => false
 			);
 	
 	private $cache;

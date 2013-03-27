@@ -64,6 +64,7 @@ class Cluster extends Controller {
 		$this->settings = new CachedSettings();
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
 		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
+		$this->cluster->setRandomSelectionOfInitialCluster($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
 		$this->cluster->calculateClusters();
 		$this->cluster->asignAllPointsToClusters();
 		
@@ -89,6 +90,7 @@ class Cluster extends Controller {
 		$this->settings = new CachedSettings();
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
 		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
+		$this->cluster->setRandomSelectionOfInitialCluster($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
 		$this->cluster->forceNewAnalysis();
 		$this->cluster->calculateClusters();
 		$this->cluster->asignAllPointsToClusters();
