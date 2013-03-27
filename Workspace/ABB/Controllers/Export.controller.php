@@ -54,11 +54,16 @@ class Export extends Controller {
 		}
 		
 		if(!is_dir("files")){
-			mkdir("files");
+			if(!mkdir("files")){
+				$this->viewmodel->error = true;
+				$this->viewmodel->errmsg = "Internal error. Couldn't get premission to make storagedir.";
+				$this->viewmodel->noCoding = true;
+				return $this->View();
+			}
 		}
 		
 		$this->filename ="files" . DIRECTORY_SEPARATOR . date("d-m-Y His") . ".csv";
-		$this->filepointer = fopen($this->filename, "x+");
+		$this->filepointer = fopen($this->filename, "w+");
 		
 		if(!is_resource($this->filepointer)){
 			$this->viewmodel->error = true;
