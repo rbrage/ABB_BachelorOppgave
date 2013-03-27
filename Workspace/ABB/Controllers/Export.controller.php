@@ -56,7 +56,7 @@ class Export extends Controller {
 		if(!is_dir("files")){
 			if(!mkdir("files")){
 				$this->viewmodel->error = true;
-				$this->viewmodel->errmsg = "Internal error. Couldn't get premission to make storagedir.";
+				$this->viewmodel->errmsg = "Internal error. Couldn't get premission to make storage directoy.";
 				$this->viewmodel->noCoding = true;
 				return $this->View();
 			}
