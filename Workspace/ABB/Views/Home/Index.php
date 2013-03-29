@@ -120,39 +120,36 @@ $this->Template("Home");
 		      	
 				loadCluster();	
 				point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
-				loadPoint();
-			
+				
+				$.getJSON("/Register/Size/json", function(data){
+					var size = data.Register.Size;
+					loadPoints(size);
+				});
 		
 				};
 			
-				function loadPoint(){
-			
-					$.getJSON("/Register/Points/json?start=0&stop=10000", function(data){
+				function loadPoints(totalsize){
+					$.getJSON("/Register/Points/json?start=" + points.length + "&stop=" + (points.length + 1000), function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
-						points[start] = new point(value.x,value.y,value.z,value.timestamp,value.cluster);
-							start++;
+							points[start++] = new point(value.x, value.y, value.z, value.timestamp, value.cluster);
 						});
+						
 						reload(points);
+						if(totalsize > start){
+							loadPoints();
+						}
 					});
 				}
-			
-			function loadCluster(){
-			<?php 
-					$list = $this->viewmodel->clusterlist;
-					if($list->size() > 0){ 
-						for($i = 0; $i < $list->size(); $i++){
-							$point = $list->get($i);
-							?>
-							cluster[<?php echo $i ?>] = new point(<?php echo round($point->x, 3)?>,<?php echo round($point->y, 3)?>,<?php echo round($point->z, 3)?>, 
-							null, <?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?>);
-			<?php 
+				
+				function loadCluster(){
+					$.getJSON("/Cluster/Points/json", function(data){
+						start = 0;
+						$.each(data.Cluster.Points, function(key, value){
+							cluster[start++] = new point(value.x, value.y, value.z, null, value.connections);
+						});
+					});
 				};
-			}; 
-			
-			?>
-			
-			};
 				
 				function point(x, y, z, t, c){       
 					return [x, y, z, t, c]; 
