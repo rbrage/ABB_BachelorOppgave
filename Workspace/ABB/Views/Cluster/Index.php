@@ -9,8 +9,7 @@ $this->template("Shared");
 		<h2>Options</h2>
 	</div>
 	
-	<div class="alert hide">
-  <button type="button" class="close" data-dismiss="alert">&times;</button></div>
+	<div class="alert hide"></div>
 	
 	<h4>Runtime variables</h4>
 	<?php $settings = $this->viewmodel->settings; ?>
@@ -26,18 +25,21 @@ $this->template("Shared");
 	<button class="btn" id="clearButton">Clear clusterpoints</button>
 	<script type="text/javascript">
 		$(function(){
+			var closeButton = "<button type=\"button\" class=\"close\" onclick=\"$('#options > .alert').fadeOut(800);\">&times;</button>";
 			$("#runButton").click(function(){
-				$("#options > .alert").html("New analysis is started. Don't refresh the browser!").fadeIn(800);
+				$("#options > .alert").removeClass("alert-success").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
 				$.getJSON("/cluster/run/json", function(data){
-					$("#options > .alert").html(data.msg);
+					$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+					updateClusterPoints();
 				});
 			});
 			
 			$("#forceNewButton").click(function(){
 				if(confirm("This will remove the clusters that are present now, and a new calculation will start. Are you sure you want to do this?")){
-					$("#options > .alert").html("New analysis is started. Don't refresh the browser!").fadeIn(800);
+					$("#options > .alert").removeClass("alert-success").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
 					$.getJSON("/cluster/force/json", function(data){
-						$("#options > .alert").html(data.msg).fadeIn(800);
+						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+						updateClusterPoints();
 					});
 				}
 			});
@@ -45,16 +47,41 @@ $this->template("Shared");
 			$("#clearButton").click(function(){
 				if(confirm("This will remove all clusterdata thats present. Are you sure you want to do this?")){
 					$.getJSON("/cluster/reset/json", function(data){
-						$("#options > .alert").html(data.msg).fadeIn(800);
+						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+						updateClusterPoints();
 					});
 				}
 			});
 
 			$("#reasignButton").click(function(){
 				$.getJSON("/cluster/reasign/json", function(data){
-						$("#options > .alert").html(data.msg).fadeIn(800);
+						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+						updateClusterPoints();
 					});
 			});
+
+			function updateClusterPoints(){
+				$.getJSON("/Cluster/Points/json", function(data){
+					var tbody = $("#points > table > tbody");
+					if(data.Cluster.Size != 0){
+						tbody.html("");
+					}
+					else{
+						tbody.html("<tr><td colspan=\"5\">There is no points to define the clusters. Run the analysis first.</td></tr>");
+					}
+					
+					$.each(data.Cluster.Points, function(key, value){
+						tbody.append(
+								"<tr>" +
+									"<td>" + value.clusterID + "</td>" + 
+									"<td>" + value.x + "</td>" + 
+									"<td>" + value.y + "</td>" + 
+									"<td>" + value.z + "</td>" + 
+									"<td>" + value.connections + "</td>" + 
+								"</tr>");
+					});
+				});
+			}
 		});
 	</script>
 </section>
@@ -62,45 +89,6 @@ $this->template("Shared");
 	<div class="page-header">
 		<h2>Clusterpoints</h2>
 	</div>
-	
-		<?php 
-		$list = $this->viewmodel->clusterlist;
-		
-		if($list->size() > 0){ 
-			
-		?>
-		<?php 
-			for($i = 0; $i < $list->size(); $i++){
-			$point = $list->get($i);
-		?>
-	<h4>
-		Clusterpoint
-		<?php echo $i;?>
-	</h4>
-	<table class="table table-striped">
-		<tbody>
-			<tr>
-				<td>X</td>
-				<td><?php echo round($point->x, 3); ?></td>
-			</tr>
-			<tr>
-				<td>Y</td>
-				<td><?php echo round($point->y, 3); ?></td>
-			</tr>
-			<tr>
-				<td>Z</td>
-				<td><?php echo round($point->z, 3); ?></td>
-			</tr>
-			<tr>
-				<td>Connections</td>
-				<td><?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME); ?>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<?php 
-				}
-			?>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -113,6 +101,9 @@ $this->template("Shared");
 			</thead>
 			<tbody>
 			<?php 
+			$list = $this->viewmodel->clusterlist;
+			
+			if($list->size() > 0){
 				for($i = 0; $i < $list->size(); $i++){
 					$point = $list->get($i);
 					
@@ -125,20 +116,12 @@ $this->template("Shared");
 					<td>".$point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)."</td>
 				</tr>";
 				}
+			}
+			else{
+				echo "<tr><td colspan=\"5\">There is no points to define the clusters. Run the analysis first.</td></tr>";
+			}
 			?>
 			</tbody>
-		</table>
-
-		<?php 
-		}
-		else{ 
-		?>
-		
-		<p>There is no points to define the clusters. Run the analysis first.</p>
-		
-		<?php 	
-		}
-		?>
-		
+		</table>		
 </section>
 
