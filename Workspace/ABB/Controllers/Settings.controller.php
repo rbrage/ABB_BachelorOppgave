@@ -12,7 +12,7 @@ class Settings extends Controller {
 		$this->View();
 	}
 
-	public function Cluster(){
+	public function Cluster($id){
 		$randomInitClusters = @$this->urlvalues[CachedSettings::RANDOMINITIALCLUSTERPOINTS];
 		$clusterAtRuntime = @$this->urlvalues[CachedSettings::ANALYSECLUSTERSWHILESUBMITION];
 		$maxPoints = @$this->urlvalues[CachedSettings::MAXPOINTSINCLUSTERANALYSIS];
@@ -34,16 +34,16 @@ class Settings extends Controller {
 
 		if(is_numeric($numClusters))
 			if($numClusters > 0)
-			$this->settings->setSetting(CachedSettings::NUMBEROFCLUSTERS, $numClusters);
+				$this->settings->setSetting(CachedSettings::NUMBEROFCLUSTERS, $numClusters);
 
 		if(is_numeric($maxPoints))
 			if($maxPoints >= $this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS))
-			$this->settings->setSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS, $maxPoints);
+				$this->settings->setSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS, $maxPoints);
 
 		return $this->RedirectTo("./");
 	}
 
-	public function MasterPoint(){
+	public function MasterPoint($id){
 		$background = @$this->urlvalues[CachedSettings::RUNMASTERCODEINBACKGROUND];
 		$code = @$this->urlvalues[CachedSettings::KODETOMASTERPOINTTRIGGERING];
 		$this->settings = new CachedSettings();
@@ -60,7 +60,7 @@ class Settings extends Controller {
 		return $this->RedirectTo("./");
 	}
 
-	public function Triggerprogram(){
+	public function Triggerprogram($id){
 		$background = @$this->urlvalues[CachedSettings::RUNTRIGGERPROGRAMINBACKGROUND];
 		$code = @$this->urlvalues[CachedSettings::KODETOTRIGGERPROGRAMSTART];
 		$this->settings = new CachedSettings();
