@@ -44,7 +44,15 @@ $this->Template("Shared");
 		<h4>K-Means Algoritm</h4>
 
 		<form action="cluster" method="GET" class="form-horizontal">
-			<p>It is possible to calculate clusters while the</p>
+			<p>It is possible to calculate clusters while the point get submitted. If 
+			this option is turned on there will be a done a new analysis of the 
+			clusters every time a point get submitted.</p>
+			<div class="alert alert-block">
+				<h4>Notice!</h4>
+				<p>May result in point submittions use up all of the resources on the 
+				server and block new submittions. To avoid this from happening try to 
+				keep the number of points that lockes in a cluster low.</p>
+			</div>
 			<div class="control-group">
 				<div class="controls">
 					<label class="checkbox"> <input type="checkbox"
@@ -53,6 +61,16 @@ $this->Template("Shared");
 						Calculate on each point submittion
 					</label>
 				</div>
+			</div>
+			<p>If the analysis dont give you a sufficent result you can use a random 
+			assignement of the initial points that are used to calculate clusters around.</p>
+			<div class="alert alert-block">
+				<h4>Notice!</h4>
+				<p>May result result in higher runtime of the analysis.</p>
+				<p>If you know that points will come in to the system in the correct 
+				order it is recommended not to use random initial points. It is also 
+				not recomended to use this if the analysis is run each time a 
+				point get submitted.</p>
 			</div>
 			<div class="control-group">
 				<div class="controls">
@@ -67,9 +85,9 @@ $this->Template("Shared");
 				looking for, so its very important to put in the correct number of
 				clusters.</p>
 			<div class="control-group">
-				<label class="control-label"
-					for="<?php echo CachedSettings::NUMBEROFCLUSTERS; ?>">Number of
-					clusters</label>
+				<label class="control-label" for="<?php echo CachedSettings::NUMBEROFCLUSTERS; ?>">
+					Number of clusters
+				</label>
 				<div class="controls">
 					<input type="text"
 						name="<?php echo CachedSettings::NUMBEROFCLUSTERS; ?>"
@@ -77,8 +95,7 @@ $this->Template("Shared");
 						value="<?php echo $this->viewmodel->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?>" />
 				</div>
 			</div>
-			<p>How many points until the sentrum of the clusters will be locked
-				in.</p>
+			<p>How many points until the sentrum of the clusters will be locked in.</p>
 			<div class="control-group">
 				<label class="control-label"
 					for="<?php echo CachedSettings::MAXPOINTSINCLUSTERANALYSIS; ?>">Max
