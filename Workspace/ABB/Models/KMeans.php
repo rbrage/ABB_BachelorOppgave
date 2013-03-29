@@ -46,8 +46,6 @@ class KMeans {
 				$this->cache->removeCacheData(self::CLUSTERANALYSISRUNNINGNAME);
 				return;
 			}
-
-			$this->updateClusterCenter();
 			
 			while(true){
 
