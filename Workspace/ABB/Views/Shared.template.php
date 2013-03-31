@@ -14,9 +14,13 @@ body {
 }
 </style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/scripts/jquery.jqplot.min.css" rel="stylesheet" media="screen">
 <script src="/scripts/jquery-1.9.0.js" type="text/javascript"></script>
 <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
+<script src="/scripts/jquery.jqplot.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
