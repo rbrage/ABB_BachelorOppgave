@@ -70,7 +70,7 @@ $this->Template("Shared");
 				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
 					$item = $this->viewmodel->cachedarr->get($i);
 					echo "
-				<tr>
+				<tr id=". $i .">
 				<td>".$i."</td>
 				<td>".$item->x."</td>
 				<td>".$item->y."</td>
@@ -105,18 +105,17 @@ $this->Template("Shared");
 					$.getJSON("/Register/Points/json?start=" + stop + "&stop=" + (stop + 50), function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
-							$("#PointTable").find("tbody").append("<tr>" + 
+							$("#PointTable > tbody").append("<tr id=" + start + ">" + 
 								"<td id=\"num\">" + start + "</td>" +
 								"<td id=\"x\">" + value.x + "</td>" +
 								"<td id=\"y\">" + value.y + "</td>" +
 								"<td id=\"z\">" + value.z + "</td>" +
 								"<td id=\"cluster\">" + value.cluster + "</td>" +
 								"<td id=\"time\">" + value.timestamp + "</td>" +
-								"<td id=\"additionalinfo\">");
+								"<td id=\"additionalinfo\"></td></tr>");
 								$.each(value.additionalinfo, function(key, value){
-									$("#PointTable").find("tbody > tr > #additionalinfo").last().append(key + ": " + value + "<br>");
+									$("#" + start + " > #additionalinfo").append(key + ": " + value + "<br>");
 								});
-							$("#PointTable").find("tbody").append("</td></tr>");
 							start++;
 						});
 						stop = start;
