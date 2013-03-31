@@ -7,8 +7,11 @@ $this->Template("Shared");
 	<div class="page-header">
 		<h2>Export pointset</h2>
 	</div>
+	
+	<div class="alert hide"></div>
+	
 	<h4>Export to CSV file</h4>
-
+	
 	<div class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label">Start point</label>
@@ -34,15 +37,22 @@ $this->Template("Shared");
 	
 	<script type="text/javascript">
 		$(function(){
+			var closeButton = "<button type=\"button\" class=\"close\" onclick=\"$('#export > .alert').fadeOut(800);\">&times;</button>";
 			$("#exportPointsButton").click(function(){
 				var start = $("#startpoint").val();
 				var stop = $("#stoppoint").val();
 
 				$.getJSON("/Export/PointsToCSV/json?start=" + start + "&stop=" + stop, function(data){
 					if(data.success){
+						$("#export > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + "File successfully created. The download will start automatic. If the download don't start click <a href=\"" + data.link + "\">here</a>.").fadeIn(800);
 						window.open(data.link, "_self");
+						}
+					else{
+						$("#export > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "An error occured. Message: " + data.msg).fadeIn(800);
 					}
-				});
+				}).error(function(){
+					$("#export > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "An error occured. The response form the server was not valid.").fadeIn(800);
+				});;
 			});
 		});
 	</script>
