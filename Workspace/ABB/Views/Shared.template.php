@@ -18,9 +18,12 @@ body {
 <script src="/scripts/jquery-1.9.0.js" type="text/javascript"></script>
 <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
+
+
 <script src="/scripts/jquery.jqplot.min.js" type="text/javascript"></script>
 <script src="/scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
 <script src="/scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.BezierCurveRenderer.min.js" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
@@ -33,7 +36,7 @@ body {
 			<div class="container">
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/ABB.png"> </a></li>
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;" href="/"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
@@ -71,7 +74,10 @@ body {
 			<div class="span2">
 				<div data-spy="affix" style="padding-right: 10px;">
 					<div class="alert alert-info">
-						<p class="nav-header">Information</p>
+						<p class="nav-header">
+							Information 
+							<button class="btn btn-mini" id="LiveUpdateButton">Live update<i class="icon-pause" id="LiveUpdateIcon"></i></button>
+						</p>
 						<?php 
 
 						$cache = new Cache();
@@ -89,7 +95,7 @@ body {
 								</tr>
 								<tr>
 									<td>Used memory:</td>
-									<td id="usedsize"><?php echo $cacheinfo["mem_size"]/1000 . "k"; ?></td>
+									<td id="usedmemory"><?php echo $cacheinfo["mem_size"]/1000 . "k"; ?></td>
 								</tr>
 								<tr>
 									<td>Available memory:</td>
