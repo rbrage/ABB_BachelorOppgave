@@ -33,13 +33,13 @@ class Register extends Controller {
 		
 		if(!array_key_exists("x", $this->urlvalues) || !array_key_exists("y", $this->urlvalues) || !array_key_exists("z", $this->urlvalues)){
 			$this->viewmodel->error = true;
-			$this->viewmodel->errmsg = "Coordinates is missing. Remember to set the x,y and z proberties on the request.";
+			$this->viewmodel->errmsg = "Coordinates is missing. Remember to set the x,y and z properties on the request.";
 			return $this->View();
 		}
 		
 		if(!array_key_exists("time", $this->urlvalues)){
 			$this->viewmodel->error = true;
-			$this->viewmodel->errmsg = "Timestamp is missing. Remember to set the time probertie on the request.";
+			$this->viewmodel->errmsg = "Timestamp is missing. Remember to set the time propertie on the request.";
 			return $this->View();
 		}
 		
@@ -165,12 +165,12 @@ class Register extends Controller {
 			$this->viewmodel->msg = "Only possible to get 1000 points each time. Request order sized down to 1000 points.";
 		}
 		
-		if($stop >= $this->viewmodel->list->size()){
+		if($stop > $this->viewmodel->list->size()){
 			$stop = $this->viewmodel->list->size();
 			$this->viewmodel->msg = "Your request is outside the cached size. Request order is sized down.";
 		}
 		
-		if($start >= $this->viewmodel->list->size()){
+		if($start > $this->viewmodel->list->size()){
 			$start = $this->viewmodel->list->size();
 			$this->viewmodel->msg = "Your request is outside the cached size. Request order is sized down.";
 		}

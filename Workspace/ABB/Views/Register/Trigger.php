@@ -10,7 +10,7 @@ elseif($viewmodel->error){
 	}
 	elseif($viewmodel->returnCoding == "xml"){
 		$xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"utf-8\" ?><Request></Request>");
-		$xml->addChild("Success", true);
+		$xml->addChild("Success", false);
 		$xml->addChild("Error", true);
 		$xml->addChild("Message", $viewmodel->errmsg);
 
