@@ -82,6 +82,21 @@ class CachedArrayList implements arrayaccess {
 	}
 	
 	/**
+	 * Removes a element from the arraylist.
+	 */
+	public function remove($index){
+		$this->lock($this->listprefix);
+		
+		for(; $index < $this->size() - 1; $index++){
+			$this->set($index, $this->get($index + 1, true), true);
+		}
+		$this->setSize($this->size() - 1);
+		
+		$this->unlock($this->listprefix);
+		
+	}
+	
+	/**
 	 * Not yet implemented
 	 * @param unknown_type $index
 	 */
@@ -161,10 +176,11 @@ class CachedArrayList implements arrayaccess {
 	
 	/**
 	 * Removes all data in the cache.
-	 * Not yet implemented.
 	 */
 	public function removeAllDataInCache(){
-		
+		for($i = $this->size(); $i >= 0; $i--){
+			$this->remove($i);
+		}
 	}
 	
 	/**
