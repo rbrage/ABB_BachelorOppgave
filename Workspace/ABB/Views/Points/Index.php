@@ -1,5 +1,5 @@
 <?php
-$this->viewmodel->templatemenu = array("export" => "Export pointset", "points" => "Available Points");
+$this->viewmodel->templatemenu = array("export" => "Export pointset", "masterpoints" => "Master points", "markedpoints" => "Outlying points", "points" => "Available Points");
 $this->Template("Shared");
 ?>
 
@@ -24,6 +24,17 @@ $this->Template("Shared");
 			<label class="control-label">Stop point</label>
 			<div class="controls">
 				<input type="text" id="stoppoint">
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label">Dataset</label>
+			<div class="controls">
+				<select name="dataset">
+					<option value="<?php echo CachedArrayList::ARRAYLISTPREFIX; ?>">Master points</option>
+					<option value="<?php echo CachedArrayList::ARRAYLISTPREFIX; ?>">Outlying points</option>
+					<option value="<?php echo CachedArrayList::ARRAYLISTPREFIX; ?>">Regular points</option>
+				</select>
 			</div>
 		</div>
 		
@@ -58,6 +69,105 @@ $this->Template("Shared");
 	</script>
 	
 </section>
+
+<section id="masterpoints">
+	<div class="page-header">
+		<h2>Master points</h2>
+	</div>
+	
+	<table class="table table-striped" id="MasterPointTable">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>X</th>
+					<th>Y</th>
+					<th>Z</th>
+					<th>Cluster</th>
+					<th>Time</th>
+					<th>Additional Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+// 				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
+// 					$item = $this->viewmodel->cachedarr->get($i);
+// 					echo "
+// 				<tr id=". $i .">
+// 				<td>".$i."</td>
+// 				<td>".$item->x."</td>
+// 				<td>".$item->y."</td>
+// 				<td>".$item->z."</td>
+// 				<td>".$item->cluster."</td>
+// 				<td>".$item->timestamp."</td>";
+					
+// 					$moreinfo = $item->getAdditionalInfo();
+// 					if(count($moreinfo)){
+// 						echo "<td>";
+// 						foreach($item->getAdditionalInfo() as $key => $value){
+// 							echo "" . $key . ": " . $value . "<br>";
+// 						}
+// 						echo "</td>";
+// 					}
+// 					else{
+// 						echo "<td></td>";
+// 					}
+					
+// 				echo "</tr>";
+// 				}
+				?>
+			</tbody>
+		</table>
+</section>
+
+<section id="markedpoints">
+	<div class="page-header">
+		<h2>Outlying points</h2>
+	</div>
+	
+	<table class="table table-striped" id="OutlyingTable">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>X</th>
+					<th>Y</th>
+					<th>Z</th>
+					<th>Cluster</th>
+					<th>Time</th>
+					<th>Additional Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+// 				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
+// 					$item = $this->viewmodel->cachedarr->get($i);
+// 					echo "
+// 				<tr id=". $i .">
+// 				<td>".$i."</td>
+// 				<td>".$item->x."</td>
+// 				<td>".$item->y."</td>
+// 				<td>".$item->z."</td>
+// 				<td>".$item->cluster."</td>
+// 				<td>".$item->timestamp."</td>";
+					
+// 					$moreinfo = $item->getAdditionalInfo();
+// 					if(count($moreinfo)){
+// 						echo "<td>";
+// 						foreach($item->getAdditionalInfo() as $key => $value){
+// 							echo "" . $key . ": " . $value . "<br>";
+// 						}
+// 						echo "</td>";
+// 					}
+// 					else{
+// 						echo "<td></td>";
+// 					}
+					
+// 				echo "</tr>";
+// 				}
+				?>
+			</tbody>
+		</table>
+</section>
+
 <section id="points">
 		<div class="page-header">
 			<h2>Available points</h2>
