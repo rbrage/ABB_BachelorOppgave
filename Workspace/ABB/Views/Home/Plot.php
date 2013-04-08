@@ -42,10 +42,18 @@ iframe.dealply-toast.fastestext-revealed {
 				padding: 5px;
 				
 			}
+			#stats { position: absolute; bottom: 0; left: 0; }
+			#stats #fps { background: transparent !important }
+			#stats #fps #fpsText { color: #aaa !important }
+			#stats #fps #fpsGraph { display: none }
+			#stats #ms { background: transparent !important }
+			#stats #ms #msText { color: #aaa !important }
+			#stats #ms #msGraph { display: none }
+			
 			#exit {
 				position:absolute;
 				right: 10px;
-				top: 5px;
+				top: 40px;
 				padding: 5px;
 				
 			}
@@ -98,6 +106,7 @@ iframe.dealply-toast.fastestext-revealed {
 <script type="text/javascript" src="/scripts/three.js"></script>
 <script type="text/javascript" src="/scripts/TrackballControls.js"></script>
 <script type="text/javascript" src="/scripts/Detector.js"></script>
+<script type="text/javascript" src="/scripts/stats.min.js"></script>
 
 <script type="x-shader/x-vertex" id="vertexshader">
 			attribute float size;
@@ -177,12 +186,13 @@ iframe.dealply-toast.fastestext-revealed {
 			<div class="container">
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/ABB.png"> </a></li>
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="/"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
+						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i> 3D Plott</a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
 						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
-						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i>3D Plott</a></li>
+						
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
@@ -329,19 +339,20 @@ iframe.dealply-toast.fastestext-revealed {
 	<a class="close" href="/Home/">&times;</a>
 	</div>
 
-<script type="text/javascript">
+		
+		<script type="text/javascript">
 			var point3DPlot;
 			var points;
 			var cluster;
 			var clusterPoints;
 			var id;
-			var tempsize;
+			var stats;
 			
 				setUp();
 			
 			function setUp()
 			{
-
+			
 			points = new Array();
 			cluster = new Array();
 			

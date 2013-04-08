@@ -12,6 +12,13 @@ body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
+	
+	#stats #fps { background: transparent !important }
+	#stats #fps #fpsText { color: #aaa !important }
+	#stats #fps #fpsGraph { display: none }
+	#stats #ms { background: transparent !important }
+	#stats #ms #msText { color: #aaa !important }
+	#stats #ms #msGraph { display: none }
 </style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
@@ -26,6 +33,7 @@ body {
 <script type="text/javascript" src="/scripts/three.js"></script>
 <script type="text/javascript" src="/scripts/TrackballControls.js"></script>
 <script type="text/javascript" src="/scripts/Detector.js"></script>
+<script type="text/javascript" src="/scripts/stats.min.js"></script>
 
 <script type="x-shader/x-vertex" id="vertexshader">
 			attribute float size;
@@ -72,12 +80,13 @@ body {
 			<div class="container">
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/ABB.png"> </a></li>
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="/"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
+						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i> 3D Plott</a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
 						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
-						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i>3D Plott</a></li>
+						
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
@@ -140,28 +149,6 @@ body {
 									<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
 								</tr>
 								</tbody>
-						</table>
-						<hr>
-						<p class="nav-header">Selected point</p>
-								<table class="table table-condensed">
-							<tbody>
-								<tr></tr>
-								<tr><td> X Y Z:</td><td id="coordinates"></td></tr>
-								<tr>
-								<td> Time: </td>
-								<td id="timestamp"></td>
-								</tr>
-								<tr>
-								<td> Cluster: </td>
-								<td id="cluster"></td>
-								</tr>
-								<tr>
-								<td id="demo2"></td>
-								</tr>
-								<tr>
-								<td id="demo3"></td>
-								</tr>
-							</tbody>
 						</table>
 					</div>
 				</div>

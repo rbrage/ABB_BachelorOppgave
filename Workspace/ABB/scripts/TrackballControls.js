@@ -284,6 +284,12 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 				
 						pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0x00ff00);
 						pointsSystem.children[INTERSECTED].material.needsUpdate = true;
+					}else {
+
+						pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0xff0000);
+						pointsSystem.children[INTERSECTED].material.needsUpdate = true;
+			
+						INTERSECTED = null;
 					}
 				}
 				

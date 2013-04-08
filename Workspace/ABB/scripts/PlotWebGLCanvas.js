@@ -1,5 +1,5 @@
 
-var targetContainer, container;
+var targetContainer, container, stats;
 var points, clusterList;
 var WIDTH, HEIGHT, axisSize;
 var camera, scene, renderer;
@@ -61,6 +61,9 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		container.appendChild(renderer.domElement);
 		this.targetContainer.appendChild( container );
 		
+		stats = new Stats();
+		container.appendChild( stats.domElement );
+		
 		
 	    animate();
 		
@@ -75,7 +78,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		
 		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
-	    camera.position.x = 200;
+	    camera.position.x = 500;
 		
 	    renderer = new THREE.CanvasRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
@@ -88,12 +91,14 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    addAxis(axisSize);
 	    addPoints(points);
 		addControls();
-		console.log(this.clusterList);
 	    
 		var container = document.createElement( 'div' );
+		container.id ="canvas";
 		container.appendChild(renderer.domElement);
 		this.targetContainer.appendChild( container );
 		
+		stats = new Stats();
+		container.appendChild( stats.domElement );
 		
 	    animate();
 		
@@ -311,6 +316,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    requestAnimationFrame(animate);
 	    controls.update();
 	    renderer.render(scene, camera);
+		stats.update();
 	
 	};
 	
