@@ -1,7 +1,10 @@
 <?php
-$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
+$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "OutlyingPoints" => "Outlying Points", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
 $this->Template("Shared");
 ?>
+
+<!-- Cache settings  -->
+
 <section id="CacheSettings">
 	<div class="page-header">
 		<h2>Cache settings</h2>
@@ -12,11 +15,13 @@ $this->Template("Shared");
 		<p>This option can be used to clear the cache for trigger points. If
 			this is used the pointlist will be put back to zero points. This does
 			not clear the memory, but old points will be overwriten as new points
-			gets submitted.
-		
-		
+			gets submitted.		
 		<p>
 		
+		<div class="alert alert-block alert-error">
+			<h4>Warning!</h4>
+			<p>This will remove all point data that is present in the cache at the moment. You wil not be able to get all the points back!</p>
+		</div>
 		
 		<div class="control-group">
 			<div class="controls">
@@ -34,6 +39,9 @@ $this->Template("Shared");
 			});</script>
 	</div>
 </section>
+
+<!-- Cluster settings -->
+
 <section id="ClusterAnalysis">
 	<div class="page-header">
 		<h2>Cluster analysis</h2>
@@ -116,6 +124,19 @@ $this->Template("Shared");
 		</form>
 	</div>
 </section>
+
+<!--  -->
+
+<section id="OutlyingPoints">
+	<div class="page-header">
+		<h2>Outlying points</h2>
+	</div>
+	
+	
+</section>
+
+<!-- Master point triggering settings -->
+
 <section id="MasterPointSettings">
 	<div class="page-header">
 		<h2>Master Point Triggering</h2>
@@ -129,7 +150,7 @@ $this->Template("Shared");
 						<input 	type="checkbox"
 								name="<?php echo CachedSettings::RUNMASTERCODEINBACKGROUND; ?>"
 								<?php if($this->viewmodel->settings->getSetting(CachedSettings::RUNMASTERCODEINBACKGROUND)) echo "checked"; ?> />
-						Run in background
+						Run in background (has no function on Windows)
 					</label>
 				</div>
 			</div>
@@ -147,6 +168,9 @@ $this->Template("Shared");
 		</form>
 	</div>
 </section>
+
+<!-- Program startup settings -->
+
 <section id="TriggerprogramSettings">
 	<div class="page-header">
 		<h2>Triggerprogram</h2>
@@ -160,7 +184,7 @@ $this->Template("Shared");
 						<input 	type="checkbox"
 								name="<?php echo CachedSettings::RUNTRIGGERPROGRAMINBACKGROUND; ?>"
 								<?php if($this->viewmodel->settings->getSetting(CachedSettings::RUNTRIGGERPROGRAMINBACKGROUND)) echo "checked"; ?> />
-						Run in background
+						Run in background (has no function on Windows)
 					</label>
 				</div>
 			</div>
