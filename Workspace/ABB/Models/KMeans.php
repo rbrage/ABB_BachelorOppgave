@@ -49,6 +49,7 @@ class KMeans {
 			
 			while(true){
 
+				$this->pointMoved = false;
 				$this->reasignPointsToClusters();
 				
 				if(!$this->pointMoved)
@@ -140,6 +141,7 @@ class KMeans {
 			if($oldcluster != $shortestcluster){
 				Debuger::RegisterPoint("Found a shorter distance to cluster " . $shortestcluster, "KMeans");
 				$this->putPointInCluster($i, $shortestcluster);
+				$this->pointMoved = true;
 			}
 		}
 	}
@@ -206,14 +208,12 @@ class KMeans {
 				$clusterpoint->addAdditionalInfo(self::CLUSTERCOUNTNAME, $countarray[$cluster]);
 // 				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, false);
 
-				$this->pointMoved = false;
 			}
 			else{
 				$clusterpoint = $this->pointlist->get($this->pointlist->size() - 1);
 				$clusterpoint->addAdditionalInfo(self::CLUSTERCOUNTNAME, 0);
 // 				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, true);
 				
-				$this->pointMoved = true;
 			}
 			
 			$this->clusterlist->set($cluster, $clusterpoint, true);
