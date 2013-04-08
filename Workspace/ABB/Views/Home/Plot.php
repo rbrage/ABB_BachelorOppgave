@@ -1,8 +1,13 @@
 <html lang="en">
 <head>
 <?php 
-$this->viewmodel->templatemenu = array("last" => "Last 10 Points", "plot3d" => "3D Plot");
-$list = $this->viewmodel->clusterlist;
+	$this->viewmodel->templatemenu = array("last" => "Last 10 Points", "plot3d" => "3D Plot");
+	$list = $this->viewmodel->clusterlist;
+	$cache = new Cache();
+	$pointlist = new CachedArrayList();
+	$clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+
+	$cacheinfo = $cache->getCacheInfo();
 ?>
 
 <title>ABB Analyseprogram</title>
@@ -33,7 +38,7 @@ iframe.dealply-toast.fastestext-revealed {
 
 			#info {
 				position: absolute;
-				top: 0px;
+				top: 40px;
 				padding: 5px;
 				
 			}
@@ -45,25 +50,27 @@ iframe.dealply-toast.fastestext-revealed {
 				
 			}
 			.backgroundColor{
-				background: rgba(88,88,88, 0.7);
+				background-color: rgba(250, 250, 250, 0.7);
+				background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(242, 242, 242, 0.7));
 			}
 			
 			.header{
-				color:#FFFFFF;
+				color:rgb(51, 51, 51);
 				font-variant: small-caps;
-				font-size:30px;
+				font-size:20px;
 			}
 			
 			.text{
-				color:#FFFFFF;
+				color:rgb(51, 51, 51);
 				font-variant: small-caps;
-				font-size:15px;
+				font-size:13px;
 			}
 			
 			a {
 
 				color: #f00;
 			}
+			
 
 </style>
 
@@ -72,10 +79,17 @@ iframe.dealply-toast.fastestext-revealed {
 <script src="/scripts/jquery-1.9.0.js" type="text/javascript"></script>
 <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
+
 <style>
-.dropdown-menu{
-				min-width: 20px;
+	body{
+		line-height: 15px;
+	}
+	.accordion {
+					margin-bottom: 0px;
 			}
+	.dropdown-menu{
+					min-width: 20px;
+				}
 
 </style>
 
@@ -155,8 +169,29 @@ iframe.dealply-toast.fastestext-revealed {
 						});	
 					
 			});
+			
+		
 	</script>
-	
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="#"><img src="/img/ABB.png"> </a></li>
+						<li><a href="/"><i class="icon-home"></i></a></li>
+						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
+						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
+						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
+						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i>3D Plott</a></li>
+					</ul>
+					<ul class="nav pull-right">
+						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
 	<div id="info">
 		<div class="">
 		
@@ -174,16 +209,19 @@ iframe.dealply-toast.fastestext-revealed {
 							<tbody>
 								<tr>
 									<td>Number of triggerpoints:</td>
-									<td id="cachesize"><?php echo $this->viewmodel->listsize ?></td>
+									<td id="pointsize"><?php echo $pointlist->size(); ?></td>
 								</tr>
 								<tr>
-									<td>Used memory size:</td>
-									<td id="memorysize"><?php echo $this->viewmodel->listmemory ?></td>
+									<td>Used memory:</td>
+									<td id="usedmemory"><?php echo $cacheinfo["mem_size"]/1000 . "k"; ?></td>
+								</tr>
+								<tr>
+									<td>Available memory:</td>
+									<td id="availablememory"><?php echo ini_get("apc.shm_size") * 1000 . "k"; ?></td>
 								</tr>
 								<tr>
 									<td>Number of cluster:</td>
-									<?php $settings = $this->viewmodel->settings; ?>
-									<td><?php echo $settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?></td>
+									<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
 								</tr>
 								</tbody>
 						</table>
@@ -260,7 +298,7 @@ iframe.dealply-toast.fastestext-revealed {
 												</ul>
 											</div>
 										</td>
-										<td><i id="icon1" class="icon-eye-open icon-white" onclick="moveViewButton()"></i></td>
+										<td><i id="icon1" class="icon-eye-open" onclick="moveViewButton()"></i></td>
 									</tr>
 									<tr>
 										<td> X:</td>
@@ -290,15 +328,14 @@ iframe.dealply-toast.fastestext-revealed {
 	<div id="exit">
 	<a class="close" href="/Home/">&times;</a>
 	</div>
-	
 
-	
 <script type="text/javascript">
 			var point3DPlot;
 			var points;
 			var cluster;
 			var clusterPoints;
 			var id;
+			var tempsize;
 			
 				setUp();
 			
@@ -314,38 +351,49 @@ iframe.dealply-toast.fastestext-revealed {
 	      	
 			loadCluster();	
 	      	point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
-			loadPoint();
 			
-		
 			}
 			
-			function loadPoint(){
 			
-			$.getJSON("/Register/Points/json?start=0&stop=10000", function(data){
+			$(function(){
+				if(typeof(EventSource) !=="undefined"){
+					if(ssesource != null){
+						ssesource.addEventListener("pointsize", function (event){
+							loadPoints(event.data);
+						}, true);
+					}
+				}
+			});
+			
+			$.getJSON("/Register/Size/json", function(data){
+					var size = data.Register.Size;
+					loadPoints(size);
+				});
+		
+			
+				function loadPoints(totalsize){
+					$.getJSON("/Register/Points/json?start=" + points.length + "&stop=" + (points.length + 1000), function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
-						points[start] = new point(value.x,value.y,value.z,value.timestamp,value.cluster);
-							start++;
+							points[start++] = new point(value.x, value.y, value.z, value.timestamp, value.cluster);
 						});
-				reload(points);
-			});
-			}
-			
-			function loadCluster(){
-			<?php 
-					if($list->size() > 0){ 
-						for($i = 0; $i < $list->size(); $i++){
-							$point = $list->get($i);
-							?>
-							cluster[<?php echo $i ?>] = new point(<?php echo round($point->x, 3)?>,<?php echo round($point->y, 3)?>,<?php echo round($point->z, 3)?>, 
-							null, <?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?>);
-			<?php 
+						
+						reload(points);
+						if(totalsize > start){
+							loadPoints();
+							
+						}
+					});
+				}
+				
+				function loadCluster(){
+					$.getJSON("/Cluster/Points/json", function(data){
+						start = 0;
+						$.each(data.Cluster.Points, function(key, value){
+							cluster[start++] = new point(value.x, value.y, value.z, null, value.connections);
+						});
+					});
 				};
-			}; 
-			
-			?>
-			
-			};
 				
 			function point(x, y, z, t, c){       
 				return [x, y, z, t, c]; 

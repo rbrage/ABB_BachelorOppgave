@@ -354,10 +354,10 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	}
 	
 	function reload(){
-	addPoints();
-	addControls();
-	animate();
-	controls.handleResize();
+		addPoints();
+		addControls();
+		animate();
+		controls.handleResize();
 };
 
 	function moveView(x,y,z){

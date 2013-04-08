@@ -121,6 +121,18 @@ $this->Template("Home");
 				loadCluster();	
 				point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
 				
+				
+				$(function(){
+				if(typeof(EventSource) !=="undefined"){
+					if(ssesource != null){
+						ssesource.addEventListener("pointsize", function (event){
+							loadPoints(event.data);
+						}, true);
+					}
+				}
+			});
+				
+				
 				$.getJSON("/Register/Size/json", function(data){
 					var size = data.Register.Size;
 					loadPoints(size);

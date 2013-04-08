@@ -77,6 +77,7 @@ body {
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
 						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
+						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i>3D Plott</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
