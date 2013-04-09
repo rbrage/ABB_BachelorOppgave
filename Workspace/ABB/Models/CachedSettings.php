@@ -14,6 +14,8 @@ class CachedSettings {
 	const RUNTRIGGERPROGRAMINBACKGROUND = "TriggerprogramInBackground";
 	const ANALYSECLUSTERSWHILESUBMITION = "RuntimeClustering";
 	const RANDOMINITIALCLUSTERPOINTS = "RandomInitialClusterPoints";
+	const NEXTPOINTASMASTERPOINT = "NextPointAsMaster";
+	const OUTLIERCONTROLLDISTANCE = "OutlierControllDistance";
 	
 	private $defaltvalues = array(
 			self::NUMBEROFCLUSTERS => 1,

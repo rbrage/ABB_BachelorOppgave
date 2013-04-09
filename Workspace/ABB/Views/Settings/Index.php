@@ -131,8 +131,21 @@ $this->Template("Shared");
 	<div class="page-header">
 		<h2>Outlying points</h2>
 	</div>
-	
-	
+	<div class="control-group">
+		<label class="control-label" for="<?php echo CachedSettings::OUTLIERCONTROLLDISTANCE; ?>">Max distance</label>
+		<div class="controls">
+			<input type="text"
+				name="<?php echo CachedSettings::OUTLIERCONTROLLDISTANCE; ?>"
+				id="<?php echo CachedSettings::OUTLIERCONTROLLDISTANCE; ?>"
+				value="<?php echo $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?>" />
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<input type="submit" value="Save Outlier Settings" class="btn" />
+		</div>
+	</div>
+
 </section>
 
 <!-- Master point triggering settings -->

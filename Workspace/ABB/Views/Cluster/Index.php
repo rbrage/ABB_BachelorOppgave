@@ -27,19 +27,23 @@ $this->template("Shared");
 		$(function(){
 			var closeButton = "<button type=\"button\" class=\"close\" onclick=\"$('#options > .alert').fadeOut(800);\">&times;</button>";
 			$("#runButton").click(function(){
-				$("#options > .alert").removeClass("alert-success").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
+				$("#options > .alert").removeClass("alert-success").removeClass("alert-error").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
 				$.getJSON("/cluster/run/json", function(data){
 					$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
 					updateClusterPoints();
+				}).error(function(){
+					$("#options > .alert").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
 				});
 			});
 			
 			$("#forceNewButton").click(function(){
 				if(confirm("This will remove the clusters that are present now, and a new calculation will start. Are you sure you want to do this?")){
-					$("#options > .alert").removeClass("alert-success").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
+					$("#options > .alert").removeClass("alert-success").removeClass("alert-error").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
 					$.getJSON("/cluster/force/json", function(data){
 						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
 						updateClusterPoints();
+					}).error(function(){
+						$("#options > .alert").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
 					});
 				}
 			});
@@ -47,16 +51,20 @@ $this->template("Shared");
 			$("#clearButton").click(function(){
 				if(confirm("This will remove all clusterdata thats present. Are you sure you want to do this?")){
 					$.getJSON("/cluster/reset/json", function(data){
-						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
 						updateClusterPoints();
+					}).error(function(){
+						$("#options > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
 					});
 				}
 			});
 
 			$("#reasignButton").click(function(){
 				$.getJSON("/cluster/reasign/json", function(data){
-						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
 						updateClusterPoints();
+					}).error(function(){
+						$("#options > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
 					});
 			});
 
@@ -113,7 +121,7 @@ $this->template("Shared");
 					<td>".round($point->x, 3)."</td>
 					<td>".round($point->y, 3)."</td>
 					<td>".round($point->z, 3)."</td>
-					<td>".$point->getAdditionalInfo(ListNames::CLUSTERCOUNTNAME)."</td>
+					<td>".$point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)."</td>
 				</tr>";
 				}
 			}

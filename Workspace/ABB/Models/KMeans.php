@@ -3,6 +3,7 @@
 require_once 'Models/Cache.php';
 require_once 'Models/CachedArrayList.php';
 require_once 'Models/TriggerPoint.php';
+require_once 'Models/ListNames.php';
 
 class KMeans {
 	
@@ -28,7 +29,7 @@ class KMeans {
 		Debuger::SetSendInfoToBrowser("KMeans", false);
 		$this->k = $k;
 		$this->cache = new Cache();
-		$this->clusterlist = new CachedArrayList(self::CLUSTERLISTNAME);
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->pointlist = new CachedArrayList();
 	}
 	

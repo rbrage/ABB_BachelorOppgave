@@ -209,9 +209,9 @@ iframe.dealply-toast.fastestext-revealed {
 			<div class="accordion" id="accordion1">
 				<div class="accordion-group backgroundColor">
 					<div class="accordion-heading">
-						<p class="accordion-toggle header" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Information 
+						<a class="accordion-toggle header" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">Information 
 						<i id="icon1" class="icon-chevron-down pull-right"></i>
-						</p>
+						</a>
 					</div>
 					<div id="collapseOne" class="accordion-body collapse in">
 						<div class="accordion-inner">
@@ -243,10 +243,10 @@ iframe.dealply-toast.fastestext-revealed {
 			<div class="accordion" id="accordion2">
 				<div class="accordion-group backgroundColor">
 					<div class="accordion-heading">
-						<p class="accordion-toggle header" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+						<a class="accordion-toggle header" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
 							Selected point 
 							<i id="icon2" class="icon-chevron-right pull-right"></i>
-						</p>
+						</a>
 					</div>
 					<div id="collapseTwo" class="accordion-body collapse">
 						<div class="accordion-inner">
@@ -289,15 +289,16 @@ iframe.dealply-toast.fastestext-revealed {
 			<div class="accordion" id="accordion3">
 				<div class="accordion-group backgroundColor">
 					<div class="accordion-heading">
-						<p class="accordion-toggle header" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
+						<a class="accordion-toggle header" data-toggle="collapse" data-parent="#accordion3" href="#collapseThree">
 							Cluster 
 							<i id="icon3" class="icon-chevron-right pull-right"></i>
-						</p>
+						</a>
 					</div>
 					<div id="collapseThree" class="accordion-body collapse">
 						<div class="accordion-inner">
 							<table class="table table-condensed text">
 								<tbody>
+									<tr>
 										<td> Cluster ID:
 											<div class="btn-group">
 												<a id="clusterid" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#"> # <span class=" icon-chevron-down"></span> </a>
@@ -367,13 +368,9 @@ iframe.dealply-toast.fastestext-revealed {
 			
 			
 			$(function(){
-				if(typeof(EventSource) !=="undefined"){
-					if(ssesource != null){
-						ssesource.addEventListener("pointsize", function (event){
-							loadPoints(event.data);
-						}, true);
-					}
-				}
+				addSSEvent("pointsize", function (event){
+					loadPoints(event.data);
+				});
 			});
 			
 			$.getJSON("/Register/Size/json", function(data){
@@ -389,10 +386,12 @@ iframe.dealply-toast.fastestext-revealed {
 							points[start++] = new point(value.x, value.y, value.z, value.timestamp, value.cluster);
 						});
 						
-						reload(points);
+						
 						if(totalsize > start){
-							loadPoints();
-							
+							loadPoints(totalsize);
+						}
+						else{
+							reload(points);
 						}
 					});
 				}

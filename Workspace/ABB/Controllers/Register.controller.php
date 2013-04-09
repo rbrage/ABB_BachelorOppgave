@@ -55,8 +55,6 @@ class Register extends Controller {
 			return $this->View();
 		}
 		
-		$this->list = new CachedArrayList();
-		
 		$data = new TriggerPoint(floatval($this->urlvalues["x"]), floatval($this->urlvalues["y"]), floatval($this->urlvalues["z"]), floatval($this->urlvalues["time"]));
 		foreach ($this->urlvalues as $key => $value){
 			if($key == "controller" || 
@@ -70,20 +68,29 @@ class Register extends Controller {
 			
 			$data->addAdditionalInfo($key, $value);
 		}
-		
 
 		$this->settings = new CachedSettings();
-		if($this->settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION)){
-			$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
-			$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
-			$runAnalysis = $this->cluster->asignCluster($data);
-			$success = $this->list->add($data);
-			if($runAnalysis)
-				$this->cluster->calculateClusters();
-		}
-		else {
+
+		if($this->settings->getSetting(CachedSettings::NEXTPOINTASMASTERPOINT)){
+			$this->list = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
 			$success = $this->list->add($data);
 		}
+		else{
+			$this->list = new CachedArrayList();
+			if($this->settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION)){
+				$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
+				$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
+				$runAnalysis = $this->cluster->asignCluster($data);
+				$success = $this->list->add($data);
+				if($runAnalysis)
+					$this->cluster->calculateClusters();
+			}
+			else {
+				$success = $this->list->add($data);
+			}
+		}
+		
+		
 		
 		
 		if($success){

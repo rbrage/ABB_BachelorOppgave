@@ -25,6 +25,8 @@ class Execute extends Controller {
 		$this->command = $this->settings->getSetting(CachedSettings::KODETOMASTERPOINTTRIGGERING);
 		$this->inBackground = $this->settings->getSetting(CachedSettings::RUNMASTERCODEINBACKGROUND);
 		
+		$this->settings->setSetting(CachedSettings::NEXTPOINTASMASTERPOINT, true);
+		
 		$this->RunCommand();
 	}
 	

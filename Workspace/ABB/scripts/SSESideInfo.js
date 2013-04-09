@@ -24,7 +24,7 @@ $(function(){
 		var SSENames = new Array();
 		var SSEHandlers = new Array();
 
-		function addSSEvent(eventname, handler) {
+		addSSEvent = function(eventname, handler) {
 			SSENames.push(eventname);
 			SSEHandlers.push(handler);
 			if(ssesource != null || ssesource.readyState != EventSource.CLOSED){
@@ -36,6 +36,14 @@ $(function(){
 
 		addSSEvent("pointsize", function (event) {
 			$("#pointsize").html(event.data);
+		});
+		
+		addSSEvent("outliersize", function (event) {
+			$("#outliersize").html(event.data);
+		});
+		
+		addSSEvent("mastersize", function (event) {
+			$("#mastersize").html(event.data);
 		});
 
 		addSSEvent("usedmemory", function (event) {

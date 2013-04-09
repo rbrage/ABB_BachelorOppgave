@@ -130,7 +130,7 @@ body {
 						$pointlist = new CachedArrayList();
 						$clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 						$masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
-						$outlyerlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
+						$outlierlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
 						
 						$cacheinfo = $cache->getCacheInfo();
 						
@@ -155,11 +155,11 @@ body {
 								</tr>
 								<tr>
 									<td>Number of masterpoints:</td>
-									<td id="clustersize"><?php echo $masterlist->size(); ?></td>
+									<td id="mastersize"><?php echo $masterlist->size(); ?></td>
 								</tr>
 								<tr>
 									<td>Number of outlyers:</td>
-									<td id="clustersize"><?php echo $outlyerlist->size(); ?></td>
+									<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
 								</tr>
 								</tbody>
 						</table>
