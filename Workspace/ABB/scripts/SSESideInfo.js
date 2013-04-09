@@ -46,4 +46,7 @@ $(function(){
 			$("#clustersize").html(event.data);
 		});
 	}
+	else{
+		$("#LiveUpdateIcon").removeClass("icon-pause").removeClass("icon-play").addClass("icon-exclamation-sign");
+	}
 });
