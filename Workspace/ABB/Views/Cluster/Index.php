@@ -113,7 +113,7 @@ $this->template("Shared");
 					<td>".round($point->x, 3)."</td>
 					<td>".round($point->y, 3)."</td>
 					<td>".round($point->z, 3)."</td>
-					<td>".$point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)."</td>
+					<td>".$point->getAdditionalInfo(ListNames::CLUSTERCOUNTNAME)."</td>
 				</tr>";
 				}
 			}

@@ -15,7 +15,7 @@ class Cluster extends Controller {
 	 * Loads the main cluster analysis site. All user interaction should be done here. Answers in HTML5.
 	 */
 	public function index(){
-		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->settings = new CachedSettings();
 		$this->viewmodel->clusterlist = $this->clusterlist;
 		$this->viewmodel->settings = $this->settings;
@@ -39,7 +39,7 @@ class Cluster extends Controller {
 		}
 		$this->viewmodel->returnCoding = $id;
 		
-		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->clusterlist->clear();
 		
 		echo json_encode(array("msg" => "The clusterlist is cleared."));
@@ -135,7 +135,7 @@ class Cluster extends Controller {
 		}
 		$this->viewmodel->returnCoding = $id;
 		
-		$this->viewmodel->list = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->viewmodel->list = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->viewmodel->msg = "Clusterlist transmitted";
 		
 		return $this->View();

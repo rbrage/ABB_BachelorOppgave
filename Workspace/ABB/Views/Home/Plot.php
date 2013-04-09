@@ -5,7 +5,7 @@
 	$list = $this->viewmodel->clusterlist;
 	$cache = new Cache();
 	$pointlist = new CachedArrayList();
-	$clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+	$clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 
 	$cacheinfo = $cache->getCacheInfo();
 ?>

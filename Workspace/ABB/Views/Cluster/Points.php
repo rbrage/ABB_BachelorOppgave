@@ -28,7 +28,7 @@ else{
 		$points = array();
 		for($i = 0; $i < $this->viewmodel->list->size(); $i++){
 			$item = $this->viewmodel->list->get($i);
-			$points[] = array("clusterID" => $i, "x" => round($item->x, 3), "y" => round($item->y, 3), "z" => round($item->z, 3), "connections" => $item->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME));
+			$points[] = array("clusterID" => $i, "x" => round($item->x, 3), "y" => round($item->y, 3), "z" => round($item->z, 3), "connections" => $item->getAdditionalInfo(ListNames::CLUSTERCOUNTNAME));
 		}
 		$response["Cluster"]["Points"] = $points;
 		echo json_encode($response);
@@ -48,7 +48,7 @@ else{
 				$point->addChild("x", round($item->x, 3));
 				$point->addChild("y", round($item->y, 3));
 				$point->addChild("z", round($item->z, 3));
-				$point->addChild("connections", $item->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME));
+				$point->addChild("connections", $item->getAdditionalInfo(ListNames::CLUSTERCOUNTNAME));
 			}
 				
 		}

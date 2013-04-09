@@ -14,7 +14,7 @@ class Home extends Controller {
 
 		$this->viewmodel->listsize = $this->list->size();
 		
-		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->settings = new CachedSettings();
 		$this->viewmodel->clusterlist = $this->clusterlist;
 		$this->viewmodel->settings = $this->settings;	
@@ -31,7 +31,7 @@ class Home extends Controller {
 		$info = apc_cache_info("user", true);
 		$this->viewmodel->listmemory = $info["mem_size"]/1000 . "k";
 		
-		$this->clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->settings = new CachedSettings();
 		$this->viewmodel->clusterlist = $this->clusterlist;
 		$this->viewmodel->settings = $this->settings;	
