@@ -82,7 +82,7 @@ body {
 					<ul class="nav">
 						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="/"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
-						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i> 3D Plott</a></li>
+						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i> 3D Plot</a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
 						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
@@ -120,12 +120,17 @@ body {
 			<div class="span2">
 				<div data-spy="affix" style="padding-right: 10px;">
 					<div class="alert alert-info">
-						<p class="nav-header">Information</p>
+						<p class="nav-header">
+							Information 
+							<button class="btn btn-mini" id="LiveUpdateButton">Live update<i class="icon-pause" id="LiveUpdateIcon"></i></button>
+						</p>
 						<?php 
 
 						$cache = new Cache();
 						$pointlist = new CachedArrayList();
-						$clusterlist = new CachedArrayList(KMeans::CLUSTERLISTNAME);
+						$clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
+						$masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
+						$outlyerlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
 						
 						$cacheinfo = $cache->getCacheInfo();
 						
@@ -147,6 +152,14 @@ body {
 								<tr>
 									<td>Number of cluster:</td>
 									<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
+								</tr>
+								<tr>
+									<td>Number of masterpoints:</td>
+									<td id="clustersize"><?php echo $masterlist->size(); ?></td>
+								</tr>
+								<tr>
+									<td>Number of outlyers:</td>
+									<td id="clustersize"><?php echo $outlyerlist->size(); ?></td>
 								</tr>
 								</tbody>
 						</table>
