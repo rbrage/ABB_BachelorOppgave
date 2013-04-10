@@ -61,6 +61,9 @@ iframe.dealply-toast.fastestext-revealed {
 				background-color: rgba(250, 250, 250, 0.7);
 				background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(242, 242, 242, 0.7));
 			}
+			.transperantBG{
+				background-color: rgba(250, 250, 250, 0.9);
+			}
 			
 			.header{
 				color:rgb(51, 51, 51);
@@ -329,6 +332,12 @@ iframe.dealply-toast.fastestext-revealed {
 									</tr>
 								</tbody>
 							</table>
+							<hr/>
+							<label class="checkbox">
+								<input type="checkbox" id="drawBall" onclick="check()" >Draw Ball?
+							</label>
+								<input type="range" class="transperantBG" min="0" max="100" value="50" onchange="ballSize(this.value)"/><br/>
+							<span id="range">50</span>
 							
 						</div>
 					</div>
@@ -346,8 +355,9 @@ iframe.dealply-toast.fastestext-revealed {
 			var points;
 			var cluster;
 			var clusterPoints;
-			var id;
+			var id, clusterX, clusterY, clusterZ;
 			var stats;
+			var checkBox;
 			
 				setUp();
 			
@@ -423,16 +433,16 @@ iframe.dealply-toast.fastestext-revealed {
 				document.getElementById("clusterid").innerHTML=clusterid;
 				
 				if(this.clusterList.length>0){
-					var clusterX = this.clusterList[this.id][0];
-					var clusterY = this.clusterList[this.id][1];
-					var clusterZ = this.clusterList[this.id][2];
+					this.clusterX = this.clusterList[this.id][0];
+					this.clusterY = this.clusterList[this.id][1];
+					this.clusterZ = this.clusterList[this.id][2];
 					var clusterConections = this.clusterList[this.id][4];
 					
-					var clustertext="" + clusterX;
+					var clustertext="" + this.clusterX;
 					document.getElementById("clusterCoorX").innerHTML=clustertext;
-					var clustertext="" + clusterY;
+					var clustertext="" + this.clusterY;
 					document.getElementById("clusterCoorY").innerHTML=clustertext;
-					var clustertext="" + clusterZ;
+					var clustertext="" + this.clusterZ;
 					document.getElementById("clusterCoorZ").innerHTML=clustertext;
 					
 					var clustertext="" +clusterConections;
@@ -440,6 +450,30 @@ iframe.dealply-toast.fastestext-revealed {
 		
 				};
 				
+			};
+			function check(){
+				checkBox = document.getElementById("drawBall");
+				size = document.getElementById("range");
+				console.log(checkBox.checked);
+				if(checkBox.checked){
+					if(this.id !=="undifined"){
+						drawClusterCircle(this.clusterX, this.clusterY, this.clusterZ, size);
+					}
+				}else{
+				console.log("remove");
+				removeDrawClusterCircle();
+				}
+				
+			};
+			
+			function ballSize(size){
+				document.getElementById("range").innerHTML=size;
+				if(checkBox.checked){
+					if(this.id !=="undifined"){
+						removeDrawClusterCircle();
+						drawClusterCircle(this.clusterX, this.clusterY, this.clusterZ, size);
+					};
+				}
 			};
 			
 			window.onresize = function(event) {

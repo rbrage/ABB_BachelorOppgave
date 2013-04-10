@@ -10,6 +10,7 @@ var _state;
 var PARTICLE_SIZE = 2;
 var PARTICLE_COLOR;
 var webGL;
+var ClusterCircle;
 
 PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
@@ -150,7 +151,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    controls.dynamicDampingFactor = 0.5;
 
 	    controls.minDistance = 0.1;
-	    controls.maxDistance = 5000;
+	    controls.maxDistance = 10000;
 	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
 	}
@@ -293,22 +294,14 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	}
 	
 	function drawClusterCircle(x,y,z, size){
-		var resolution = 100;
-		var amplitude = size;
-		var size = 360 / resolution;
-
-		var geometry = new THREE.Geometry();
-		var material = new THREE.LineBasicMaterial( { color: 0xaa00ff, opacity: 0.9} );
-		for(var i = 0; i <= resolution; i++) {
-			var segment = ( i * size ) * Math.PI / 180;
-			geometry.vertices.push( new THREE.Vertex( new THREE.Vector3( Math.cos( segment ) * amplitude, 0, Math.sin( segment ) * amplitude ) ) );         
-		}
-
-		var line = new THREE.Line( geometry, material );
-		line.position.set(x,y,z);
-		line.rotation.z = - Math.PI / 2;
-		scene.add(line);
 		
+		ClusterCircle = new THREE.Mesh( new THREE.SphereGeometry( size, 20, 20 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
+		ClusterCircle.position.set(x,y,z);
+		scene.add( ClusterCircle );
+	
+	};
+	function removeDrawClusterCircle(){
+		scene.remove(ClusterCircle);
 	};
 	
 	function animate() {
