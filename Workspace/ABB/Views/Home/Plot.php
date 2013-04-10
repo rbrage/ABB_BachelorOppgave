@@ -55,6 +55,7 @@ iframe.dealply-toast.fastestext-revealed {
 				right: 10px;
 				top: 40px;
 				padding: 5px;
+				width:110px;
 				
 			}
 			.backgroundColor{
@@ -218,6 +219,7 @@ iframe.dealply-toast.fastestext-revealed {
 					</div>
 					<div id="collapseOne" class="accordion-body collapse in">
 						<div class="accordion-inner">
+						
 							<table class="table table-condensed text">
 							<tbody>
 								<tr>
@@ -334,11 +336,14 @@ iframe.dealply-toast.fastestext-revealed {
 							</table>
 							<hr/>
 							<label class="checkbox">
-								<input type="checkbox" id="drawBall" onclick="check()" >Draw Ball?
+								<input type="checkbox" id="drawBall" onclick="ballCheck()" >Draw Ball?
 							</label>
 								<input type="range" class="transperantBG" min="0" max="100" value="50" onchange="ballSize(this.value)"/><br/>
 							<span id="range">50</span>
 							
+							<label class="checkbox">
+								<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor?
+							</label>
 						</div>
 					</div>
 				</div>
@@ -346,7 +351,8 @@ iframe.dealply-toast.fastestext-revealed {
 		</div>
 	</div>
 	<div id="exit">
-	<a class="close" href="/Home/">&times;</a>
+		<button class="btn btn-mini" id="LiveUpdateButton">Live update<i class="icon-pause" id="LiveUpdateIcon"></i></button>
+		<a class="close" href="/Home/">&times;</a>
 	</div>
 
 		
@@ -451,17 +457,24 @@ iframe.dealply-toast.fastestext-revealed {
 				};
 				
 			};
-			function check(){
+			function ballCheck(){
 				checkBox = document.getElementById("drawBall");
 				size = document.getElementById("range");
-				console.log(checkBox.checked);
 				if(checkBox.checked){
 					if(this.id !=="undifined"){
 						drawClusterCircle(this.clusterX, this.clusterY, this.clusterZ, size);
 					}
 				}else{
-				console.log("remove");
 				removeDrawClusterCircle();
+				}
+				
+			};
+			function floorCheck(){
+				checkBox = document.getElementById("drawFloor");
+				if(checkBox.checked){
+					drawFloor();
+				}else{
+					removeFloor();
 				}
 				
 			};

@@ -4,10 +4,10 @@ var points, clusterList;
 var WIDTH, HEIGHT, axisSize;
 var camera, scene, renderer;
 var group;
-var centroidSphere, line , pointsSystem;
+var centroidSphere, line , pointsSystem, plane;
 var _state;
 
-var PARTICLE_SIZE = 2;
+var PARTICLE_SIZE = 1;
 var PARTICLE_COLOR;
 var webGL;
 var ClusterCircle;
@@ -49,6 +49,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		renderer.setSize(WIDTH, HEIGHT);
 	    
 	    scene = new THREE.Scene();
+		
 		
 		PARTICLE_COLOR = new THREE.Color(0xff0000);
 	    addCameraRotationPoint();
@@ -141,7 +142,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, pointsSystem, this);
 	    
 	    controls.rotateSpeed = 0.5;
-	    controls.zoomSpeed = 0.5;
+	    controls.zoomSpeed = 1;
 	    controls.panSpeed = 0.5;
 
 	    controls.noZoom = false;
@@ -300,10 +301,21 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		scene.add( ClusterCircle );
 	
 	};
+	
 	function removeDrawClusterCircle(){
 		scene.remove(ClusterCircle);
 	};
 	
+	function drawFloor(){
+		plane = new THREE.Mesh( new THREE.PlaneGeometry( 100*100, 100*100, 200, 200 ), new   THREE.MeshBasicMaterial( { color: 0XE0E0D1, wireframe: true} ) );
+		plane.position.set(0,0,-5);
+		scene.add(plane);
+	};
+	
+	function removeFloor(){
+		scene.remove(plane);
+	};
+
 	function animate() {
 
 	    requestAnimationFrame(animate);

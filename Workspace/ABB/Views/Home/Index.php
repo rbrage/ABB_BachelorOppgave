@@ -36,15 +36,10 @@ $this->Template("Home");
 	</script>
 </section>
 
-<section id="plot3d">
+<section id="raport">
 	<div class="page-header">
 	
-		<h2>3D plot</h2> 
-		
-			<div id="3DPlotDiv" style="border:1px solid; background-color:#F2F2F2">
-			<a href="/Home/Plot"><i class="icon-fullscreen pull-right"></i></a>
-			
-		</div>
+		<h2>Raport</h2> 
 		
 	</div>
 
@@ -93,78 +88,5 @@ $this->Template("Home");
 			?>
 </section>
 
-<script type="text/javascript">
-
-			var point3DPlot;
-			var points;
-			var cluster;
-			$(function(){
-				
-				setUp();
-			
-				function setUp()
-				{	
-
-				points = new Array();
-				cluster = new Array();
-				
-				var container = document.getElementById("3DPlotDiv");
-		      	var data = {width: container.offsetWidth-15, height: 600, axisSize: 350};
-				
-				loadCluster();	
-				point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
-				
-				
-				$(function(){
-				if(typeof(EventSource) !=="undefined"){
-					if(ssesource != null){
-						ssesource.addEventListener("pointsize", function (event){
-							loadPoints(event.data);
-						}, true);
-					}
-				}
-			});
-				
-				
-				$.getJSON("/Register/Size/json", function(data){
-					var size = data.Register.Size;
-					loadPoints(size);
-				});
-		
-				};
-			
-				function loadPoints(totalsize){
-					$.getJSON("/Register/Points/json?start=" + points.length + "&stop=" + (points.length + 1000), function(data){
-						start = data.Register.Start;
-						$.each(data.Register.Points, function(key, value){
-							points[start++] = new point(value.x, value.y, value.z, value.timestamp, value.cluster);
-						});
-						
-						reload(points);
-						if(totalsize > start){
-							loadPoints();
-						}
-					});
-				}
-				
-				function loadCluster(){
-					$.getJSON("/Cluster/Points/json", function(data){
-						start = 0;
-						$.each(data.Cluster.Points, function(key, value){
-							cluster[start++] = new point(value.x, value.y, value.z, null, value.connections);
-						});
-					});
-				};
-				
-				function point(x, y, z, t, c){       
-					return [x, y, z, t, c]; 
-				};
-				
-			
-				window.onresize = function(event) {	
-					reload();
-				};
-			});
-</script>
 
 
