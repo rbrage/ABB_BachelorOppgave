@@ -6,6 +6,7 @@ class CachedSettings {
 	
 	const SETTINGSPREFIX = "Settings_";
 	const SETTINGSLOADEDTOCACHE = "LoadedToCache";
+
 	const NUMBEROFCLUSTERS = "Clusters";
 	const MAXPOINTSINCLUSTERANALYSIS = "MaxClusterPointsInAnalysis";
 	const KODETOMASTERPOINTTRIGGERING = "MasterpointTriggeringkode";
@@ -25,7 +26,9 @@ class CachedSettings {
 			self::ANALYSECLUSTERSWHILESUBMITION => false,
 			self::RUNMASTERCODEINBACKGROUND => false,
 			self::RUNTRIGGERPROGRAMINBACKGROUND => false,
-			self::RANDOMINITIALCLUSTERPOINTS => false
+			self::RANDOMINITIALCLUSTERPOINTS => false,
+			self::NEXTPOINTASMASTERPOINT => false,
+			self::OUTLIERCONTROLLDISTANCE => 1000
 			);
 	
 	private $cache;

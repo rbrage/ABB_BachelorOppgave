@@ -6,7 +6,7 @@ require_once 'Models/TriggerPoint.php';
 require_once 'Models/ListNames.php';
 
 class KMeans {
-	
+
 	private $k = 1;
 	private $pointsToCrush = 100;
 	private $cache;
@@ -14,11 +14,12 @@ class KMeans {
 	private $pointlist;
 	private $pointMoved;
 	private $randomSelection = false;
-	
+
 	const CLUSTERLISTNAME = "CLUSTERANALYSIS";
 	const CLUSTERANALYSISRUNNINGNAME = "CLUSTERANALYSISRUNNING";
 	const CLUSTERCOUNTNAME = "CLUSTERCOUNT";
-	
+	const DISTANCETOCLUSTER = "DistanceToCluster";
+
 	/**
 	 * Creates a new instance of the KMeans class. Sets the ini time limit of the script to infinite to make it possible to run large clusters.
 	 * @param int $k
@@ -32,7 +33,9 @@ class KMeans {
 		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->pointlist = new CachedArrayList();
 	}
-	
+
+
+
 	/**
 	 * Starts the calculation of the clusters.
 	 */
@@ -40,33 +43,33 @@ class KMeans {
 		if(!$this->cache->hasKey(self::CLUSTERANALYSISRUNNINGNAME)){
 			$this->cache->setCacheData(self::CLUSTERANALYSISRUNNINGNAME, true);
 			Debuger::RegisterPoint("Starting clusteranalysis.", "KMeans");
-			
+
 			$this->asignInitialCluster();
-			
+
 			if($this->k > $this->clusterlist->size()){
 				$this->cache->removeCacheData(self::CLUSTERANALYSISRUNNINGNAME);
 				return;
 			}
-			
+
 			while(true){
 
 				$this->pointMoved = false;
 				$this->reasignPointsToClusters();
-				
+
 				if(!$this->pointMoved)
 					break;
 
 				$this->updateClusterCenter();
 			}
 
-			
+
 			$this->cache->removeCacheData(self::CLUSTERANALYSISRUNNINGNAME);
 		}
 		else{
 			Debuger::RegisterPoint("Clusteranalysis is already running.", "KMeans");
 		}
 	}
-	
+
 	/**
 	 * Sets the max numbers of point to define a cluster.
 	 * @param int $numberOfPoints
@@ -74,7 +77,7 @@ class KMeans {
 	public function setNumberOfPointsToDeterminClusters($numberOfPoints){
 		$this->pointsToCrush = $numberOfPoints;
 	}
-	
+
 	/**
 	 * Sets if the initial clusters should be selected at random.
 	 * @param boolean $isRandom
@@ -82,7 +85,7 @@ class KMeans {
 	public function setRandomSelectionOfInitialCluster($randomSelection){
 		$this->randomSelection = $randomSelection;
 	}
-	
+
 	/**
 	 * Asigns the initial clusters.
 	 */
@@ -94,33 +97,34 @@ class KMeans {
 				$pointnumber = rand(0, $this->pointlist->size()-1);
 				$point = $this->pointlist->get($pointnumber, true);
 			}
-			else 
+			else
 				$point = $this->pointlist->get($pointnumber, true);
 			$point->setAsignedCluster($i);
 			$this->pointlist->set($pointnumber, $point, true);
-			
+
 			$point->addAdditionalInfo(self::CLUSTERCOUNTNAME, 0);
 			$this->clusterlist->set($i, $point);
 		}
 	}
-	
+
 	/**
 	 * Puts a point in its asigned cluster defined with the parameters.
 	 * @param int $pointNumber
 	 * @param int $clusterNumber
 	 */
-	private function putPointInCluster($pointNumber, $clusterNumber){
-		
+	private function putPointInCluster($pointNumber, $clusterNumber, $distance){
+
 		$this->pointMoved = true;
-		
+
 		$point = $this->pointlist->get($pointNumber, true);
 		$oldclusternumber = $point->getAsignedCluster();
 		$point->setAsignedCluster($clusterNumber);
+		$point->addAdditionalInfo(self::DISTANCETOCLUSTER, round($distance, 3));
 		$this->pointlist->set($pointNumber, $point, true);
 	}
-	
+
 	/**
-	 * Reasigns all the points to nearest cluster limited to the max points it should go through. 
+	 * Reasigns all the points to nearest cluster limited to the max points it should go through.
 	 */
 	private function reasignPointsToClusters(){
 		for($i = 0; $i < $this->pointsToCrush && $i < $this->pointlist->size(); $i++){
@@ -136,21 +140,22 @@ class KMeans {
 					$shortestdistance = $distance;
 				}
 			}
-			
+
 			$oldcluster = $point->getAsignedCluster();
 			Debuger::RegisterPoint("Old cluster is cluster " . $oldcluster, "KMeans");
 			if($oldcluster != $shortestcluster){
 				Debuger::RegisterPoint("Found a shorter distance to cluster " . $shortestcluster, "KMeans");
-				$this->putPointInCluster($i, $shortestcluster);
+				$this->putPointInCluster($i, $shortestcluster, $shortestdistance);
 				$this->pointMoved = true;
 			}
 		}
 	}
-	
+
 	/**
 	 * Reasigns all the points to nearest cluster not limited to the max points it should go through.
 	 */
 	public function asignAllPointsToClusters(){
+		$clustercount = array();
 		foreach ($this->pointlist->iterator() as $i => $point){
 			Debuger::RegisterPoint("Trying to reasigning point " . $i, "KMeans");
 			$shortestcluster = 0;
@@ -163,23 +168,30 @@ class KMeans {
 					$shortestdistance = $distance;
 				}
 			}
-			
+
 			$oldcluster = $point->getAsignedCluster();
-			Debuger::RegisterPoint("Old cluster is cluster " . $oldcluster, "KMeans");
-			if($oldcluster != $shortestcluster){
-				Debuger::RegisterPoint("Found a shorter distance to cluster " . $shortestcluster, "KMeans");
-				$this->putPointInCluster($i, $shortestcluster);
+
+			$this->putPointInCluster($i, $shortestcluster, $shortestdistance);
+
+			$clustercount[$shortestcluster] = @$clustercount[$shortestcluster] + 1;
+		}
+
+		if(!$this->clusterlist->isEmpty()){
+			foreach ($clustercount as $i => $count){
+				$cluster = $this->clusterlist->get($i, true);
+				$cluster->addAdditionalInfo(self::CLUSTERCOUNTNAME, $count);
+				$this->clusterlist->set($i, $cluster, true);
 			}
 		}
 	}
-	
+
 	/**
 	 * Calculates the center of a cluster.
 	 */
 	private function updateClusterCenter(){
 		$sumarray = array();
 		$countarray = array();
-		
+
 		for($i = 0; $i < $this->k && $i < $this->clusterlist->size(); $i++){
 			$sumarray[$i] = array("x" => 0, "y" => 0, "z" => 0);
 			$countarray[$i] = 0;
@@ -194,7 +206,7 @@ class KMeans {
 			$sumarray[$cluster]["x"] += $point->x;
 			$sumarray[$cluster]["y"] += $point->y;
 			$sumarray[$cluster]["z"] += $point->z;
-			
+
 			$countarray[$cluster] += 1;
 		}
 
@@ -205,26 +217,26 @@ class KMeans {
 				$clusterpoint->x = $sum["x"]/$countarray[$cluster];
 				$clusterpoint->y = $sum["y"]/$countarray[$cluster];
 				$clusterpoint->z = $sum["z"]/$countarray[$cluster];
-				
+
 				$clusterpoint->addAdditionalInfo(self::CLUSTERCOUNTNAME, $countarray[$cluster]);
-// 				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, false);
+				// 				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, false);
 
 			}
 			else{
 				$clusterpoint = $this->pointlist->get($this->pointlist->size() - 1);
 				$clusterpoint->addAdditionalInfo(self::CLUSTERCOUNTNAME, 0);
-// 				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, true);
-				
+				// 				$clusterpoint->addAdditionalInfo(self::CLUSTERTOUCHEDNAME, true);
+
 			}
-			
+
 			$this->clusterlist->set($cluster, $clusterpoint, true);
-				
+
 			Debuger::RegisterPoint("Cluster " . $cluster . " has " . $clusterpoint->getAdditionalInfo(self::CLUSTERCOUNTNAME) . " points.", "KMeans");
 		}
 	}
-	
+
 	/**
-	 * Gives the distance between two points. 
+	 * Gives the distance between two points.
 	 * @param TriggerPoint $first
 	 * @param TriggerPoint $second
 	 * @return float
@@ -232,7 +244,7 @@ class KMeans {
 	private function distance($first, $second){
 		return sqrt(pow(($first->x - $second->x), 2) + pow(($first->y - $second->y), 2) + pow(($first->z - $second->z), 2));
 	}
-	
+
 	/**
 	 * Clears any analysis that has been run earlier by clearing any defined clusters and put all points that has been asigned back to cluster 0 limited by max points it should go through.
 	 */
@@ -245,9 +257,9 @@ class KMeans {
 			$this->pointlist->set($i, $point, true);
 		}
 	}
-	
+
 	/**
-	 * Asigns a new point to a defined nearast cluster. Return a boolean to tell if a new analysis should be run. 
+	 * Asigns a new point to a defined nearast cluster. Return a boolean to tell if a new analysis should be run.
 	 * @param TriggerPoint $point
 	 * @return boolean - If you should do a new analysis or not.
 	 */
@@ -267,6 +279,7 @@ class KMeans {
 			}
 		}
 		$point->setAsignedCluster($shortestcluster);
+		$point->addAdditionalInfo(self::DISTANCETOCLUSTER, $shortestdistance);
 		$cluster = $this->clusterlist->get($shortestcluster, true);
 		$cluster->addAdditionalInfo(self::CLUSTERCOUNTNAME, $cluster->getAdditionalInfo(self::CLUSTERCOUNTNAME)+1);
 		$this->clusterlist->set($shortestcluster, $cluster, true);
@@ -275,7 +288,7 @@ class KMeans {
 			return false;
 		return true;
 	}
-	
+
 }
 
 ?>

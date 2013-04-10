@@ -76,6 +76,15 @@ class Settings extends Controller {
 
 		return $this->RedirectTo("./");
 	}
+	
+	public function Outlier($id){
+		$threshold = @$this->urlvalues[CachedSettings::OUTLIERCONTROLLDISTANCE];
+		$this->settings = new CachedSettings();
+
+		$this->settings->setSetting(CachedSettings::OUTLIERCONTROLLDISTANCE, $threshold);
+		
+		return $this->RedirectTo("./");
+	}
 }
 
 ?>

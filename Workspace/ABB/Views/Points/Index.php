@@ -89,31 +89,31 @@ $this->Template("Shared");
 			</thead>
 			<tbody>
 				<?php 
-// 				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
-// 					$item = $this->viewmodel->cachedarr->get($i);
-// 					echo "
-// 				<tr id=". $i .">
-// 				<td>".$i."</td>
-// 				<td>".$item->x."</td>
-// 				<td>".$item->y."</td>
-// 				<td>".$item->z."</td>
-// 				<td>".$item->cluster."</td>
-// 				<td>".$item->timestamp."</td>";
+				for($i = 0; $i < 50 && $i < $this->viewmodel->masterlist->size(); $i++){
+					$item = $this->viewmodel->masterlist->get($i);
+					echo "
+				<tr id=". $i .">
+				<td>".$i."</td>
+				<td>".$item->x."</td>
+				<td>".$item->y."</td>
+				<td>".$item->z."</td>
+				<td>".$item->cluster."</td>
+				<td>".$item->timestamp."</td>";
 					
-// 					$moreinfo = $item->getAdditionalInfo();
-// 					if(count($moreinfo)){
-// 						echo "<td>";
-// 						foreach($item->getAdditionalInfo() as $key => $value){
-// 							echo "" . $key . ": " . $value . "<br>";
-// 						}
-// 						echo "</td>";
-// 					}
-// 					else{
-// 						echo "<td></td>";
-// 					}
+					$moreinfo = $item->getAdditionalInfo();
+					if(count($moreinfo)){
+						echo "<td>";
+						foreach($item->getAdditionalInfo() as $key => $value){
+							echo "" . $key . ": " . $value . "<br>";
+						}
+						echo "</td>";
+					}
+					else{
+						echo "<td></td>";
+					}
 					
-// 				echo "</tr>";
-// 				}
+				echo "</tr>";
+				}
 				?>
 			</tbody>
 		</table>
@@ -138,31 +138,32 @@ $this->Template("Shared");
 			</thead>
 			<tbody>
 				<?php 
-// 				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
-// 					$item = $this->viewmodel->cachedarr->get($i);
-// 					echo "
-// 				<tr id=". $i .">
-// 				<td>".$i."</td>
-// 				<td>".$item->x."</td>
-// 				<td>".$item->y."</td>
-// 				<td>".$item->z."</td>
-// 				<td>".$item->cluster."</td>
-// 				<td>".$item->timestamp."</td>";
+				for($i = 0; $i < 50 && $i < $this->viewmodel->outlierlist->size(); $i++){
+					$itemnumber = $this->viewmodel->outlierlist->get($i);
+					$item = $this->viewmodel->pointlist->get($itemnumber);
+					echo "
+				<tr id=". $itemnumber .">
+				<td>".$itemnumber."</td>
+				<td>".$item->x."</td>
+				<td>".$item->y."</td>
+				<td>".$item->z."</td>
+				<td>".$item->cluster."</td>
+				<td>".$item->timestamp."</td>";
 					
-// 					$moreinfo = $item->getAdditionalInfo();
-// 					if(count($moreinfo)){
-// 						echo "<td>";
-// 						foreach($item->getAdditionalInfo() as $key => $value){
-// 							echo "" . $key . ": " . $value . "<br>";
-// 						}
-// 						echo "</td>";
-// 					}
-// 					else{
-// 						echo "<td></td>";
-// 					}
+					$moreinfo = $item->getAdditionalInfo();
+					if(count($moreinfo)){
+						echo "<td>";
+						foreach($item->getAdditionalInfo() as $key => $value){
+							echo "" . $key . ": " . $value . "<br>";
+						}
+						echo "</td>";
+					}
+					else{
+						echo "<td></td>";
+					}
 					
-// 				echo "</tr>";
-// 				}
+				echo "</tr>";
+				}
 				?>
 			</tbody>
 		</table>
@@ -187,8 +188,8 @@ $this->Template("Shared");
 			</thead>
 			<tbody>
 				<?php 
-				for($i = 0; $i < 50 && $i < $this->viewmodel->cachedarr->size(); $i++){
-					$item = $this->viewmodel->cachedarr->get($i);
+				for($i = 0; $i < 50 && $i < $this->viewmodel->pointlist->size(); $i++){
+					$item = $this->viewmodel->pointlist->get($i);
 					echo "
 				<tr id=". $i .">
 				<td>".$i."</td>

@@ -72,6 +72,7 @@ class Register extends Controller {
 		$this->settings = new CachedSettings();
 
 		if($this->settings->getSetting(CachedSettings::NEXTPOINTASMASTERPOINT)){
+			$this->settings->setSetting(CachedSettings::NEXTPOINTASMASTERPOINT, false);
 			$this->list = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
 			$success = $this->list->add($data);
 		}
