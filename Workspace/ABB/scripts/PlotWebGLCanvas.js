@@ -328,9 +328,11 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		masterPoint.position.set(x,y,z);
 		scene.add( masterPoint );
 	};
+	
 	function removeMasterpoint(){
 		scene.remove(masterPoint);
 	};
+	
 	function animate() {
 
 	    requestAnimationFrame(animate);

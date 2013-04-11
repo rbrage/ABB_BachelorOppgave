@@ -440,7 +440,6 @@ iframe.dealply-toast.fastestext-revealed {
 			};
 				
 			function moveViewButton(){
-				console.log(this.id);
 				var buttonId = this.id;
 				moveView(cluster[buttonId][0],cluster[buttonId][1],cluster[buttonId][2]);
 				
