@@ -42,12 +42,12 @@ require_once 'Models/fpdf.php';
 	//Page infomation
 	function Information($header, $data){
 	
-		 // Colors, line width and bold font
-		$this->SetFillColor(152,251,152);
-		$this->SetTextColor(255);
+	// Colors, line width and bold font
+		$this->SetFillColor(255,220,220);
+		$this->SetTextColor(0);
 		$this->SetDrawColor(128,0,0);
 		$this->SetLineWidth(.3);
-		$this->SetFont('','B');
+		$this->SetFont('Arial','',12);;
 		// Header
 		$w = array(40,40, 50, 45);
 		for($i=0;$i<count($header);$i++)

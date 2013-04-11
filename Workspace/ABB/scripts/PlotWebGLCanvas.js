@@ -1,18 +1,16 @@
 
-var targetContainer, container, stats;
+var targetContainer, container, camera, scene, renderer, stats;
 var points, clusterList;
 var WIDTH, HEIGHT, axisSize;
-var camera, scene, renderer;
-var group;
-var centroidSphere, line , pointsSystem, plane;
+var centroidSphere, line , pointsSystem, plane, clusterCircle, masterPoint, group;
+var geometry, color;
 var _state;
 
 var PARTICLE_SIZE = 1;
 var PARTICLE_COLOR;
 var webGL;
-var ClusterCircle;
-var geometry;
-var color;
+
+
 
 PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
@@ -305,14 +303,14 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
 	function drawClusterCircle(x,y,z, size){
 		
-		ClusterCircle = new THREE.Mesh( new THREE.SphereGeometry( size, 20, 20 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
-		ClusterCircle.position.set(x,y,z);
-		scene.add( ClusterCircle );
+		clusterCircle = new THREE.Mesh( new THREE.SphereGeometry( size, 20, 20 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
+		clusterCircle.position.set(x,y,z);
+		scene.add( clusterCircle );
 	
 	};
 	
 	function removeDrawClusterCircle(){
-		scene.remove(ClusterCircle);
+		scene.remove(clusterCircle);
 	};
 	
 	function drawFloor(){
@@ -325,6 +323,14 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		scene.remove(plane);
 	};
 
+	function drawMasterpoint(x,y,z){
+		masterPoint = new THREE.Mesh( new THREE.SphereGeometry( 2, 10, 10 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
+		masterPoint.position.set(x,y,z);
+		scene.add( masterPoint );
+	};
+	function removeMasterpoint(){
+		scene.remove(masterPoint);
+	};
 	function animate() {
 
 	    requestAnimationFrame(animate);

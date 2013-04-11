@@ -6,7 +6,7 @@
 	$cache = new Cache();
 	$pointlist = new CachedArrayList();
 	$clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
-
+	$masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
 	$cacheinfo = $cache->getCacheInfo();
 ?>
 
@@ -344,10 +344,13 @@ iframe.dealply-toast.fastestext-revealed {
 							</table>
 							<hr/>
 							<label class="checkbox">
+								<input type="checkbox" id="drawMasterpoint" onclick="masterCheck()" >Draw Masterpoint?
+							</label>
+							<label class="checkbox">
 								<input type="checkbox" id="drawBall" onclick="ballCheck()" >Draw Ball?
 							</label>
-								<input type="range" class="transperantBG" min="0" max="100" value="50" onchange="ballSize(this.value)"/><br/>
-							<span id="range">50</span>
+								<input type="range" class="transperantBG" min="0" max="100" step="0.1" value="10" onchange="ballSize(this.value)"/><br/>
+							<span id="range">10</span>
 							
 						</div>
 					</div>
@@ -416,7 +419,6 @@ iframe.dealply-toast.fastestext-revealed {
 						
 						
 						if(totalsize > start){
-						console.log("total>size");
 							loadPoints(totalsize);
 						}else{
 							reload(points);
@@ -499,6 +501,28 @@ iframe.dealply-toast.fastestext-revealed {
 						drawClusterCircle(this.clusterX, this.clusterY, this.clusterZ, size);
 					};
 				}
+			};
+			
+			function masterCheck(){
+				checkBox = document.getElementById("drawMasterpoint");
+				if(checkBox.checked){
+					if(this.id !=="undifined"){
+					<?php 
+						for($i = 0; $i < 50 && $i < $this->viewmodel->masterlist->size(); $i++){
+							$item = $this->viewmodel->masterlist->get($i);
+							?>var clusterID =(<?php echo $item->cluster?>);
+						
+						if(clusterID == this.id){
+							drawMasterpoint(<?php echo $item->x?>,<?php echo $item->y?>,<?php echo $item->z?>);
+							return;
+						}
+						<?php } ?>
+					
+					}
+				}else{
+					removeDrawMasterpoint();
+				}
+				
 			};
 			
 			window.onresize = function(event) {

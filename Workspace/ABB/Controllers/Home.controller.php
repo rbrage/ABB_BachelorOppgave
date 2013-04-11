@@ -35,6 +35,7 @@ class Home extends Controller {
 		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->settings = new CachedSettings();
 		$this->viewmodel->clusterlist = $this->clusterlist;
+		$this->viewmodel->masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
 		$this->viewmodel->settings = $this->settings;	
 	
 		$this->viewmodel->arr = $this->list->iterator();
