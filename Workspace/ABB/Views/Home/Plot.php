@@ -411,13 +411,14 @@ iframe.dealply-toast.fastestext-revealed {
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
 							points[start++] = new point(value.x, value.y, value.z, value.timestamp, value.cluster);
+							
 						});
 						
 						
 						if(totalsize > start){
+						console.log("total>size");
 							loadPoints(totalsize);
-						}
-						else{
+						}else{
 							reload(points);
 						}
 					});

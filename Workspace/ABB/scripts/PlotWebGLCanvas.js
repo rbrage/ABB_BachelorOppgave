@@ -11,6 +11,8 @@ var PARTICLE_SIZE = 1;
 var PARTICLE_COLOR;
 var webGL;
 var ClusterCircle;
+var geometry;
+var color;
 
 PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
@@ -19,6 +21,8 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	init(targetContainer, points, data, cluster);
 		this.points = points;
 		this.clusterList = cluster;
+		
+			
 	};
 	
 	init = function(targetContainer, points, data, cluster){
@@ -52,6 +56,8 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		
 		
 		PARTICLE_COLOR = new THREE.Color(0xff0000);
+		color = [new THREE.Color(0x0000FF), new THREE.Color(0x008000), new THREE.Color(0xFFA000), new THREE.Color(0xFF0000), new THREE.Color(0xFFFF00), new THREE.Color(0x800080)];
+		
 	    addCameraRotationPoint();
 	    addAxis(axisSize);
 	    addPoints(points);
@@ -217,8 +223,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	  
 				});
 			
-			var geometry = new THREE.Geometry();
-			var color = [new THREE.Color(0x0000FF), new THREE.Color(0x008000), new THREE.Color(0xFFA000), new THREE.Color(0xFF0000), new THREE.Color(0xFFFF00), new THREE.Color(0x800080)];
+			geometry = new THREE.Geometry();
 			
 			for ( var i = 0; i < points.length; i ++ ) {
 
@@ -292,7 +297,11 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		scene.add( pointsSystem );
 	    
 	    
-	}
+	};
+	
+	function addPoint(point){
+	
+	};
 	
 	function drawClusterCircle(x,y,z, size){
 		

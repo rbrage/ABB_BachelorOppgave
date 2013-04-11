@@ -50,7 +50,20 @@ class Home extends Controller {
 		$this->viewmodel->arr = &$this->list->APCIterator();
 		$this->View();
 	}
-
+	public function CreatePDF()
+		{
+		$this->list = new CachedArrayList();
+		$this->viewmodel->listsize = $this->list->size();
+		
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
+		$this->settings = new CachedSettings();
+		$this->viewmodel->clusterlist = $this->clusterlist;
+		$this->viewmodel->settings = $this->settings;	
+	
+		$this->viewmodel->arr = $this->list->iterator();
+		return $this->View();
+		}
+	
 }
 
 ?>
