@@ -39,7 +39,7 @@ $this->Template("Home");
 <section id="raport">
 	<div class="page-header">
 		<h2>Raport</h2> 
-		<a id="createPDF" class="btn" href="/Home/CreatePDF.php" target="_blanck">Create PDF</a>
+		<a id="createPDF" class="btn" href="/Home/CreatePDF" target="_blanck">Create PDF</a>
 	</div>
 
 </section>
