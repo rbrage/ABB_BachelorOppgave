@@ -42,7 +42,7 @@ iframe.dealply-toast.fastestext-revealed {
 				padding: 5px;
 				
 			}
-			#stats { position: absolute; bottom: 0; left: 0; }
+			#stats { position: absolute; bottom: 5; left: 0; }
 			#stats #fps { background: transparent !important }
 			#stats #fps #fpsText { color: #aaa !important }
 			#stats #fps #fpsGraph { display: none }
@@ -56,6 +56,14 @@ iframe.dealply-toast.fastestext-revealed {
 				top: 40px;
 				padding: 5px;
 				width:110px;
+				
+			}
+			#bottumMeny{
+				position: absolute; 
+				bottom: 5; 
+				left: 100; 
+				padding: 0px;
+				background: transparent !important
 				
 			}
 			.backgroundColor{
@@ -341,9 +349,6 @@ iframe.dealply-toast.fastestext-revealed {
 								<input type="range" class="transperantBG" min="0" max="100" value="50" onchange="ballSize(this.value)"/><br/>
 							<span id="range">50</span>
 							
-							<label class="checkbox">
-								<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor?
-							</label>
 						</div>
 					</div>
 				</div>
@@ -354,7 +359,13 @@ iframe.dealply-toast.fastestext-revealed {
 		<button class="btn btn-mini" id="LiveUpdateButton">Live update<i class="icon-pause" id="LiveUpdateIcon"></i></button>
 		<a class="close" href="/Home/">&times;</a>
 	</div>
-
+	
+	<div id="bottumMeny">
+		<label class="checkbox">
+			<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor
+		</label>
+		
+	</div>
 		
 		<script type="text/javascript">
 			var point3DPlot;
