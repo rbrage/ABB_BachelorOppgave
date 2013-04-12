@@ -51,7 +51,7 @@ class Home extends Controller {
 		$this->viewmodel->arr = &$this->list->APCIterator();
 		$this->View();
 	}
-	public function CreatePDF()
+	public function Createpdf()
 		{
 		$this->list = new CachedArrayList();
 		$this->viewmodel->listsize = $this->list->size();
