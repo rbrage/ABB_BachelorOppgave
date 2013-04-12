@@ -297,16 +297,12 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    
 	};
 	
-	function addPoint(point){
-	
-	};
 	
 	function drawClusterCircle(x,y,z, size){
 		
 		clusterCircle = new THREE.Mesh( new THREE.SphereGeometry( size, 20, 20 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
 		clusterCircle.position.set(x,y,z);
 		scene.add( clusterCircle );
-	
 	};
 	
 	function removeDrawClusterCircle(){
@@ -383,7 +379,6 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
 	function reload(){
 		addPoints();
-		addControls();
 		animate();
 		controls.handleResize();
 };
