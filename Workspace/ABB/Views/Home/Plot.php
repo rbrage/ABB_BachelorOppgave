@@ -55,16 +55,26 @@ iframe.dealply-toast.fastestext-revealed {
 				right: 10px;
 				top: 40px;
 				padding: 5px;
-				width:110px;
+				width:130px;
 				
 			}
-			#bottumMeny{
+			#bottomInfo{
 				position: absolute; 
-				bottom: 5; 
+				bottom: 0; 
 				left: 100; 
 				padding: 0px;
-				background: transparent !important
-				
+				background: transparent !important;
+				color: #aaa !important;
+				width: 100%;
+				font-size:13px;
+			}
+			#bottomCheckBox{
+				position: absolute; 
+				bottom: 30; 
+				left: 5; 
+				padding: 0px;
+				background: transparent !important;
+				width: 100%;
 			}
 			.backgroundColor{
 				background-color: rgba(250, 250, 250, 0.7);
@@ -110,7 +120,7 @@ iframe.dealply-toast.fastestext-revealed {
 	.dropdown-menu{
 					min-width: 20px;
 				}
-
+	
 </style>
 
 <script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
@@ -248,6 +258,7 @@ iframe.dealply-toast.fastestext-revealed {
 								</tr>
 								</tbody>
 						</table>
+						<button class="btn btn-mini" id="LiveUpdateButton">Live Update <i class="icon-pause" id="LiveUpdateIcon"></i></button>
 						</div>
 					</div>
 				</div>
@@ -349,7 +360,7 @@ iframe.dealply-toast.fastestext-revealed {
 							<label class="checkbox">
 								<input type="checkbox" id="drawBall" onclick="ballCheck()" >Draw Ball?
 							</label>
-								<input type="range" class="transperantBG" min="0" max="100" step="0.1" value="10" onchange="ballSize(this.value)"/><br/>
+								<input id="slider" type="range" class="transperantBG" min="0" max="100" step="0.1" value="10" onchange="ballSize(this.value)"/><br/>
 							<span id="range">10</span>
 							
 						</div>
@@ -359,14 +370,14 @@ iframe.dealply-toast.fastestext-revealed {
 		</div>
 	</div>
 	<div id="exit">
-		<button class="btn btn-mini" id="LiveUpdateButton">Live update<i class="icon-pause" id="LiveUpdateIcon"></i></button>
+		<button class="btn btn-mini" id="GetNewPointsButton">Get new points <i class="icon-refresh" id="GetNewPointsButton"></i></button>
 		<a class="close" href="/Home/">&times;</a>
 	</div>
-	
-	<div id="bottumMeny">
-		<label class="checkbox">
+	<div id="bottomCheckBox"><label class="checkbox">
 			<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor
-		</label>
+		</label></div>
+	<div id="bottomInfo">
+		<p>Pan:Leftmousebuttom, Move: Rightmousebuttom, Zoom: Mouseweel(+/-), Select point: CTRL + Leftmousebuttom</p>
 		
 	</div>
 		
@@ -378,6 +389,7 @@ iframe.dealply-toast.fastestext-revealed {
 			var id, clusterX, clusterY, clusterZ;
 			var stats;
 			var checkBox;
+			var requestrunning = false;
 			
 				setUp();
 			
@@ -399,7 +411,8 @@ iframe.dealply-toast.fastestext-revealed {
 			
 			$(function(){
 				addSSEvent("pointsize", function (event){
-					loadPoints(event.data);
+				if(requestrunning) return;
+				loadPoints(event.data);
 				});
 			});
 			
@@ -410,18 +423,20 @@ iframe.dealply-toast.fastestext-revealed {
 		
 			
 				function loadPoints(totalsize){
-					$.getJSON("/Register/Points/json?start=" + points.length + "&stop=" + (points.length + 1000), function(data){
+				requestrunning = true;
+					$.getJSON("/Register/Points/json?start=" + points.length+ "&stop=" + (points.length + 1000), function(data){
 						start = data.Register.Start;
 						$.each(data.Register.Points, function(key, value){
-							points[start++] = new point(value.x, value.y, value.z, value.timestamp, value.cluster);
-							
+							points.push(new Point(value.x, value.y, value.z, value.timestamp, value.cluster));
+							start++;
 						});
-						
 						
 						if(totalsize > start){
 							loadPoints(totalsize);
+							
 						}else{
-							reload(points);
+							requestrunning=false;
+							reload();
 						}
 					});
 				}
@@ -430,12 +445,13 @@ iframe.dealply-toast.fastestext-revealed {
 					$.getJSON("/Cluster/Points/json", function(data){
 						start = 0;
 						$.each(data.Cluster.Points, function(key, value){
-							cluster[start++] = new point(value.x, value.y, value.z, null, value.connections);
+							cluster.push(new Point(value.x, value.y, value.z, null, value.connections));
+							start++;
 						});
 					});
 				};
 				
-			function point(x, y, z, t, c){       
+			function Point(x, y, z, t, c){       
 				return [x, y, z, t, c]; 
 			};
 				
@@ -472,22 +488,14 @@ iframe.dealply-toast.fastestext-revealed {
 			};
 			function ballCheck(){
 				checkBox = document.getElementById("drawBall");
-				size = document.getElementById("range");
+				size = document.getElementById("slider");
 				if(checkBox.checked){
 					if(this.id !=="undifined"){
-						drawClusterCircle(this.clusterX, this.clusterY, this.clusterZ, size);
+						
+						drawClusterCircle(this.clusterX, this.clusterY, this.clusterZ, size.value);
 					}
 				}else{
 				removeDrawClusterCircle();
-				}
-				
-			};
-			function floorCheck(){
-				checkBox = document.getElementById("drawFloor");
-				if(checkBox.checked){
-					drawFloor();
-				}else{
-					removeFloor();
 				}
 				
 			};
@@ -502,20 +510,31 @@ iframe.dealply-toast.fastestext-revealed {
 				}
 			};
 			
+			function floorCheck(){
+				checkBox = document.getElementById("drawFloor");
+				if(checkBox.checked){
+					drawFloor();
+				}else{
+					removeFloor();
+				}
+				
+			};
+			
+			
 			function masterCheck(){
 				checkBox = document.getElementById("drawMasterpoint");
 				if(checkBox.checked){
 					if(this.id !=="undifined"){
-					<?php 
-						for($i = 0; $i < 50 && $i < $this->viewmodel->masterlist->size(); $i++){
-							$item = $this->viewmodel->masterlist->get($i);
-							?>var clusterID =(<?php echo $item->cluster?>);
-						
-						if(clusterID == this.id){
-							drawMasterpoint(<?php echo $item->x?>,<?php echo $item->y?>,<?php echo $item->z?>);
-							return;
-						}
-						<?php } ?>
+					$.getJSON("/Master/Points/json", function(data){
+						start = 0;
+						$.each(data.Master.Points, function(key, value){
+							var clusterID = value.cluster;
+							if(clusterID == this.id){
+								drawMasterpoint(value.x,value.y,value.z);
+								return;
+							}
+						});
+					});
 					
 					}
 				}else{
