@@ -277,7 +277,13 @@ iframe.dealply-toast.fastestext-revealed {
 							<table class="table table-condensed text">
 								<tbody>
 									<tr>
-										<td> X Y Z:</td><td id="coordinates"></td>
+										<td> X:</td><td id="pointCoodX"></td>
+									</tr>
+									<tr>
+										<td> Y:</td><td id="pointCoodY"></td>
+									</tr>
+									<tr>
+										<td> Z:</td><td id="pointCoodZ"></td>
 									</tr>
 									<tr>
 										<td> Time: </td>
@@ -373,11 +379,13 @@ iframe.dealply-toast.fastestext-revealed {
 		<button class="btn btn-mini" id="GetNewPointsButton">Get new points <i class="icon-refresh" id="GetNewPointsButton"></i></button>
 		<a class="close" href="/Home/">&times;</a>
 	</div>
-	<div id="bottomCheckBox"><label class="checkbox">
-			<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor
-		</label></div>
+	<div id="bottomCheckBox">
+		<label class="checkbox">
+			<input type="checkbox" id="drawFloor" onclick="floorCheck()" checked>Floor
+		</label>
+	</div>
 	<div id="bottomInfo">
-		<p>Pan:Leftmousebuttom, Move: Rightmousebuttom, Zoom: Mouseweel(+/-), Select point: CTRL + Leftmousebuttom</p>
+		<p>Pan view: Left Mouse Button + Move, Move view: Right Mouse Button + Move, Zoom: Mousewheel (or +/- button), Select point: CTRL + Left Mouse Button</p>
 		
 	</div>
 		
@@ -388,7 +396,7 @@ iframe.dealply-toast.fastestext-revealed {
 			var clusterPoints;
 			var id, clusterX, clusterY, clusterZ;
 			var stats;
-			var checkBox;
+			var checkBox = true;
 			var requestrunning = false;
 			
 				setUp();
@@ -405,22 +413,21 @@ iframe.dealply-toast.fastestext-revealed {
 	      	
 			loadCluster();	
 	      	point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
-			
+			floorCheck();
 			}
-			
-			
 			$(function(){
-				addSSEvent("pointsize", function (event){
-				if(requestrunning) return;
-				loadPoints(event.data);
+						$.getJSON("/Register/Size/json", function(data){
+					var size = data.Register.Size;
+					loadPoints(size);
 				});
-			});
+				});
 			
+			$("#GetNewPointsButton").click(function(){
 			$.getJSON("/Register/Size/json", function(data){
 					var size = data.Register.Size;
 					loadPoints(size);
 				});
-		
+			});
 			
 				function loadPoints(totalsize){
 				requestrunning = true;

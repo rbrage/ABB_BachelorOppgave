@@ -143,8 +143,9 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
 	function addControls() {
 	
-	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, pointsSystem, this);
+	    controls = new THREE.TrackballControls(camera, renderer.domElement, centroidSphere, this);
 	    
+		controls.pointsSystem = pointsSystem;
 	    controls.rotateSpeed = 0.5;
 	    controls.zoomSpeed = 1;
 	    controls.panSpeed = 0.5;
@@ -297,7 +298,6 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    
 	};
 	
-	
 	function drawClusterCircle(x,y,z, size){
 		
 		clusterCircle = new THREE.Mesh( new THREE.SphereGeometry( size, 20, 20 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
@@ -344,8 +344,12 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		for(var i=0;i<this.points.length;i++){
 			if((this.points[i][0] == x) && (this.points[i][1] == y) && (this.points[i][2] == z)) {
 				
-				var text="" +this.points[i][0]+" ," +this.points[i][1]+" ," +this.points[i][2]+"";
-				document.getElementById("coordinates").innerHTML=text;
+				var pointX="" +this.points[i][0];
+				document.getElementById("pointCoodX").innerHTML=pointX;
+				var pointY="" +this.points[i][1];
+				document.getElementById("pointCoodY").innerHTML=pointY;
+				var pointZ="" +this.points[i][2];
+				document.getElementById("pointCoodZ").innerHTML=pointZ;
 				
 				var time="" +this.points[i][3];
 				document.getElementById("timestamp").innerHTML=time;
@@ -378,7 +382,9 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	}
 	
 	function reload(){
+		scene.remove(pointsSystem);
 		addPoints();
+		controls.pointsSystem = pointsSystem;
 		animate();
 		controls.handleResize();
 };

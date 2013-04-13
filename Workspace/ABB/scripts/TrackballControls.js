@@ -2,7 +2,7 @@
  * @author Eberhard Graether / http://egraether.com/
  */
 
-THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsSystem, plotWebGL ) {
+THREE.TrackballControls = function ( object, domElement, centroidSphere, plotWebGL ) {
 
 	THREE.EventDispatcher.call( this );
 
@@ -272,6 +272,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 			projector.unprojectVector ( vector, _this.object );
 			ray.setOrigin( _this.object.position ).setDirection( vector.sub( _this.object.position ).normalize() );
 			
+			//If its canvas it uses this to select the point
 			if(pointsSystem.children[0] instanceof THREE.Particle){
 				var intersects = ray.intersectParticle(pointsSystem);
 				
@@ -292,12 +293,13 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, pointsS
 						INTERSECTED = null;
 					}
 				}
-				
-			}else{
 			
+			//If its WebGL it uses this to select the point
+			}else{
+			console.log(pointsSystem);
 				var intersects = ray.intersectObject(pointsSystem);
 				if(intersects != null){	
-			
+				
 				plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
 				
 				
