@@ -6,6 +6,9 @@ require_once 'Models/ListNames.php';
 
 class Points extends Controller {
 	
+	/**
+	 * Gives the site that gives a overview over all point in the cache.
+	 */
 	public function Index(){
 		$this->viewmodel->pointlist = new CachedArrayList();
 		$this->viewmodel->masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);

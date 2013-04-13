@@ -28,8 +28,8 @@ $this->template("Shared");
 			var closeButton = "<button type=\"button\" class=\"close\" onclick=\"$('#options > .alert').fadeOut(800);\">&times;</button>";
 			$("#runButton").click(function(){
 				$("#options > .alert").removeClass("alert-success").removeClass("alert-error").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
-				$.getJSON("/cluster/run/json", function(data){
-					$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+				$.getJSON("/cluster/RunAnalysis/json", function(data){
+					$("#options > .alert").addClass("alert-success").html(closeButton + data.Request.Message).fadeIn(800);
 					updateClusterPoints();
 				}).error(function(){
 					$("#options > .alert").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
@@ -39,19 +39,28 @@ $this->template("Shared");
 			$("#forceNewButton").click(function(){
 				if(confirm("This will remove the clusters that are present now, and a new calculation will start. Are you sure you want to do this?")){
 					$("#options > .alert").removeClass("alert-success").removeClass("alert-error").html(closeButton + "New analysis is started. Don't refresh the browser!").fadeIn(800);
-					$.getJSON("/cluster/force/json", function(data){
-						$("#options > .alert").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+					$.getJSON("/cluster/ForceAnalysis/json", function(data){
+						$("#options > .alert").addClass("alert-success").html(closeButton + data.Request.Message).fadeIn(800);
 						updateClusterPoints();
 					}).error(function(){
-						$("#options > .alert").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
+						$("#options > .alert").addClass("alert-error").html(closeButton + "<b>Oh no!</b> <br> The dragon that usually live in abandoned caves in the outermost corners on the internett, " + 
+								"showed himself today. It is now believed that the area has been marked as his habitat. Even though that seems bad enough, it now seems like something " +
+								"more terrible has happend! Your good friend, sir request, that went out, safe at heart and confident, on a trip to perform the adventure you had given him, never " +
+								"arrived at his destination.<br><br> The only one that made it today was a old, disturbed man that had a incredible, but terrifying, tale to tell. He told a story " +
+								"about how he was walking down a path to do a very important task for his master, but can't remember what his quest was.<br><br> For a while he had felt like something was keeping a eye on him, and " + 
+								"sometimes he thought he saw something flew by and dimmed the sun a bit. He told himself that it was just his imagination that played with him and this is a " + 
+								"peacefull land. He was walking for a little while more, and then he was terrified by a incredible loud and sharp screaming behind him. At that time, he told, " + 
+								"everything went extremely bright and then just all dark. He woke up, a small walk from his destination, and managed to crawl rest of the way.<br><br> It seems like the " + 
+								"once peacefull and beautiful land is now not longer so. Your adventure you wanted done, and should be a easy one, never did get done. You migth need a mighty and fearless " + 
+								"warrior to complete your adventure!").fadeIn(800);
 					});
 				}
 			});
 			
 			$("#clearButton").click(function(){
 				if(confirm("This will remove all clusterdata thats present. Are you sure you want to do this?")){
-					$.getJSON("/cluster/reset/json", function(data){
-						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+					$.getJSON("/cluster/clear/json", function(data){
+						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.Request.Message).fadeIn(800);
 						updateClusterPoints();
 					}).error(function(){
 						$("#options > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
@@ -60,8 +69,8 @@ $this->template("Shared");
 			});
 
 			$("#reasignButton").click(function(){
-				$.getJSON("/cluster/reasign/json", function(data){
-						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.msg).fadeIn(800);
+				$.getJSON("/cluster/reasignpoints/json", function(data){
+						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.Request.Message).fadeIn(800);
 						updateClusterPoints();
 					}).error(function(){
 						$("#options > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "Ops! An error occured.").fadeIn(800);
@@ -118,9 +127,9 @@ $this->template("Shared");
 					echo "
 				<tr>
 					<td>".$i."</td>
-					<td>".round($point->x, 3)."</td>
-					<td>".round($point->y, 3)."</td>
-					<td>".round($point->z, 3)."</td>
+					<td>".round($point->x, 2)."</td>
+					<td>".round($point->y, 2)."</td>
+					<td>".round($point->z, 2)."</td>
 					<td>".$point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)."</td>
 				</tr>";
 				}

@@ -45,10 +45,15 @@ class CachedArrayList implements arrayaccess {
 	
 	/**
 	 * Gets a element in the list from the cache. Its posible to lock the data so it dont get temperd with while your script is running.
-	 * @param integer $index
+	 * 
+	 * @param int $index
 	 * @param boolean $lock
+	 * @throws Exception
+	 * @return Mixed
 	 */
 	public function get($index, $lock = false){
+		if($index > $this->size()) throw new Exception("Index out of range.");
+		
 		if($lock)
 			$this->lock($index);
 // 		$this->lock($this->listprefix . "_" . $index);
@@ -66,6 +71,7 @@ class CachedArrayList implements arrayaccess {
 	 * @param integer $index
 	 * @param mixed $data
 	 * @param boolean $lock
+	 * @throws Exception
 	 */
 	public function set($index, $data, $unlock = false){
 // 		if(!$lock)

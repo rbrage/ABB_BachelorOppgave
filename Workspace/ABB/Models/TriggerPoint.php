@@ -10,7 +10,7 @@ class TriggerPoint {
 	
 	public $cluster = 0;
 	
-	public $additionalInfo = array();
+	public $additionalinfo = array();
 	
 	public function __construct($x = -1, $y = -1, $z = -1, $timestamp = -1){
 		$this->x = $x;
@@ -53,15 +53,15 @@ class TriggerPoint {
 	}
 	
 	public function addAdditionalInfo($key, $value){
-		$this->additionalInfo[$key] = $value;
+		$this->additionalinfo[$key] = $value;
 	}
 	
 	public function getAdditionalInfo($key = null){
 		if($key == null){
-			return $this->additionalInfo;
+			return $this->additionalinfo;
 		}
 		else {
-			return $this->additionalInfo[$key];
+			return $this->additionalinfo[$key];
 		}
 	}
 	

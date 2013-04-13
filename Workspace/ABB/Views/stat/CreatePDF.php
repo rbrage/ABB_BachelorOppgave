@@ -15,7 +15,7 @@ require_once 'Models/fpdf.php';
 	function Header()
 	{
 		// Logo
-		$this->Image('http://127.0.0.1:8888/img/ABB.png',10,6,30);
+		$this->Image('img/ABB.png',10,6,30);
 		$this->SetFont('Arial','B',15);
 		$this->Cell(80);
 		$this->Cell(50,10,'Analyse Raport',1,0,'C');

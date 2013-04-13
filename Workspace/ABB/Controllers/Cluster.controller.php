@@ -15,7 +15,7 @@ class Cluster extends Controller {
 	/**
 	 * Loads the main cluster analysis site. All user interaction should be done here. Answers in HTML5.
 	 */
-	public function index(){
+	public function Index(){
 		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->settings = new CachedSettings();
 		$this->viewmodel->clusterlist = $this->clusterlist;
@@ -28,7 +28,7 @@ class Cluster extends Controller {
 	 * Clears all clusters that has been calculated before. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
-	public function reset($id){
+	public function Clear($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		
@@ -42,15 +42,17 @@ class Cluster extends Controller {
 		
 		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->clusterlist->clear();
-		
-		echo json_encode(array("msg" => "The clusterlist is cleared."));
+
+		$this->viewmodel->success = true;
+		$this->viewmodel->msg = "The cluster list is cleared.";
+		return $this->View();
 	}
 
 	/**
 	 * Runs a new cluster analysis. If a analysis if already run it will continue on that one. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
-	public function run($id){
+	public function RunAnalysis($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		
@@ -68,15 +70,17 @@ class Cluster extends Controller {
 		$this->cluster->setRandomSelectionOfInitialCluster($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
 		$this->cluster->calculateClusters();
 		$this->cluster->asignAllPointsToClusters();
-		
-		echo json_encode(array("msg" => "The clusters are done calculating."));
+
+		$this->viewmodel->success = true;
+		$this->viewmodel->msg = "The cluster analysis is done.";
+		return $this->View();
 	}
 	
 	/**
 	 * Forces a new cluster analysis by clearing all previus information first. Answers either in json or xml, given in id, that have to be set. 
 	 * @param unknown_type $id
 	 */
-	public function force($id){
+	public function ForceAnalysis($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		
@@ -95,14 +99,17 @@ class Cluster extends Controller {
 		$this->cluster->forceNewAnalysis();
 		$this->cluster->calculateClusters();
 		$this->cluster->asignAllPointsToClusters();
-		echo json_encode(array("msg" => "The new analysis is done."));
+		
+		$this->viewmodel->success = true;
+		$this->viewmodel->msg = "The new cluster analysis is done.";
+		return $this->View();
 	}
 	
 	/**
 	 * Reasigns all points to the defined clusters. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
-	public function reasign($id){
+	public function ReasignPoints($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		
@@ -113,11 +120,23 @@ class Cluster extends Controller {
 			return $this->View();
 		}
 		$this->viewmodel->returnCoding = $id;
+
+		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
+		
+		if($this->clusterlist->isEmpty()){
+			$this->viewmodel->error = true;
+			$this->viewmodel->success = false;
+			$this->viewmodel->msg = "Run the cluster analysis first.";
+			return $this->View();
+		}
 		
 		$this->settings = new CachedSettings();
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
 		$this->cluster->asignAllPointsToClusters();
-		echo json_encode(array("msg" => "All points are now in nearest cluster."));
+
+		$this->viewmodel->success = true;
+		$this->viewmodel->msg = "All points is now asigned to the nearest cluster.";
+		return $this->View();
 	}
 	
 	/**

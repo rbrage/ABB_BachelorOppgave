@@ -241,7 +241,7 @@ class KMeans {
 	 * @param TriggerPoint $second
 	 * @return float
 	 */
-	private function distance($first, $second){
+	public static function distance($first, $second){
 		return sqrt(pow(($first->x - $second->x), 2) + pow(($first->y - $second->y), 2) + pow(($first->z - $second->z), 2));
 	}
 

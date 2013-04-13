@@ -9,6 +9,10 @@ class Export extends Controller {
 	private $filepointer;
 	private $filename;
 	
+	/**
+	 * Will put all points in a .csv-file and then store it on the server. The file can then be downloaded.
+	 * @param String $id
+	 */
 	public function PointsToCSV($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
@@ -21,16 +25,18 @@ class Export extends Controller {
 		}
 		$this->viewmodel->returnCoding = $id;
 		
-		$this->pointlist = new CachedArrayList();
+		$listname = @$this->urlvalues["dataset"];
+		
+		$this->pointlist = new CachedArrayList($listname);
 		$this->viewmodel->msg = "";
 		
 		$start = 0;
 		if(isset($this->urlvalues["start"]))
-			$start = $this->urlvalues["start"] + 0;
+			$start = @$this->urlvalues["start"] + 0;
 		
 		$stop = 0;
 		if(isset($this->urlvalues["stop"]))
-			$stop = $this->urlvalues["stop"] + 0;
+			$stop = @$this->urlvalues["stop"] + 0;
 		
 		if($stop > $this->pointlist->size()){
 			$stop = $this->pointlist->size();
@@ -62,7 +68,7 @@ class Export extends Controller {
 			}
 		}
 		
-		$this->filename ="files" . DIRECTORY_SEPARATOR . date("d-m-Y His") . ".csv";
+		$this->filename ="files" . DIRECTORY_SEPARATOR . $listname . date("d-m-Y His") . ".csv";
 		$this->filepointer = fopen($this->filename, "w+");
 		
 		if(!is_resource($this->filepointer)){
@@ -78,14 +84,12 @@ class Export extends Controller {
 		
 		fclose($this->filepointer);
 		
-		echo json_encode(array("msg" => "Pointlist created.", "link" => DIRECTORY_SEPARATOR . ($this->filename), "success" => true));
+		$this->viewmodel->msg = "Pointlist created."; 
+		$this->viewmodel->link = DIRECTORY_SEPARATOR . ($this->filename);
+		$this->viewmodel->success = true;
 		
+		return $this->View();
 	}
-		
-	public function dumpfile($id){
-		
-	}
-	
 }
 
 ?>

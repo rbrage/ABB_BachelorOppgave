@@ -10,6 +10,9 @@ $this->Template("Shared");
 		<h2>Cache settings</h2>
 		<p>qergeg</p>
 	</div>
+	
+	<div class="alert hide" id="alertmsg"></div>
+	
 	<div class="form-horizontal">
 		<h4>Clear point cache</h4>
 		<p>This option can be used to clear the cache for trigger points. If
@@ -20,7 +23,7 @@ $this->Template("Shared");
 		
 		<div class="alert alert-block alert-error">
 			<h4>Warning!</h4>
-			<p>This will remove all point data that is present in the cache at the moment. You wil not be able to get all the points back!</p>
+			<p>This will remove all trigger point data that is present in the cache at the moment. You will not be able to get all the points back!</p>
 		</div>
 		
 		<div class="control-group">
@@ -31,12 +34,103 @@ $this->Template("Shared");
 		<script type="text/javascript">$(function(){
 				$("#ClearPointlist").click(function(){
 					if(confirm("Are you sure about clearing the cache?")){
-						$.getJSON("/register/reset/json", function(data){
-							alert("Cache cleared!");
+						$.getJSON("/register/clear/json", function(data){
+							$("#CacheSettings > #alertmsg").html(data.Request.Message).fadeIn(800);
 						});
 					}
 				});
-			});</script>
+			});
+		</script>
+	</div>
+	
+	<div class="form-horizontal">
+		<h4>Clear cluster cache</h4>
+		<p>This option can be used to clear the cache for cluster points. If
+			this is used the cluster pointlist will be put back to zero points. This does
+			not clear the memory, but old points will be overwriten as new points
+			gets submitted.		
+		<p>
+		
+		<div class="alert alert-block alert-error">
+			<h4>Warning!</h4>
+			<p>This will remove all cluster point data that is present in the cache at the moment. You will not be able to get all the points back!</p>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" class="btn" id="ClearClusterPointlist" value="Clear cache">
+			</div>
+		</div>
+		<script type="text/javascript">$(function(){
+				$("#ClearClusterPointlist").click(function(){
+					if(confirm("Are you sure about clearing the cache?")){
+						$.getJSON("/cluster/clear/json", function(data){
+							$("#CacheSettings > #alertmsg").html(data.Request.Message).fadeIn(800);
+						});
+					}
+				});
+			});
+		</script>
+	</div>
+	
+	<div class="form-horizontal">
+		<h4>Clear master point cache</h4>
+		<p>This option can be used to clear the cache for master points. If
+			this is used the master pointlist will be put back to zero points. This does
+			not clear the memory, but old points will be overwriten as new points
+			gets submitted.		
+		<p>
+		
+		<div class="alert alert-block alert-error">
+			<h4>Warning!</h4>
+			<p>This will remove all master point data that is present in the cache at the moment. You will not be able to get all the points back!</p>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" class="btn" id="ClearMasterPointlist" value="Clear cache">
+			</div>
+		</div>
+		<script type="text/javascript">$(function(){
+				$("#ClearMasterPointlist").click(function(){
+					if(confirm("Are you sure about clearing the cache?")){
+						$.getJSON("/master/clear/json", function(data){
+							$("#CacheSettings > #alertmsg").html(data.Request.Message).fadeIn(800);
+						});
+					}
+				});
+			});
+		</script>
+	</div>
+	
+	<div class="form-horizontal">
+		<h4>Clear outlier cache</h4>
+		<p>This option can be used to clear the cache for outlier data. If
+			this is used the outlier data will be put back to zero points. This does
+			not clear the memory, but old points will be overwriten as new points
+			gets submitted.		
+		<p>
+		
+		<div class="alert alert-block alert-error">
+			<h4>Warning!</h4>
+			<p>This will remove all outlier data that is present in the cache at the moment. You will not be able to get all the data back!</p>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" class="btn" id="Clearoutlierdata" value="Clear cache">
+			</div>
+		</div>
+		<script type="text/javascript">$(function(){
+				$("#Clearoutlierdata").click(function(){
+					if(confirm("Are you sure about clearing the cache?")){
+						$.getJSON("/outlier/clear/json", function(data){
+							$("#CacheSettings > #alertmsg").html(data.Request.Message).fadeIn(800);
+						});
+					}
+				});
+			});
+		</script>
 	</div>
 </section>
 

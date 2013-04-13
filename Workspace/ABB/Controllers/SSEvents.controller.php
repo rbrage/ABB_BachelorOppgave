@@ -14,6 +14,9 @@ class SSEvents extends Controller {
 	private $sse;
 	private $cache;
 	
+	/**
+	 * Provides a SSE connection that gives basic info in the system.
+	 */
 	public function BasicInfo(){
 		$this->pointlist = new CachedArrayList();
 		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);

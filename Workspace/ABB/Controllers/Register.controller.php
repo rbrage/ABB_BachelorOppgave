@@ -185,6 +185,7 @@ class Register extends Controller {
 		
 		$this->viewmodel->start = $start;
 		$this->viewmodel->stop  = $stop;
+		$this->viewmodel->success = true;
 		
 		return $this->View();
 		

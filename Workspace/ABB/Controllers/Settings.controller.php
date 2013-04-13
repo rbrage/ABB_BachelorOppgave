@@ -6,12 +6,19 @@ class Settings extends Controller {
 
 	public $settings;
 
+	/**
+	 * Gives the settings page. 
+	 */
 	public function Index(){
 		$this->settings = new CachedSettings();
 		$this->viewmodel->settings = $this->settings;
 		$this->View();
 	}
 
+	/**
+	 * Saves new cluster settings.
+	 * @param String $id
+	 */
 	public function Cluster($id){
 		$randomInitClusters = @$this->urlvalues[CachedSettings::RANDOMINITIALCLUSTERPOINTS];
 		$clusterAtRuntime = @$this->urlvalues[CachedSettings::ANALYSECLUSTERSWHILESUBMITION];
@@ -43,6 +50,10 @@ class Settings extends Controller {
 		return $this->RedirectTo("./");
 	}
 
+	/**
+	 * Saves new msterpoint settings.
+	 * @param String $id
+	 */
 	public function MasterPoint($id){
 		$background = @$this->urlvalues[CachedSettings::RUNMASTERCODEINBACKGROUND];
 		$code = @$this->urlvalues[CachedSettings::KODETOMASTERPOINTTRIGGERING];
@@ -60,6 +71,10 @@ class Settings extends Controller {
 		return $this->RedirectTo("./");
 	}
 
+	/**
+	 * Saves new settings for the masterprogram.
+	 * @param String $id
+	 */
 	public function Triggerprogram($id){
 		$background = @$this->urlvalues[CachedSettings::RUNTRIGGERPROGRAMINBACKGROUND];
 		$code = @$this->urlvalues[CachedSettings::KODETOTRIGGERPROGRAMSTART];
@@ -77,6 +92,10 @@ class Settings extends Controller {
 		return $this->RedirectTo("./");
 	}
 	
+	/**
+	 * Saves new settings for outlying points.
+	 * @param String $id
+	 */
 	public function Outlier($id){
 		$threshold = @$this->urlvalues[CachedSettings::OUTLIERCONTROLLDISTANCE];
 		$this->settings = new CachedSettings();
