@@ -31,7 +31,7 @@ $this->Template("Shared");
 		<div class="control-group">
 			<label class="control-label">Dataset</label>
 			<div class="controls">
-				<select name="dataset">
+				<select name="dataset" id="dataset">
 					<option value="<?php echo CachedArrayList::ARRAYLISTPREFIX; ?>">Regular points</option>
 					<option value="<?php echo ListNames::CLUSTERLISTNAME; ?>">Cluster points</option>
 					<option value="<?php echo ListNames::MASTERPOINTLISTNAME; ?>">Master points</option>
@@ -54,14 +54,15 @@ $this->Template("Shared");
 			$("#exportPointsButton").click(function(){
 				var start = $("#startpoint").val();
 				var stop = $("#stoppoint").val();
+				var dataset = $("#dataset").val();
 
-				$.getJSON("/Export/PointsToCSV/json?start=" + start + "&stop=" + stop, function(data){
-					if(data.success){
+				$.getJSON("/Export/PointsToCSV/json?start=" + start + "&stop=" + stop + "&dataset=" + dataset, function(data){
+					if(data.Request.Success){
 						$("#export > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + "File successfully created. The download will start automatic. If the download don't start click <a href=\"" + data.link + "\">here</a>.").fadeIn(800);
-						window.open(data.link, "_self");
+						window.open(data.Request.Link, "_self");
 						}
 					else{
-						$("#export > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "An error occured. Message: " + data.msg).fadeIn(800);
+						$("#export > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "An error occured. Message: " + data.Request.Message).fadeIn(800);
 					}
 				}).error(function(){
 					$("#export > .alert").removeClass("alert-success").addClass("alert-error").html(closeButton + "An error occured. The response form the server was not valid.").fadeIn(800);
@@ -89,14 +90,14 @@ $this->Template("Shared");
 
 			$("#AsignMasterpointsToClustersButton").click(function(){
 				$.getJSON("/master/AsignToCluster/json", function(data){
-					$("#masterpoints > .alert").html(data.Request.msg).fadeIn(800);
+					$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
 				});
 			});
 			
 			$("#ClearMasterpointsButton").click(function(){
 				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all masterpoints?")){
 					$.getJSON("/master/clear/json", function(data){
-						$("#masterpoints > .alert").html(data.Request.msg).fadeIn(800);
+						$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
 					});
 				}
 			});
@@ -104,7 +105,7 @@ $this->Template("Shared");
 			$("i.close").click(function(){
 				pointid = $(this).parent().parent().find("#num").text();
 				$.getJSON("/master/remove/json?pointid=" + pointid, function(data){
-					$("#masterpoints > .alert").html(data.Request.msg).fadeIn(800);
+					$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
 				});
 			});
 			

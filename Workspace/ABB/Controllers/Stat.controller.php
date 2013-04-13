@@ -1,5 +1,9 @@
 <?php
 
+require_once 'Models/CachedArrayList.php';
+require_once 'Models/ListNames.php';
+require_once 'Models/CachedSettings.php';
+
 class Stat extends Controller {
 	
 	/**

@@ -69,6 +69,7 @@ $this->template("Shared");
 			});
 
 			$("#reasignButton").click(function(){
+				$("#options > .alert").removeClass("alert-success").removeClass("alert-error").html(closeButton + "A reasignment of all points have started. Don't refresh the browser!").fadeIn(800);
 				$.getJSON("/cluster/reasignpoints/json", function(data){
 						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.Request.Message).fadeIn(800);
 						updateClusterPoints();

@@ -5,7 +5,7 @@ if($this->viewmodel->noCoding){
 }
 else{
 	if($this->viewmodel->returnCoding == "json"){
-		$response = array(	"Request" => array("Success" => $this->viewmodel->success, "Error" => $this->viewmodel->error, "Message" => $this->viewmodel->msg, "link" => $this->viewmodel->link));
+		$response = array(	"Request" => array("Success" => $this->viewmodel->success, "Error" => $this->viewmodel->error, "Message" => $this->viewmodel->msg, "Link" => $this->viewmodel->link));
 
 
 		echo json_encode($response);

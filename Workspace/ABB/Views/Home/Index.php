@@ -14,7 +14,7 @@ $this->Template("Home");
 		$(function(){
 			$("#triggerprogramButton").click(function(){
 				$.getJSON("/Execute/RunTriggeringProgram/json", function(data){
-					$("#execute > .alert").html(data.msg).fadeIn(800);
+					$("#execute > .alert").html(data.Request.Message).fadeIn(800);
 				}).error(function(){
 					$("#execute > .alert").html("An error occured.").fadeIn(800);
 				});
@@ -26,11 +26,13 @@ $this->Template("Home");
 	<script type="text/javascript">
 		$(function(){
 			$("#masterpointButton").click(function(){
-				$.getJSON("/Execute/RunMasterpointTriggering/json", function(data){
-					$("#execute > .alert").html(data.msg).fadeIn(800);
-				}).error(function(){
-					$("#execute > .alert").html("An error occured.").fadeIn(800);
-				});
+				if(confirm("Is the sensor in place to make a master point?")){
+					$.getJSON("/Execute/RunMasterpointTriggering/json", function(data){
+						$("#execute > .alert").html(data.Request.Message).fadeIn(800);
+					}).error(function(){
+						$("#execute > .alert").html("An error occured.").fadeIn(800);
+					});
+				}
 			});
 		});
 	</script>
@@ -39,7 +41,7 @@ $this->Template("Home");
 <section id="raport">
 	<div class="page-header">
 		<h2>Raport</h2> 
-		<a id="createPDF" class="btn" href="/Home/CreatePDF" target="_blanck">Create PDF</a>
+		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
 
 </section>
