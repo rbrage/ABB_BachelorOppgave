@@ -68,6 +68,29 @@ require_once 'Models/fpdf.php';
 		$this->Cell(array_sum($w),0,'','T');
 	
 	}
+	// Page cluste header
+	function ClusterHeader($clusterID){
+		$this->SetFont('Arial','B',16);
+		$this->Cell(40,10,'$clusterID');
+	}
+	// Page cluster information
+	function ClusterTable($header, $data)
+	{
+		// Column widths
+		$w = array(40, 35, 40, 45);
+		// Header
+		for($i=0;$i<count($header);$i++)
+			$this->Cell($w[$i],7,$header[$i],1,0,'C');
+		$this->Ln();
+		// Data
+		foreach($data as $row)
+		{
+			$this->Cell($w[0],6,$row[0],'LR');
+			$this->Ln();
+		}
+		// Closing line
+		$this->Cell(array_sum($w),0,'','T');
+}
 	
 }
 
@@ -81,8 +104,18 @@ require_once 'Models/fpdf.php';
 	$pdf->Information($header,$data);
 	
 	$pdf->ChapterTitle(2,'Statistics');
-	$pdf->SetFont('Times','',12);
 	
+	$header = array('Number of points', 'Max. distance', 'Outlaying Points', 'Average distance');
+	for($clusterID=0; $clusterID<$clusterlist->size();$clusterID++){
+	$data = array(echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 
+						$maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE); echo @$maxDistance[$i], 
+						$outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE),
+						$averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE); echo @$averageDistance[$i]);
+	$pdf->ClusterHeader($clusterID);
+	$pdf->ClusterTable($header,$data);
+	}
+	
+	$pdf->SetFont('Times','',12);
 	$pdf->Output();
 ?>
 

@@ -89,14 +89,7 @@ $cacheinfo = $cache->getCacheInfo();
 					<td>Outlyers max distance:</td>
 					<td id="clustersize"><?php echo $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></td>
 				</tr>
-				<tr>
-					<td>Number of masterpoints:</td>
-					<td id="mastersize"><?php echo $masterlist->size(); ?></td>
-				</tr>
-				<tr>
-					<td>Number of outlyers:</td>
-					<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
-				</tr>
+				
 			</tbody>
 		</table>
 		</div>
