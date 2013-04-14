@@ -1,7 +1,7 @@
 <?php
 
 if($this->viewmodel->noCoding){
-	echo $viewmodel->msg;
+	echo $this->viewmodel->msg;
 }
 else{
 	if($this->viewmodel->returnCoding == "json"){

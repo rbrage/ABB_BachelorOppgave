@@ -1,10 +1,11 @@
 <?php 
-$this->viewmodel->templatemenu = array("execute" => "Run triggering", "plot3d" => "3D Plot", "last" => "Last 10 Points");
+$this->viewmodel->templatemenu = array("execute" => "Run triggering", "report" => "Report", "last" => "Last 10 Points");
 
 $this->Template("Home");
 ?>
 
 <section id="execute">
+<br>
 	<div class="page-header">
 		<h2>Run triggering</h2>
 	</div>
@@ -37,16 +38,73 @@ $this->Template("Home");
 		});
 	</script>
 </section>
+<?php 
 
-<section id="raport">
+$cache = new Cache();
+$pointlist = new CachedArrayList();
+$clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
+$masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
+$outlierlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
+
+$cacheinfo = $cache->getCacheInfo();
+
+?>
+<section id="report">
+</br>
 	<div class="page-header">
-		<h2>Raport</h2> 
+		<h2>Report</h2> 
 		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
-
+	<div class="row">
+		<div class="span6">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<td>Number of triggerpoints:</td>
+					<td id="pointsize"><?php echo $pointlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of cluster:</td>
+					<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of masterpoints:</td>
+					<td id="mastersize"><?php echo $masterlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of outlyers:</td>
+					<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="span6">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<td>Number of analysed points:</td>
+					<td id="pointsize"><?php  echo $this->viewmodel->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS); ?></td>
+				</tr>
+				<tr>
+					<td>Outlyers max distance:</td>
+					<td id="clustersize"><?php echo $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></td>
+				</tr>
+				<tr>
+					<td>Number of masterpoints:</td>
+					<td id="mastersize"><?php echo $masterlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of outlyers:</td>
+					<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
 </section>
 
 <section id="last">
+<br>
 	<div class="page-header">
 		<h2>Last 10 points</h2>
 	</div>

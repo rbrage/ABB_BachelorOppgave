@@ -119,7 +119,7 @@ class KMeans {
 		$point = $this->pointlist->get($pointNumber, true);
 		$oldclusternumber = $point->getAsignedCluster();
 		$point->setAsignedCluster($clusterNumber);
-		$point->addAdditionalInfo(self::DISTANCETOCLUSTER, round($distance, 3));
+		$point->addAdditionalInfo(self::DISTANCETOCLUSTER, round($distance, 2));
 		$this->pointlist->set($pointNumber, $point, true);
 	}
 

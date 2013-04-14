@@ -14,7 +14,8 @@ $this->template("Shared");
 <section id="stat">
 	<div class="page-header">
 			<h2>Statistics</h2>
-			<button id="runStat" class="btn">Run Statistics</button> <a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
+			<button id="runStat" class="btn">Run Statistics</button> 
+			<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
 </section>	
 <?php 
@@ -38,11 +39,11 @@ $this->template("Shared");
 								</tr>
 								<tr>
 									<th>Max. distance</th>
-									<th>#</th>
+									<th><?php $maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE); echo @$maxDistance[$i]; ?></th>
 								</tr>
 								<tr>
 									<th>Distance from the master point</th>
-									<th>#</th>
+									<th><?php $masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$masterDistance[$i]; ?></th>
 								</tr>
 								<tr>
 									<th>Standard deviation</th>
@@ -50,11 +51,11 @@ $this->template("Shared");
 								</tr>
 								<tr>
 									<th>Outlaying Points</th>
-									<th>#</th>
+									<th><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></th>
 								</tr>
 								<tr>
 									<th>Average distance</th>
-									<th>#</th>
+									<th><?php $averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE); echo @$averageDistance[$i]; ?></th>
 								</tr>
 							</tbody>
 						</table>
