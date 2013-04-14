@@ -14,7 +14,7 @@ $this->template("Shared");
 <section id="stat">
 	<div class="page-header">
 			<h2>Statistics</h2>
-			<button id="runStat" class="btn">Run Statistics</button>
+			<button id="runStat" class="btn">Run Statistics</button> <a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
 	
 <?php 
