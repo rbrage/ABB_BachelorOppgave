@@ -375,7 +375,7 @@ iframe.dealply-toast.fastestext-revealed {
 	</div>
 	<div id="bottomCheckBox">
 		<label class="checkbox">
-			<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor
+			<input type="checkbox" id="drawFloor" onclick="floorCheck()" checked>Floor
 		</label>
 	</div>
 	<div id="bottomInfo">
@@ -390,7 +390,7 @@ iframe.dealply-toast.fastestext-revealed {
 			var clusterPoints;
 			var id, clusterX, clusterY, clusterZ;
 			var stats;
-			var checkBox;
+			var checkBox = true;
 			var requestrunning = false;
 			
 				setUp();
@@ -407,22 +407,21 @@ iframe.dealply-toast.fastestext-revealed {
 	      	
 			loadCluster();	
 	      	point3DPlot = new PlotWebGLCanvas(container, points, data, cluster);
-			
+			floorCheck();
 			}
-			
-			
 			$(function(){
-				addSSEvent("pointsize", function (event){
-				if(requestrunning) return;
-				loadPoints(event.data);
+						$.getJSON("/Register/Size/json", function(data){
+					var size = data.Register.Size;
+					loadPoints(size);
 				});
-			});
+				});
 			
+			$("#GetNewPointsButton").click(function(){
 			$.getJSON("/Register/Size/json", function(data){
 					var size = data.Register.Size;
 					loadPoints(size);
 				});
-		
+			});
 			
 				function loadPoints(totalsize){
 				requestrunning = true;
