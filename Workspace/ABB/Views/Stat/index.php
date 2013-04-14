@@ -13,10 +13,10 @@ $this->template("Shared");
 
 <section id="stat">
 	<div class="page-header">
-			<h2>Statistics</h2>
-			<button id="runStat" class="btn">Run Statistics</button> 
-			<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
+		<h2>Statistics</h2>
 	</div>
+	<button id="runStat" class="btn">Run Statistics</button> 
+	<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 </section>	
 <?php 
 	$list = $this->viewmodel->clusterlist;
@@ -25,11 +25,12 @@ $this->template("Shared");
 		for($i = 0; $i < $list->size(); $i++){
 			$point = $list->get($i);
 			?>
+			<br>
 			<section id="clusterinformation<?php echo $i?>">
 			<div>
 			
 				<h3>Cluster <?php echo $i?></h3>
-				<div class="row">
+				<div class="row-fluid">
 					<div class="span6">
 						<table class="table table-striped">
 							<tbody>
@@ -47,11 +48,19 @@ $this->template("Shared");
 								</tr>
 								<tr>
 									<th>Standard deviation</th>
-									<th>#</th>
+									<th>
+										<?php 
+											$standardDeviation = $this->viewmodel->cache->getCacheData(Stat::STANDARDDEVIATION); 
+											echo "" . @$standardDeviation[$i]["x"] . " @ x-axis<br>";
+											echo "" . @$standardDeviation[$i]["y"] . " @ y-axis<br>";
+											echo "" . @$standardDeviation[$i]["z"] . " @ z-axis<br>";
+											echo "" . round(@($standardDeviation[$i]["x"] + $standardDeviation[$i]["y"] + $standardDeviation[$i]["z"])/3, 2) . " @ average<br>";
+										?>
+									</th>
 								</tr>
 								<tr>
 									<th>Outlaying Points</th>
-									<th><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></th>
+									<th><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></th>
 								</tr>
 								<tr>
 									<th>Average distance</th>
@@ -76,7 +85,6 @@ $this->template("Shared");
 				echo "<tr><td colspan=\"5\">There is no points to define the clusters. Run the analysis first.</td></tr>";
 			}
 			?>
-</section>
 
 <script type="text/javascript">
 	$(document).ready(function(){

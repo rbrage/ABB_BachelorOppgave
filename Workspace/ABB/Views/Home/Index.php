@@ -50,12 +50,15 @@ $cacheinfo = $cache->getCacheInfo();
 
 ?>
 <section id="report">
-</br>
+<br>
 	<div class="page-header">
 		<h2>Report</h2> 
+	</div>
+	<div>
 		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
-	<div class="row">
+	<br>
+	<div class="row-fluid">
 		<div class="span6">
 		<table class="table table-condensed">
 			<tbody>

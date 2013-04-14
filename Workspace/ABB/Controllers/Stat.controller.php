@@ -69,25 +69,40 @@ class Stat extends Controller {
 		$distanceFromMaster = array();
 		$outliers = array();
 		$averageDistance = array();
-		$clusterCount = array();
 		$standardDeviation = array();
+		
+		for($i = 0; $i < $this->clusterlist->size(); $i++){
+			$maxDistance[$i] = 0;
+			$distanceFromMaster[$i] = 0;
+			$outliers[$i] = 0;
+			$averageDistance[$i] = 0;
+			$standardDeviation[$i] = array("x" => 0, "y" => 0, "z" => 0);
+		}
 		
 		foreach ($this->pointlist->iterator() as $point){
 			$distance = $point->getAdditionalInfo(KMeans::DISTANCETOCLUSTER);
 			$cluster = $point->cluster;
 			
-			if($distance > @$maxDistance[$cluster]){
+			if($cluster >= $this->clusterlist->size()) continue;
+			
+			if($distance > $maxDistance[$cluster]){
 				$maxDistance[$cluster] = $distance;
 			}
 			
-			@$averageDistance[$cluster] += $distance;
-			@$clusterCount[$cluster]++;
+			$averageDistance[$cluster] += $distance;
 			
-			//@$standardDeviation[$cluster] = $
+			$clusterpoint = $this->clusterlist->get($cluster);
+			$standardDeviation[$cluster]["x"] += pow($point->x - $clusterpoint->x, 2);
+			$standardDeviation[$cluster]["y"] += pow($point->y - $clusterpoint->y, 2);
+			$standardDeviation[$cluster]["z"] += pow($point->z - $clusterpoint->z, 2);
 		}
 		
 		foreach ($this->clusterlist->iterator() as $i => $cluster){
-			$averageDistance[$i] /= $cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME);
+			$averageDistance[$i] = round($averageDistance[$i] / $cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 2);
+			
+			$standardDeviation[$i]["x"] = round(sqrt($standardDeviation[$i]["x"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
+			$standardDeviation[$i]["y"] = round(sqrt($standardDeviation[$i]["y"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
+			$standardDeviation[$i]["z"] = round(sqrt($standardDeviation[$i]["z"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
 		}
 		
 		foreach ($this->outlierlist->iterator() as $outlierpoint){
@@ -104,6 +119,7 @@ class Stat extends Controller {
 		$this->cache->setCacheData(self::MASTERPOINTDISTANCE, $distanceFromMaster);
 		$this->cache->setCacheData(self::OUTLIERS, $outliers);
 		$this->cache->setCacheData(self::AVERAGEDISTANCE, $averageDistance);
+		$this->cache->setCacheData(self::STANDARDDEVIATION, $standardDeviation);
 		
 		$this->viewmodel->success = true;
 		$this->viewmodel->msg = "Statistics is now calculated.";
