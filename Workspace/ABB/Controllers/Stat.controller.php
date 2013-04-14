@@ -6,19 +6,10 @@ require_once 'Models/CachedSettings.php';
 
 class Stat extends Controller {
 	
-	private $clusterlist;
-	private $pointlist;
-	private $settings;
-	private $cluster;
-	
 	/**
 	 * Gives a page with statistics.
 	 */
 	public function Index(){
-		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
-		$this->settings = new CachedSettings();
-		$this->viewmodel->clusterlist = $this->clusterlist;
-		$this->viewmodel->settings = $this->settings;
 		return $this->View();
 	}
 
