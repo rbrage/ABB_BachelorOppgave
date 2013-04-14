@@ -72,15 +72,18 @@ require_once 'Models/fpdf.php';
 	function ClusterHeader($clusterID){
 		$this->SetFont('Arial','B',16);
 		$this->Cell(40,10,'$clusterID');
+		$this->Ln();
 	}
+
 	// Page cluster information
-	function ClusterTable($header, $data)
-	{
+	function ClusterTable($header, $data){
+		$this->SetFont('Times','',12);
 		// Column widths
 		$w = array(40, 35, 40, 45);
 		// Header
-		for($i=0;$i<count($header);$i++)
+		for($i=0;$i<count($header);$i++){
 			$this->Cell($w[$i],7,$header[$i],1,0,'C');
+			}
 		$this->Ln();
 		// Data
 		foreach($data as $row)
@@ -90,7 +93,8 @@ require_once 'Models/fpdf.php';
 		}
 		// Closing line
 		$this->Cell(array_sum($w),0,'','T');
-}
+		$this->Ln();
+		}	
 	
 }
 
@@ -106,11 +110,16 @@ require_once 'Models/fpdf.php';
 	$pdf->ChapterTitle(2,'Statistics');
 	
 	$header = array('Number of points', 'Max. distance', 'Outlaying Points', 'Average distance');
+	$maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE);
+	$outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE);
+	$averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE);
+	
 	for($clusterID=0; $clusterID<$clusterlist->size();$clusterID++){
-	$data = array(echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 
-						$maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE); echo @$maxDistance[$i], 
-						$outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE),
-						$averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE); echo @$averageDistance[$i]);
+	$point = $clusterlist->get($clusterID);
+	$data = array($point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 
+						@$maxDistance[$clusterID], 
+						@$outliers[$clusterID] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE),
+						@$averageDistance[$clusterID]);
 	$pdf->ClusterHeader($clusterID);
 	$pdf->ClusterTable($header,$data);
 	}

@@ -37,7 +37,8 @@ class Stat extends Controller {
 		$this->viewmodel->clusterlist = $this->clusterlist;
 		$this->viewmodel->settings = $this->settings;
 	
-		$this->viewmodel->arr = $this->list->iterator();
+		$this->viewmodel->cache = new Cache();
+		$this->viewmodel->arr = $this->pointlist->iterator();
 		return $this->View();
 	}
 	
