@@ -1,5 +1,5 @@
 <?php 
-$this->viewmodel->templatemenu = array("execute" => "Run triggering", "plot3d" => "3D Plot", "last" => "Last 10 Points");
+$this->viewmodel->templatemenu = array("execute" => "Run triggering", "report" => "Report", "last" => "Last 10 Points");
 
 $this->Template("Home");
 ?>
@@ -38,9 +38,9 @@ $this->Template("Home");
 	</script>
 </section>
 
-<section id="raport">
+<section id="report">
 	<div class="page-header">
-		<h2>Raport</h2> 
+		<h2>Report</h2> 
 		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
 
