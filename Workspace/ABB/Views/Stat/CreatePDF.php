@@ -71,7 +71,7 @@ require_once 'Models/fpdf.php';
 	// Page cluste header
 	function ClusterHeader($clusterID){
 		$this->SetFont('Arial','B',16);
-		$this->Cell(40,10,'$clusterID');
+		$this->Cell(40,10,"Cluster $clusterID",0,0,'L',false);
 		$this->Ln();
 	}
 
@@ -82,19 +82,49 @@ require_once 'Models/fpdf.php';
 		$w = array(40, 35, 40, 45);
 		// Header
 		for($i=0;$i<count($header);$i++){
-			$this->Cell($w[$i],7,$header[$i],1,0,'C');
+			$this->Cell($w[$i],7,$header[$i],1,0,'L');
 			}
 		$this->Ln();
 		// Data
-		foreach($data as $row)
-		{
-			$this->Cell($w[0],6,$row[0],'LR');
-			$this->Ln();
+		for($i=0;$i<count($data);$i++){
+			$this->Cell($w[$i],6,$data[$i],'LR',0,'L',false);
+			
 		}
 		// Closing line
-		$this->Cell(array_sum($w),0,'','T');
 		$this->Ln();
+		$this->Cell(array_sum($w),0,'','T');
+		$this->Ln(2);
+		}
+		
+	// Page cluster information
+	function ClusterTable2($header2, $data2, $distanseMaster){
+		$this->SetFont('Times','',12);
+		// Column widths
+		$w = array(40, 35, 85);
+		// Header
+		$this->Cell($w[0],7,$header2[0],1,0,'L');
+		$this->Cell($w[1],7,"",1,0,'L');
+		$this->Cell($w[2],7,"Distance from the master point",1,0,'L');
+			
+		$this->Ln();
+		$once = false;
+		// Data
+		for($i=0;$i<count($data2);$i++){
+		$this->Cell($w[0],6,$header2[$i+1],'LR',0,'R',false);
+		$this->Cell($w[1],6,$data2[$i],'LR',0,'L',false);
+		if(!$once){
+			$this->Cell($w[2],6,$distanseMaster,'1',0,'L',false);
+			$once = true;
+		}
+        $this->Ln();
+		}
+		
+		$this->Cell(array_sum($w)-85,0,'','T');
+		// Closing line
+		$this->Ln(5);
+		
 		}	
+			
 	
 }
 
@@ -109,23 +139,35 @@ require_once 'Models/fpdf.php';
 	
 	$pdf->ChapterTitle(2,'Statistics');
 	
-	$header = array('Number of points', 'Max. distance', 'Outlaying Points', 'Average distance');
+	$header = array('Points in cluster', 'Max. distance', 'Outlaying Points', 'Average distance');
+	$header2 = array('Standard deviation',"x-axis","y-axis","z-axis","average");
+	
 	$maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE);
 	$outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE);
 	$averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE);
+	$standardDeviation = $this->viewmodel->cache->getCacheData(Stat::STANDARDDEVIATION);
+	$masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); 
 	
 	for($clusterID=0; $clusterID<$clusterlist->size();$clusterID++){
-	$point = $clusterlist->get($clusterID);
-	$data = array($point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 
-						@$maxDistance[$clusterID], 
-						@$outliers[$clusterID] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE),
-						@$averageDistance[$clusterID]);
-	$pdf->ClusterHeader($clusterID);
-	$pdf->ClusterTable($header,$data);
+		$point = $clusterlist->get($clusterID);
+		
+		$data = array($point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 
+							@$maxDistance[$clusterID], 
+							@$outliers[$clusterID] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE),
+							@$averageDistance[$clusterID]);
+							
+		$data2 = array($standardDeviation[$clusterID]["x"],$standardDeviation[$clusterID]["y"],$standardDeviation[$clusterID]["z"],
+						round(($standardDeviation[$clusterID]["x"] + $standardDeviation[$clusterID]["y"] + $standardDeviation[$clusterID]["z"])/3, 2));
+		$distanseMaster = $masterDistance[$clusterID];
+		$pdf->ClusterHeader($clusterID);
+		$pdf->ClusterTable($header,$data);
+		$pdf->ClusterTable2($header2,$data2, $distanseMaster);
 	}
 	
 	$pdf->SetFont('Times','',12);
 	$pdf->Output();
-?>
 
+?>
+<!--@$standardDeviation[$i]["x"],@$standardDeviation[$i]["y"],@$standardDeviation[$i]["z"],
+						round(@($standardDeviation[$i]["x"] + $standardDeviation[$i]["y"] + $standardDeviation[$i]["z"])/3, 2)-->
 
