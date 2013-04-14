@@ -378,6 +378,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	}
 	
 	function reload(){
+		scene.remove(pointsSystem);
 		addPoints();
 		animate();
 		controls.handleResize();
