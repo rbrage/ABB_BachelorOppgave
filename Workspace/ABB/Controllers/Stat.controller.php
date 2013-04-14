@@ -30,7 +30,7 @@ class Stat extends Controller {
 	 */
 	public function Createpdf(){
 		$this->pointlist = new CachedArrayList();
-		$this->viewmodel->listsize = $this->list->size();
+		$this->viewmodel->listsize = $this->pointlist->size();
 	
 		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
 		$this->settings = new CachedSettings();
