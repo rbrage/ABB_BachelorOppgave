@@ -373,11 +373,13 @@ iframe.dealply-toast.fastestext-revealed {
 		<button class="btn btn-mini" id="GetNewPointsButton">Get new points <i class="icon-refresh" id="GetNewPointsButton"></i></button>
 		<a class="close" href="/Home/">&times;</a>
 	</div>
-	<div id="bottomCheckBox"><label class="checkbox">
+	<div id="bottomCheckBox">
+		<label class="checkbox">
 			<input type="checkbox" id="drawFloor" onclick="floorCheck()" >Floor
-		</label></div>
+		</label>
+	</div>
 	<div id="bottomInfo">
-		<p>Pan:Leftmousebuttom, Move: Rightmousebuttom, Zoom: Mouseweel(+/-), Select point: CTRL + Leftmousebuttom</p>
+		<p>Pan view: Left Mouse Button + Move, Move view: Right Mouse Button + Move, Zoom: Mousewheel (or +/- button), Select point: CTRL + Left Mouse Button</p>
 		
 	</div>
 		
