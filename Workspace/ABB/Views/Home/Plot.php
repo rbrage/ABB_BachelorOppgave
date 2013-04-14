@@ -277,7 +277,13 @@ iframe.dealply-toast.fastestext-revealed {
 							<table class="table table-condensed text">
 								<tbody>
 									<tr>
-										<td> X Y Z:</td><td id="coordinates"></td>
+										<td> X:</td><td id="pointCoodX"></td>
+									</tr>
+									<tr>
+										<td> Y:</td><td id="pointCoodY"></td>
+									</tr>
+									<tr>
+										<td> Z:</td><td id="pointCoodZ"></td>
 									</tr>
 									<tr>
 										<td> Time: </td>

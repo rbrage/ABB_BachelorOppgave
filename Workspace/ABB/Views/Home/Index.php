@@ -5,6 +5,7 @@ $this->Template("Home");
 ?>
 
 <section id="execute">
+<br>
 	<div class="page-header">
 		<h2>Run triggering</h2>
 	</div>
@@ -39,14 +40,16 @@ $this->Template("Home");
 </section>
 
 <section id="report">
+<br>
 	<div class="page-header">
 		<h2>Report</h2> 
-		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
+	<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 
 </section>
 
 <section id="last">
+<br>
 	<div class="page-header">
 		<h2>Last 10 points</h2>
 	</div>
