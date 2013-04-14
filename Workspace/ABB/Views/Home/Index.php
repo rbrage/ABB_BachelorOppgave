@@ -38,14 +38,69 @@ $this->Template("Home");
 		});
 	</script>
 </section>
+<?php 
 
+$cache = new Cache();
+$pointlist = new CachedArrayList();
+$clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
+$masterlist = new CachedArrayList(ListNames::MASTERPOINTLISTNAME);
+$outlierlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
+
+$cacheinfo = $cache->getCacheInfo();
+
+?>
 <section id="report">
-<br>
+</br>
 	<div class="page-header">
 		<h2>Report</h2> 
+		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
 	</div>
-	<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
-
+	<div class="row">
+		<div class="span6">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<td>Number of triggerpoints:</td>
+					<td id="pointsize"><?php echo $pointlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of cluster:</td>
+					<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of masterpoints:</td>
+					<td id="mastersize"><?php echo $masterlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of outlyers:</td>
+					<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="span6">
+		<table class="table table-condensed">
+			<tbody>
+				<tr>
+					<td>Number of analysed points:</td>
+					<td id="pointsize"><?php  echo $this->viewmodel->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS); ?></td>
+				</tr>
+				<tr>
+					<td>Outlyers max distance:</td>
+					<td id="clustersize"><?php echo $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></td>
+				</tr>
+				<tr>
+					<td>Number of masterpoints:</td>
+					<td id="mastersize"><?php echo $masterlist->size(); ?></td>
+				</tr>
+				<tr>
+					<td>Number of outlyers:</td>
+					<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
 </section>
 
 <section id="last">
