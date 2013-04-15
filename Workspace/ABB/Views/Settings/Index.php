@@ -6,9 +6,9 @@ $this->Template("Shared");
 <!-- Cache settings  -->
 
 <section id="CacheSettings">
+<br>
 	<div class="page-header">
 		<h2>Cache settings</h2>
-		<p>qergeg</p>
 	</div>
 	
 	<div class="alert hide" id="alertmsg"></div>
@@ -137,9 +137,9 @@ $this->Template("Shared");
 <!-- Cluster settings -->
 
 <section id="ClusterAnalysis">
+<br>
 	<div class="page-header">
 		<h2>Cluster analysis</h2>
-		<p>qergeg</p>
 	</div>
 	<div>
 
@@ -222,6 +222,7 @@ $this->Template("Shared");
 <!-- Outlying points settings -->
 
 <section id="OutlyingPoints">
+<br>
 	<div class="page-header">
 		<h2>Outlying points</h2>
 	</div>
@@ -249,6 +250,7 @@ $this->Template("Shared");
 <!-- Master point triggering settings -->
 
 <section id="MasterPointSettings">
+<br>
 	<div class="page-header">
 		<h2>Master Point Triggering</h2>
 	</div>
@@ -283,6 +285,7 @@ $this->Template("Shared");
 <!-- Program startup settings -->
 
 <section id="TriggerprogramSettings">
+<br>
 	<div class="page-header">
 		<h2>Triggerprogram</h2>
 	</div>

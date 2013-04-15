@@ -30,7 +30,7 @@ class Stat extends Controller {
 	/**
 	 * Creates a PDF file with a report over the state of the current test and statistics.
 	 */
-	public function Createpdf(){
+	public function Createpdf($id){
 		$this->pointlist = new CachedArrayList();
 		$this->viewmodel->listsize = $this->pointlist->size();
 	
@@ -131,6 +131,25 @@ class Stat extends Controller {
 		
 		$this->viewmodel->success = true;
 		$this->viewmodel->msg = "Statistics is now calculated.";
+		return $this->View();
+	}
+	
+	function Clear($id){
+		$this->viewmodel->error = false;
+		$this->viewmodel->noCoding = false;
+		
+		if($id != "json" && $id != "xml"){
+			$this->viewmodel->error = true;
+			$this->viewmodel->msg = "The coding you requested is not recognized.";
+			$this->viewmodel->noCoding = true;
+			return $this->View();
+		}
+		$this->viewmodel->returnCoding = $id;
+		
+		
+
+		$this->viewmodel->success = true;
+		$this->viewmodel->msg = "The master point list is now cleared";
 		return $this->View();
 	}
 	

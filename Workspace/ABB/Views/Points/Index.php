@@ -174,7 +174,34 @@ $this->Template("Shared");
 	<div class="page-header">
 		<h2>Outlying points</h2>
 	</div>
+	<div class="alert hide"></div>
+	<div>
+	<button id="runanalysisOutlierButton" class="btn">Run Analysis</button>
+	<button id="ClearOutlierpointsButton" class="btn">Clear outlierpoints</button>
 	
+	<script type="text/javascript">
+
+		$(function(){
+
+			$("#runanalysisOutlierButton").click(function(){
+				$.getJSON("/outlier/RunAnalysis/json", function(data){
+					$("#markedpoints > .alert").html(data.Request.Message).fadeIn(800);
+				});
+			});
+			
+			$("#ClearOutlierpointsButton").click(function(){
+				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all markedpoints?")){
+					$.getJSON("/outlier/clear/json", function(data){
+						$("#markedpoints > .alert").html(data.Request.Message).fadeIn(800);
+					});
+				}
+			});
+			
+		});
+
+	</script>
+	</div>
+	<br>
 	<table class="table table-striped" id="OutlyingTable">
 			<thead>
 				<tr>

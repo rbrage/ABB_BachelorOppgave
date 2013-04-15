@@ -15,10 +15,32 @@ $this->template("Shared");
 	<div class="page-header">
 		<h2>Statistics</h2>
 	</div>
-	<div class="input-append">
-		<button id="runStat" class="btn">Run Statistics</button> 
-		<a id="createPDF" class="btn" type="submit" href="/stat/CreatePDF" target="_blank">Create PDF</a>
+	<div class="alert hide"></div>
+	<div>
+	<button id="RunStatistics" class="btn">Run Statistics</button> 
+	<button id="ClearStatistics" class="btn">Clear Statistics</button> 
+	<a id="CreatePDF" class="btn" type="submit" href="/stat/CreatePDF/ target="_blank">Create PDF</a>
+	<script type="text/javascript">
 
+		$(function(){
+			$("#RunStatistics").click(function(){
+				$.getJSON("/stat/runanalysis/json", function(data){
+					$("#stat > .alert").html(data.Request.Message).fadeIn(800);
+				});
+			});
+			
+			$("#ClearStatistics").click(function(){
+					if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all statistics?")){
+						$.getJSON("/stat/clear/json", function(data){
+							$("#stat > .alert").html(data.Request.Message).fadeIn(800);
+						});
+					}
+				});
+			
+			});
+		</script>
+		
+		</div>
 </section>	
 <?php 
 	$list = $this->viewmodel->clusterlist;
@@ -104,6 +126,15 @@ $this->template("Shared");
                 renderer:$.jqplot.BarRenderer,
                 pointLabels: { show: true }
             },
+			series:[
+				{label:'X-axis'},
+				{label:'Y-axis'},
+				{label:'Z-axis'}
+			],
+			legend: {
+				show: true,
+				placement: 'outsideGrid'
+			},
             axes: {
                 xaxis: {
                     renderer: $.jqplot.CategoryAxisRenderer,
