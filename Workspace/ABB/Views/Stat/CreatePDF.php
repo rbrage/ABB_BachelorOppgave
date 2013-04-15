@@ -19,6 +19,8 @@ require_once 'Models/fpdf.php';
 		$this->SetFont('Arial','B',15);
 		$this->Cell(80);
 		$this->Cell(50,10,$this->title,0,0,'C');
+		$this->SetFont('Times','',12);
+		$this->Cell(50,10,$this->titleTime,0,0,'C');
 		$this->Ln(20);
 	}
 
@@ -152,6 +154,7 @@ require_once 'Models/fpdf.php';
 	$data = array($pointlist->size(), $clusterlist->size(), $masterlist->size(),$outlierlist->size());
 	
 	$pdf->title = $this->viewmodel->reportName;
+	$pdf->titleTime = $this->viewmodel->reportTime;
 	$pdf->AliasNbPages();
 	$pdf->SetAutoPageBreak(true).
 	$pdf->AddPage();

@@ -41,9 +41,10 @@ class Stat extends Controller {
 	
 		$this->viewmodel->cache = new Cache();
 		$this->viewmodel->arr = $this->pointlist->iterator();
-		
-		$this->viewmodel->reportName = $this->settings->getSetting(CachedSettings::REPORTNAME);
-		
+		$date = new DateTime();
+
+		$this->viewmodel->reportName = "Report";
+		$this->viewmodel->reportTime = $date->format('d-m-Y H:i');
 		
 		return $this->View();
 	}
