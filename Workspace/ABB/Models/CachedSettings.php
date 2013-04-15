@@ -18,6 +18,8 @@ class CachedSettings {
 	const NEXTPOINTASMASTERPOINT = "NextPointAsMaster";
 	const OUTLIERCONTROLLDISTANCE = "OutlierControllDistance";
 	
+	const REPORTNAME = "ReportName";
+	
 	private $defaltvalues = array(
 			self::NUMBEROFCLUSTERS => 1,
 			self::MAXPOINTSINCLUSTERANALYSIS => 100,
@@ -28,7 +30,8 @@ class CachedSettings {
 			self::RUNTRIGGERPROGRAMINBACKGROUND => false,
 			self::RANDOMINITIALCLUSTERPOINTS => false,
 			self::NEXTPOINTASMASTERPOINT => false,
-			self::OUTLIERCONTROLLDISTANCE => 1000
+			self::OUTLIERCONTROLLDISTANCE => 1000,
+			self::REPORTNAME => ""
 			);
 	
 	private $cache;

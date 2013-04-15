@@ -15,8 +15,15 @@ $this->template("Shared");
 	<div class="page-header">
 		<h2>Statistics</h2>
 	</div>
-	<button id="runStat" class="btn">Run Statistics</button> 
-	<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
+	<div class="input-append">
+		<button id="runStat" class="btn">Run Statistics</button> 
+		
+		<input class="span2" type="text" 
+		id="<?php echo CachedSettings::REPORTNAME; ?>"
+		name="<?php echo CachedSettings::REPORTNAME; ?>"
+		value="<?php echo $this->viewmodel->settings->getSetting(CachedSettings::REPORTNAME);?>" />
+		<a id="createPDF" class="btn" type="submit" href="/stat/CreatePDFbottom" target="_blank">Create PDF</a>
+	</div>
 </section>	
 <?php 
 	$list = $this->viewmodel->clusterlist;

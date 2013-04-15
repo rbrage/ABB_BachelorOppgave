@@ -18,7 +18,7 @@ require_once 'Models/fpdf.php';
 		$this->Image('img/ABB.png',10,6,30);
 		$this->SetFont('Arial','B',15);
 		$this->Cell(80);
-		$this->Cell(50,10,'Analyse Raport',1,0,'C');
+		$this->Cell(50,10,$this->title,0,0,'C');
 		$this->Ln(20);
 	}
 
@@ -97,14 +97,13 @@ require_once 'Models/fpdf.php';
 		}
 		
 	// Page cluster information
-	function ClusterTable2($header2, $data2, $distanseMaster){
+	function ClusterTable3($header2, $data2){
 		$this->SetFont('Times','',12);
 		// Column widths
 		$w = array(40, 35, 85);
 		// Header
 		$this->Cell($w[0],7,$header2[0],1,0,'L');
 		$this->Cell($w[1],7,"",1,0,'L');
-		$this->Cell($w[2],7,"Distance from the master point",1,0,'L');
 			
 		$this->Ln();
 		$once = false;
@@ -112,33 +111,56 @@ require_once 'Models/fpdf.php';
 		for($i=0;$i<count($data2);$i++){
 		$this->Cell($w[0],6,$header2[$i+1],'LR',0,'R',false);
 		$this->Cell($w[1],6,$data2[$i],'LR',0,'L',false);
-		if(!$once){
-			$this->Cell($w[2],6,$distanseMaster,'1',0,'L',false);
-			$once = true;
-		}
+		
         $this->Ln();
 		}
 		
 		$this->Cell(array_sum($w)-85,0,'','T');
 		// Closing line
-		$this->Ln(5);
+		$this->Ln(2);
 		
-		}	
+		}
+		
+	function ClusterTable2($distanseMaster){
+		$this->SetFont('Times','',12);
+		// Column widths
+		$w = array(75);
+		// Header
+		$this->Cell($w[0],7,"Distance from the master point",1,0,'L');
+			
+		$this->Ln();
+		// Data
+		$this->Cell($w[0],6,$distanseMaster,'1',0,'L',false);
+		
+        $this->Ln();
+		
+		
+		$this->Cell(array_sum($w),0,'','T');
+		// Closing line
+		$this->Ln(2);
+		
+	}	
 			
 	
 }
 
 	// Instanciation of inherited class
 	$pdf = new PDF();
+	
+	//Information tabel header and data
 	$header = array('Number of points', 'Number of cluster', 'Number of masterpoints', 'Number of outlyers');
 	$data = array($pointlist->size(), $clusterlist->size(), $masterlist->size(),$outlierlist->size());
+	
+	$pdf->title = $this->viewmodel->reportName;
 	$pdf->AliasNbPages();
+	$pdf->SetAutoPageBreak(true).
 	$pdf->AddPage();
 	$pdf->ChapterTitle(1,'Infomation');
 	$pdf->Information($header,$data);
 	
 	$pdf->ChapterTitle(2,'Statistics');
 	
+	//Cluster header and data
 	$header = array('Points in cluster', 'Max. distance', 'Outlaying Points', 'Average distance');
 	$header2 = array('Standard deviation',"x-axis","y-axis","z-axis","average");
 	
@@ -161,7 +183,9 @@ require_once 'Models/fpdf.php';
 		$distanseMaster = $masterDistance[$clusterID];
 		$pdf->ClusterHeader($clusterID);
 		$pdf->ClusterTable($header,$data);
-		$pdf->ClusterTable2($header2,$data2, $distanseMaster);
+		$pdf->ClusterTable2($distanseMaster);
+		$pdf->ClusterTable3($header2,$data2);
+		
 	}
 	
 	$pdf->SetFont('Times','',12);
