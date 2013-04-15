@@ -24,8 +24,6 @@ class Stat extends Controller {
 		$this->viewmodel->settings = $this->settings;
 		$this->viewmodel->cache = new Cache();
 		
-		$this->reportName = @$this->settings->getSetting(CachedSettings::REPORTNAME);
-		
 		return $this->View();
 	}
 
@@ -48,13 +46,6 @@ class Stat extends Controller {
 		
 		
 		return $this->View();
-	}
-	
-	public function CreatePDFbottom($id){
-		$this->reportName = @$this->urlvalues[CachedSettings::REPORTNAME];
-		if(is_string($this->reportName))
-			$this->settings->setSetting(CachedSettings::REPORTNAME, $this->reportName);
-		return $this->RedirectTo("./CreatePDF");
 	}
 	
 	private $masterpoint;
