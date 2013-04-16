@@ -320,7 +320,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	};
 
 	function drawMasterpoint(x,y,z){
-		masterPoint = new THREE.Mesh( new THREE.SphereGeometry( 2, 10, 10 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
+		masterPoint = new THREE.Mesh( new THREE.SphereGeometry( 0.1, 50, 50 ), new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } ) );
 		masterPoint.position.set(x,y,z);
 		scene.add( masterPoint );
 	};

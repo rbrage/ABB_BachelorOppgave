@@ -366,8 +366,8 @@ iframe.dealply-toast.fastestext-revealed {
 							<label class="checkbox">
 								<input type="checkbox" id="drawBall" onclick="ballCheck()" >Draw Ball?
 							</label>
-								<input id="slider" type="range" class="transperantBG" min="0" max="100" step="0.1" value="10" onchange="ballSize(this.value)"/><br/>
-							<span id="range">10</span>
+								<input id="slider" type="range" class="transperantBG" min="0" max="100" step="0.2" value="10" onchange="ballSize(this.value)"/><br/>
+							<input id="range" type="text" value="10" onchange="ballSize(this.value)"></input>
 							
 						</div>
 					</div>
@@ -508,7 +508,10 @@ iframe.dealply-toast.fastestext-revealed {
 			};
 			
 			function ballSize(size){
-				document.getElementById("range").innerHTML=size;
+			textBox = document.getElementById("range");
+			textBox.value=size;
+			slider = document.getElementById("slider");
+			slider.value=size;
 				if(checkBox.checked){
 					if(this.id !=="undifined"){
 						removeDrawClusterCircle();
@@ -531,12 +534,14 @@ iframe.dealply-toast.fastestext-revealed {
 			function masterCheck(){
 				checkBox = document.getElementById("drawMasterpoint");
 				if(checkBox.checked){
+				console.log(this.id);
 					if(this.id !=="undifined"){
 					$.getJSON("/Master/Points/json", function(data){
 						start = 0;
 						$.each(data.Master.Points, function(key, value){
 							var clusterID = value.cluster;
-							if(clusterID == this.id){
+							console.log(id);
+							if(clusterID == id){
 								drawMasterpoint(value.x,value.y,value.z);
 								return;
 							}
