@@ -65,14 +65,18 @@ class Execute extends Controller {
 	}
 	
 	/**
-	 * Runs a comandline on the computer. 
+	 * Runs a commandline on the computer. 
 	 */
 	private function RunCommand(){
+		
+		$commands = explode(PHP_EOL, $this->command);
+		
 		if($this->isWindows()){
-			pclose(popen("start /b " . $this->command, "r"));
+			pclose(popen("start /b " . $this->command . "", "r"));
 		}
 		else{
-			pclose(popen("" . $this->command . " /dev/null" . (($this->inBackground)?" &":""), "r"));
+			foreach ($commands as $cmd)
+				shell_exec("" . $cmd . " /dev/null" . (($this->inBackground)?" &":""));
 		}
 	}
 	
