@@ -171,7 +171,7 @@ require_once 'Models/fpdf.php';
 	$header2 = array('Standard deviation',"x-axis","y-axis","z-axis","average");
 	
 	$maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE);
-	$outliers = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE);
+	$outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS);
 	$averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE);
 	$standardDeviation = $this->viewmodel->cache->getCacheData(Stat::STANDARDDEVIATION);
 	$masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); 
