@@ -116,40 +116,77 @@ $cacheinfo = $cache->getCacheInfo();
 	$list = $this->viewmodel->arr->getCachedArrayList();
 	$size = $list->size();
 
-	if($size != 0){
 			?>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>X</th>
-				<th>Y</th>
-				<th>Z</th>
-				<th>Time</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php 
-			for ($i = $size -1; ($size - $i) <= 10 && $i >= 0 ;$i--){
+	<table class="table table-striped" id="LastPointsTable">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>X</th>
+					<th>Y</th>
+					<th>Z</th>
+					<th>Cluster</th>
+					<th>Time</th>
+					<th>Additional Info</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+				if(!$list->isEmpty()){
+					for($i = $size -1; ($size - $i) <= 10 && $i >= 0 ;$i--){
+						$item = $list->get($i);
 						echo "
-		<tr>
-		<td>".$list->get($i)->x."</td>
-		<td>".$list->get($i)->y."</td>
-		<td>".$list->get($i)->z."</td>
-			<td>".$list->get($i)->timestamp." ms</td>
-			</tr>";
+				<tr id=". $i .">
+				<td id=\"num\">".$i."</td>
+				<td id=\"x\">".$item->x."</td>
+				<td id=\"y\">".$item->y."</td>
+				<td id=\"z\">".$item->z."</td>
+				<td id=\"cluster\">".$item->cluster."</td>
+				<td id=\"time\">".$item->timestamp."</td>";
+					
+						$moreinfo = $item->getAdditionalInfo();
+						if(count($moreinfo)){
+							echo "<td>";
+							foreach($item->getAdditionalInfo() as $key => $value){
+								echo "" . $key . ": " . $value . "<br>";
+							}
+							echo "</td></tr>";
+						}
+						else{
+							echo "<td></td></tr>";
+						}
 					}
-					?>
-		</tbody>
-	</table>
-	<?php 
-			}
-			else{
-			?>
-	<p id="empty">Can't find any points in the cache.</p>
-	<?php 
-			}
-			?>
+				}
+				else{
+					$i = 0;
+					echo "<tr><td colspan=\"7\">There is no points to show you.</td></tr>";
+				}
+				?>
+			</tbody>
+		</table>
+			<script type="text/javascript">
+
+			$(function(){
+				addSSEvent("pointsize", function(event){
+					$.getJSON("/register/points/json?start=" + (event.data - 10) + "&stop=" + event.data, function(data){
+						$("#LastPointsTable > tbody").empty();
+						start = data.Register.Start;
+						$.each(data.Register.Points, function(key, value){
+							$("#LastPointsTable > tbody").prepend("<tr id=" + start + ">" + 
+									"<td id=\"num\">" + start + "</td>" +
+									"<td id=\"x\">" + value.x + "</td>" +
+									"<td id=\"y\">" + value.y + "</td>" +
+									"<td id=\"z\">" + value.z + "</td>" +
+									"<td id=\"cluster\">" + value.cluster + "</td>" +
+									"<td id=\"time\">" + value.timestamp + "</td>" +
+									"<td id=\"additionalinfo\"></td></tr>");
+							$.each(value.additionalinfo, function(key, value){
+								$("#LastPointsTable > tbody > #" + start + " > #additionalinfo").append(key + ": " + value + "<br>");
+							});
+							start++;
+						});
+					});
+				});
+			});
+
+			</script>
 </section>
-
-
-

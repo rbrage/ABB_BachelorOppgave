@@ -4,8 +4,9 @@ require_once 'Models/Cache.php';
 require_once 'Models/CachedArrayList.php';
 require_once 'Models/TriggerPoint.php';
 require_once 'Models/ListNames.php';
+require_once 'Models/ClusterAlgorithm.php';
 
-class KMeans {
+class KMeans extends ClusterAlgorithm {
 
 	private $k = 1;
 	private $pointsToCrush = 100;
@@ -14,11 +15,6 @@ class KMeans {
 	private $pointlist;
 	private $pointMoved;
 	private $randomSelection = false;
-
-	const CLUSTERLISTNAME = "CLUSTERANALYSIS";
-	const CLUSTERANALYSISRUNNINGNAME = "CLUSTERANALYSISRUNNING";
-	const CLUSTERCOUNTNAME = "CLUSTERCOUNT";
-	const DISTANCETOCLUSTER = "DistanceToCluster";
 
 	/**
 	 * Creates a new instance of the KMeans class. Sets the ini time limit of the script to infinite to make it possible to run large clusters.
@@ -239,16 +235,6 @@ class KMeans {
 
 			Debuger::RegisterPoint("Cluster " . $cluster . " has " . $clusterpoint->getAdditionalInfo(self::CLUSTERCOUNTNAME) . " points.", "KMeans");
 		}
-	}
-
-	/**
-	 * Gives the distance between two points.
-	 * @param TriggerPoint $first
-	 * @param TriggerPoint $second
-	 * @return float
-	 */
-	public static function distance($first, $second){
-		return sqrt(pow(($first->x - $second->x), 2) + pow(($first->y - $second->y), 2) + pow(($first->z - $second->z), 2));
 	}
 
 	/**

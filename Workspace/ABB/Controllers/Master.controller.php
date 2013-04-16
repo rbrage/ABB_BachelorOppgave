@@ -3,7 +3,7 @@
 require_once 'Models/ListNames.php';
 require_once 'Models/CachedArrayList.php';
 require_once 'Models/TriggerPoint.php';
-require_once 'Models/KMeans.php';
+require_once 'Models/ClusterAlgorithm.php';
 
 class Master extends Controller {
 
@@ -204,7 +204,7 @@ class Master extends Controller {
 			$shortestcluster = 0;
 			$shortestdistance = -1;
 			foreach ($this->clusterlist->iterator() as $c => $cluster){
-				$distance = KMeans::distance($master, $cluster);
+				$distance = ClusterAlgorithm::distance($master, $cluster);
 				if($distance < $shortestdistance || $shortestdistance < 0){
 					$shortestcluster = $c;
 					$shortestdistance = $distance;

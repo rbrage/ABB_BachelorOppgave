@@ -18,9 +18,25 @@ $this->template("Stat");
 	</div>
 	<div class="alert hide"></div>
 	<div>
-		<button id="RunStatistics" class="btn">Run Statistics</button> 
+		<h4>Actions</h4>
+		<button id="RunStatistics" class="btn" >Run Statistics</button> 
 		<button id="ClearStatistics" class="btn">Clear Statistics</button> 
-		<a id="CreatePDF" class="btn" type="submit" href="/stat/CreatePDF/" target="_blank">Create PDF</a>
+		<br><br>
+		<h4>Trigger Report</h4>
+		<p>Export statistical data to a PDF-file.</p>
+		<form action="/stat/CreatePDF/" method="GET" class="form-horizontal" target="_blank">
+			<div class="control-group">
+				<label class="control-label">Comments in to the report:</label>
+				<div class="controls">
+					<textarea rows="5" name="ReportComment"></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<input type="submit" value="Create PDF" class="btn" />
+				</div>
+			</div>
+		</form>
 		
 	</div>
 	<script type="text/javascript">
@@ -129,7 +145,7 @@ $this->template("Stat");
 		        var s1 = <?php 
 							$output = "[";
 							$first = true;
-							if(is_array($fullaxialdistrubiation[$i])){
+							if(is_array(@$fullaxialdistrubiation[$i])){
 								foreach ($fullaxialdistrubiation[$i] as $count){
 									if($first)
 										$first = false;
@@ -148,7 +164,7 @@ $this->template("Stat");
 		        var s2 = <?php 
 							$output = "[";
 							$first = true;
-							if(is_array($fullaxialdistrubiation[$i])){
+							if(is_array(@$fullaxialdistrubiation[$i])){
 								foreach ($fullaxialdistrubiation[$i] as $count){
 									if($first)
 										$first = false;
@@ -167,7 +183,7 @@ $this->template("Stat");
 		        var s3 = <?php 
 							$output = "[";
 							$first = true;
-							if(is_array($fullaxialdistrubiation[$i])){
+							if(is_array(@$fullaxialdistrubiation[$i])){
 								foreach ($fullaxialdistrubiation[$i] as $count){
 									if($first)
 										$first = false;
@@ -186,7 +202,7 @@ $this->template("Stat");
 		        var s4 = <?php 
 							$output = "[";
 							$first = true;
-							if(is_array($totaldistrubiation[$i])){
+							if(is_array(@$totaldistrubiation[$i])){
 								foreach ($totaldistrubiation[$i] as $count){
 									if($first)
 										$first = false;
@@ -238,9 +254,9 @@ $this->template("Stat");
 		        var plot<?php echo $i; ?> = $.jqplot("fullaxisdistrubiation<?php echo $i; ?>", [s1, s2, s3, s1, s2, s3], {
 			            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
 			            animate: !$.jqplot.use_excanvas,
-			            title: "1D distrubation chart",
+			            title: "1D distrubiation chart",
 			            seriesDefaults:{
-			                pointLabels: { show: true }
+			                pointLabels: { show: false }
 				        },
 			            axes: {
 			                xaxis: {
@@ -322,6 +338,7 @@ $this->template("Stat");
 		            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
 		            animate: !$.jqplot.use_excanvas,
 		            seriesDefaults:{
+		            	pointLabels: { show: true, location: 'n', edgeTolerance: -30 },
 		                renderer:$.jqplot.BarRenderer,
 		                pointLabels: { 
 			                	show: true 
@@ -339,7 +356,12 @@ $this->template("Stat");
 			                    }
 			                }
 			            },
-			            highlighter: { show: false }
+			            highlighter: { 
+			                show: true,
+			                sizeAdjust: 1,
+			                tooltipOffset: 9,
+			                tooltipAxes: "y"
+			            }
 			        });
 					$('.jqplot-highlighter-tooltip').addClass('ui-corner-all');
 			    });

@@ -3,7 +3,7 @@
 require_once 'Models/CachedArrayList.php';
 require_once 'Models/CachedSettings.php';
 require_once 'Models/TriggerPoint.php';
-require_once 'Models/KMeans.php';
+require_once 'Models/ClusterAlgorithm.php';
 
 class Outlier extends Controller {
 
@@ -85,7 +85,7 @@ class Outlier extends Controller {
 		$threshold = $this->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
 		
 		foreach($this->pointlist->iterator() as $i => $point){
-			$distance = @$point->getAdditionalInfo(KMeans::DISTANCETOCLUSTER);
+			$distance = @$point->getAdditionalInfo(ClusterAlgorithm::DISTANCETOCLUSTER);
 			
 			if(!is_numeric($distance))
 				continue;

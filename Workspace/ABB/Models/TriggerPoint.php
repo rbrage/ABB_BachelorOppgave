@@ -61,6 +61,7 @@ class TriggerPoint {
 			return $this->additionalinfo;
 		}
 		else {
+			if(!isset($this->additionalinfo[$key])) return false;
 			return $this->additionalinfo[$key];
 		}
 	}

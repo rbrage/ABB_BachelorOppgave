@@ -18,9 +18,9 @@ require_once 'Models/fpdf.php';
 		$this->Image('img/ABB.png',10,6,30);
 		$this->SetFont('Arial','B',15);
 		$this->Cell(80);
-		$this->Cell(50,10,$this->title,0,0,'C');
+		$this->Cell(35,10,$this->title,0,0,'C');
 		$this->SetFont('Times','',12);
-		$this->Cell(50,10,$this->titleTime,0,0,'C');
+		$this->Cell(115,10,$this->titleTime,0,0,'C');
 		$this->Ln(20);
 	}
 
@@ -158,10 +158,13 @@ require_once 'Models/fpdf.php';
 	$pdf->AliasNbPages();
 	$pdf->SetAutoPageBreak(true).
 	$pdf->AddPage();
-	$pdf->ChapterTitle(1,'Infomation');
+	$pdf->ChapterTitle(1,'Comments');
+	$pdf->MultiCell(0,5,$this->viewmodel->comment);
+	$pdf->Ln();
+	$pdf->ChapterTitle(2,'Infomation');
 	$pdf->Information($header,$data);
 	
-	$pdf->ChapterTitle(2,'Statistics');
+	$pdf->ChapterTitle(3,'Statistics');
 	
 	//Cluster header and data
 	$header = array('Points in cluster', 'Max. distance', 'Outlaying Points', 'Average distance');
@@ -176,7 +179,7 @@ require_once 'Models/fpdf.php';
 	for($clusterID=0; $clusterID<$clusterlist->size();$clusterID++){
 		$point = $clusterlist->get($clusterID);
 		
-		$data = array($point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 
+		$data = array($point->getAdditionalInfo(ClusterAlgorithm::CLUSTERCOUNTNAME), 
 							@$maxDistance[$clusterID], 
 							@$outliers[$clusterID] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE),
 							@$averageDistance[$clusterID]);
@@ -195,6 +198,3 @@ require_once 'Models/fpdf.php';
 	$pdf->Output();
 
 ?>
-<!--@$standardDeviation[$i]["x"],@$standardDeviation[$i]["y"],@$standardDeviation[$i]["z"],
-						round(@($standardDeviation[$i]["x"] + $standardDeviation[$i]["y"] + $standardDeviation[$i]["z"])/3, 2)-->
-

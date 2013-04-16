@@ -28,6 +28,7 @@ body {
 <script src="/scripts/jqplot.canvasTextRenderer.min.js" type="text/javascript"></script>
 <script src="/scripts/jqplot.highlighter.min.js" type="text/javascript"></script>
 <script src="/scripts/jqplot.enhancedLegendRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.pointLabels.min.js" type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 

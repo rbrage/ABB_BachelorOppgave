@@ -4,7 +4,7 @@ require_once 'Models/CachedArrayList.php';
 require_once 'Models/ListNames.php';
 require_once 'Models/CachedSettings.php';
 require_once 'Models/TriggerPoint.php';
-require_once 'Models/KMeans.php';
+require_once 'Models/ClusterAlgorithm.php';
 
 class Stat extends Controller {
 	
@@ -58,8 +58,9 @@ class Stat extends Controller {
 		$this->viewmodel->arr = $this->pointlist->iterator();
 		$date = new DateTime();
 
-		$this->viewmodel->reportName = "Report";
+		$this->viewmodel->reportName = "Trigger Report";
 		$this->viewmodel->reportTime = $date->format('d-m-Y H:i');
+		$this->viewmodel->comment = @$this->urlvalues["ReportComment"];
 		
 		return $this->View();
 	}
@@ -115,9 +116,10 @@ class Stat extends Controller {
 		}
 		
 		foreach ($this->pointlist->iterator() as $point){
-			$distance = $point->getAdditionalInfo(KMeans::DISTANCETOCLUSTER);
+			$distance = $point->getAdditionalInfo(ClusterAlgorithm::DISTANCETOCLUSTER);
 			$cluster = $point->cluster;
 			
+			if($distance === false) continue;
 			if($cluster >= $this->clusterlist->size()) continue;
 			
 			if($distance > $maxDistance[$cluster]){
@@ -157,17 +159,17 @@ class Stat extends Controller {
 		}
 		
 		foreach ($this->clusterlist->iterator() as $i => $cluster){
-			$averageDistance[$i] = round($averageDistance[$i] / $cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME), 2);
+			$averageDistance[$i] = round($averageDistance[$i] / $cluster->getAdditionalInfo(ClusterAlgorithm::CLUSTERCOUNTNAME), 2);
 			
-			$standardDeviation[$i]["x"] = round(sqrt($standardDeviation[$i]["x"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
-			$standardDeviation[$i]["y"] = round(sqrt($standardDeviation[$i]["y"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
-			$standardDeviation[$i]["z"] = round(sqrt($standardDeviation[$i]["z"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
+			$standardDeviation[$i]["x"] = round(sqrt($standardDeviation[$i]["x"]/$cluster->getAdditionalInfo(ClusterAlgorithm::CLUSTERCOUNTNAME)), 2);
+			$standardDeviation[$i]["y"] = round(sqrt($standardDeviation[$i]["y"]/$cluster->getAdditionalInfo(ClusterAlgorithm::CLUSTERCOUNTNAME)), 2);
+			$standardDeviation[$i]["z"] = round(sqrt($standardDeviation[$i]["z"]/$cluster->getAdditionalInfo(ClusterAlgorithm::CLUSTERCOUNTNAME)), 2);
 		}
 		
 		foreach ($this->masterpoint->iterator() as $masterpoint){
 			$cluster = $masterpoint->cluster;
 			if($cluster >= $this->clusterlist->size()) continue;
-			$distanceFromMaster[$cluster] = round(KMeans::distance($this->clusterlist->get($cluster), $masterpoint), 2);
+			$distanceFromMaster[$cluster] = round(ClusterAlgorithm::distance($this->clusterlist->get($cluster), $masterpoint), 2);
 		}
 		
 		$this->cache->setCacheData(self::MAXDISTANCE, $maxDistance);

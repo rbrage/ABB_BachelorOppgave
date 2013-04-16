@@ -2,7 +2,6 @@
 
 require_once 'Models/CachedArrayList.php';
 require_once 'Models/TriggerPoint.php';
-require_once 'Models/KMeans.php';
 require_once 'Models/CachedSettings.php';
 require_once 'Models/ListNames.php';
 
