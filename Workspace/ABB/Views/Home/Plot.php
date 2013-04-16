@@ -534,13 +534,11 @@ iframe.dealply-toast.fastestext-revealed {
 			function masterCheck(){
 				checkBox = document.getElementById("drawMasterpoint");
 				if(checkBox.checked){
-				console.log(this.id);
 					if(this.id !=="undifined"){
 					$.getJSON("/Master/Points/json", function(data){
 						start = 0;
 						$.each(data.Master.Points, function(key, value){
 							var clusterID = value.cluster;
-							console.log(id);
 							if(clusterID == id){
 								drawMasterpoint(value.x,value.y,value.z);
 								return;

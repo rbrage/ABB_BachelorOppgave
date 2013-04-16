@@ -156,7 +156,7 @@ require_once 'Models/fpdf.php';
 	$pdf->title = $this->viewmodel->reportName;
 	$pdf->titleTime = $this->viewmodel->reportTime;
 	$pdf->AliasNbPages();
-	$pdf->SetAutoPageBreak(true,20.0);
+	$pdf->SetAutoPageBreak(true,50.0);
 	$pdf->AddPage();
 	$pdf->ChapterTitle(1,'Comments');
 	$pdf->MultiCell(0,5,$this->viewmodel->comment);
