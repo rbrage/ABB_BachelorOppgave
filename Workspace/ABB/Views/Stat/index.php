@@ -74,7 +74,9 @@ $this->template("Stat");
 <section id="clusterinformation<?php echo $i?>">
 	<br>
 	<div>
-		<h3>Cluster <?php echo $i?></h3>
+	<div class="page-header">
+		<h2>Cluster <?php echo $i?></h2>
+		</div>
 		<div class="row-fluid">
 			<div class="span6">
 				<table class="table table-striped">
