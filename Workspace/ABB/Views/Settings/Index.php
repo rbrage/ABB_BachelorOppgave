@@ -132,6 +132,33 @@ $this->Template("Shared");
 			});
 		</script>
 	</div>
+	
+	<div class="form-horizontal">
+		<h4>Clear statistical data</h4>
+		<p>This option can be used to clear the cache for statistical data.
+		<p>
+		
+		<div class="alert alert-block alert-error">
+			<h4>Warning!</h4>
+			<p>This will remove all statistical data that is present in the cache at the moment. You will not be able to get all the data back!</p>
+		</div>
+		
+		<div class="control-group">
+			<div class="controls">
+				<input type="submit" class="btn" id="Clearoutlierdata" value="Clear cache">
+			</div>
+		</div>
+		<script type="text/javascript">$(function(){
+				$("#Clearoutlierdata").click(function(){
+					if(confirm("Are you sure about clearing the cache?")){
+						$.getJSON("/stat/clear/json", function(data){
+							$("#CacheSettings > #alertmsg").html(data.Request.Message).fadeIn(800);
+						});
+					}
+				});
+			});
+		</script>
+	</div>
 </section>
 
 <!-- Cluster settings -->
@@ -226,6 +253,9 @@ $this->Template("Shared");
 	<div class="page-header">
 		<h2>Outlying points</h2>
 	</div>
+	<p>Here you can set the maximum distance you consider as valid points. 
+	When a outlier analysis is run this is the distance it will controll against. 
+	Points that is outside will be marked and shown as outlying points.</p>
 	<form action="/settings/outlier" method="GET" class="form-horizontal">
 		<div class="control-group">
 			<label class="control-label"
@@ -254,6 +284,8 @@ $this->Template("Shared");
 	<div class="page-header">
 		<h2>Master Point Triggering</h2>
 	</div>
+	<p>Write in the code, as in an commandline formation, for trigger the sensor to retrive a master point. 
+	When you want a master point the system will be put into a state that takes the next point as a master point and then run this code.</p>
 	<div>
 		<form action="masterpoint" method="GET" class="form-horizontal">
 			<p></p>
@@ -290,8 +322,8 @@ $this->Template("Shared");
 		<h2>Triggerprogram</h2>
 	</div>
 	<div>
+	<p>Put in the code, as a commandline format, that need to be run to start ut the sensor program.</p>
 		<form action="triggerprogram" method="GET" class="form-horizontal">
-			<p></p>
 			<div class="control-group">
 				<div class="controls">
 					<label class="checkbox"> 

@@ -6,12 +6,12 @@ if($viewmodel->noCoding){
 else{
 	if($viewmodel->returnCoding == "json"){
 		$response = array(	"Request" => array("Success" => $this->viewmodel->success, "Error" => $this->viewmodel->error, "Message" => $viewmodel->msg),
-				"Register" => array("Size" => ($this->viewmodel->stop - $this->viewmodel->start), "Start" => $this->viewmodel->start, "Stop" => $this->viewmodel->stop, "Points" => array()));
+				"Outlier" => array("Size" => ($this->viewmodel->stop - $this->viewmodel->start), "Start" => $this->viewmodel->start, "Stop" => $this->viewmodel->stop, "Points" => array()));
 
 		for($i = $this->viewmodel->start; $i < $this->viewmodel->stop && $i < $this->viewmodel->list->size(); $i++){
 			$itemnumber = $this->viewmodel->list->get($i);
 			$item = $this->viewmodel->pointlist->get($itemnumber);
-			$response["Register"]["Points"][$itemnumber] = $item;
+			$response["Outlier"]["Points"][$itemnumber] = $item;
 		}
 		
 		echo json_encode($response);
@@ -21,7 +21,7 @@ else{
 		$xml->addChild("Success", $this->viewmodel->success);
 		$xml->addChild("Error", $viewmodel->error);
 		$xml->addChild("Message", $viewmodel->msg);
-		$reg = $xml->addChild("Register");
+		$reg = $xml->addChild("Outlier");
 		$reg->addAttribute("Size", $this->viewmodel->stop - $this->viewmodel->start);
 		$reg->addAttribute("Start", $this->viewmodel->start);
 		$reg->addAttribute("Stop", $this->viewmodel->stop - $this->viewmodel->start);

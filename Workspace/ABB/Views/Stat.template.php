@@ -12,67 +12,27 @@ body {
 	padding-top: 60px;
 	padding-bottom: 40px;
 }
-	
-	#stats #fps { background: transparent !important }
-	#stats #fps #fpsText { color: #aaa !important }
-	#stats #fps #fpsGraph { display: none }
-	#stats #ms { background: transparent !important }
-	#stats #ms #msText { color: #aaa !important }
-	#stats #ms #msGraph { display: none }
 </style>
 <link href="/scripts/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="/scripts/bootstrap.css" rel="stylesheet" media="screen">
+<link href="/scripts/jquery.jqplot.min.css" rel="stylesheet" media="screen">
 <script src="/scripts/jquery-1.9.0.js" type="text/javascript"></script>
 <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
 
+
+<script src="/scripts/jquery.jqplot.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.BezierCurveRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.canvasAxisTickRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.canvasTextRenderer.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.highlighter.min.js" type="text/javascript"></script>
+<script src="/scripts/jqplot.enhancedLegendRenderer.min.js" type="text/javascript"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-<script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
-<script type="text/javascript" src="/scripts/three.min.js"></script>
-<script type="text/javascript" src="/scripts/three.js"></script>
-<script type="text/javascript" src="/scripts/TrackballControls.js"></script>
-<script type="text/javascript" src="/scripts/Detector.js"></script>
-<script type="text/javascript" src="/scripts/stats.min.js"></script>
-
-<script type="x-shader/x-vertex" id="vertexshader">
-			attribute float size;
-			attribute vec3 ca;
-
-			varying vec3 vColor;
-
-			void main() {
-
-				vColor = ca;
-
-				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-
-				//gl_PointSize = size;
-				gl_PointSize = size * ( 300.0 / length( mvPosition.xyz ) );
-
-				gl_Position = projectionMatrix * mvPosition;
-				
-
-			}
-
-		</script>	
-<script type="x-shader/x-fragment" id="fragmentshader">
-
-			uniform vec3 color;
-			uniform sampler2D texture;
-
-			varying vec3 vColor;
-
-			void main() {
-
-				gl_FragColor = vec4(vColor, 1.0 );
-				gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
-
-			}
-
-		</script>
-
 <title>ABB Analyseprogram</title>
+
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar" data-twttr-rendered="true">
 	<div class="navbar navbar-fixed-top">
@@ -80,13 +40,12 @@ body {
 			<div class="container">
 				<div class="nav-collapse collapse">
 					<ul class="nav">
-						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;"	href="/"><img src="/img/ABB.png"> </a></li>
+						<li><a class="brand" style="padding-top: 5px; padding-bottom: 5px; margin-left: 5px;" href="/"><img src="/img/ABB.png"> </a></li>
 						<li><a href="/"><i class="icon-home"></i></a></li>
 						<li><a href="/Home/Plot"><i class="icon-fullscreen"></i> 3D Plot</a></li>
 						<li><a href="/points/"><i class="icon-th-list"></i> All Points</a></li>
 						<li><a href="/cluster/"><i class="icon-th-large"></i> Clusters</a></li>
 						<li><a href="/stat/"><i class="icon-indent-left"></i> Statistics</a></li>
-						
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="/settings/"><i class="icon-wrench"></i> Settings</a></li>
@@ -107,7 +66,6 @@ body {
 							foreach ($this->viewmodel->templatemenu as $section => $name)
 								echo "<li><a href=\"#" . $section . "\">" . $name . "</a>";
 						?>
-						
 					</ul>
 			</div>
 			<div class="span8">
@@ -118,7 +76,7 @@ body {
 				?>
 			</div>
 			<div class="span2">
-			<!-- 	<div data-spy="affix" style="padding-right: 10px;">
+				<div data-spy="affix" style="padding-right: 10px;">
 					<div class="alert alert-info">
 						<p class="nav-header">
 							Information 
@@ -164,7 +122,7 @@ body {
 								</tbody>
 						</table>
 					</div>
-				</div> -->
+				</div>
 			</div>
 		</div>
 	</div>

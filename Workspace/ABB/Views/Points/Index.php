@@ -91,6 +91,7 @@ $this->Template("Shared");
 			$("#AsignMasterpointsToClustersButton").click(function(){
 				$.getJSON("/master/AsignToCluster/json", function(data){
 					$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
+					updatemasterpoints();
 				});
 			});
 			
@@ -98,6 +99,7 @@ $this->Template("Shared");
 				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all masterpoints?")){
 					$.getJSON("/master/clear/json", function(data){
 						$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
+						$("#MasterPointTable > tbody").html("<tr><td colspan=\"7\">There is no points to show you.</td></tr>");
 					});
 				}
 			});
@@ -106,8 +108,32 @@ $this->Template("Shared");
 				pointid = $(this).parent().parent().find("#num").text();
 				$.getJSON("/master/remove/json?pointid=" + pointid, function(data){
 					$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
+					updatemasterpoints();
 				});
 			});
+
+			updatemasterpoints = function(){
+				$.getJSON("/master/points/json", function(data){
+					$("#MasterPointTable > tbody").empty();
+					start = 0;
+					$.each(data.Master.Points, function(key, value){
+						$("#MasterPointTable > tbody").append("<tr id=" + start + ">" + 
+								"<td id=\"num\">" + start + "</td>" +
+								"<td id=\"x\">" + value.x + "</td>" +
+								"<td id=\"y\">" + value.y + "</td>" +
+								"<td id=\"z\">" + value.z + "</td>" +
+								"<td id=\"cluster\">" + value.cluster + "</td>" +
+								"<td id=\"time\">" + value.timestamp + "</td>" +
+								"<td id=\"additionalinfo\"></td></tr>");
+						$.each(value.additionalinfo, function(key, value){
+							$("#MasterPointTable > tbody > #" + start + " > #additionalinfo").append(key + ": " + value + "<br>");
+						});
+						start++;
+					});
+				});
+			}
+			
+			$("#GetMasterPointButton").click(updatemasterpoints);
 			
 		});
 
@@ -129,7 +155,7 @@ $this->Template("Shared");
 			</thead>
 			<tbody>
 				<?php 
-				if($this->viewmodel->pointlist->size() > 0){
+				if(!$this->viewmodel->masterlist->isEmpty()){
 					for($i = 0; $i < 50 && $i < $this->viewmodel->masterlist->size(); $i++){
 						$item = $this->viewmodel->masterlist->get($i);
 						echo "
@@ -157,13 +183,14 @@ $this->Template("Shared");
 					}
 				}
 				else{
-					echo "<tr><td colspan=\"5\">There is no points to show you.</td></tr>";
+					$i = 0;
+					echo "<tr><td colspan=\"7\">There is no points to show you.</td></tr>";
 				}
 				?>
 			</tbody>
 		</table>
 		<div class="span4 offset4">
-			<button id="MoreResults" class="btn" data-loading-text="Loading...">Get more points</button>
+			<button id="GetMasterPointButton" class="btn" data-loading-text="Loading...">Update master points</button>
 		</div>
 </section>
 
@@ -175,32 +202,8 @@ $this->Template("Shared");
 		<h2>Outlying points</h2>
 	</div>
 	<div class="alert hide"></div>
-	<div>
-	<button id="runanalysisOutlierButton" class="btn">Run Analysis</button>
-	<button id="ClearOutlierpointsButton" class="btn">Clear outlierpoints</button>
-	
-	<script type="text/javascript">
-
-		$(function(){
-
-			$("#runanalysisOutlierButton").click(function(){
-				$.getJSON("/outlier/RunAnalysis/json", function(data){
-					$("#markedpoints > .alert").html(data.Request.Message).fadeIn(800);
-				});
-			});
-			
-			$("#ClearOutlierpointsButton").click(function(){
-				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all markedpoints?")){
-					$.getJSON("/outlier/clear/json", function(data){
-						$("#markedpoints > .alert").html(data.Request.Message).fadeIn(800);
-					});
-				}
-			});
-			
-		});
-
-	</script>
-	</div>
+	<button id="RunOutlierAnalysisButton" class="btn">Run analysis</button>
+	<button id="ClearOutlierpointsButton" class="btn">Clear outliers</button>
 	<br>
 	<table class="table table-striped" id="OutlyingTable">
 			<thead>
@@ -216,9 +219,10 @@ $this->Template("Shared");
 			</thead>
 			<tbody>
 				<?php 
-				if($this->viewmodel->pointlist->size() > 0){
+				if($this->viewmodel->outlierlist->size() > 0){
 					for($i = 0; $i < 50 && $i < $this->viewmodel->outlierlist->size(); $i++){
 					$itemnumber = $this->viewmodel->outlierlist->get($i);
+					if($itemnumber >= $this->viewmodel->pointlist->size()) continue;
 					$item = $this->viewmodel->pointlist->get($itemnumber);
 					echo "
 				<tr id=". $itemnumber .">
@@ -245,7 +249,8 @@ $this->Template("Shared");
 				}
 				}
 				else{
-					echo "<tr><td colspan=\"5\">There is no points to show you. Run the analysis first.</td></tr>";
+					$i = 0;
+					echo "<tr><td colspan=\"7\">There is no points to show you. Run the analysis first.</td></tr>";
 				}
 				?>
 			</tbody>
@@ -253,36 +258,56 @@ $this->Template("Shared");
 		<div class="span4 offset4">
 			<button id="GetMoreOutlyingPoints" class="btn" data-loading-text="Loading...">Get more points</button>
 			
-			<script type="text/javascript">
-			$(function(){
-				var outlierstop = <?php echo $i; ?>;
-				$("#GetMoreOutlyingPoints").click(function(){
-					$.getJSON("/Outlier/Points/json?start=" + outlierstop + "&stop=" + (outlierstop + 50), function(data){
-						start = data.Register.Start;
-						if(start == 0) $("#OutlyingTable > tbody").html("");
-						$.each(data.Register.Points, function(key, value){
-							$("#OutlyingTable > tbody").append("<tr id=" + key + ">" + 
-								"<td id=\"num\">" + key + "</td>" +
-								"<td id=\"x\">" + value.x + "</td>" +
-								"<td id=\"y\">" + value.y + "</td>" +
-								"<td id=\"z\">" + value.z + "</td>" +
-								"<td id=\"cluster\">" + value.cluster + "</td>" +
-								"<td id=\"time\">" + value.timestamp + "</td>" +
-								"<td id=\"additionalinfo\"></td></tr>");
-								pointid = key;
-								console.log(pointid);
-								$.each(value.additionalinfo, function(key, value){
-									console.log(key, value);
-									$("#OutlyingTable > tbody > #" + pointid + " > #additionalinfo").append(key + ": " + value + "<br>");
-								});
-							start++;
-						});
-						outlierstop = start;
-						$("#GetMoreOutlyingPoints").text("Get more results");
+	<script type="text/javascript">
+
+		$(function(){
+			var outlierstop = <?php echo $i; ?>;
+
+			$("#RunOutlierAnalysisButton").click(function(){
+				$.getJSON("/outlier/RunAnalysis/json", function(data){
+					$("#markedpoints > .alert").html(data.Request.Message).fadeIn(800);
+					outlierstop = 0;
+					updateoutlierpoints();
+				});
+			});
+			
+			$("#ClearOutlierpointsButton").click(function(){
+				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all outlying points?")){
+					$.getJSON("/outlier/clear/json", function(data){
+						$("#markedpoints > .alert").html(data.Request.Message).fadeIn(800);
+						$("#OutlyingTable > tbody").html("<tr><td colspan=\"7\">There is no points to show you. Run the analysis first.</td></tr>");
+					});
+				}
+			});
+
+			updateoutlierpoints = function(){
+				$.getJSON("/Outlier/Points/json?start=" + outlierstop + "&stop=" + (outlierstop + 50), function(data){
+					start = data.Outlier.Start;
+					if(start == 0) $("#OutlyingTable > tbody").html("");
+					if(data.Outlier.Stop == 0) $("#OutlyingTable > tbody").html("<tr><td colspan=\"7\">There is no points to show you. Run the analysis first.</td></tr>");
+					$.each(data.Outlier.Points, function(key, value){
+						$("#OutlyingTable > tbody").append("<tr id=" + key + ">" + 
+							"<td id=\"num\">" + key + "</td>" +
+							"<td id=\"x\">" + value.x + "</td>" +
+							"<td id=\"y\">" + value.y + "</td>" +
+							"<td id=\"z\">" + value.z + "</td>" +
+							"<td id=\"cluster\">" + value.cluster + "</td>" +
+							"<td id=\"time\">" + value.timestamp + "</td>" +
+							"<td id=\"additionalinfo\"></td></tr>");
+							pointid = key;
+							$.each(value.additionalinfo, function(key, value){
+								$("#OutlyingTable > tbody > #" + pointid + " > #additionalinfo").append(key + ": " + value + "<br>");
+							});
+						start++;
+					});
+					outlierstop = start;
+					$("#GetMoreOutlyingPoints").text("Get more results");
 					}).error(function(data){
 						$("#GetMoreOutlyingPoints").text("Error");
 					});
-				});
+				}
+			
+				$("#GetMoreOutlyingPoints").click(updateoutlierpoints);
 			});
 			</script>
 		</div>
@@ -336,7 +361,8 @@ $this->Template("Shared");
 					}
 				}
 				else{
-					echo "<tr><td colspan=\"5\">There is no points to show you.</td></tr>";
+					$i = 0;
+					echo "<tr><td colspan=\"7\">There is no points to show you.</td></tr>";
 				}
 				?>
 			</tbody>

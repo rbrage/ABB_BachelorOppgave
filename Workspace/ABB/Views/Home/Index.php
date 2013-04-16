@@ -92,6 +92,14 @@ $cacheinfo = $cache->getCacheInfo();
 					<td>Outlyers max distance:</td>
 					<td id="clustersize"><?php echo $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></td>
 				</tr>
+				<tr>
+					<td>Used memory:</td>
+					<td id="usedmemory"><?php echo $cacheinfo["mem_size"]/1000 . "k"; ?></td>
+				</tr>
+				<tr>
+					<td>Available memory:</td>
+					<td id="availablememory"><?php echo ini_get("apc.shm_size") * 1000 . "k"; ?></td>
+				</tr>
 				
 			</tbody>
 		</table>

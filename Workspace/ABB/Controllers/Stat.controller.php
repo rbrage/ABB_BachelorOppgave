@@ -11,8 +11,23 @@ class Stat extends Controller {
 	private $clusterlist;
 	private $pointlist;
 	private $settings;
+	
 	private $cluster;
 	private $reportName;
+	
+	private $masterpoint;
+	private $outlierlist;
+	
+	private $cache;
+	
+	const MAXDISTANCE = "Statistics_Max_Distance";
+	const MASTERPOINTDISTANCE = "Statistics_Distance_To_Masterpoint";
+	const OUTLIERS = "Statistics_Outliers";
+	const AVERAGEDISTANCE = "Statistics_Average_Distance";
+	const STANDARDDEVIATION = "Statistics_Standard_Deviation";
+	const DISTRIBUTION = "Statistics_Distribution";
+	const FULLAXIALDISTRIBUTION = "Statistics_Fullaxial_Distribution";
+	const DISTRIBUTIONRESOLUTION = 20;
 	
 	/**
 	 * Gives a page with statistics.
@@ -49,11 +64,6 @@ class Stat extends Controller {
 		return $this->View();
 	}
 	
-	private $masterpoint;
-	private $outlierlist;
-	
-	private $cache;
-	
 	public function RunAnalysis($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
@@ -72,19 +82,36 @@ class Stat extends Controller {
 		$this->outlierlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
 		
 		$this->cache = new Cache();
+		$this->settings = new CachedSettings();
+		
+		$outlierdistance = $this->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
 		
 		$maxDistance = array();
 		$distanceFromMaster = array();
 		$outliers = array();
 		$averageDistance = array();
 		$standardDeviation = array();
+		$distribution = array();
+		$fullaxialdistribution = array();
 		
 		for($i = 0; $i < $this->clusterlist->size(); $i++){
 			$maxDistance[$i] = 0;
-			$distanceFromMaster[$i] = 0;
+			$distanceFromMaster[$i] = "No point";
 			$outliers[$i] = 0;
 			$averageDistance[$i] = 0;
 			$standardDeviation[$i] = array("x" => 0, "y" => 0, "z" => 0);
+			
+			$distribution[$i] = array();
+			
+			for($j = 0; $j < self::DISTRIBUTIONRESOLUTION; $j++){
+				$distribution[$i][$j] = 0;
+			}
+			
+			$fullaxialdistribution[$i] = array();
+			
+			for($j = 0; $j < self::DISTRIBUTIONRESOLUTION; $j++){
+				$fullaxialdistribution[$i][$j] = array("x" => 0, "y" => 0, "z" => 0);
+			}
 		}
 		
 		foreach ($this->pointlist->iterator() as $point){
@@ -103,6 +130,30 @@ class Stat extends Controller {
 			$standardDeviation[$cluster]["x"] += pow($point->x - $clusterpoint->x, 2);
 			$standardDeviation[$cluster]["y"] += pow($point->y - $clusterpoint->y, 2);
 			$standardDeviation[$cluster]["z"] += pow($point->z - $clusterpoint->z, 2);
+			
+			$xDistance = $point->x - $clusterpoint->x;
+			$yDistance = $point->y - $clusterpoint->y;
+			$zDistance = $point->z - $clusterpoint->z;
+			if($xDistance < $outlierdistance && $xDistance > -$outlierdistance){
+				$i = ($xDistance / $outlierdistance) * (self::DISTRIBUTIONRESOLUTION / 2);
+				$fullaxialdistribution[$cluster][$i + (self::DISTRIBUTIONRESOLUTION / 2)]["x"]++;
+			}
+			if($yDistance < $outlierdistance && $yDistance > -$outlierdistance){
+				$i = $yDistance / $outlierdistance * (self::DISTRIBUTIONRESOLUTION / 2);
+				$fullaxialdistribution[$cluster][$i + (self::DISTRIBUTIONRESOLUTION / 2)]["y"]++;
+			}
+			if($zDistance < $outlierdistance && $zDistance > -$outlierdistance){
+				$i = $zDistance / $outlierdistance * (self::DISTRIBUTIONRESOLUTION / 2);
+				$fullaxialdistribution[$cluster][$i + (self::DISTRIBUTIONRESOLUTION / 2)]["z"]++;
+			}
+			
+			if($distance < $outlierdistance){
+				$i = $distance / $outlierdistance * self::DISTRIBUTIONRESOLUTION; 
+				$distribution[$cluster][$i]++;
+			}
+			else {
+				$outliers[$cluster]++;
+			}
 		}
 		
 		foreach ($this->clusterlist->iterator() as $i => $cluster){
@@ -113,14 +164,10 @@ class Stat extends Controller {
 			$standardDeviation[$i]["z"] = round(sqrt($standardDeviation[$i]["z"]/$cluster->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)), 2);
 		}
 		
-		foreach ($this->outlierlist->iterator() as $outlierpoint){
-			$point = $this->pointlist->get($outlierpoint);
-			$outliers[$point->cluster]++;
-		}
-		
 		foreach ($this->masterpoint->iterator() as $masterpoint){
 			$cluster = $masterpoint->cluster;
-			$distanceFromMaster[$cluster] = KMeans::distance($this->clusterlist->get($cluster), $masterpoint);
+			if($cluster >= $this->clusterlist->size()) continue;
+			$distanceFromMaster[$cluster] = round(KMeans::distance($this->clusterlist->get($cluster), $masterpoint), 2);
 		}
 		
 		$this->cache->setCacheData(self::MAXDISTANCE, $maxDistance);
@@ -128,6 +175,8 @@ class Stat extends Controller {
 		$this->cache->setCacheData(self::OUTLIERS, $outliers);
 		$this->cache->setCacheData(self::AVERAGEDISTANCE, $averageDistance);
 		$this->cache->setCacheData(self::STANDARDDEVIATION, $standardDeviation);
+		$this->cache->setCacheData(self::DISTRIBUTION, $distribution);
+		$this->cache->setCacheData(self::FULLAXIALDISTRIBUTION, $fullaxialdistribution);
 		
 		$this->viewmodel->success = true;
 		$this->viewmodel->msg = "Statistics is now calculated.";
@@ -146,18 +195,20 @@ class Stat extends Controller {
 		}
 		$this->viewmodel->returnCoding = $id;
 		
+		$this->cache = new Cache();
 		
+		$this->cache->removeCacheData(self::MAXDISTANCE);
+		$this->cache->removeCacheData(self::MASTERPOINTDISTANCE);
+		$this->cache->removeCacheData(self::OUTLIERS);
+		$this->cache->removeCacheData(self::AVERAGEDISTANCE);
+		$this->cache->removeCacheData(self::STANDARDDEVIATION);
+		$this->cache->removeCacheData(self::DISTRIBUTION);
+		$this->cache->removeCacheData(self::FULLAXIALDISTRIBUTION);
 
 		$this->viewmodel->success = true;
-		$this->viewmodel->msg = "The master point list is now cleared";
+		$this->viewmodel->msg = "The statistics list is now cleared.";
 		return $this->View();
 	}
-	
-	const MAXDISTANCE = "Statistics_Max_Distance";
-	const MASTERPOINTDISTANCE = "Statistics_Distance_To_Masterpoint";
-	const OUTLIERS = "Statistics_Outliers";
-	const AVERAGEDISTANCE = "Statistics_Average_Distance";
-	const STANDARDDEVIATION = "Statistics_Standard_Deviation";
 }
 
 ?>

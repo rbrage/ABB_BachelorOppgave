@@ -198,7 +198,7 @@ class Register extends Controller {
 	 * /register/points/xml 	"shows coding options"
 	 * @param String $id
 	 */
-	public function reset($id){
+	public function Clear($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		

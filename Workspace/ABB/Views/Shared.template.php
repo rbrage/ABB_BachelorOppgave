@@ -19,12 +19,6 @@ body {
 <script src="/scripts/bootstrap.min.js" type="text/javascript"></script>
 <script src="/scripts/SSESideInfo.js" type="text/javascript"></script>
 
-
-<script src="/scripts/jquery.jqplot.min.js" type="text/javascript"></script>
-<script src="/scripts/jqplot.barRenderer.min.js" type="text/javascript"></script>
-<script src="/scripts/jqplot.categoryAxisRenderer.min.js" type="text/javascript"></script>
-<script src="/scripts/jqplot.BezierCurveRenderer.min.js" type="text/javascript"></script>
-
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
 <title>ABB Analyseprogram</title>
