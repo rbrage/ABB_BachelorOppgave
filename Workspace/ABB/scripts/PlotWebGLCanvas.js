@@ -42,9 +42,11 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		this.targetContainer = targetContainer;
 		this.clusterList = cluster;
 		
-		camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
+		camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
-	    camera.position.x = 500;
+	    camera.position.x = 3000;
+		camera.position.y = 3000;
+		camera.position.z = 3000;
 	
 	   
 		renderer = new THREE.WebGLRenderer( { clearColor: 0xF2F2F2, clearAlpha: 1 } );
@@ -84,7 +86,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		
 		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
-	    camera.position.x = 500;
+	    camera.position.x = 3000;
 		
 	    renderer = new THREE.CanvasRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
