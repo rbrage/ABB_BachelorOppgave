@@ -86,7 +86,9 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		
 		camera = new THREE.PerspectiveCamera(75, WIDTH / HEIGHT, 1, 10000);
 		camera.up = new THREE.Vector3( 0, 0, 1 );
-	    camera.position.x = 3000;
+	    camera.position.x = 3000; 
+		camera.position.y = 3000; 
+		camera.position.z = 3000;
 		
 	    renderer = new THREE.CanvasRenderer();
 	    renderer.setSize(WIDTH, HEIGHT);
@@ -159,7 +161,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    controls.dynamicDampingFactor = 0.5;
 
 	    controls.minDistance = 0.1;
-	    controls.maxDistance = 10000;
+	    controls.maxDistance = 30000;
 	   
 	    controls.keys = [65, 83, 68]; // [ rotateKey, zoomKey, panKey ]
 	}
