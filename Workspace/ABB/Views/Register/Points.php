@@ -28,7 +28,7 @@ else{
 		$points = array();
 		for($i = $this->viewmodel->start; $i < $this->viewmodel->stop && $i < $this->viewmodel->list->size(); $i++){
 			$item = $this->viewmodel->list->get($i);
-			$points[] = array("x" => floatval($item->x), "y" => floatval($item->y), "z" => floatval($item->z), "cluster" => intval($item->cluster), "timestamp" => doubleval($item->timestamp), "additionalinfo" => $item->getAdditionalInfo());
+			$points[] = array("x" => number_format(floatval($item->x), 2, ".", ""), "y" => number_format(floatval($item->y), 2, ".", ""), "z" => number_format(floatval($item->z), 2, ".", ""), "cluster" => intval($item->cluster), "timestamp" => doubleval($item->timestamp), "additionalinfo" => $item->getAdditionalInfo());
 		}
 		$response["Register"]["Points"] = $points;
 		echo json_encode($response);
@@ -46,9 +46,9 @@ else{
 			$point = $reg->addChild("Point");
 			$item = $this->viewmodel->list->get($i);
 			if(get_class($item) == "TriggerPoint"){
-				$point->addChild("x", $item->x);
-				$point->addChild("y", $item->y);
-				$point->addChild("z", $item->z);
+				$point->addChild("x", number_format($item->x, 2, ".", ""));
+				$point->addChild("y", number_format($item->y, 2, ".", ""));
+				$point->addChild("z", number_format($item->z, 2, ".", ""));
 				$point->addChild("cluster", $item->cluster);
 				$point->addChild("time", $item->timestamp);
 				$additionalinfo = $item->getAdditionalInfo();

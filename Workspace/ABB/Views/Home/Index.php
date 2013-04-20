@@ -121,9 +121,9 @@ $cacheinfo = $cache->getCacheInfo();
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>X</th>
-					<th>Y</th>
-					<th>Z</th>
+					<th style="text-align: right;">X</th>
+					<th style="text-align: right;">Y</th>
+					<th style="text-align: right;">Z</th>
 					<th>Cluster</th>
 					<th>Time</th>
 					<th>Additional Info</th>
@@ -137,9 +137,9 @@ $cacheinfo = $cache->getCacheInfo();
 						echo "
 				<tr id=". $i .">
 				<td id=\"num\">".$i."</td>
-				<td id=\"x\">".$item->x."</td>
-				<td id=\"y\">".$item->y."</td>
-				<td id=\"z\">".$item->z."</td>
+				<td style=\"text-align: right;\" id=\"x\">".number_format(floatval($item->x), 2, ".", "")."</td>
+				<td style=\"text-align: right;\" id=\"y\">".number_format(floatval($item->y), 2, ".", "")."</td>
+				<td style=\"text-align: right;\" id=\"z\">".number_format(floatval($item->z), 2, ".", "")."</td>
 				<td id=\"cluster\">".$item->cluster."</td>
 				<td id=\"time\">".$item->timestamp."</td>";
 					
@@ -173,9 +173,9 @@ $cacheinfo = $cache->getCacheInfo();
 						$.each(data.Register.Points, function(key, value){
 							$("#LastPointsTable > tbody").prepend("<tr id=" + start + ">" + 
 									"<td id=\"num\">" + start + "</td>" +
-									"<td id=\"x\">" + value.x + "</td>" +
-									"<td id=\"y\">" + value.y + "</td>" +
-									"<td id=\"z\">" + value.z + "</td>" +
+									"<td style=\"text-align: right;\" id=\"x\">" + value.x + "</td>" +
+									"<td style=\"text-align: right;\" id=\"y\">" + value.y + "</td>" +
+									"<td style=\"text-align: right;\" id=\"z\">" + value.z + "</td>" +
 									"<td id=\"cluster\">" + value.cluster + "</td>" +
 									"<td id=\"time\">" + value.timestamp + "</td>" +
 									"<td id=\"additionalinfo\"></td></tr>");

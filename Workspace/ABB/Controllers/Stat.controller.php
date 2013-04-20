@@ -29,6 +29,8 @@ class Stat extends Controller {
 	const FULLAXIALDISTRIBUTION = "Statistics_Fullaxial_Distribution";
 	const DISTRIBUTIONRESOLUTION = 20;
 	
+	const STATISTICSISRUN = "Statistics_Is_Run";
+	
 	/**
 	 * Gives a page with statistics.
 	 */
@@ -84,6 +86,8 @@ class Stat extends Controller {
 		
 		$this->cache = new Cache();
 		$this->settings = new CachedSettings();
+		
+		
 		
 		$outlierdistance = $this->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
 		
@@ -180,6 +184,8 @@ class Stat extends Controller {
 		$this->cache->setCacheData(self::DISTRIBUTION, $distribution);
 		$this->cache->setCacheData(self::FULLAXIALDISTRIBUTION, $fullaxialdistribution);
 		
+		$this->cache->setCacheData(self::STATISTICSISRUN, true);
+		
 		$this->viewmodel->success = true;
 		$this->viewmodel->msg = "Statistics is now calculated.";
 		return $this->View();
@@ -207,6 +213,7 @@ class Stat extends Controller {
 		$this->cache->removeCacheData(self::DISTRIBUTION);
 		$this->cache->removeCacheData(self::FULLAXIALDISTRIBUTION);
 
+		$this->cache->removeCacheData(self::STATISTICSISRUN);
 		$this->viewmodel->success = true;
 		$this->viewmodel->msg = "The statistics list is now cleared.";
 		return $this->View();

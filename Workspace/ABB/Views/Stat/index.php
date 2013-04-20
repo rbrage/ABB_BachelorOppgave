@@ -26,7 +26,7 @@ $this->template("Stat");
 		<p>Export statistical data to a PDF-file.</p>
 		<form action="/stat/CreatePDF/" method="GET" class="form-horizontal" target="_blank">
 			<div class="control-group">
-				<label class="control-label">Comments in to the report:</label>
+				<label class="control-label">Comments to the report:</label>
 				<div class="controls">
 					<textarea rows="5" name="ReportComment"></textarea>
 				</div>
@@ -66,8 +66,9 @@ $this->template("Stat");
 </section>	
 <?php 
 	$list = $this->viewmodel->clusterlist;
+	$cache = new Cache();
 	
-	if($list->size() > 0){
+	if($list->size() > 0 && $cache->hasKey(Stat::STATISTICSISRUN)){
 		for($i = 0; $i < $list->size(); $i++){
 			$point = $list->get($i);
 			?>
@@ -375,6 +376,6 @@ $this->template("Stat");
 	}
 		}
 			else{
-				echo "<p>There is no points to define the clusters, so no more spesific statistics can be viewed. Run the analysis first.</p>";
+				echo "<hr><p>There is no points to define the clusters, so no more spesific statistics can be viewed. Run the analysis first.</p>";
 			}
 			?>

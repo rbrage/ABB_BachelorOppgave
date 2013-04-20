@@ -119,9 +119,9 @@ $this->Template("Shared");
 					$.each(data.Master.Points, function(key, value){
 						$("#MasterPointTable > tbody").append("<tr id=" + start + ">" + 
 								"<td id=\"num\">" + start + "</td>" +
-								"<td id=\"x\">" + value.x + "</td>" +
-								"<td id=\"y\">" + value.y + "</td>" +
-								"<td id=\"z\">" + value.z + "</td>" +
+								"<td style=\"text-align: right;\" id=\"x\">" + value.x + "</td>" +
+								"<td style=\"text-align: right;\" id=\"y\">" + value.y + "</td>" +
+								"<td style=\"text-align: right;\" id=\"z\">" + value.z + "</td>" +
 								"<td id=\"cluster\">" + value.cluster + "</td>" +
 								"<td id=\"time\">" + value.timestamp + "</td>" +
 								"<td id=\"additionalinfo\"></td></tr>");
@@ -144,9 +144,9 @@ $this->Template("Shared");
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>X</th>
-					<th>Y</th>
-					<th>Z</th>
+					<th style="text-align: right;">X</th>
+					<th style="text-align: right;">Y</th>
+					<th style="text-align: right;">Z</th>
 					<th>Cluster</th>
 					<th>Time</th>
 					<th>Additional Info</th>
@@ -161,9 +161,9 @@ $this->Template("Shared");
 						echo "
 				<tr id=". $i .">
 				<td id=\"num\">".$i."</td>
-				<td id=\"x\">".$item->x."</td>
-				<td id=\"y\">".$item->y."</td>
-				<td id=\"z\">".$item->z."</td>
+				<td style=\"text-align: right;\" id=\"x\">".number_format(floatval($item->x), 2, ".", "")."</td>
+				<td style=\"text-align: right;\" id=\"y\">".number_format(floatval($item->y), 2, ".", "")."</td>
+				<td style=\"text-align: right;\" id=\"z\">".number_format(floatval($item->z), 2, ".", "")."</td>
 				<td id=\"cluster\">".$item->cluster."</td>
 				<td id=\"time\">".$item->timestamp."</td>";
 					
@@ -209,9 +209,9 @@ $this->Template("Shared");
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>X</th>
-					<th>Y</th>
-					<th>Z</th>
+					<th style="text-align: right;">X</th>
+					<th style="text-align: right;">Y</th>
+					<th style="text-align: right;">Z</th>
 					<th>Cluster</th>
 					<th>Time</th>
 					<th>Additional Info</th>
@@ -227,9 +227,9 @@ $this->Template("Shared");
 					echo "
 				<tr id=". $itemnumber .">
 				<td>".$itemnumber."</td>
-				<td>".$item->x."</td>
-				<td>".$item->y."</td>
-				<td>".$item->z."</td>
+				<td style=\"text-align: right;\">".number_format(floatval($item->x), 2, ".", "")."</td>
+				<td style=\"text-align: right;\">".number_format(floatval($item->y), 2, ".", "")."</td>
+				<td style=\"text-align: right;\">".number_format(floatval($item->z), 2, ".", "")."</td>
 				<td>".$item->cluster."</td>
 				<td>".$item->timestamp."</td>";
 					
@@ -288,9 +288,9 @@ $this->Template("Shared");
 					$.each(data.Outlier.Points, function(key, value){
 						$("#OutlyingTable > tbody").append("<tr id=" + key + ">" + 
 							"<td id=\"num\">" + key + "</td>" +
-							"<td id=\"x\">" + value.x + "</td>" +
-							"<td id=\"y\">" + value.y + "</td>" +
-							"<td id=\"z\">" + value.z + "</td>" +
+							"<td style=\"text-align: right;\" id=\"x\">" + value.x + "</td>" +
+							"<td style=\"text-align: right;\" id=\"y\">" + value.y + "</td>" +
+							"<td style=\"text-align: right;\" id=\"z\">" + value.z + "</td>" +
 							"<td id=\"cluster\">" + value.cluster + "</td>" +
 							"<td id=\"time\">" + value.timestamp + "</td>" +
 							"<td id=\"additionalinfo\"></td></tr>");
@@ -323,9 +323,9 @@ $this->Template("Shared");
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>X</th>
-					<th>Y</th>
-					<th>Z</th>
+					<th style="text-align: right;">X</th>
+					<th style="text-align: right;">Y</th>
+					<th style="text-align: right;">Z</th>
 					<th>Cluster</th>
 					<th>Time</th>
 					<th>Additional Info</th>
@@ -339,9 +339,9 @@ $this->Template("Shared");
 						echo "
 				<tr id=". $i .">
 				<td id=\"num\">".$i."</td>
-				<td id=\"x\">".$item->x."</td>
-				<td id=\"y\">".$item->y."</td>
-				<td id=\"z\">".$item->z."</td>
+				<td style=\"text-align: right;\" id=\"x\">".number_format(floatval($item->x), 2, ".", "")."</td>
+				<td style=\"text-align: right;\" id=\"y\">".number_format(floatval($item->y), 2, ".", "")."</td>
+				<td style=\"text-align: right;\" id=\"z\">".number_format(floatval($item->z), 2, ".", "")."</td>
 				<td id=\"cluster\">".$item->cluster."</td>
 				<td id=\"time\">".$item->timestamp."</td>";
 					
@@ -380,9 +380,9 @@ $this->Template("Shared");
 						$.each(data.Register.Points, function(key, value){
 							$("#PointTable > tbody").append("<tr id=" + start + ">" + 
 								"<td id=\"num\">" + start + "</td>" +
-								"<td id=\"x\">" + value.x + "</td>" +
-								"<td id=\"y\">" + value.y + "</td>" +
-								"<td id=\"z\">" + value.z + "</td>" +
+								"<td style=\"text-align: right;\" id=\"x\">" + value.x + "</td>" +
+								"<td style=\"text-align: right;\" id=\"y\">" + value.y + "</td>" +
+								"<td style=\"text-align: right;\" id=\"z\">" + value.z + "</td>" +
 								"<td id=\"cluster\">" + value.cluster + "</td>" +
 								"<td id=\"time\">" + value.timestamp + "</td>" +
 								"<td id=\"additionalinfo\"></td></tr>");

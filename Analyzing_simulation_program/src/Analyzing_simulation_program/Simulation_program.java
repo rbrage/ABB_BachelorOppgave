@@ -212,7 +212,7 @@ public class Simulation_program extends JFrame implements ActionListener
 				lasttime = Long.parseLong(props[1].trim());
 				time = getTime();
 
-				String path = "http://localhost:8888/register/trigger/xml?";
+				String path = "http://abb.hf-data.no/register/trigger/xml?";
 				URL url;
 				URLConnection urlConnection = null;
 				DataInputStream inStream;

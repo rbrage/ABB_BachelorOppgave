@@ -78,7 +78,7 @@ class Cluster extends Controller {
 	
 	/**
 	 * Forces a new cluster analysis by clearing all previus information first. Answers either in json or xml, given in id, that have to be set. 
-	 * @param unknown_type $id
+	 * @param String $id
 	 */
 	public function ForceAnalysis($id){
 		$this->viewmodel->error = false;
@@ -143,7 +143,7 @@ class Cluster extends Controller {
 	 * Gives all of the points that defines cluster sentrums. Answers either in json or xml, given in id, that have to be set.
 	 * @param String $id
 	 */
-	public function points($id){
+	public function Points($id){
 		$this->viewmodel->error = false;
 		$this->viewmodel->noCoding = false;
 		
