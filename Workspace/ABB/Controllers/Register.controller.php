@@ -178,7 +178,7 @@ class Register extends Controller {
 			$this->viewmodel->msg = "Your request is outside the cached size. Request order is sized down.";
 		}
 		
-		if($start > $this->viewmodel->list->size()){
+		if($start > $this->viewmodel->list->size()  || $start < 0){
 			$start = $this->viewmodel->list->size();
 			$this->viewmodel->msg = "Your request is outside the cached size. Request order is sized down.";
 		}
