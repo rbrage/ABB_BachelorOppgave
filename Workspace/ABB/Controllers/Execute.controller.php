@@ -76,7 +76,7 @@ class Execute extends Controller {
 		}
 		else{
 			foreach ($commands as $cmd)
-				shell_exec("" . $cmd . " /dev/null" . (($this->inBackground)?" &":""));
+				shell_exec("" . $cmd . " > /dev/null" . (($this->inBackground)?" &":""));
 		}
 	}
 	
