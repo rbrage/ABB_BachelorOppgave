@@ -84,31 +84,31 @@ $this->template("Stat");
 					<tbody>
 						<tr>
 							<td><b>X</b></td>
-							<td><b><?php echo round($point->x, 2); ?></b></td>
+							<td style="text-align: right;"><b><?php echo round($point->x, 2); ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Y</b></td>
-							<td><b><?php echo round($point->y, 2); ?></b></td>
+							<td style="text-align: right;"><b><?php echo round($point->y, 2); ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Z</b></td>
-							<td><b><?php echo round($point->z, 2); ?></b></td>
+							<td style="text-align: right;"><b><?php echo round($point->z, 2); ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Points in cluster</b></td>
-							<td><b><?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?></b></td>
+							<td style="text-align: right;"><b><?php echo $point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)?></b></td>
 						</tr>
 						<tr>
 							<td><b>Distance to the most distant point</b></td>
-							<td><b><?php $maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE); echo @$maxDistance[$i]; ?></b></td>
+							<td style="text-align: right;"><b><?php $maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE); echo @$maxDistance[$i]; ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Offset distance from master point</b></td>
-							<td><b><?php $masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$masterDistance[$i]; ?></b></td>
+							<td style="text-align: right;"><b><?php $masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$masterDistance[$i]; ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Standard deviation from cluster center</b></td>
-							<td><b>
+							<td style="text-align: right;"><b>
 								<?php 
 									$standardDeviation = $this->viewmodel->cache->getCacheData(Stat::STANDARDDEVIATION); 
 									echo "" . @$standardDeviation[$i]["x"] . " @ x-axis<br>";
@@ -120,11 +120,11 @@ $this->template("Stat");
 						</tr>
 						<tr>
 							<td><b>Outlaying Points</b></td>
-							<td><b><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></b></td>
+							<td style="text-align: right;"><b><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Average distance</b></td>
-							<td><b><?php $averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE); echo @$averageDistance[$i]; ?></b></td>
+							<td style="text-align: right;"><b><?php $averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE); echo @$averageDistance[$i]; ?></b></td>
 						</tr>
 					</tbody>
 				</table>

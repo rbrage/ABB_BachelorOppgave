@@ -373,16 +373,18 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, plotWeb
 		
 		if(_eye.lengthSq()<500)
 			scale = 0.5;
-		if(_eye.lengthSq()<1000&& (_eye.lengthSq()>500))
+		if((_eye.lengthSq()>500) && (_eye.lengthSq()<1000))
 			scale = 1;
-		if((_eye.lengthSq()<10000) && (_eye.lengthSq()>1000))
+		if((_eye.lengthSq()>1000) && (_eye.lengthSq()<10000))
 			scale = 2;
-		if((_eye.lengthSq()<15000) && (_eye.lengthSq()>10000))
+		if((_eye.lengthSq()>10000) && (_eye.lengthSq()<15000))
 			scale = 4;
-		if((_eye.lengthSq()<100000) && (_eye.lengthSq()>15000))
+		if((_eye.lengthSq()>15000) && (_eye.lengthSq()<100000))
 			scale = 6;
-		if((_eye.lengthSq()<1000000) && (_eye.lengthSq()>100000))
+		if((_eye.lengthSq()>100000) && (_eye.lengthSq()<1000000))
 			scale = 10;
+		if((_eye.lengthSq()>1000000) && (_eye.lengthSq()<10050000))
+			scale = 12;
 		
    	 	
    	 	this.centroidSphere.position.x = _this.target.x;

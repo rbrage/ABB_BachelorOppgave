@@ -92,9 +92,9 @@ $this->template("Shared");
 						tbody.append(
 								"<tr>" +
 									"<td>" + value.clusterID + "</td>" + 
-									"<td>" + value.x + "</td>" + 
-									"<td>" + value.y + "</td>" + 
-									"<td>" + value.z + "</td>" + 
+									"<td style=\"text-align: right;\" id=\"x\">" + value.x + "</td>" + 
+									"<td style=\"text-align: right;\" id=\"y\">" + value.y + "</td>" + 
+									"<td style=\"text-align: right;\" id=\"z\">" + value.z + "</td>" + 
 									"<td>" + value.connections + "</td>" + 
 								"</tr>");
 					});
@@ -111,9 +111,9 @@ $this->template("Shared");
 			<thead>
 				<tr>
 					<th>#</th>
-					<th>X</th>
-					<th>Y</th>
-					<th>Z</th>
+					<th style="text-align: right;">X</th>
+					<th style="text-align: right;">Y</th>
+					<th style="text-align: right;">Z</th>
 					<th>Connections</th>
 				</tr>
 			</thead>
@@ -128,9 +128,9 @@ $this->template("Shared");
 					echo "
 				<tr>
 					<td>".$i."</td>
-					<td>".round($point->x, 2)."</td>
-					<td>".round($point->y, 2)."</td>
-					<td>".round($point->z, 2)."</td>
+					<td style=\"text-align: right;\" id=\"x\">".round($point->x, 2)."</td>
+					<td style=\"text-align: right;\" id=\"x\">".round($point->y, 2)."</td>
+					<td style=\"text-align: right;\" id=\"x\">".round($point->z, 2)."</td>
 					<td>".$point->getAdditionalInfo(KMeans::CLUSTERCOUNTNAME)."</td>
 				</tr>";
 				}
