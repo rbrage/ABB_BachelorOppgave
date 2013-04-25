@@ -6,4 +6,4 @@ mkdir C:\TriggerAnalysisWebScripts
 Xcopy /e /h ..\Workspace\ABB C:\TriggerAnalysisWebScripts\
 c:\Apache24\bin\httpd.exe -k install
 c:\Apache24\bin\httpd.exe -k start
-c:\Apache24\bin\ApacheMonitor.exe
+start /b c:\Apache24\bin\ApacheMonitor.exe
