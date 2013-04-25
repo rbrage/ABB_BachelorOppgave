@@ -1,13 +1,12 @@
 <?php
 $list = $this->viewmodel->clusterlist;
-if($list->size() > 0){
-	$menulist = array();
-		for($i = 0; $i < $list->size(); $i++){
-			$menulist["clusterinformation$i"] = "Cluster $i";
-		};
-		
-	$this->viewmodel->templatemenu = $menulist;
+
+$menulist = array("stat" => "Statistics");
+for($i = 0; $i < $list->size(); $i++){
+	$menulist["clusterinformation$i"] = "Cluster $i";
 };
+$this->viewmodel->templatemenu = $menulist;
+
 $this->template("Stat");
 ?>
 
