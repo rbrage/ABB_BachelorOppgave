@@ -202,6 +202,10 @@ $this->Template("Shared");
 		<h2>Outlying points</h2>
 	</div>
 	<div class="alert hide"></div>
+	<p>Poins will be marked as outliers if they have a distance more than <?php 
+		$setting = new CachedSettings();
+		echo $setting->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
+	?>.</p>
 	<button id="RunOutlierAnalysisButton" class="btn">Run analysis</button>
 	<button id="ClearOutlierpointsButton" class="btn">Clear outliers</button>
 	<br>
