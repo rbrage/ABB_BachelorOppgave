@@ -315,7 +315,7 @@ $this->template("Stat");
 				                },
 				                linePattern: 'dotted',
 				                shadow: false,
-				                label: 'X line'
+				                label: 'Y line'
 					        },
 				            {
 				                showMarker:false,
