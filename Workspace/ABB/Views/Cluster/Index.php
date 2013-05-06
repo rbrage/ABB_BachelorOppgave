@@ -15,12 +15,12 @@ $this->template("Shared");
 	<?php $settings = $this->viewmodel->settings; ?>
 	<p>Number of clusters: <?php echo $settings->getSetting(CachedSettings::NUMBEROFCLUSTERS); ?></p>
 	<p>Max points to use: <?php echo $settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS); ?></p>
-	<p>Run analysis while submition: <?php echo (($settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION))?"Yes":"No"); ?></p>
-	<p>Random initial clusterpoints: <?php echo (($settings->getSetting(CachedSettings::RANDOMINITIALCLUSTERPOINTS))?"Yes":"No"); ?></p>
+	<p>Run analysis while submission: <?php echo (($settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION))?"Yes":"No"); ?></p>
+	<p>Random initial cluster points: <?php echo (($settings->getSetting(CachedSettings::RANDOMINITIALCLUSTERPOINTS))?"Yes":"No"); ?></p>
 	
 	<h4>Actions</h4>
 	<button class="btn" id="runButton">Run analysis</button>
-	<button class="btn" id="reasignButton">Reasign all points</button>
+	<button class="btn" id="reassignButton">Reassign all points</button>
 	<button class="btn" id="forceNewButton">Force new analysis</button>
 	<button class="btn" id="clearButton">Clear clusterpoints</button>
 	<script type="text/javascript">
@@ -68,7 +68,7 @@ $this->template("Shared");
 				}
 			});
 
-			$("#reasignButton").click(function(){
+			$("#reassignButton").click(function(){
 				$("#options > .alert").removeClass("alert-success").removeClass("alert-error").html(closeButton + "A reasignment of all points have started. Don't refresh the browser!").fadeIn(800);
 				$.getJSON("/cluster/reasignpoints/json", function(data){
 						$("#options > .alert").removeClass("alert-error").addClass("alert-success").html(closeButton + data.Request.Message).fadeIn(800);

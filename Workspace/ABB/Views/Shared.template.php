@@ -86,7 +86,7 @@ body {
 						<table class="table table-condensed">
 							<tbody>
 								<tr>
-									<td>Number of triggerpoints:</td>
+									<td>Number of trigger points:</td>
 									<td id="pointsize"><?php echo $pointlist->size(); ?></td>
 								</tr>
 								<tr>
@@ -102,11 +102,11 @@ body {
 									<td id="clustersize"><?php echo $clusterlist->size(); ?></td>
 								</tr>
 								<tr>
-									<td>Number of masterpoints:</td>
+									<td>Number of master points:</td>
 									<td id="mastersize"><?php echo $masterlist->size(); ?></td>
 								</tr>
 								<tr>
-									<td>Number of outlyers:</td>
+									<td>Number of outliers:</td>
 									<td id="outliersize"><?php echo $outlierlist->size(); ?></td>
 								</tr>
 								</tbody>

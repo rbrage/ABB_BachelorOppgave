@@ -118,7 +118,7 @@ $this->template("Stat");
 							</td>
 						</tr>
 						<tr>
-							<td><b>Outlaying Points</b></td>
+							<td><b>Outlying Points</b></td>
 							<td style="text-align: right;"><b><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></b></td>
 						</tr>
 						<tr>
@@ -256,7 +256,7 @@ $this->template("Stat");
 		        var plot<?php echo $i; ?> = $.jqplot("fullaxisdistrubiation<?php echo $i; ?>", [s1, s2, s3, s1, s2, s3], {
 			            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
 			            animate: !$.jqplot.use_excanvas,
-			            title: "1D distrubiation chart",
+			            title: "1D distribution chart",
 			            seriesDefaults:{
 			                pointLabels: { show: false }
 				        },

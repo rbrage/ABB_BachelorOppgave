@@ -241,7 +241,7 @@ iframe.dealply-toast.fastestext-revealed {
 							<table class="table table-condensed text">
 							<tbody>
 								<tr>
-									<td>Number of triggerpoints:</td>
+									<td>Number of trigger points:</td>
 									<td id="pointsize"><?php echo $pointlist->size(); ?></td>
 								</tr>
 								<tr>

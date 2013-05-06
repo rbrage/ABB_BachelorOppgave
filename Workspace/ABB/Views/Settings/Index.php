@@ -1,5 +1,5 @@
 <?php
-$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "OutlyingPoints" => "Outlying Points", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Triggerprogram");
+$this->viewmodel->templatemenu = array("CacheSettings" => "Cache settings", "ClusterAnalysis" => "Cluster analysis", "OutlyingPoints" => "Outlying Points", "MasterPointSettings" => "Master Point Triggering", "TriggerprogramSettings" => "Trigger program");
 $this->Template("Shared");
 ?>
 
@@ -16,8 +16,8 @@ $this->Template("Shared");
 	<div class="form-horizontal">
 		<h4>Clear point cache</h4>
 		<p>This option can be used to clear the cache for trigger points. If
-			this is used the pointlist will be put back to zero points. This does
-			not clear the memory, but old points will be overwriten as new points
+			this is used the point list will be put back to zero points. This does
+			not clear the memory, but old points will be overwritten as new points
 			gets submitted.		
 		<p>
 		
@@ -46,8 +46,8 @@ $this->Template("Shared");
 	<div class="form-horizontal">
 		<h4>Clear cluster cache</h4>
 		<p>This option can be used to clear the cache for cluster points. If
-			this is used the cluster pointlist will be put back to zero points. This does
-			not clear the memory, but old points will be overwriten as new points
+			this is used the cluster point list will be put back to zero points. This does
+			not clear the memory, but old points will be overwritten as new points
 			gets submitted.		
 		<p>
 		
@@ -76,8 +76,8 @@ $this->Template("Shared");
 	<div class="form-horizontal">
 		<h4>Clear master point cache</h4>
 		<p>This option can be used to clear the cache for master points. If
-			this is used the master pointlist will be put back to zero points. This does
-			not clear the memory, but old points will be overwriten as new points
+			this is used the master point list will be put back to zero points. This does
+			not clear the memory, but old points will be overwritten as new points
 			gets submitted.		
 		<p>
 		
@@ -107,7 +107,7 @@ $this->Template("Shared");
 		<h4>Clear outlier cache</h4>
 		<p>This option can be used to clear the cache for outlier data. If
 			this is used the outlier data will be put back to zero points. This does
-			not clear the memory, but old points will be overwriten as new points
+			not clear the memory, but old points will be overwritten as new points
 			gets submitted.		
 		<p>
 		
@@ -178,21 +178,21 @@ $this->Template("Shared");
 			clusters every time a point get submitted.</p>
 			<div class="alert alert-block">
 				<h4>Notice!</h4>
-				<p>May result in point submittions use up all of the resources on the 
-				server and block new submittions. To avoid this from happening try to 
-				keep the number of points that lockes in a cluster low.</p>
+				<p>May result in point submissions use up all of the resources on the 
+				server and block new submissions. To avoid this from happening try to 
+				keep the number of points that locks in a cluster low.</p>
 			</div>
 			<div class="control-group">
 				<div class="controls">
 					<label class="checkbox"> <input type="checkbox"
 						name="<?php echo CachedSettings::ANALYSECLUSTERSWHILESUBMITION; ?>"
 						<?php if($this->viewmodel->settings->getSetting(CachedSettings::ANALYSECLUSTERSWHILESUBMITION)) echo "checked"; ?> />
-						Calculate on each point submittion
+						Calculate on each point submission
 					</label>
 				</div>
 			</div>
-			<p>If the analysis dont give you a sufficent result you can use a random 
-			assignement of the initial points that are used to calculate clusters around.</p>
+			<p>If the analysis dont give you a sufficient result you can use a random 
+			assignment of the initial points that are used to calculate clusters around.</p>
 			<div class="alert alert-block">
 				<h4>Notice!</h4>
 				<p>May result result in higher runtime of the analysis.</p>
@@ -206,7 +206,7 @@ $this->Template("Shared");
 					<label class="checkbox"> <input type="checkbox"
 						name="<?php echo CachedSettings::RANDOMINITIALCLUSTERPOINTS; ?>"
 						<?php if($this->viewmodel->settings->getSetting(CachedSettings::RANDOMINITIALCLUSTERPOINTS)) echo "checked"; ?> />
-						Random initial clusterpoints
+						Random initial cluster points
 					</label>
 				</div>
 			</div>
@@ -254,7 +254,7 @@ $this->Template("Shared");
 		<h2>Outlying points</h2>
 	</div>
 	<p>Here you can set the maximum distance you consider as valid points. 
-	When a outlier analysis is run this is the distance it will controll against. 
+	When a outlier analysis is run this is the distance it will control against. 
 	Points that is outside will be marked and shown as outlying points.</p>
 	<form action="/settings/outlier" method="GET" class="form-horizontal">
 		<div class="control-group">
@@ -284,7 +284,7 @@ $this->Template("Shared");
 	<div class="page-header">
 		<h2>Master Point Triggering</h2>
 	</div>
-	<p>Write in the code, as in an commandline formation, for trigger the sensor to retrive a master point. 
+	<p>Write in the code, as in an commandline formation, for trigger the sensor to retrieve a master point. 
 	When you want a master point the system will be put into a state that takes the next point as a master point and then run this code.</p>
 	<div>
 		<form action="masterpoint" method="GET" class="form-horizontal">
@@ -300,7 +300,7 @@ $this->Template("Shared");
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">Code to be run to retrive a masterpoint:</label>
+				<label class="control-label">Code to be run to retrieve a master point:</label>
 				<div class="controls">
 					<textarea rows="5" name="<?php echo CachedSettings::KODETOMASTERPOINTTRIGGERING; ?>"><?php echo $this->viewmodel->settings->getSetting(CachedSettings::KODETOMASTERPOINTTRIGGERING); ?></textarea>
 				</div>
@@ -319,7 +319,7 @@ $this->Template("Shared");
 <section id="TriggerprogramSettings">
 <br>
 	<div class="page-header">
-		<h2>Triggerprogram</h2>
+		<h2>Trigger program</h2>
 	</div>
 	<div>
 	<p>Put in the code, as a commandline format, that need to be run to start ut the sensor program.</p>
@@ -335,14 +335,14 @@ $this->Template("Shared");
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label">Code to be run to start the triggeringprogram:</label>
+				<label class="control-label">Code to be run to start the triggering program:</label>
 				<div class="controls">
 					<textarea rows="5" name="<?php echo CachedSettings::KODETOTRIGGERPROGRAMSTART; ?>"><?php echo $this->viewmodel->settings->getSetting(CachedSettings::KODETOTRIGGERPROGRAMSTART); ?></textarea>
 				</div>
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<input type="submit" value="Save triggerprogram settings" class="btn" />
+					<input type="submit" value="Save trigger program settings" class="btn" />
 				</div>
 			</div>
 		</form>

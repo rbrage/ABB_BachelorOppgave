@@ -81,14 +81,14 @@ $this->Template("Shared");
 	
 	<div class="alert hide"></div>
 	<div>
-	<button id="AsignMasterpointsToClustersButton" class="btn">Asign Masterpoints To Clusters</button>
-	<button id="ClearMasterpointsButton" class="btn">Clear masterpoints</button>
+	<button id="AssignMasterpointsToClustersButton" class="btn">Assign master points To Clusters</button>
+	<button id="ClearMasterpointsButton" class="btn">Clear master points</button>
 	
 	<script type="text/javascript">
 
 		$(function(){
 
-			$("#AsignMasterpointsToClustersButton").click(function(){
+			$("#AssignMasterpointsToClustersButton").click(function(){
 				$.getJSON("/master/AsignToCluster/json", function(data){
 					$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
 					updatemasterpoints();
@@ -96,7 +96,7 @@ $this->Template("Shared");
 			});
 			
 			$("#ClearMasterpointsButton").click(function(){
-				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all masterpoints?")){
+				if(confirm("After using the clear option you will not be able to get any points back. Are you sure you want to clear all master points?")){
 					$.getJSON("/master/clear/json", function(data){
 						$("#masterpoints > .alert").html(data.Request.Message).fadeIn(800);
 						$("#MasterPointTable > tbody").html("<tr><td colspan=\"7\">There is no points to show you.</td></tr>");
@@ -202,7 +202,7 @@ $this->Template("Shared");
 		<h2>Outlying points</h2>
 	</div>
 	<div class="alert hide"></div>
-	<p>Poins will be marked as outliers if they have a distance more than <?php 
+	<p>Points will be marked as outliers if they have a distance more than <?php 
 		$setting = new CachedSettings();
 		echo $setting->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
 	?>.</p>
