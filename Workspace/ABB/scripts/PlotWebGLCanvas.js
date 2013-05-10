@@ -169,7 +169,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	function addAxis(size) {
 	    
 		this.axisSize= size;
-		group = new THREE.Object3D();
+		axis = new THREE.Object3D();
 		
 		var lineGeometry = new THREE.Geometry();
 
@@ -179,19 +179,19 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 		// X-Axis
 		var x_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0xff0000 } ) );
 		x_line.rotation.z = - Math.PI / 2;
-		group.add( x_line );
+		axis.add( x_line );
 		
 		// Y-Axis
 		var y_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0x00ff00 } ) );
-		group.add( y_line );
+		axis.add( y_line );
 		
 		// Z-Axis
 		var z_line = new THREE.Line( lineGeometry, new THREE.LineBasicMaterial( { color : 0x0000ff } ) );
 		z_line.rotation.x = Math.PI / 2;
-		group.add( z_line );
+		axis.add( z_line );
 		
 	    
-	    scene.add(group);
+	    scene.add(axis);
 	    
 	    
 	}

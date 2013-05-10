@@ -124,7 +124,6 @@ iframe.dealply-toast.fastestext-revealed {
 </style>
 
 <script type="text/javascript" src="/scripts/PlotWebGLCanvas.js"></script>
-<script type="text/javascript" src="/scripts/three.min.js"></script>
 <script type="text/javascript" src="/scripts/three.js"></script>
 <script type="text/javascript" src="/scripts/TrackballControls.js"></script>
 <script type="text/javascript" src="/scripts/Detector.js"></script>
