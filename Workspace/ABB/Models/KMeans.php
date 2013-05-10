@@ -240,7 +240,7 @@ class KMeans extends ClusterAlgorithm {
 	/**
 	 * Clears any analysis that has been run earlier by clearing any defined clusters and put all points that has been asigned back to cluster 0 limited by max points it should go through.
 	 */
-	public function forceNewAnalysis(){
+	public function clearAnalysis(){
 		$this->clusterlist->clear();
 		$this->cache->removeCacheData(self::CLUSTERANALYSISRUNNINGNAME);
 		for($i = 0; $i < $this->pointsToCrush && $i < $this->pointlist->size(); $i++){

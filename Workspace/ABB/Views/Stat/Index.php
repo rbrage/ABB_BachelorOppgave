@@ -68,6 +68,15 @@ $this->template("Stat");
 	$cache = new Cache();
 	
 	if($list->size() > 0 && $cache->hasKey(Stat::STATISTICSISRUN)){
+		$standardDeviation = $this->viewmodel->cache->getCacheData(Stat::STANDARDDEVIATION);
+		$outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS);
+		$averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE);
+		$maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE);
+		$masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE);
+		$totaldistrubiation = $this->viewmodel->cache->getCacheData(Stat::DISTRIBUTION);
+		$fullaxialdistrubiation = $this->viewmodel->cache->getCacheData(Stat::FULLAXIALDISTRIBUTION);
+		$outlierdistance = $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
+		
 		for($i = 0; $i < $list->size(); $i++){
 			$point = $list->get($i);
 			?>
@@ -99,17 +108,16 @@ $this->template("Stat");
 						</tr>
 						<tr>
 							<td><b>Distance to the most distant point</b></td>
-							<td style="text-align: right;"><b><?php $maxDistance = $this->viewmodel->cache->getCacheData(Stat::MAXDISTANCE); echo @$maxDistance[$i]; ?></b></td>
+							<td style="text-align: right;"><b><?php echo @$maxDistance[$i]; ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Offset distance from master point</b></td>
-							<td style="text-align: right;"><b><?php $masterDistance = $this->viewmodel->cache->getCacheData(Stat::MASTERPOINTDISTANCE); echo @$masterDistance[$i]; ?></b></td>
+							<td style="text-align: right;"><b><?php echo @$masterDistance[$i]; ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Standard deviation from cluster center</b></td>
 							<td style="text-align: right;"><b>
 								<?php 
-									$standardDeviation = $this->viewmodel->cache->getCacheData(Stat::STANDARDDEVIATION); 
 									echo "" . @$standardDeviation[$i]["x"] . " @ x-axis<br>";
 									echo "" . @$standardDeviation[$i]["y"] . " @ y-axis<br>";
 									echo "" . @$standardDeviation[$i]["z"] . " @ z-axis<br>";
@@ -119,11 +127,11 @@ $this->template("Stat");
 						</tr>
 						<tr>
 							<td><b>Outlying Points</b></td>
-							<td style="text-align: right;"><b><?php $outliers = $this->viewmodel->cache->getCacheData(Stat::OUTLIERS); echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></b></td>
+							<td style="text-align: right;"><b><?php echo @$outliers[$i] . " points > " . $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE); ?></b></td>
 						</tr>
 						<tr>
 							<td><b>Average distance</b></td>
-							<td style="text-align: right;"><b><?php $averageDistance = $this->viewmodel->cache->getCacheData(Stat::AVERAGEDISTANCE); echo @$averageDistance[$i]; ?></b></td>
+							<td style="text-align: right;"><b><?php echo @$averageDistance[$i]; ?></b></td>
 						</tr>
 					</tbody>
 				</table>
@@ -136,11 +144,6 @@ $this->template("Stat");
 			</div>
 			
 			<script type="text/javascript">
-				<?php 
-					$totaldistrubiation = $this->viewmodel->cache->getCacheData(Stat::DISTRIBUTION);
-					$fullaxialdistrubiation = $this->viewmodel->cache->getCacheData(Stat::FULLAXIALDISTRIBUTION);
-					$outlierdistance = $this->viewmodel->settings->getSetting(CachedSettings::OUTLIERCONTROLLDISTANCE);
-				?>
 				$(document).ready(function(){
 				$.jqplot._noToImageButton = true;
 		        $.jqplot.config.enablePlugins = true;

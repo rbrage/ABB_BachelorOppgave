@@ -40,8 +40,11 @@ class Cluster extends Controller {
 		}
 		$this->viewmodel->returnCoding = $id;
 		
-		$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
-		$this->clusterlist->clear();
+		//$this->clusterlist = new CachedArrayList(ListNames::CLUSTERLISTNAME);
+		//$this->clusterlist->clear();
+
+		$this->cluster = new KMeans(1);
+		$this->cluster->clearAnalysis();
 
 		$this->viewmodel->success = true;
 		$this->viewmodel->msg = "The cluster list is cleared.";
@@ -96,7 +99,7 @@ class Cluster extends Controller {
 		$this->cluster = new KMeans($this->settings->getSetting(CachedSettings::NUMBEROFCLUSTERS));
 		$this->cluster->setNumberOfPointsToDeterminClusters($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
 		$this->cluster->setRandomSelectionOfInitialCluster($this->settings->getSetting(CachedSettings::MAXPOINTSINCLUSTERANALYSIS));
-		$this->cluster->forceNewAnalysis();
+		$this->cluster->clearAnalysis();
 		$this->cluster->calculateClusters();
 		$this->cluster->asignAllPointsToClusters();
 		

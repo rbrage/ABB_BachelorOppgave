@@ -26,7 +26,7 @@ abstract class ClusterAlgorithm {
 	/**
 	 * Clears any analysis that has been run earlier by clearing any defined clusters and put all points that has been asigned back to cluster 0 limited by max points it should go through.
 	 */
-	public abstract function forceNewAnalysis();
+	public abstract function clearAnalysis();
 	
 	/**
 	 * Asigns a new point to a defined nearast cluster. Return a boolean to tell if a new analysis should be run.
