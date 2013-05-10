@@ -1,5 +1,5 @@
 <?php 
-$this->viewmodel->templatemenu = array("execute" => "Run triggering", "report" => "Report", "last" => "Last 10 Points");
+$this->viewmodel->templatemenu = array("execute" => "Sensor program options", "informasjon" => "Informasjon", "report" => "Report", "last" => "Last 10 Points");
 
 $this->Template("Home");
 ?>
@@ -7,10 +7,10 @@ $this->Template("Home");
 <section id="execute">
 <br>
 	<div class="page-header">
-		<h2>Run triggering</h2>
+		<h2>Sensor program options</h2>
 	</div>
 	<div class="alert hide"></div>
-	<button id="triggerprogramButton" class="btn">Run Triggerprogram</button>
+	<button id="triggerprogramButton" class="btn">Start Triggerprogram</button>
 	<script type="text/javascript">
 		$(function(){
 			$("#triggerprogramButton").click(function(){
@@ -49,15 +49,11 @@ $outlierlist = new CachedArrayList(ListNames::OUTLYINGPOINTLISTNAME);
 $cacheinfo = $cache->getCacheInfo();
 
 ?>
-<section id="report">
-<br>
-	<div class="page-header">
-		<h2>Report</h2> 
-	</div>
-	<div>
-		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
-	</div>
+<section id="informasjon">
 	<br>
+	<div class="page-header">
+		<h2>Informasjon</h2> 
+	</div>
 	<div class="row-fluid">
 		<div class="span6">
 		<table class="table table-condensed">
@@ -106,7 +102,15 @@ $cacheinfo = $cache->getCacheInfo();
 		</div>
 	</div>
 </section>
-
+<section id="report">
+<br>
+	<div class="page-header">
+		<h2>Report</h2> 
+	</div>
+	<div>
+		<a id="createPDF" class="btn" href="/stat/CreatePDF" target="_blank">Create PDF</a>
+	</div>
+</section>
 <section id="last">
 <br>
 	<div class="page-header">
