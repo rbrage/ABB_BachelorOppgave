@@ -360,10 +360,10 @@ iframe.dealply-toast.fastestext-revealed {
 							</table>
 							<hr/>
 							<label class="checkbox">
-								<input type="checkbox" id="drawMasterpoint" onclick="masterCheck()" >Draw Masterpoint?
+								<input type="checkbox" id="drawMasterpoint" onclick="masterCheck()" >Draw Masterpoint
 							</label>
 							<label class="checkbox">
-								<input type="checkbox" id="drawBall" onclick="ballCheck()" >Draw Ball?
+								<input type="checkbox" id="drawBall" onclick="ballCheck()" >Draw Ball
 							</label>
 								<input id="slider" type="range" class="transperantBG" min="0" max="100" step="0.2" value="10" onchange="ballSize(this.value)"/><br/>
 							<input id="range" type="text" value="10" onchange="ballSize(this.value)"></input>
