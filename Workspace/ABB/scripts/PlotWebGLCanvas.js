@@ -14,8 +14,6 @@ var webGL;
 
 PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	
-	
-	
 	init(targetContainer, points, data, cluster);
 		this.points = points;
 		this.clusterList = cluster;

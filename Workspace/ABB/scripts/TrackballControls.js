@@ -274,29 +274,9 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, plotWeb
 			
 			//If its canvas it uses this to select the point
 			if(pointsSystem.children[0] instanceof THREE.Particle){
-				var intersects = ray.intersectParticle(pointsSystem);
-				
-				if(intersects != null){	
-				
-					plotWebGL.getSelectedPoint(intersects[ 0 ].point.x ,intersects[ 0 ].point.y ,intersects[ 0 ].point.z );
-					
-					if ( intersects.length > 0 ) {
-						INTERSECTED = intersects[ 0 ].vertex
-				
-						pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0x00ff00);
-						pointsSystem.children[INTERSECTED].material.needsUpdate = true;
-					}else {
-
-						pointsSystem.children[INTERSECTED].material.color = new THREE.Color(0xff0000);
-						pointsSystem.children[INTERSECTED].material.needsUpdate = true;
-			
-						INTERSECTED = null;
-					}
-				}
 			
 			//If its WebGL it uses this to select the point
 			}else{
-			console.log(pointsSystem);
 				var intersects = ray.intersectObject(pointsSystem);
 				if(intersects != null){	
 				
