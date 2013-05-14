@@ -97,8 +97,11 @@ class Settings extends Controller {
 	 * @param String $id
 	 */
 	public function Outlier($id){
-		$threshold = @$this->urlvalues[CachedSettings::OUTLIERCONTROLLDISTANCE];
+		$threshold = floatval(@$this->urlvalues[CachedSettings::OUTLIERCONTROLLDISTANCE]);
 		$this->settings = new CachedSettings();
+		
+		if($threshold <= 0)
+			$threshold = 1000;
 
 		$this->settings->setSetting(CachedSettings::OUTLIERCONTROLLDISTANCE, $threshold);
 		

@@ -246,6 +246,7 @@ class KMeans extends ClusterAlgorithm {
 		for($i = 0; $i < $this->pointsToCrush && $i < $this->pointlist->size(); $i++){
 			$point = $this->pointlist->get($i, true);
 			$point->cluster = 0;
+			$point->addAdditionalInfo(self::DISTANCETOCLUSTER, 0);
 			$this->pointlist->set($i, $point, true);
 		}
 	}
