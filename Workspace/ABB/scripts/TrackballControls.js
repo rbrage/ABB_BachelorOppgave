@@ -350,7 +350,7 @@ THREE.TrackballControls = function ( object, domElement, centroidSphere, plotWeb
 			lastPosition.copy( _this.object.position );
 
 		}
-		
+		//This is for finding the rigth scale for the centerorid sphere and axia and setting the position
 		if(_eye.lengthSq()<500)
 			scale = 0.5;
 		if((_eye.lengthSq()>500) && (_eye.lengthSq()<1000))

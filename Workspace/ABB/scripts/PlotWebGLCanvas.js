@@ -32,7 +32,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 				drawWebGL(targetContainer, points, data, cluster);
 				}
 	};
-	
+	//Setting up a WebGLrender view
 	drawWebGL = function(targetContainer, points, data, cluster){
 		this.WIDTH = data.width;
 		this.HEIGHT = data.height;
@@ -74,7 +74,7 @@ PlotWebGLCanvas = function(targetContainer, points, data, cluster){
 	    animate();
 		
 	};
-	
+	//Setting up a Canvasrender view
 	drawCanvas = function(targetContainer, points, data, cluster){
 		this.WIDTH = data.width;
 		this.HEIGHT = data.height;
