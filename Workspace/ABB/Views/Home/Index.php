@@ -23,7 +23,7 @@ $this->Template("Home");
 		});
 	</script>
 	
-	<button id="masterpointButton" class="btn">Retrive masterpoint</button>
+	<button id="masterpointButton" class="btn">Retrieve masterpoint</button>
 	<script type="text/javascript">
 		$(function(){
 			$("#masterpointButton").click(function(){
